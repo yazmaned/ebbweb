@@ -1,0 +1,57 @@
+/* header */
+#header {
+    background: #2c3e50;
+    color: white;
+}
+
+#header a:link, #header a:visited {
+    color: white;
+}
+
+#branding h1 {
+    color: white;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+}
+
+/* sidebar and nav */
+#nav-sidebar {
+    background: #34495e;
+}
+
+.module h2, .module caption {
+    background: #2c3e50;
+    color: white;
+}
+
+/* buttons */
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #2c3e50;
+    border-color: #2c3e50;
+    color: white;
+    border-radius: 4px;
+}
+
+.button:hover, input[type=submit]:hover {
+    background: #34495e;
+}
+
+/* links */
+a:link, a:visited {
+    color: #2c3e50;
+}
+
+/* dashboard modules */
+.dashboard #content {
+    width: 100%;
+}
+
+/* table rows */
+tr:nth-child(even) {
+    background: #f5f5f5;
+}
+
+/* logout button */
+#user-tools a {
+    color: white;
+    border-bottom: 1px solid white;
+}

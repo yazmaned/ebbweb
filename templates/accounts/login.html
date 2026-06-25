@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Giriş | Kütüphane{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 3rem auto; background: rgb(255, 255, 255); padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);">
+
+    {% if form.errors %}
+        <p style="color: rgb(116, 62, 62); margin-bottom: 1rem;">Geçersiz kullanıcı adı ya da parola.</p>
+    {% endif %}
+
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+        {% for field in form %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+        {% endfor %}
+        <button type="submit" class="btn" style="width:100%; margin-top: 0.5rem;">Giriş Yap</button>
+    </form>
+
+</div>
+{% endblock %}xw

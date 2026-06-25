@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Öğrenciler{% endblock %}
+
+{% block content %}
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+    <h2>Öğrenciler</h2>
+    <a href="/portal/add-student/" class="btn">+ Yeni Öğrenci Kaydı</a>
+</div>
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+    <p style="color: gray;">Detaylı bilgi, log ve yetki düzenlemesi için adminle iletişime geçiniz.</p>
+    <div style="display:flex; gap:0.5rem;">
+        <a href="/portal/students/export/" class="btn" style="background: green">Listeden Rapor Oluştur (.pdf)</a>
+    </div>
+</div>
+{% if students %}
+<div style="display:grid; gap:0.8rem;">
+    {% for student in students %}
+    <div style="background:white; padding:1.2rem 1.5rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <strong>@{{ student.username }}</strong>
+            <span style="color:#aaa; font-size:0.85rem; margin-left:0.8rem;"> Kayıt Tarihi > {{ student.date_joined|date:"d M Y" }}</span>
+        </div>
+        <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c;" onclick="return confirm('{{ student.username }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p style="color:#888;">Henüz öğrenci eklenmedi.</p>
+{% endif %}
+{% endblock %}

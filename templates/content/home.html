@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ana Sayfa | BD{% endblock %}
+
+{% block content %}
+
+<style>
+    .rainbow-line {
+        height: 1px;
+        background: linear-gradient(90deg, #e63946, #f4a261, #f59e0b, #2a9d8f, #2980b9, #8e44ad);
+        margin: 1rem 0;
+    }
+    .journal-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    overflow: hidden;
+    min-width: 180px;
+    max-width: 180px;
+    flex-shrink: 0;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    align-self: flex-start;
+}
+    .journal-card:hover {
+        transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    .journal-color-bar {
+    display: block;
+    width: 100%;
+    height: 12px;
+}
+.journal-card * {
+    min-width: 0;
+}
+
+.journal-card img,
+.journal-card .journal-color-bar,
+.journal-card .journal-card-body {
+    width: 100%;
+    display: block;
+}
+    .journal-card-body { padding: 0.7rem 0.8rem; }
+    .journal-card-date { color: #bbb; font-size: 0.65rem; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px; }
+    .journal-card-title { color: #1a1a1a; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; line-height: 1.4; }
+    .journal-card-text { color: #888; font-size: 0.78rem; line-height: 1.5; margin: 0; }
+    .journal-card-delete { color: #e74c3c; font-size: 0.7rem; text-decoration: none; display: block; margin-top: 0.5rem; }
+
+    .service-card {
+        background: white;
+        border-radius: 5px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    @media (max-width: 768px) {
+    .service-card {
+        padding: 0.2rem 0.4rem;
+    }
+    .service-card img {
+        width: 32px;
+        height: 32px;
+    }
+    .service-card h4 {
+        font-size: 0.75rem;
+    }
+    .service-card p {
+        font-size: 0.65rem;
+        margin-top: 0.2rem;
+        line-height: 1.4;
+    }
+    
+}
+</style>
+
+<!-- SERVICES -->
+<div style="margin-bottom:0rem;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:1rem;">
+
+        <div class="service-card" style="border-top:4px solid #671789;">
+            <img src="{% static 'images/icons/book-stack.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
+            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane</h4>
+            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Tüm çalışma materyallerine sınırsız erişim</p>
+        </div>
+
+        <div class="service-card" style="border-top:4px solid #2980b9;">
+            <img src="{% static 'images/icons/pack2.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
+            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane + Online Canlı Ders</h4>
+            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Materyaller ve canlı ders desteği</p>
+        </div>
+
+        <div class="service-card" style="border-top:4px solid #27ae60;">
+            <img src="{% static 'images/icons/pack3.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
+            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane + Canlı Ders + Bireysel Koçluk</h4>
+            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Tam kapsamlı kişisel gelişim paketi</p>
+        </div>
+
+        <div class="service-card" style="border-top:4px solid #e67e22;">
+            <img src="{% static 'images/icons/language.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
+            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">IELTS + TOEFL Hazırlık</h4>
+            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Uluslararası sınavlara özel program</p>
+        </div>
+
+        <div class="service-card" style="border-top:4px solid #e63946;">
+            <img src="{% static 'images/icons/glasses.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
+            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Genel İngilizce</h4>
+            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Günlük hayat ve iş İngilizcesi</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="rainbow-line"></div>
+
+<!-- COMMON BUTTONS -->
+<div style="display:flex; gap:1rem; justify-content:left; align-items:center; margin-bottom:1.5rem; width:100%;">
+
+{% if user.is_authenticated %}
+<a href="/dashboard/" style="text-decoration:none; display:inline-block;">
+{% else %}
+<a href="#" onclick="document.getElementById('access-modal').style.display='flex'; return false;" style="text-decoration:none; display:inline-block;">
+{% endif %}
+    <div style="background:#bc4eeb; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+        <img src="{% static 'images/icons/open-book.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+        {% if user.is_authenticated %}
+        <span style="font-size:1.2rem; font-weight:600; text-align:center; font-style:italic;">kütüphane</span>
+        {% else %}
+        <span style="font-size:1.2rem; font-weight:600; text-align:center; font-style:italic;">kütüphaneye giriş</span>
+        {% endif %}
+    </div>
+</a>
+
+</div>
+
+<!-- ACCESS MODAL -->
+{% if not user.is_authenticated %}
+<div id="access-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:12px; padding:2rem; max-width:360px; width:90%; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2); position:relative;">
+        <div style="font-size:2.5rem; margin-bottom:1rem;">📚</div>
+        <h3 style="color:#2c3e50; margin-bottom:0.5rem;">Bu İçerik Üyelere Özel</h3>
+        <p style="color:#888; font-size:0.9rem; line-height:1.6; margin-bottom:1.5rem;">Çalışma kütüphanesine erişmek için kayıt yaptırmanız gerekmektedir. Bizimle iletişime geçin.</p>
+        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <a href="https://wa.me/905303138755" target="_blank" class="btn" style="background:#25d366; text-align:center;">💬 WhatsApp ile İletişim</a>
+            <a href="/accounts/login/" style="color:#888; font-size:0.85rem; text-decoration:none; margin-top:0.3rem;">Zaten üye misiniz? Giriş yapın →</a>
+        </div>
+        <button onclick="document.getElementById('access-modal').style.display='none'" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer; color:#aaa;">✕</button>
+    </div>
+</div>
+{% endif %}
+
+<!-- BILGE BUTTONS -->
+{% if user.username == 'bilge' %}
+<div class="rainbow-line"></div>
+
+<div style="display:grid; grid-template-columns: repeat(auto-fill, 140px); gap:1rem; justify-content:start;">
+
+    <a href="/portal/students/" style="text-decoration:none;">
+        <div style="background:#27ae60; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+            <img src="{% static 'images/icons/ogrenci_isleri.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+            <span style="font-size:1rem; font-weight:600; text-align:center; font-family:'Inter', sans-serif; font-style: italic;">öğrenci ekle/sil</span>
+        </div>
+    </a>
+
+    <a href="/journal/add/" style="text-decoration:none;">
+        <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+            <img src="{% static 'images/icons/edit-pencil.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+            <span style="font-size:1.2rem; font-weight:600; text-align:center; font-family:'Inter', sans-serif; font-style: italic;">blog oluştur</span>
+        </div>
+    </a>
+
+</div>
+{% endif %}
+
+<div style="clear:both;"></div>
+
+<div class="rainbow-line"></div>
+
+<!-- JOURNALS -->
+{% if journals %}
+<div style="margin-bottom:1.5rem;">
+    <div style="display:flex; flex-wrap:nowrap; gap:1rem; overflow-x:auto; padding-bottom:0.5rem; align-items:flex-start;">
+        {% for journal in journals %}
+        <a href="/journal/{{ journal.slug }}/" class="journal-card">
+            {% if journal.image %}
+                <img src="{{ journal.image.url }}" style="width:100%; height:100px; object-fit:cover; display:block;">
+            {% else %}
+                <div class="journal-color-bar" style="width:100%; height:12px;"></div>
+            {% endif %}
+            <div class="journal-card-body">
+                {% if journal.show_timestamp %}
+                <div class="journal-card-date">{{ journal.created_at|date:"d M Y" }}</div>
+                {% endif %}
+                <h4 class="journal-card-title">{{ journal.title }}</h4>
+                <p class="journal-card-text">{{ journal.body|truncatechars:50 }}</p>
+                {% if user.username == 'bilge' %}
+                <a href="/journal/delete/{{ journal.pk }}/" class="journal-card-delete" onclick="return confirm('Silinsin mi?')">Sil</a>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<script>
+    const pastels = [
+        '#2D3C59', '#CD5656', '#5B7E3C', '#F59E0B', '#44444E'
+    ];
+    document.querySelectorAll('.journal-color-bar').forEach(bar => {
+        bar.style.background = pastels[Math.floor(Math.random() * pastels.length)];
+    });
+</script>
+
+{% endblock %}

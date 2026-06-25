@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bilgehan Öztekin Kimdir? | BD{% endblock %}
+
+{% block content %}
+<div style="max-width:680px; margin:0 auto;">
+
+    <div style="border-bottom:3px solid #2c3e50; margin-bottom:1.5rem; padding-bottom:0.8rem;">
+        <h1 style="font-size:1.8rem; color:#2c3e50; font-weight:800;">Hakkımızda</h1>
+    </div>
+    <img src="{% static 'images/square.svg' %}" width="220" height="220">
+    <img src="{% static 'images/square_solid.svg' %}" width="220" height="220">
+    <img src="{% static 'images/square.svg' %}" width="220" height="220">
+    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.5rem;">
+        <p style="color:#555; font-size:0.95rem; line-height:1.8;">
+            Kurucumuz Bilgehan Öztekin, yıllardır YDS, YOKDIL, YDT, TOEFL ve IELTS gibi sınavlara hazırlık konusunda uzmanlaşmış, yüzlerce öğrenciye rehberlik etmistir. Deneyimi ve özgün ogretim yontemleri sayesinde
+            ögrenciler, İngilizceyi sadece bir ders degil, günlük hayatlarinin bir parçası olarak ögrenir.
+        </p>
+    </div>
+
+    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.5rem;">
+        <h3 style="color:#2c3e50; margin-bottom:1rem;">Ne Sunuyoruz?</h3>
+        <div style="display:grid; gap:0.8rem;">
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <span style="font-size:1.5rem;"><img src="{% static 'images/icons/page.svg' %}" width="24" height="24"></span>
+                <span style="color:#555; font-size:0.95rem;">Kapsamlı PDF ders materyalleri</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <span style="font-size:1.5rem;"><img src="{% static 'images/icons/movie.svg' %}" width="24" height="24"></span>
+                <span style="color:#555; font-size:0.95rem;">Onlarca saatlik Onlıne ders tekrar videoları</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <span style="font-size:1.5rem;">📚</span>
+                <span style="color:#555; font-size:0.95rem;">Online soru çözüm kampları, konu anlatımı</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+        <h3 style="color:#2c3e50; margin-bottom:1rem;">İletişim</h3>
+        <div style="display:grid; gap:0.8rem;">
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <span style="font-size:1.5rem;">💬</span>
+                <a href="https://wa.me/905330188812" target="_blank" style="color:#25d366; text-decoration:none; font-size:0.95rem;">WhatsApp ile ulaşın</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

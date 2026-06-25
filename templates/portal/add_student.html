@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Öğrenci Ekle{% endblock %}
+
+{% block content %}
+<div style="max-width:500px; margin:2rem auto; background:white; padding:2rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="margin-bottom:0.5rem;">Yeni Öğrenci Ekle</h2>
+
+    {% if success %}
+        <div style="background:#d4edda; color:#155724; padding:1rem; border-radius:6px; margin-bottom:1rem;">
+            <p style="margin:0 0 0.5rem 0;">{{ success }}</p>
+            <p style="margin:0 0 0.5rem 0;">Geçici parola: <strong style="font-size:1.1rem; letter-spacing:1px;">{{ generated_password }}</strong></p>
+            <p style="margin:0 0 1rem 0; font-size:0.85rem;">Not alın ya da öğrenciye iletin, bir daha gösterilmeyecek.</p>
+
+            <label style="font-weight:bold; display:block; margin-bottom:0.5rem;">Mesaj:</label>
+            <textarea id="student-message" readonly rows="7" style="width:100%; padding:0.8rem; border:1px solid #b8dacc; border-radius:6px; font-family:'Lucida Grande', Arial, sans-serif; font-size:0.9rem; background:#f0fff4; color:#155724; resize:none;">Merhaba {{ username }},
+
+Çalışma kütüphanesine kaydınız oluşturulmuştur.
+
+Kullanıcı adınız: {{ username }}
+Geçici parolanız: {{ generated_password }}
+
+İlk girişinizde parolanızı değiştirmeniz istenecektir.
+
+Başarılar dileriz! 📚</textarea>
+
+            <button onclick="copyMessage()" class="btn" style="width:100%; margin-top:0.5rem; background:#27ae60;">Mesajı Kopyala</button>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <p style="background:#f8d7da; color:#721c24; padding:0.8rem 1rem; border-radius:6px; margin-bottom:1rem;">❌ {{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Kullanıcı Adı</label>
+        <input type="text" name="username" autocomplete="off" required>
+        <button type="submit" class="btn" style="width:100%; margin-top:0.5rem;">Öğrenci Ekle</button>
+    </form>
+
+    <div style="margin-top:1.5rem; text-align:center;">
+        <a href="/portal/students/">Tüm öğrencileri gör →</a>
+    </div>
+</div>
+
+<script>
+    function copyMessage() {
+        const text = document.getElementById('student-message');
+        text.select();
+        document.execCommand('copy');
+        event.target.textContent = 'Kopyalandı!';
+        setTimeout(() => { event.target.textContent = 'Mesajı Kopyala'; }, 2000);
+    }
+</script>
+{% endblock %}

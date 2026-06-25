@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load content_tags %}
+{% load static %}
+
+{% block title %}Kütüphane | BD{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 1.5rem; text-align: center;">Çalışma Kütüphanesi</h2>
+
+<div style="font-family:'Lucida Grande', Arial, sans-serif;">
+
+{% for category in root_categories %}
+    {% render_folder category 0 %}
+{% endfor %}
+
+{% if uncategorized %}
+<div style="margin-top:1rem;">
+    <div onclick="toggleCategory('cat-uncategorized')"
+        style="display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.8rem; cursor:pointer; user-select:none; border-radius:6px; transition: background 0.15s;"
+        onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+        <span id="arrow-cat-uncategorized" style="font-size:0.75rem; color:#888;">▶</span>
+        <span style="font-size:1rem;">📁</span>
+        <span style="font-weight:600; color:#aaa;">Diğer</span>
+    </div>
+    <div id="cat-uncategorized" style="display:none; border-left:2px solid #aaa; padding-left:1rem; margin-left:1rem;">
+        {% for material in uncategorized %}
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px;"
+            onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+                {% if material.material_type == 'pdf' %}
+                    <img src="{% static 'images/icons/page.svg' %}" width="24" height="24">
+                {% else %}
+                    <img src="{% static 'images/icons/movie.svg' %}" width="24" height="24">
+                {% endif %}
+                <span style="color:#2c3e50;">{{ material.title }}</span>
+            </div>
+            {% if material.material_type == 'pdf' %}
+                <a href="/view/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</a>
+            {% else %}
+                <a href="/video/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if not root_categories and not uncategorized %}
+    <p style="color:#888; text-align:center; margin-top:2rem;">Henüz materyal yüklenmedi.</p>
+{% endif %}
+
+</div>
+
+<script>
+    function toggleCategory(id) {
+        const content = document.getElementById(id);
+        const arrow = document.getElementById('arrow-' + id);
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            arrow.textContent = '▼';
+        } else {
+            content.style.display = 'none';
+            arrow.textContent = '▶';
+        }
+    }
+</script>
+{% endblock %}

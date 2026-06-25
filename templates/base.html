@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.png' %}">
+    <title>{% block title %}Bilge Dil{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: #f0ede8;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: white;
+            padding: 0 2rem;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid #efefef;
+        }
+
+        nav a { text-decoration: none; }
+
+        .accent-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #e63946, #f4a261, #2a9d8f, #264653, #e63946);
+            background-size: 200% 100%;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: #2c3e50;
+            min-width: 150px;
+            z-index: 999;
+            overflow: hidden;
+            border: 1px solid #2c3e50;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.15s;
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background: #7c3aed; }
+        .dropdown:hover .dropdown-menu { display: block; }
+
+        .container {
+            flex: 1;
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            padding: 0 2rem;
+            width: 100%;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            padding: 0.6rem 1.4rem;
+            background: #2c3e50;
+            color: white;
+            border: 2px solid #2c3e50;
+            border-radius: 0;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .btn:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 1rem;
+            border: 1px solid #606060;
+            border-radius: 0;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            transition: border-color 0.15s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .alert-box {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 1.2rem;
+            border-left: 4px solid #7c3aed;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            animation: slideIn 0.3s ease;
+        }
+        .alert-box p { margin: 0; font-size: 0.9rem; }
+        .alert-box button {
+            align-self: flex-end;
+            background: white;
+            color: #1a1a1a;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .welcome-text { display: inline; font-style: italic; font-size: 0.9rem; color: #aaa; }
+        .welcome-text strong { color: #555; font-style: normal; }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2.5rem 2rem;
+            margin-top: auto;
+            border-top: 3px solid #efefef;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-text { display: none; }
+            nav { padding: 0 1rem; }
+            .container { padding: 0 1rem; margin: 1.5rem auto; }
+            input { font-size: 1rem; padding: 0.8rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInSlide {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="width:80px;"></div>
+
+        <a href="/home/" style="position:absolute; left:50%; transform:translateX(-50%); text-align:center; text-decoration:none; line-height:1.2;">
+    <img src="{% static 'images/logo.svg' %}" height="80px" alt="Bilge Dil">
+            </a>
+
+        <div style="display:flex; align-items:center; gap:1rem;">
+            {% if user.is_authenticated %}
+            <span class="welcome-text">Hoş Geldin, <strong>{{ user.username }}</strong></span>
+            {% endif %}
+
+            <div class="dropdown">
+                <a href="#" style="display:flex; align-items:center;">
+                    <img src="{% static 'images/icons/menu.svg' %}" width="26" height="26">
+                </a>
+                <div class="dropdown-menu">
+                    <a href="/home/">Ana Sayfa</a>
+                    <a href="/about/">Hakkımızda</a>
+                    <a href="/journal/">Blog Arşivi</a>
+                </div>
+            </div>
+
+            {% if user.is_authenticated %}
+                <a href="/accounts/logout" style="display:flex; align-items:center;">
+                    <img src="{% static 'images/icons/system-shut.svg' %}" width="26" height="26">
+                </a>
+            {% else %}
+                <a href="/accounts/login" style="display:flex; align-items:center;">
+                    <img src="{% static 'images/icons/log-in.svg' %}" width="26" height="26">
+                </a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="accent-bar"></div>
+
+<!--<div style="background:#2c3e50; text-align:center; padding:0.4rem 1rem; min-height:28px;">
+        <span id="surprise-text" style="color:#efefef; font-size:0.85rem; font-weight:700; letter-spacing:1px;"></span>
+    </div>-->
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:2rem;">
+            <div>
+                <h4 style="margin-bottom:0.8rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:2px; color:#aaa;">Bilge Dil Sınavları Akademisi</h4>
+            </div>
+            <div>
+                <h4 style="margin-bottom:0.8rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:2px; color:#aaa;">İletişim</h4>
+                <div style="display:flex; flex-direction:column; gap:0.4rem;">
+                    <a href="https://wa.me/905303138755" target="_blank" style="color:#01bb45; text-decoration:none; font-size:0.85rem; font-weight:500;">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.1); margin-top:2rem; padding-top:1rem; text-align:center;">
+            <span style="color:#555; font-size:0.75rem; letter-spacing:1px;">© 2026 BİLGE DİL SINAVLARI AKADEMİSİ</span>
+        </div>
+    </footer>
+
+    {% if user.is_authenticated %}
+    <div id="alert-container" style="position:fixed; bottom:2rem; right:2rem; z-index:9999; display:flex; flex-direction:column; gap:0.5rem; max-width:350px;"></div>
+    <script>
+        const shownMessages = new Set();
+        function checkMessages() {
+            fetch('/accounts/messages/')
+                .then(res => res.json())
+                .then(data => {
+                    data.messages.forEach(msg => {
+                        if (shownMessages.has(msg.id)) return;
+                        shownMessages.add(msg.id);
+                        const container = document.getElementById('alert-container');
+                        const box = document.createElement('div');
+                        box.className = 'alert-box';
+                        box.innerHTML = `<p>${msg.message}</p><button onclick="dismissMessage(${msg.id}, this)">X</button>`;
+                        container.appendChild(box);
+                    });
+                });
+        }
+        function dismissMessage(id, btn) {
+            fetch('/accounts/messages/read/' + id + '/').then(() => btn.closest('.alert-box').remove());
+        }
+        checkMessages();
+        setInterval(checkMessages, 10000);
+        document.querySelectorAll('.dropdown').forEach(d => {
+        d.addEventListener('click', () => {
+            const menu = d.querySelector('.dropdown-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+        }
+    });
+    </script>
+    {% endif %}
+
+</body>
+</html>

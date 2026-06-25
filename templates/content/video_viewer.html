@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ material.title }}{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+    <a href="/dashboard/" class="btn"><img src="{% static 'images/icons/arrow-left.svg' %}" width="30" height="30" style="filter: brightness(0) invert(1)"></a>
+</div>
+
+{% if material.material_type == 'video' %}
+    
+    <center>
+        <h3>{{ material.title }}</h3><br>
+        <video
+        controls
+        controlsList="nodownload"
+        style="width:70%; border-radius:8px; box-shadow: 2 2px 8px rgba(0,0,0,0.1);">
+        <source src="/file/{{ material.pk }}/" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    </center>
+
+{% elif material.material_type == 'youtube' %}
+  <h3>{{ material.title }}</h3>
+    <iframe
+        width="100%"
+        height="600px"
+        src="{{ material.embed_url }}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    </iframe>
+
+{% elif material.material_type == 'vimeo' %}
+    <h3>{{ material.title }}</h3>
+    <iframe
+        width="100%"
+        height="600px"
+        src="{{ material.embed_url }}"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    </iframe>
+    
+{% endif %}
+{% endblock %}

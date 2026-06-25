@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog | BD{% endblock %}
+
+{% block content %}
+<div style="max-width:680px; margin:0 auto;">
+
+    <div style="border-bottom:3px solid #2c3e50; margin-bottom:1.5rem; padding-bottom:0.8rem;">
+        <h1 style="font-size:1.8rem; color:#2c3e50; font-weight:800;">Yazı Arşivi</h1>
+    </div>
+
+    {% for journal in journals %}
+    <a href="/journal/{{ journal.slug }}/" style="text-decoration:none; color:inherit;">
+        <div style="display:flex; gap:1rem; padding:1rem 0; border-bottom:1px solid #eee; transition: background 0.15s;"
+            onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+            {% if journal.image %}
+                <img src="{{ journal.image.url }}" style="width:100px; height:70px; object-fit:cover; border-radius:6px; flex-shrink:0;">
+            {% else %}
+                <div style="width:100px; height:70px; border-radius:6px; flex-shrink:0; background:#f0f0f0; display:flex; align-items:center; justify-content:center;">
+                    <img src="{% static 'images/icons/news.svg' %}" width="40" height="40">
+                </div>
+            {% endif %}
+            <div>
+                {% if journal.show_timestamp %}
+                <p style="color:#bbb; font-size:0.75rem; margin-bottom:0.3rem;">{{ journal.created_at|date:"d M Y" }}</p>
+                {% endif %}
+                <h3 style="color:#2c3e50; font-size:1rem; margin-bottom:0.4rem;">{{ journal.title }}</h3>
+                <p style="color:#666; font-size:0.85rem; line-height:1.5; margin:0;">{{ journal.body|truncatechars:100 }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+    {% if seo_journals %}
+    <div style="display:flex; align-items:center; gap:0.8rem; margin:2rem 0 1rem 0;">
+        <span style="font-weight:600; color:#aaa;"></span>
+        <span style="flex:1; height:2px; background:#aaa; opacity:0.2; display:inline-block;">&nbsp;</span>
+    </div>
+
+    {% for journal in seo_journals %}
+    <a href="/journal/{{ journal.slug }}/" style="text-decoration:none; color:inherit;">
+        <div style="display:flex; gap:1rem; padding:0.8rem 0; border-bottom:1px solid #f0f0f0; transition: background 0.15s;"
+            onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+            {% if journal.image %}
+                <img src="{{ journal.image.url }}" style="width:80px; height:55px; object-fit:cover; border-radius:6px; flex-shrink:0;">
+            {% else %}
+                <div style="width:80px; height:55px; border-radius:6px; flex-shrink:0; background:#f5f5f5; display:flex; align-items:center; justify-content:center;">
+                    <img src="{% static 'images/icons/news.svg' %}" width="30" height="30" style="opacity:0.4;">
+                </div>
+            {% endif %}
+            <div>
+                {% if journal.show_timestamp %}
+                <p style="color:#ccc; font-size:0.72rem; margin-bottom:0.2rem;">{{ journal.created_at|date:"d M Y" }}</p>
+                {% endif %}
+                <h4 style="color:#999; font-size:0.9rem; margin-bottom:0.2rem;">{{ journal.title }}</h4>
+                <p style="color:#bbb; font-size:0.8rem; line-height:1.4; margin:0;">{{ journal.body|truncatechars:80 }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+    {% endif %}
+
+    {% if not journals and not seo_journals %}
+        <p style="color:#888;">Henüz yazı eklenmedi.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

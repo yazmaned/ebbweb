@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Yazı Ekle | BD{% endblock %}
+
+{% block content %}
+<div style="max-width:600px; margin:2rem auto; background:white; padding:2rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="margin-bottom:1.5rem;">Yeni Yazı</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Yazı Başlığı</label>
+        <input type="text" name="title" required>
+        <label>İçerik</label>
+        <textarea name="body" rows="6" required style="width:100%; padding:0.8rem; border:1px solid #ccc; border-radius:4px; font-family:'Lucida Grande', Arial, sans-serif; font-size:1rem; margin-bottom:1rem; resize:vertical;"></textarea>
+        <label>Görsel</label>
+        <input type="file" name="image" accept="image/*" style="margin-bottom:1rem;">
+
+        <div style="display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.2rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; font-weight:normal; cursor:pointer;">
+                <input type="checkbox" name="only_archive" style="width:auto; margin:0;">
+                Bu yazıyı sadece arşivde göster
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-weight:normal; cursor:pointer;">
+                <input type="checkbox" name="hide_timestamp" style="width:auto; margin:0;">
+                Bu yazıda tarih gösterme
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-weight:normal; cursor:pointer;">
+            <input type="checkbox" name="is_seo" style="width:auto; margin:0;">
+             Bu yazı SEO içeriği (ayrı bölümde göster)
+            </label>
+        </div>
+
+        <button type="submit" class="btn" style="width:100%;">Yayınla</button>
+        <p style="color:#aaa; font-size:0.8rem; margin-top:0.8rem;">Yayınlanan yazı üzerinde değişiklik için adminle iletişime geçiniz.</p>
+    </form>
+</div>
+{% endblock %}
