@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ journal.title }} | BD{% endblock %}
+{% block meta_description %}{{ journal.title }} — {{ journal.body|truncatechars:150 }}{% endblock %}
 
 {% block content %}
 <div style="max-width:680px; margin:0 auto;">

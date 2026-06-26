@@ -5,6 +5,25 @@ from django.http import FileResponse, Http404
 from django.conf import settings
 from .models import Material, Category
 from accounts.models import SessionLog, Journal
+from django.http import HttpResponse
+
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /
+Allow: /journal/
+Allow: /about/
+Allow: /home/
+
+Disallow: /dashboard/
+Disallow: /muthisadmin/
+Disallow: /portal/
+Disallow: /accounts/
+Disallow: /file/
+Disallow: /video/
+
+Sitemap: https://bilgehanhoca.com/sitemap.xml
+"""
+    return HttpResponse(content, content_type='text/plain')
 
 def home(request):
     journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:5]

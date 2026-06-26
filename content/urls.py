@@ -12,6 +12,7 @@ urlpatterns = [
     path('journal/<slug:slug>/', views.view_journal, name='view_journal'),
     path('journal/', views.journal_archive, name='journal_archive'),
     path('about/', views.about, name='about'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
 
 
 ]
