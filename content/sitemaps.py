@@ -3,7 +3,7 @@ from django.urls import reverse
 from accounts.models import Journal
 
 class JournalSitemap(Sitemap):
-    changefreq = 'weekly'
+    changefreq = 'always'
     priority = 0.8
 
     def items(self):
@@ -16,11 +16,21 @@ class JournalSitemap(Sitemap):
         return obj.created_at
 
 class StaticSitemap(Sitemap):
-    changefreq = 'monthly'
+    changefreq = 'daily'
     priority = 0.5
 
     def items(self):
-        return ['home', 'journal_archive', 'about']
+        return ['journal_archive', 'about']
+
+    def location(self, item):
+        return reverse(item)
+    
+class Homemap(Sitemap):
+    changefreq = 'Daily'
+    priority = 1
+
+    def items(self):
+        return ['home']
 
     def location(self, item):
         return reverse(item)
