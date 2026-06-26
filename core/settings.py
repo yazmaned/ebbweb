@@ -6,9 +6,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fnu$cao7_p#8std88o%5*yx@5021#c2y%k!93wvt^xfm=c#s)3')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
@@ -98,7 +98,7 @@ LOGOUT_REDIRECT_URL = '/home/'
 
 # Production security settings
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_SECONDS = 31536000
