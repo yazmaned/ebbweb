@@ -25,6 +25,12 @@ Sitemap: https://bilgehanhoca.com/sitemap.xml
 """
     return HttpResponse(content, content_type='text/plain')
 
+def error_404(request, exception):
+    return render(request, '404.html', status=404)
+
+def error_500(request):
+    return render(request, '500.html', status=500)
+
 def home(request):
     journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:5]
     if request.user.is_authenticated:

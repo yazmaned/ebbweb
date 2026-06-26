@@ -10,6 +10,9 @@ admin.site.site_header = "Bilge Dil Admin Paneli"
 admin.site.site_title = "BD Admin"
 admin.site.index_title = "Welcome, Bilgehan 💛"
 
+handler404 = 'content.views.error_404'
+handler500 = 'content.views.error_500'
+
 sitemaps = {
     'journals': JournalSitemap,
     'static': StaticSitemap,
