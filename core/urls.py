@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from content.sitemaps import JournalSitemap, StaticSitemap
 
+
 admin.site.site_header = "Bilge Dil Admin Paneli"
 admin.site.site_title = "BD Admin"
 admin.site.index_title = "Welcome, Bilgehan 💛"

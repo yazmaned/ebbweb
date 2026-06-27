@@ -16,6 +16,27 @@ def home(request):
         SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Ana Sayfa')
     return render(request, 'content/home.html', {'journals': journals, 'carousel': carousel})
 
+def screen(request):
+    import os
+    token = request.GET.get('token', '')
+    if token != os.environ.get('SCREEN_TOKEN', ''):
+        return redirect('/home/')
+    
+    from accounts.models import SessionLog
+    from django.contrib.auth.models import User
+    from django.utils import timezone
+
+    active_sessions = SessionLog.objects.filter(is_active=True).select_related('user')
+    total_students = User.objects.filter(is_staff=False).count()
+    today = timezone.now().date()
+    today_logins = SessionLog.objects.filter(login_time__date=today).count()
+
+    return render(request, 'content/screen.html', {
+        'active_sessions': active_sessions,
+        'total_students': total_students,
+        'today_logins': today_logins,
+    })
+
 def robots_txt(request):
     content = """User-agent: *
 Allow: /
