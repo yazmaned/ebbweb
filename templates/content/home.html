@@ -5,45 +5,103 @@
 
 {% block content %}
 
+{% if carousel %}
+<div style="margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem;">
+
+    <button onclick="carouselPrev()" style="flex-shrink:0; background:#f0f0f0; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">‹</button>
+
+    <div id="carousel-scroll" style="flex:1; overflow:hidden;">
+        <div id="carousel-inner" style="display:flex; transition:transform 0.4s ease;">
+            {% for item in carousel %}
+            <div style="flex-shrink:0; width:100%; padding:0.5rem 0;">
+                <div style="display:flex; align-items:center; gap:1rem;">
+                    <img src="{{ item.image.url }}" style="width:150px; height:150px; object-fit:cover; border-radius:10px; flex-shrink:0;">
+                    <div style="flex:1; min-width:0;">
+                        <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ item.title }}</h4>
+                        {% if item.description %}
+                        <p style="color:#666; font-size:0.75rem; line-height:1.4; margin:0 0 0.5rem 0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">{{ item.description }}</p>
+                        {% endif %}
+                        <button onclick="openModal('modal-{{ item.pk }}')" class="btn" style="font-size:0.75rem; padding:0.3rem 0.7rem; cursor:pointer;">İncele</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button onclick="carouselNext()" style="flex-shrink:0; background:#f0f0f0; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">›</button>
+
+</div>
+
+{% for item in carousel %}
+<div id="modal-{{ item.pk }}" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:12px; padding:2rem; max-width:300px; width:90%; text-align:left; position:relative; box-shadow:0 8px 24px rgba(0,0,0,0.2);">
+        <button onclick="closeModal('modal-{{ item.pk }}')" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.3rem; cursor:pointer; color:#aaa;">✕</button>
+        <img src="{{ item.image.url }}" style="width:100%; border-radius:8px; margin-bottom:1rem; aspect-ratio:1/1; object-fit:cover;">
+        <h3 style="color:#1a1a1a; margin-bottom:0.5rem; font-size:1.1rem;">{{ item.title }}</h3>
+        {% if item.link %}
+        <a href="{{ item.link }}" target="_blank" class="btn" style="display:block; text-align:center; background:#671789;">Mağazımızda Görüntüle →</a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<script>
+    let carouselIdx = 0;
+    const carouselInner = document.getElementById('carousel-inner');
+    const carouselTotal = carouselInner.children.length;
+
+    function carouselGo(n) {
+        carouselIdx = (n + carouselTotal) % carouselTotal;
+        carouselInner.style.transform = `translateX(-${carouselIdx * 100}%)`;
+    }
+
+    function carouselNext() { carouselGo(carouselIdx + 1); }
+    function carouselPrev() { carouselGo(carouselIdx - 1); }
+    setInterval(carouselNext, 5000);
+
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+</script>
+{% endif %}
+
 <style>
     .rainbow-line {
-        height: 1px;
+        height: 2px;
         background: linear-gradient(90deg, #e63946, #f4a261, #f59e0b, #2a9d8f, #2980b9, #8e44ad);
         margin: 1rem 0;
     }
     .journal-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
-    overflow: hidden;
-    min-width: 180px;
-    max-width: 180px;
-    flex-shrink: 0;
-    transition: transform 0.15s, box-shadow 0.15s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    align-self: flex-start;
-}
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        overflow: hidden;
+        min-width: 180px;
+        max-width: 180px;
+        flex-shrink: 0;
+        transition: transform 0.15s, box-shadow 0.15s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        align-self: flex-start;
+    }
     .journal-card:hover {
         transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     }
     .journal-color-bar {
-    display: block;
-    width: 100%;
-    height: 12px;
-}
-.journal-card * {
-    min-width: 0;
-}
-
-.journal-card img,
-.journal-card .journal-color-bar,
-.journal-card .journal-card-body {
-    width: 100%;
-    display: block;
-}
+        display: block;
+        width: 100%;
+        height: 12px;
+    }
+    .journal-card * { min-width: 0; }
+    .journal-card img,
+    .journal-card .journal-color-bar,
+    .journal-card .journal-card-body { width: 100%; display: block; }
     .journal-card-body { padding: 0.7rem 0.8rem; }
     .journal-card-date { color: #bbb; font-size: 0.65rem; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px; }
     .journal-card-title { color: #1a1a1a; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; line-height: 1.4; }
@@ -63,23 +121,11 @@
         box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     @media (max-width: 768px) {
-    .service-card {
-        padding: 0.2rem 0.4rem;
+        .service-card { padding: 0.2rem 0.4rem; }
+        .service-card img { width: 32px; height: 32px; }
+        .service-card h4 { font-size: 0.75rem; }
+        .service-card p { font-size: 0.65rem; margin-top: 0.2rem; line-height: 1.4; }
     }
-    .service-card img {
-        width: 32px;
-        height: 32px;
-    }
-    .service-card h4 {
-        font-size: 0.75rem;
-    }
-    .service-card p {
-        font-size: 0.65rem;
-        margin-top: 0.2rem;
-        line-height: 1.4;
-    }
-    
-}
 </style>
 
 <!-- SERVICES -->

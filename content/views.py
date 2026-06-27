@@ -7,6 +7,15 @@ from .models import Material, Category
 from accounts.models import SessionLog, Journal
 from django.http import HttpResponse
 
+from .models import Material, Category, CarouselItem
+
+def home(request):
+    journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:4]
+    carousel = CarouselItem.objects.filter(is_active=True)
+    if request.user.is_authenticated:
+        SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Ana Sayfa')
+    return render(request, 'content/home.html', {'journals': journals, 'carousel': carousel})
+
 def robots_txt(request):
     content = """User-agent: *
 Allow: /
@@ -30,12 +39,6 @@ def error_404(request, exception):
 
 def error_500(request):
     return render(request, '500.html', status=500)
-
-def home(request):
-    journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:5]
-    if request.user.is_authenticated:
-        SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Ana Sayfa')
-    return render(request, 'content/home.html', {'journals': journals})
 
 def journal_archive(request):
     journals = Journal.objects.filter(is_active=True, is_seo=False)
