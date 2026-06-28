@@ -109,8 +109,9 @@ if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = os.environ.get('R2_BUCKET_NAME')
     AWS_S3_ENDPOINT_URL = os.environ.get('R2_ENDPOINT_URL')
     AWS_S3_REGION_NAME = 'auto'
-    AWS_DEFAULT_ACL = 'private'
-    AWS_QUERYSTRING_AUTH = True
+    AWS_DEFAULT_ACL = 'public-read'
     AWS_QUERYSTRING_EXPIRE = 3600
+    AWS_QUERYSTRING_AUTH = False
     AWS_S3_FILE_OVERWRITE = False
-    MEDIA_URL = f"{os.environ.get('R2_ENDPOINT_URL')}/{os.environ.get('R2_BUCKET_NAME')}/"
+    AWS_S3_CUSTOM_DOMAIN = 'media.bilgehanhoca.com'
+    MEDIA_URL = 'https://media.bilgehanhoca.com/'
