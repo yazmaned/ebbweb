@@ -16,6 +16,8 @@ def home(request):
         SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Ana Sayfa')
     return render(request, 'content/home.html', {'journals': journals, 'carousel': carousel})
 
+def score_calculator(request):
+    return render(request, 'content/calculator.html')
 
 def robots_txt(request):
     content = """User-agent: *

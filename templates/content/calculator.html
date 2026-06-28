@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Puan Hesaplama | BD{% endblock %}
+
+{% block content %}
+
+<div style="max-width:600px; margin:0 auto;">
+    <a href="/home/" class="back-btn">←</a>
+    <h2 style="margin-bottom:0.3rem; font-weight:800;">YDS-YÖKDİL Puan Hesaplama</h2>
+    <p style="color:#888; font-size:0.9rem; margin-bottom:2rem;">YDS ve YÖKDİL sınavları için doğru sayınızı girin.</p>
+
+    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+
+        <label>Doğru Sayısı <span style="color:#888; font-weight:400;">(max 80)</span></label>
+        <input type="number" id="correct" min="0" max="80" placeholder="0" style="margin-bottom:1rem;">
+
+        <label>Hedef Puanınız <span style="color:#888; font-weight:400;">(opsiyonel)</span></label>
+        <input type="number" id="goal" min="0" max="100" placeholder="örn. 70" style="margin-bottom:1.5rem;">
+
+        <button onclick="calculate()" class="btn" style="width:100%;">Hesapla</button>
+    </div>
+
+    <div id="result" style="display:none; margin-top:1.5rem; background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); text-align:center;">
+        <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#888; margin-bottom:0.5rem;" id="exam-label">YDS PUANINIZ</div>
+        <div style="font-size:4rem; font-weight:900; color:#671789;" id="score-display">--</div>
+        <div style="font-size:1rem; color:#888; margin-top:0.3rem;" id="score-sub"></div>
+        <div id="goal-result" style="margin-top:1.2rem; padding:1rem; border-radius:8px; font-size:0.9rem;"></div>
+    </div>
+
+</div>
+
+<script>
+    let currentExam = 'yds';
+
+    function setExam(exam) {
+        currentExam = exam;
+        document.getElementById('btn-yds').style.background = exam === 'yds' ? '#671789' : '#f0f0f0';
+        document.getElementById('btn-yds').style.color = exam === 'yds' ? 'white' : '#1a1a1a';
+        document.getElementById('btn-yokdil').style.background = exam === 'yokdil' ? '#671789' : '#f0f0f0';
+        document.getElementById('btn-yokdil').style.color = exam === 'yokdil' ? 'white' : '#1a1a1a';
+        document.getElementById('result').style.display = 'none';
+    }
+
+    function calculate() {
+        const correct = parseInt(document.getElementById('correct').value);
+        const goal = parseInt(document.getElementById('goal').value);
+
+        if (isNaN(correct) || correct < 0 || correct > 80) {
+            alert('Lütfen 0 ile 80 arasında bir doğru sayısı girin.');
+            return;
+        }
+
+        const score = correct * 1.25;
+
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('exam-label').textContent = `PUANINIZ`;
+        document.getElementById('score-display').textContent = score.toFixed(2);
+        document.getElementById('score-sub').textContent = `${correct} × 1,25`;
+
+        const goalDiv = document.getElementById('goal-result');
+
+        if (!isNaN(goal) && goal > 0) {
+            if (score >= goal) {
+                goalDiv.style.background = '#dcfce7';
+                goalDiv.style.color = '#166534';
+                goalDiv.innerHTML = `<strong>${goal} puan</strong> hedefinize ulaşıyorsunuz!`;
+            } else {
+                const needed = Math.ceil((goal - score) / 1.25);
+                goalDiv.style.background = '#fef3c7';
+                goalDiv.style.color = '#92400e';
+                goalDiv.innerHTML = `<strong>${goal} puan</strong> hedefinize ulaşmak için <strong>${needed} doğru daha</strong> yapmanız gerekiyor.`;
+            }
+        } else {
+            goalDiv.innerHTML = '';
+            goalDiv.style.background = 'transparent';
+        }
+    }
+
+    document.getElementById('correct').addEventListener('keydown', e => {
+        if (e.key === 'Enter') calculate();
+    });
+</script>
+
+{% endblock %}
