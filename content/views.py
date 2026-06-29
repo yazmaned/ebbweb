@@ -1,13 +1,13 @@
 import os
-import boto3
-from botocore.config import Config
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import FileResponse, Http404
 from django.conf import settings
-from .models import Material, Category, CarouselItem
+from .models import Material, Category
 from accounts.models import SessionLog, Journal
 from django.http import HttpResponse
+
+from .models import Material, Category, CarouselItem
 
 def home(request):
     journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:4]
@@ -100,30 +100,9 @@ def dashboard(request):
         'uncategorized': uncategorized,
     })
 
-def get_r2_client():
-    return boto3.client(
-        's3',
-        endpoint_url=os.environ.get('R2_ENDPOINT_URL'),
-        aws_access_key_id=os.environ.get('R2_ACCESS_KEY_ID'),
-        aws_secret_access_key=os.environ.get('R2_SECRET_ACCESS_KEY'),
-        config=Config(signature_version='s3v4'),
-        region_name='auto'
-    )
-
 @login_required
 def serve_file(request, pk):
     material = get_object_or_404(Material, pk=pk)
-    if not settings.DEBUG:
-        s3 = get_r2_client()
-        signed_url = s3.generate_presigned_url(
-            'get_object',
-            Params={
-                'Bucket': os.environ.get('R2_BUCKET_NAME'),
-                'Key': material.file.name,
-            },
-            ExpiresIn=3600
-        )
-        return redirect(signed_url)
     file_path = os.path.join(settings.MEDIA_ROOT, material.file.name)
     if not os.path.exists(file_path):
         raise Http404
@@ -135,36 +114,14 @@ def serve_file(request, pk):
 def view_pdf(request, pk):
     material = get_object_or_404(Material, pk=pk)
     SessionLog.objects.filter(user=request.user, is_active=True).update(
-        current_material=f'PDF: {material.title}'
+        current_material=f'📄 {material.title}'
     )
-    if not settings.DEBUG:
-        s3 = get_r2_client()
-        signed_url = s3.generate_presigned_url(
-            'get_object',
-            Params={
-                'Bucket': os.environ.get('R2_BUCKET_NAME'),
-                'Key': material.file.name,
-            },
-            ExpiresIn=3600
-        )
-        return render(request, 'content/pdf_viewer.html', {'material': material, 'signed_url': signed_url})
     return render(request, 'content/pdf_viewer.html', {'material': material})
 
 @login_required
 def view_video(request, pk):
     material = get_object_or_404(Material, pk=pk)
     SessionLog.objects.filter(user=request.user, is_active=True).update(
-        current_material=f'Video: {material.title}'
+        current_material=f'🎥 {material.title}'
     )
-    if not settings.DEBUG:
-        s3 = get_r2_client()
-        signed_url = s3.generate_presigned_url(
-            'get_object',
-            Params={
-                'Bucket': os.environ.get('R2_BUCKET_NAME'),
-                'Key': material.file.name,
-            },
-            ExpiresIn=3600
-        )
-        return redirect(signed_url)
     return render(request, 'content/video_viewer.html', {'material': material})
