@@ -35,6 +35,9 @@ class SessionLog(models.Model):
     current_material = models.CharField(max_length=300, blank=True, null=True)
     last_activity = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.user.username} - {self.ip_address} - {self.login_time}"
+
 class VisitorLog(models.Model):
     ip_address = models.GenericIPAddressField(null=True, blank=True)
     user_agent = models.TextField(blank=True)
@@ -51,9 +54,6 @@ class VisitorLog(models.Model):
 
     class Meta:
         ordering = ['-visited_at']
-
-    def __str__(self):
-        return f"{self.user.username} - {self.ip_address} - {self.login_time}"
     
 class AdminMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # null = send to all
