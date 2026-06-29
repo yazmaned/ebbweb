@@ -25,5 +25,6 @@ urlpatterns = [
     path('portal/', include('portal.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('', include('content.urls')),
+    path('quiz/', include('quiz.urls')),
     path('', RedirectView.as_view(url='/home/')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

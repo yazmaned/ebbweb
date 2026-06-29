@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Rastgele Paragraf Sorusu | BD{% endblock %}
+
+{% block content %}
+<a href="/home/" class="back-btn">←</a>
+
+<style>
+.passage-box { background: white; border: 0.5px solid #e8e8e8; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.passage-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: #bbb; margin-bottom: 0.4rem; }
+.passage-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.6rem; }
+.passage-text { font-size: 13px; line-height: 1.7; color: #555; }
+.question-block { margin-bottom: 0.75rem; }
+.question-text { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.4rem; padding: 0 0.25rem; }
+.option-label { display: flex; align-items: flex-start; gap: 8px; padding: 0.45rem 0.75rem; border-radius: 6px; cursor: pointer; border: 0.5px solid #e8e8e8; margin-bottom: 0.3rem; background: white; transition: border-color 0.1s, background 0.1s; }
+.option-label:hover { border-color: #ccc; background: #fafafa; }
+.option-letter { font-size: 12px; font-weight: 700; color: #aaa; min-width: 16px; margin-top: 1px; }
+.option-text { font-size: 13px; color: #444; line-height: 1.5; }
+.q-divider { height: 0.5px; background: #f0f0f0; margin: 0.75rem 0; }
+</style>
+
+<div style="max-width:680px; margin:0 auto;">
+
+    <form method="POST" action="/quiz/mini/submit/{{ passage.id }}/">
+        {% csrf_token %}
+
+        <div class="passage-box">
+            <div class="passage-label">{{ passage.section }}</div>
+            <div class="passage-title">{{ passage.title }}</div>
+            <div class="passage-text">{{ passage.text }}</div>
+        </div>
+
+        {% for question in passage.questions.all %}
+            {% if not forloop.first %}<div class="q-divider"></div>{% endif %}
+            <div class="question-block">
+                <div class="question-text">{{ forloop.counter }}. {{ question.text }}</div>
+                {% for option in question.options.all %}
+                <label class="option-label">
+                    <input type="radio" name="q{{ question.id }}" value="{{ option.letter }}" style="margin-top:2px; width:auto; margin-bottom:0; flex-shrink:0;">
+                    <span class="option-letter">{{ option.letter }})</span>
+                    <span class="option-text">{{ option.text }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div style="display:flex; justify-content:flex-end;">
+            <button type="submit" class="btn" style="width:auto; padding:0.5rem 1.2rem; font-size:0.85rem; margin-top:0.5rem;">→</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
