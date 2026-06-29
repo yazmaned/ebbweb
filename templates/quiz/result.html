@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Sonuç | BD{% endblock %}
+
+{% block content %}
+<a href="/home/" class="back-btn">←</a>
+
+<style>
+.result-card { background: white; border: 0.5px solid #e8e8e8; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+.answer-block { background: white; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; border-left: 3px solid #e8e8e8; }
+.answer-block.correct { border-left-color: #22c55e; }
+.answer-block.wrong { border-left-color: #e63946; }
+.option-row { padding: 0.35rem 0.6rem; border-radius: 5px; margin-bottom: 0.25rem; font-size: 0.85rem; color: #888; }
+.option-row.correct { background: #dcfce7; color: #166534; font-weight: 700; }
+.option-row.wrong { background: #fee2e2; color: #991b1b; }
+.q-divider { height: 0.5px; background: #f0f0f0; margin: 0.6rem 0; }
+</style>
+
+<div style="max-width:680px; margin:0 auto;">
+
+    <div class="result-card" style="text-align:center; margin-bottom:1rem;">
+        <div style="font-size:3rem; font-weight:900; color:#671789; line-height:1;">{{ attempt.score }}/{{ attempt.total }}</div>
+        <div style="color:#aaa; font-size:0.8rem; margin-top:0.3rem; text-transform:uppercase; letter-spacing:1px;">{{ attempt.passage.title }}</div>
+        {% if attempt.score == attempt.total %}
+        <div style="margin-top:0.8rem; background:#dcfce7; color:#166534; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">mükemmel! tüm soruları doğru cevapladınız!</div>
+        {% elif attempt.score >= attempt.total|add:"-1" %}
+        <div style="margin-top:0.8rem; background:#fef3c7; color:#92400e; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">çok iyi! neredeyse mükemmeldiniz.</div>
+        {% else %}
+        <div style="margin-top:0.8rem; background:#fee2e2; color:#991b1b; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">hepsi yanlış</div>
+        {% endif %}
+    </div>
+
+    {% for answer in answers %}
+    <div class="answer-block {% if answer.is_correct %}correct{% else %}wrong{% endif %}">
+        <p style="font-weight:700; color:#1a1a1a; margin-bottom:0.6rem; font-size:0.88rem;">{{ forloop.counter }}. {{ answer.question.text }}</p>
+        {% for option in answer.question.options.all %}
+        <div class="option-row {% if option.is_correct %}correct{% elif answer.selected_option == option and not option.is_correct %}wrong{% endif %}">
+            <strong>{{ option.letter }})</strong> {{ option.text }}
+            {% if option.is_correct %} ✓{% endif %}
+            {% if answer.selected_option == option and not option.is_correct %} ✗ (Cevabınız){% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+        <a href="/quiz/mini/" class="btn" style="width:auto; padding:0.5rem 1.2rem; font-size:0.85rem;">yeni soru →</a>
+    </div>
+
+</div>
+{% endblock %}

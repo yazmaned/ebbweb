@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'accounts',
     'content',
     'django.contrib.sitemaps',
+    'quiz',
 ]
 
 MIDDLEWARE = [

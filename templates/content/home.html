@@ -175,7 +175,7 @@
 {% else %}
 <a href="#" onclick="document.getElementById('access-modal').style.display='flex'; return false;" style="text-decoration:none; display:inline-block;">
 {% endif %}
-    <div style="background:#bc4eeb; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+    <div style="background:#bc4eeb; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
         <img src="{% static 'images/icons/open-book.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
@@ -187,11 +187,19 @@
     </div>
 </a>
 <a href="/puan-hesaplama/" style="text-decoration:none; display:inline-block;">
-    <div style="background:#2980b9; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+    <div style="background:#2980b9; color:white; border-radius:10px; width:180px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
         <img src="{% static 'images/icons/calculator.svg' %}" width="43" height="43" style="filter: brightness(0) invert(1);">
         <span style="font-size:1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>puan hesaplama</span>
+    </div>
+</a>
+<a href="/quiz/mini/" style="text-decoration:none; display:inline-block;">
+    <div style="background:#e67e22; color:white; border-radius:10px; width:210px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+        <img src="{% static 'images/icons/quiz.svg' %}" width="60" height="60" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1rem; font-weight:600; text-align:center; font-style:italic;">rastgele paragraf sorusu</span>
     </div>
 </a>
 
