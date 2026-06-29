@@ -10,11 +10,6 @@ from accounts.models import SessionLog, Journal
 from django.http import HttpResponse
 
 def home(request):
-    from django.core.files.storage import default_storage
-    import sys
-    print(f"STORAGE: {default_storage.__class__.__name__}", file=sys.stderr)
-    print(f"DEBUG: {settings.DEBUG}", file=sys.stderr)
-
     journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:4]
     carousel = CarouselItem.objects.filter(is_active=True)
     if request.user.is_authenticated:
