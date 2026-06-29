@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Rastgele Paragraf Sorusu | BD{% endblock %}
+{% block title %}Sonuç | BD{% endblock %}
 
 {% block content %}
 <a href="/home/" class="back-btn">←</a>
@@ -22,11 +22,11 @@
         <div style="font-size:3rem; font-weight:900; color:#671789; line-height:1;">{{ attempt.score }}/{{ attempt.total }}</div>
         <div style="color:#aaa; font-size:0.8rem; margin-top:0.3rem; text-transform:uppercase; letter-spacing:1px;">{{ attempt.passage.title }}</div>
         {% if attempt.score == attempt.total %}
-        <div style="margin-top:0.8rem; background:#dcfce7; color:#166534; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">&nbsp;&nbsp;&nbsp;</div>
+        <div style="margin-top:0.8rem; background:#dcfce7; color:#166534; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">mükemmel! tüm soruları doğru cevapladınız!</div>
         {% elif attempt.score >= attempt.total|add:"-1" %}
-        <div style="margin-top:0.8rem; background:#fef3c7; color:#92400e; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">&nbsp;&nbsp;&nbsp;</div>
+        <div style="margin-top:0.8rem; background:#fef3c7; color:#92400e; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">çok iyi! neredeyse mükemmeldiniz.</div>
         {% else %}
-        <div style="margin-top:0.8rem; background:#fee2e2; color:#991b1b; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">&nbsp;&nbsp;&nbsp;</div>
+        <div style="margin-top:0.8rem; background:#fee2e2; color:#991b1b; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">hepsi yanlış</div>
         {% endif %}
     </div>
 
