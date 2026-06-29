@@ -71,7 +71,7 @@
 <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    const url = '/file/{{ material.pk }}/';
+    const url = "{{ signed_url|default:material.file.url }}";
     const canvas = document.getElementById('pdf-canvas');
     const ctx = canvas.getContext('2d');
     let pdfDoc = null;
