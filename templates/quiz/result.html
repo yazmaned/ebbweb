@@ -37,7 +37,7 @@
         <div class="option-row {% if option.is_correct %}correct{% elif answer.selected_option == option and not option.is_correct %}wrong{% endif %}">
             <strong>{{ option.letter }})</strong> {{ option.text }}
             {% if option.is_correct %} ✓{% endif %}
-            {% if answer.selected_option == option and not option.is_correct %} ✗ (Cevabınız){% endif %}
+            {% if answer.selected_option == option and not option.is_correct %} ✗ {% endif %}
         </div>
         {% endfor %}
     </div>

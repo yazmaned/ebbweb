@@ -35,6 +35,23 @@ class SessionLog(models.Model):
     current_material = models.CharField(max_length=300, blank=True, null=True)
     last_activity = models.DateTimeField(auto_now=True)
 
+class VisitorLog(models.Model):
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True)
+    browser = models.CharField(max_length=200, blank=True)
+    os = models.CharField(max_length=200, blank=True)
+    device = models.CharField(max_length=200, blank=True)
+    path = models.CharField(max_length=500, blank=True)
+    referer = models.CharField(max_length=500, blank=True)
+    visited_at = models.DateTimeField(auto_now_add=True)
+    is_bot = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.ip_address} - {self.path} - {self.visited_at}"
+
+    class Meta:
+        ordering = ['-visited_at']
+
     def __str__(self):
         return f"{self.user.username} - {self.ip_address} - {self.login_time}"
     
