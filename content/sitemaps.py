@@ -20,7 +20,7 @@ class StaticSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return ['home','journal_archive', 'score_calculator']
+        return ['journal_archive', 'score_calculator', 'quiz/mini/']
 
     def location(self, item):
         return reverse(item)
