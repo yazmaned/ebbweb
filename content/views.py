@@ -20,20 +20,26 @@ def score_calculator(request):
     return render(request, 'content/calculator.html')
 
 def robots_txt(request):
-    content = """User-agent: *
-Allow: /
-Allow: /journal/
-Allow: /about/
-Allow: /home/
+    content = """
+    User-agent: *
+    Allow: /
+    Allow: /journal/
+    Allow: /about/
+    Allow: /home/
+    Allow: /hesaplama/
+    Allow: /quiz/
+    Allow: /quiz/mini/
 
-Disallow: /dashboard/
-Disallow: /muthisadmin/
-Disallow: /portal/
-Disallow: /accounts/
-Disallow: /file/
-Disallow: /video/
+    Disallow: /dashboard/
+    Disallow: /muthisadmin/
+    Disallow: /portal/
+    Disallow: /accounts/
+    Disallow: /file/
+    Disallow: /video/
+    Disallow: /quiz/result/
+    Disallow: /quiz/full/
 
-Sitemap: https://bilgehanhoca.com/sitemap.xml
+    Sitemap: https://bilgehanhoca.com/sitemap.xml
 """
     return HttpResponse(content, content_type='text/plain')
 
