@@ -20,7 +20,7 @@ class StaticSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return ['journal_archive', 'about']
+        return ['journal_archive', 'about', 'puan-hesaplama']
 
     def location(self, item):
         return reverse(item)
