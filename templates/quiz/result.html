@@ -7,6 +7,10 @@
 
 <style>
 .result-card { background: white; border: 0.5px solid #e8e8e8; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+.passage-box { background: white; border: 0.5px solid #e8e8e8; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+.passage-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: #bbb; margin-bottom: 0.4rem; }
+.passage-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.6rem; }
+.passage-text { font-size: 13px; line-height: 1.7; color: #555; }
 .answer-block { background: white; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; border-left: 3px solid #e8e8e8; }
 .answer-block.correct { border-left-color: #22c55e; }
 .answer-block.wrong { border-left-color: #e63946; }
@@ -28,6 +32,12 @@
         {% else %}
         <div style="margin-top:0.8rem; background:#fee2e2; color:#991b1b; padding:0.6rem 1rem; border-radius:6px; font-size:0.85rem; font-weight:600; font-style:italic;">&nbsp;&nbsp;&nbsp;</div>
         {% endif %}
+    </div>
+
+    <div class="passage-box">
+        <div class="passage-label">{{ attempt.passage.section }}</div>
+        <div class="passage-title">{{ attempt.passage.title }}</div>
+        <div class="passage-text">{{ attempt.passage.text }}</div>
     </div>
 
     {% for answer in answers %}
