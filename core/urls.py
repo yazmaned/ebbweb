@@ -14,8 +14,12 @@ admin.site.index_title = "Welcome, Bilgehan 💛"
 handler404 = 'content.views.error_404'
 handler500 = 'content.views.error_500'
 
+from content.sitemaps import HomeSitemap, JournalSitemap, SeoJournalSitemap, StaticSitemap
+
 sitemaps = {
+    'home': HomeSitemap,
     'journals': JournalSitemap,
+    'seo_journals': SeoJournalSitemap,
     'static': StaticSitemap,
 }
 
