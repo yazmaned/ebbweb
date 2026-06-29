@@ -19,11 +19,9 @@ from .models import VisitorLog
 
 @admin.register(VisitorLog)
 class VisitorLogAdmin(admin.ModelAdmin):
-    list_display = ('ip_address', 'browser', 'os', 'device', 'path', 'referer', 'is_bot', 'visited_at')
-    list_filter = ('is_bot', 'browser', 'os')
-    readonly_fields = ('ip_address', 'user_agent', 'browser', 'os', 'device', 'path', 'referer', 'is_bot', 'visited_at')
-    def has_add_permission(self, request):
-        return False
+    list_display = ('ip_address', 'browser', 'os', 'device', 'path', 'referer', 'is_unique', 'is_bot', 'visited_at')
+    list_filter = ('is_bot', 'is_unique', 'browser', 'os')
+    readonly_fields = ('ip_address', 'user_agent', 'browser', 'os', 'device', 'path', 'referer', 'is_bot', 'is_unique', 'visited_at')
     
 
     def has_change_permission(self, request, obj=None):

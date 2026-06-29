@@ -20,6 +20,8 @@ class ForcePasswordChangeMiddleware:
 from .models import VisitorLog
 from user_agents import parse
 
+from django.utils import timezone
+
 class VisitorLogMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -27,25 +29,34 @@ class VisitorLogMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
 
-        # Only log anonymous visitors on main pages
-        if not request.user.is_authenticated:
-            path = request.path
+        try:
+            if not request.user.is_authenticated:
+                path = request.path
+                skip = ['/static/', '/media/', '/muthisadmin/', '/accounts/messages/', '/sitemap', '/robots']
+                if not any(path.startswith(s) for s in skip):
+                    ua_string = request.META.get('HTTP_USER_AGENT', '')
+                    ua = parse(ua_string)
+                    ip = request.META.get('REMOTE_ADDR')
 
-            # Skip static, media, admin, api paths
-            skip = ['/static/', '/media/', '/muthisadmin/', '/accounts/messages/', '/sitemap', '/robots']
-            if not any(path.startswith(s) for s in skip):
-                ua_string = request.META.get('HTTP_USER_AGENT', '')
-                ua = parse(ua_string)
+                    # Check if this IP visited today
+                    today = timezone.now().date()
+                    is_unique = not VisitorLog.objects.filter(
+                        ip_address=ip,
+                        visited_at__date=today
+                    ).exists()
 
-                VisitorLog.objects.create(
-                    ip_address=request.META.get('REMOTE_ADDR'),
-                    user_agent=ua_string,
-                    browser=f"{ua.browser.family} {ua.browser.version_string}",
-                    os=f"{ua.os.family} {ua.os.version_string}",
-                    device=ua.device.family,
-                    path=path,
-                    referer=request.META.get('HTTP_REFERER', ''),
-                    is_bot=ua.is_bot,
-                )
+                    VisitorLog.objects.create(
+                        ip_address=ip,
+                        user_agent=ua_string,
+                        browser=f"{ua.browser.family} {ua.browser.version_string}",
+                        os=f"{ua.os.family} {ua.os.version_string}",
+                        device=ua.device.family,
+                        path=path,
+                        referer=request.META.get('HTTP_REFERER', ''),
+                        is_bot=ua.is_bot,
+                        is_unique=is_unique,
+                    )
+        except Exception:
+            pass
 
         return response

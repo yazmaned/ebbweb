@@ -48,6 +48,7 @@ class VisitorLog(models.Model):
     referer = models.CharField(max_length=500, blank=True)
     visited_at = models.DateTimeField(auto_now_add=True)
     is_bot = models.BooleanField(default=False)
+    is_unique = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.ip_address} - {self.path} - {self.visited_at}"
