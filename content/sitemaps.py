@@ -4,7 +4,7 @@ from accounts.models import Journal
 
 class JournalSitemap(Sitemap):
     changefreq = 'always'
-    priority = 0.8
+    priority = 0.5
 
     def items(self):
         return Journal.objects.filter(is_active=True)
@@ -17,10 +17,10 @@ class JournalSitemap(Sitemap):
 
 class StaticSitemap(Sitemap):
     changefreq = 'daily'
-    priority = 0.5
+    priority = 1
 
     def items(self):
-        return ['journal_archive', 'score_calculator', 'quiz/mini/']
+        return ['journal_archive', 'score_calculator', 'mini_quiz', "home"]
 
     def location(self, item):
         return reverse(item)
