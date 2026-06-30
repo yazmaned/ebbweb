@@ -8,18 +8,18 @@
 {% if carousel %}
 <div style="margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem;">
 
-    <button onclick="carouselPrev()" style="flex-shrink:0; background:#f0f0f0; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">‹</button>
+    <button onclick="carouselPrev()" style="flex-shrink:0; background:rgba(220,222,225,0.55); backdrop-filter:saturate(150%) blur(20px); -webkit-backdrop-filter:saturate(150%) blur(20px); border:0.5px solid rgba(0,0,0,0.08); border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">‹</button>
 
     <div id="carousel-scroll" style="flex:1; overflow:hidden;">
         <div id="carousel-inner" style="display:flex; transition:transform 0.4s ease;">
             {% for item in carousel %}
             <div style="flex-shrink:0; width:100%; padding:0.5rem 0;">
-                <div style="display:flex; align-items:center; gap:1rem;">
+                <div style="display:flex; align-items:center; gap:1rem; background:rgba(220,222,225,0.5); backdrop-filter:saturate(150%) blur(28px); -webkit-backdrop-filter:saturate(150%) blur(28px); border:0.5px solid rgba(0,0,0,0.08); border-radius:14px; padding:0.8rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
                     <img src="{{ item.image.url }}" style="width:150px; height:150px; object-fit:cover; border-radius:10px; flex-shrink:0;">
                     <div style="flex:1; min-width:0;">
                         <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ item.title }}</h4>
                         {% if item.description %}
-                        <p style="color:#666; font-size:0.75rem; line-height:1.4; margin:0 0 0.5rem 0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">{{ item.description }}</p>
+                        <p style="color:#555; font-size:0.75rem; line-height:1.4; margin:0 0 0.5rem 0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">{{ item.description }}</p>
                         {% endif %}
                         <button onclick="openModal('modal-{{ item.pk }}')" class="btn" style="font-size:0.75rem; padding:0.3rem 0.7rem; cursor:pointer;">İncele</button>
                     </div>
@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <button onclick="carouselNext()" style="flex-shrink:0; background:#f0f0f0; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">›</button>
+    <button onclick="carouselNext()" style="flex-shrink:0; background:rgba(220,222,225,0.55); backdrop-filter:saturate(150%) blur(20px); -webkit-backdrop-filter:saturate(150%) blur(20px); border:0.5px solid rgba(0,0,0,0.08); border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">›</button>
 
 </div>
 
 {% for item in carousel %}
-<div id="modal-{{ item.pk }}" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
-    <div style="background:white; border-radius:12px; padding:2rem; max-width:300px; width:90%; text-align:left; position:relative; box-shadow:0 8px 24px rgba(0,0,0,0.2);">
+<div id="modal-{{ item.pk }}" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(40,42,45,0.3); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:rgba(235,236,238,0.85); backdrop-filter:saturate(180%) blur(40px); -webkit-backdrop-filter:saturate(180%) blur(40px); border:0.5px solid rgba(255,255,255,0.5); border-radius:14px; padding:2rem; max-width:300px; width:90%; text-align:left; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.18);">
         <button onclick="closeModal('modal-{{ item.pk }}')" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.3rem; cursor:pointer; color:#aaa;">✕</button>
         <img src="{{ item.image.url }}" style="width:100%; border-radius:8px; margin-bottom:1rem; aspect-ratio:1/1; object-fit:cover;">
         <h3 style="color:#1a1a1a; margin-bottom:0.5rem; font-size:1.1rem;">{{ item.title }}</h3>
@@ -76,22 +76,26 @@
         margin: 1rem 0;
     }
     .journal-card {
-        background: white;
+        background: rgba(220,222,225,0.5);
+        backdrop-filter: saturate(150%) blur(28px);
+        -webkit-backdrop-filter: saturate(150%) blur(28px);
+        border: 0.5px solid rgba(0,0,0,0.08);
         border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
         overflow: hidden;
         min-width: 180px;
         max-width: 180px;
         flex-shrink: 0;
-        transition: transform 0.15s, box-shadow 0.15s;
+        transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
         text-decoration: none;
         color: inherit;
         display: block;
         align-self: flex-start;
     }
     .journal-card:hover {
+        background: rgba(220,222,225,0.7);
         transform: translateY(-4px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
     }
     .journal-color-bar {
         display: block;
@@ -103,46 +107,35 @@
     .journal-card .journal-color-bar,
     .journal-card .journal-card-body { width: 100%; display: block; }
     .journal-card-body { padding: 0.7rem 0.8rem; }
-    .journal-card-date { color: #bbb; font-size: 0.65rem; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px; }
+    .journal-card-date { color: #888; font-size: 0.65rem; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px; }
     .journal-card-title { color: #1a1a1a; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; line-height: 1.4; }
-    .journal-card-text { color: #888; font-size: 0.78rem; line-height: 1.5; margin: 0; }
+    .journal-card-text { color: #555; font-size: 0.78rem; line-height: 1.5; margin: 0; }
     .journal-card-delete { color: #e74c3c; font-size: 0.7rem; text-decoration: none; display: block; margin-top: 0.5rem; }
 
     .service-card {
-        background: white;
+        background: rgba(220,222,225,0.5);
+        backdrop-filter: saturate(150%) blur(28px);
+        -webkit-backdrop-filter: saturate(150%) blur(28px);
+        border: 0.5px solid rgba(0,0,0,0.08);
         border-radius: 5px;
         padding: 1.5rem 1rem;
         text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     }
     .service-card:hover {
+        background: rgba(220,222,225,0.7);
         transform: translateY(-6px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
     }
+    .service-card h4 { color: #1a1a1a; }
+    .service-card p { color: #555; }
     @media (max-width: 768px) {
         .service-card { padding: 0.2rem 0.4rem; }
         .service-card img { width: 32px; height: 32px; }
         .service-card h4 { font-size: 0.75rem; }
         .service-card p { font-size: 0.65rem; margin-top: 0.2rem; line-height: 1.4; }
     }
-    @media (max-width: 768px) {
-    .service-card {
-        padding: 0.2rem 0.4rem;
-    }
-    .service-card img {
-        width: 32px;
-        height: 32px;
-    }
-    .service-card h4 {
-        font-size: 0.75rem;
-    }
-    .service-card p {
-        font-size: 0.65rem;
-        margin-top: 0.2rem;
-        line-height: 1.4;
-    }
-}
 </style>
 
 <!-- SERVICES -->
@@ -151,32 +144,32 @@
 
         <div class="service-card" style="border-top:4px solid #671789;">
             <img src="{% static 'images/icons/book-stack.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
-            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane</h4>
-            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Tüm çalışma materyallerine sınırsız erişim</p>
+            <h4 style="font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane</h4>
+            <p style="font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Tüm çalışma materyallerine sınırsız erişim</p>
         </div>
 
         <div class="service-card" style="border-top:4px solid #2980b9;">
             <img src="{% static 'images/icons/pack2.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
-            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane + Online Canlı Ders</h4>
-            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Materyaller ve canlı ders desteği</p>
+            <h4 style="font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane + Online Canlı Ders</h4>
+            <p style="font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Materyaller ve canlı ders desteği</p>
         </div>
 
         <div class="service-card" style="border-top:4px solid #27ae60;">
             <img src="{% static 'images/icons/pack3.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
-            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane + Canlı Ders + Bireysel Koçluk</h4>
-            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Tam kapsamlı kişisel gelişim paketi</p>
+            <h4 style="font-size:0.85rem; font-weight:700; line-height:1.4;">Kütüphane + Canlı Ders + Bireysel Koçluk</h4>
+            <p style="font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Tam kapsamlı kişisel gelişim paketi</p>
         </div>
 
         <div class="service-card" style="border-top:4px solid #e67e22;">
             <img src="{% static 'images/icons/language.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
-            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">IELTS + TOEFL Hazırlık</h4>
-            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Uluslararası sınavlara özel program</p>
+            <h4 style="font-size:0.85rem; font-weight:700; line-height:1.4;">IELTS + TOEFL Hazırlık</h4>
+            <p style="font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Uluslararası sınavlara özel program</p>
         </div>
 
         <div class="service-card" style="border-top:4px solid #e63946;">
             <img src="{% static 'images/icons/glasses.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
-            <h4 style="color:#1a1a1a; font-size:0.85rem; font-weight:700; line-height:1.4;">Genel İngilizce</h4>
-            <p style="color:#888; font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Günlük hayat ve iş İngilizcesi</p>
+            <h4 style="font-size:0.85rem; font-weight:700; line-height:1.4;">Genel İngilizce</h4>
+            <p style="font-size:0.75rem; margin-top:0.4rem; line-height:1.5;">Günlük hayat ve iş İngilizcesi</p>
         </div>
 
     </div>
@@ -192,9 +185,9 @@
 {% else %}
 <a href="#" onclick="document.getElementById('access-modal').style.display='flex'; return false;" style="text-decoration:none; display:inline-block;">
 {% endif %}
-    <div style="background:#bc4eeb; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
-        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
-        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+    <div style="background:#bc4eeb; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(188,78,235,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(188,78,235,0.5)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(188,78,235,0.35)'">
         <img src="{% static 'images/icons/open-book.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
         {% if user.is_authenticated %}
         <span style="font-size:1.2rem; font-weight:600; text-align:center; font-style:italic;">kütüphane</span>
@@ -204,17 +197,17 @@
     </div>
 </a>
 <a href="/puan-hesaplama/" style="text-decoration:none; display:inline-block;">
-    <div style="background:#2980b9; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
-        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
-        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+    <div style="background:#2980b9; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(41,128,185,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(41,128,185,0.5)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(41,128,185,0.35)'">
         <img src="{% static 'images/icons/calculator.svg' %}" width="43" height="43" style="filter: brightness(0) invert(1);">
         <span style="font-size:1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>puan hesaplama</span>
     </div>
 </a>
 <a href="/quiz/mini/" style="text-decoration:none; display:inline-block;">
-    <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
-        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
-        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+    <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(230,126,34,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(230,126,34,0.5)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(230,126,34,0.35)'">
         <img src="{% static 'images/icons/quiz.svg' %}" width="60" height="60" style="filter: brightness(0) invert(1);">
         <span style="font-size:1rem; font-weight:600; text-align:center; font-style:italic;">rastgele paragraf sorusu</span>
     </div>
@@ -224,11 +217,11 @@
 
 <!-- ACCESS MODAL -->
 {% if not user.is_authenticated %}
-<div id="access-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
-    <div style="background:white; border-radius:12px; padding:2rem; max-width:360px; width:90%; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2); position:relative;">
+<div id="access-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(40,42,45,0.3); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:rgba(235,236,238,0.85); backdrop-filter:saturate(180%) blur(40px); -webkit-backdrop-filter:saturate(180%) blur(40px); border:0.5px solid rgba(255,255,255,0.5); border-radius:14px; padding:2rem; max-width:360px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.18); position:relative;">
         <div style="font-size:2.5rem; margin-bottom:1rem;">📚</div>
         <h3 style="color:#2c3e50; margin-bottom:0.5rem;">Bu İçerik Üyelere Özel</h3>
-        <p style="color:#888; font-size:0.9rem; line-height:1.6; margin-bottom:1.5rem;">Çalışma kütüphanesine erişmek için kayıt yaptırmanız gerekmektedir. Bizimle iletişime geçin.</p>
+        <p style="color:#555; font-size:0.9rem; line-height:1.6; margin-bottom:1.5rem;">Çalışma kütüphanesine erişmek için kayıt yaptırmanız gerekmektedir. Bizimle iletişime geçin.</p>
         <div style="display:flex; flex-direction:column; gap:0.8rem;">
             <a href="https://wa.me/905303138755" target="_blank" class="btn" style="border: 2px solid #00b427; background:#00b427; text-align:center; font-style: italic;">WhatsApp ile İletişim</a>
             <a href="/accounts/login/" style="color:#888; font-size:0.85rem; text-decoration:none; margin-top:0.3rem;">Zaten üye misiniz? Giriş yapın →</a>
@@ -245,18 +238,18 @@
 <div style="display:grid; grid-template-columns: repeat(auto-fill, 140px); gap:1rem; justify-content:start;">
 
     <a href="/portal/students/" style="text-decoration:none;">
-        <div style="background:#27ae60; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+        <div style="background:#27ae60; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(39,174,96,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(39,174,96,0.5)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(39,174,96,0.35)'">
             <img src="{% static 'images/icons/ogrenci_isleri.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
             <span style="font-size:1rem; font-weight:600; text-align:center; font-family:'Inter', sans-serif; font-style: italic;">öğrenci ekle/sil</span>
         </div>
     </a>
 
     <a href="/journal/add/" style="text-decoration:none;">
-        <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)'"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 8px rgba(0,0,0,0.15)'">
+        <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(230,126,34,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(230,126,34,0.5)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(230,126,34,0.35)'">
             <img src="{% static 'images/icons/edit-pencil.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
             <span style="font-size:1.2rem; font-weight:600; text-align:center; font-family:'Inter', sans-serif; font-style: italic;">blog oluştur</span>
         </div>
