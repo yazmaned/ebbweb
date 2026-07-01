@@ -22,15 +22,14 @@
 
 {% elif material.material_type == 'youtube' %}
   <h3>{{ material.title }}</h3>
-    <iframe
-        width="100%"
-        height="600px"
-        src="{{ material.embed_url }}"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    </iframe>
+  <iframe src="{{ material.embed_url }}"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    width="100%"
+    eight="600px"
+    frameborder="0"
+     >
 
 {% elif material.material_type == 'vimeo' %}
     <h3>{{ material.title }}</h3>
