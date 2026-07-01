@@ -41,18 +41,18 @@ def export_students_pdf(request):
 
     # title
     p.setFont("Helvetica-Bold", 16)
-    p.drawString(50, height - 50, tr("Ogrenci Listesi"))
+    p.drawString(50, height - 50, tr("Student (User) List"))
 
     # date
-    p.setFont("Helvetica", 10)
+    p.setFont("Helvetica", 11)
     p.setFillColor(colors.grey)
-    p.drawString(50, height - 70, tr(f"{datetime.datetime.now().strftime('%d %b %Y %H:%M')} tarihi itibariyle {students.count()} ogrenci."))
+    p.drawString(50, height - 70, tr(f"{datetime.datetime.now().strftime('%d %b %Y %H:%M')}, {students.count()} students."))
 
     # header
     p.setFillColor(colors.black)
     p.setFont("Helvetica-Bold", 11)
-    p.drawString(50, height - 110, tr("Kullanici Adi"))
-    p.drawString(250, height - 110, tr("Kayit Tarihi"))
+    p.drawString(50, height - 110, tr("Username"))
+    p.drawString(250, height - 110, tr("Attend Date"))
     p.line(50, height - 115, width - 50, height - 115)
 
     # rows
