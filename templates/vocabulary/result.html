@@ -85,20 +85,33 @@
 <div style="max-width:680px; margin:0 auto;">
 
     <div class="score-card">
-        <div class="score-label">Sonucun</div>
-        <div class="score-value">{{ attempt.total }} sorudan {{ attempt.score }} doğru</div>
-        <div class="score-test-title">{{ attempt.test.unit.title }} — {{ attempt.test.title }}</div>
-        <div style="display:flex; justify-content:space-between; margin-top:1.5rem;">
-    <a href="/vocabulary/tests/unit/{{ attempt.test.unit.number }}/" class="mav-btn">← Testlere Dön</a>
-    <div style="display:flex; gap:0.6rem;">
-        <a href="/vocabulary/result/{{ attempt.id }}/pdf/" class="mav-btn">
-            <img src="{% static 'images/icons/download.svg' %}" style="width:16px; height:16px;">
-            Sonucu Dışa Aktar
-        </a>
-        <a href="/vocabulary/quiz/{{ attempt.test.id }}/" class="mav-btn primary">Tekrar Çöz</a>
+    <div class="score-label">Sonucun</div>
+    <div class="score-value">{{ attempt.total }} sorudan {{ attempt.score }} doğru</div>
+
+    <div style="display:flex; justify-content:center; gap:1.5rem; margin-top:0.8rem;">
+        <div style="text-align:center;">
+            <div style="font-size:1.2rem; font-weight:700; color:#e74c3c;">{{ wrong_count }}</div>
+            <div style="font-size:0.7rem; color:#888; text-transform:uppercase; letter-spacing:0.5px;">yanlış</div>
+        </div>
+        <div style="text-align:center;">
+            <div style="font-size:1.2rem; font-weight:700; color:#999;">{{ empty_count }}</div>
+            <div style="font-size:0.7rem; color:#888; text-transform:uppercase; letter-spacing:0.5px;">boş</div>
+        </div>
+    </div>
+
+    <div class="score-test-title" style="margin-top:0.8rem;">{{ attempt.test.unit.title }} — {{ attempt.test.title }}</div>
+
+    <div style="display:flex; justify-content:space-between; margin-top:1.5rem;">
+        <a href="/vocabulary/tests/unit/{{ attempt.test.unit.number }}/" class="mav-btn">← Testlere Dön</a>
+        <div style="display:flex; gap:0.6rem;">
+            <a href="/vocabulary/result/{{ attempt.id }}/pdf/" class="mav-btn">
+                <img src="{% static 'images/icons/download.svg' %}" style="width:16px; height:16px;">
+                Sonucu Dışa Aktar
+            </a>
+            <a href="/vocabulary/quiz/{{ attempt.test.id }}/" class="mav-btn primary">Tekrar Çöz</a>
+        </div>
     </div>
 </div>
-    </div>
 
     {% for answer in answers %}
     <div class="answer-block {% if answer.is_correct %}correct{% elif answer.selected_option %}incorrect{% else %}unanswered{% endif %}">

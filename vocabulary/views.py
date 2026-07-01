@@ -116,7 +116,15 @@ def vocab_result(request, attempt_id):
             return redirect('/home/')
     
     answers = attempt.answers.select_related('question', 'selected_option').prefetch_related('question__options')
-    return render(request, 'vocabulary/result.html', {'attempt': attempt, 'answers': answers})
+    empty_count = answers.filter(selected_option__isnull=True).count()
+    wrong_count = attempt.total - attempt.score - empty_count
+
+    return render(request, 'vocabulary/result.html', {
+        'attempt': attempt,
+        'answers': answers,
+        'empty_count': empty_count,
+        'wrong_count': wrong_count,
+    })
 
 TR_MAP = str.maketrans({
     'ğ': 'g', 'Ğ': 'G',
