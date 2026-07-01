@@ -1,0 +1,1511 @@
+{
+  "units": [
+    {
+      "unit": 1,
+      "title": "Academic Nouns",
+      "words": [
+        {
+          "id": 1,
+          "word": "impact",
+          "turkish_meaning": "etki",
+          "collocation": "have an impact on sth/sb",
+          "synonyms": [
+            "effect",
+            "influence",
+            "consequence",
+            "outcome",
+            "repercussion",
+            "result"
+          ]
+        },
+        {
+          "id": 2,
+          "word": "access",
+          "turkish_meaning": "erişim",
+          "collocation": "access to education/information",
+          "synonyms": [
+            "entry",
+            "admission",
+            "approach",
+            "availability",
+            "reach"
+          ]
+        },
+        {
+          "id": 3,
+          "word": "correlation",
+          "turkish_meaning": "ilişki, korelasyon",
+          "collocation": "correlation between X and Y",
+          "synonyms": [
+            "connection",
+            "relationship",
+            "association",
+            "link",
+            "interrelation"
+          ]
+        },
+        {
+          "id": 4,
+          "word": "feasibility",
+          "turkish_meaning": "yapılabilirlik",
+          "collocation": "feasibility of a project",
+          "synonyms": [
+            "practicality",
+            "possibility",
+            "viability",
+            "workability",
+            "achievability"
+          ]
+        },
+        {
+          "id": 5,
+          "word": "deficiency",
+          "turkish_meaning": "eksiklik",
+          "collocation": "vitamin deficiency",
+          "synonyms": [
+            "lack",
+            "shortage",
+            "insufficiency",
+            "absence",
+            "inadequacy"
+          ]
+        },
+        {
+          "id": 6,
+          "word": "increase",
+          "turkish_meaning": "artış",
+          "collocation": "increase in demand/price",
+          "synonyms": [
+            "rise",
+            "growth",
+            "surge",
+            "expansion",
+            "escalation",
+            "boost"
+          ]
+        },
+        {
+          "id": 7,
+          "word": "implications",
+          "turkish_meaning": "sonuçlar, etkiler",
+          "collocation": "implications for policy",
+          "synonyms": [
+            "consequences",
+            "effects",
+            "outcomes",
+            "results",
+            "repercussions"
+          ]
+        },
+        {
+          "id": 8,
+          "word": "opportunity",
+          "turkish_meaning": "fırsat",
+          "collocation": "job/learning opportunities",
+          "synonyms": [
+            "chance",
+            "possibility",
+            "prospect",
+            "opening",
+            "occasion",
+            "chances"
+          ],
+          "word_forms": [
+            "opportunity",
+            "opportunities"
+          ]
+        },
+        {
+          "id": 9,
+          "word": "funding",
+          "turkish_meaning": "finansman",
+          "collocation": "government funding",
+          "synonyms": [
+            "financing",
+            "financial support",
+            "sponsorship",
+            "backing",
+            "investment"
+          ]
+        },
+        {
+          "id": 10,
+          "word": "analysis",
+          "turkish_meaning": "analiz",
+          "collocation": "data/statistical analysis",
+          "synonyms": [
+            "examination",
+            "study",
+            "evaluation",
+            "investigation",
+            "inspection"
+          ]
+        },
+        {
+          "id": 11,
+          "word": "examination",
+          "turkish_meaning": "inceleme/sınav",
+          "collocation": "critical examination",
+          "synonyms": [
+            "inspection",
+            "scrutiny",
+            "analysis",
+            "investigation",
+            "review",
+            "survey"
+          ]
+        },
+        {
+          "id": 12,
+          "word": "interdependence",
+          "turkish_meaning": "karşılıklı bağımlılık",
+          "collocation": "economic interdependence",
+          "synonyms": [
+            "mutual dependence",
+            "mutual reliance",
+            "interconnectedness",
+            "reciprocity",
+            "linkage"
+          ]
+        },
+        {
+          "id": 13,
+          "word": "cooperation",
+          "turkish_meaning": "iş birliği",
+          "collocation": "international cooperation",
+          "synonyms": [
+            "collaboration",
+            "partnership",
+            "coordination",
+            "teamwork",
+            "alliance"
+          ]
+        },
+        {
+          "id": 14,
+          "word": "right",
+          "turkish_meaning": "hak",
+          "collocation": "basic human right",
+          "synonyms": [
+            "entitlement",
+            "claim",
+            "privilege",
+            "prerogative",
+            "due"
+          ]
+        },
+        {
+          "id": 15,
+          "word": "assessment",
+          "turkish_meaning": "değerlendirme",
+          "collocation": "risk/continuous assessment",
+          "synonyms": [
+            "evaluation",
+            "appraisal",
+            "estimation",
+            "judgement",
+            "rating",
+            "review"
+          ]
+        },
+        {
+          "id": 16,
+          "word": "mismatch",
+          "turkish_meaning": "uyumsuzluk",
+          "collocation": "mismatch between skills and jobs",
+          "synonyms": [
+            "imbalance",
+            "discrepancy",
+            "inconsistency",
+            "misfit"
+          ]
+        },
+        {
+          "id": 17,
+          "word": "criterion",
+          "turkish_meaning": "ölçüt",
+          "collocation": "main criterion (pl. criteria)",
+          "synonyms": [
+            "standard",
+            "benchmark",
+            "yardstick",
+            "measure",
+            "touchstone"
+          ]
+        },
+        {
+          "id": 18,
+          "word": "disparity",
+          "turkish_meaning": "eşitsizlik, fark",
+          "collocation": "income disparity",
+          "synonyms": [
+            "difference",
+            "inequality",
+            "gap",
+            "imbalance",
+            "divergence"
+          ]
+        },
+        {
+          "id": 19,
+          "word": "distribution",
+          "turkish_meaning": "dağıtım",
+          "collocation": "distribution of wealth/resources",
+          "synonyms": [
+            "allocation",
+            "delivery",
+            "dispersal",
+            "spread",
+            "circulation"
+          ]
+        },
+        {
+          "id": 20,
+          "word": "argument",
+          "turkish_meaning": "görüş, sav",
+          "collocation": "main argument",
+          "synonyms": [
+            "claim",
+            "reasoning",
+            "contention",
+            "assertion",
+            "point",
+            "line of reasoning"
+          ]
+        },
+        {
+          "id": 21,
+          "word": "concern",
+          "turkish_meaning": "kaygı",
+          "collocation": "growing concern about sth",
+          "synonyms": [
+            "worry",
+            "anxiety",
+            "unease",
+            "apprehension",
+            "fear"
+          ]
+        },
+        {
+          "id": 22,
+          "word": "emphasis",
+          "turkish_meaning": "vurgu",
+          "collocation": "place/put emphasis on",
+          "synonyms": [
+            "stress",
+            "importance",
+            "focus",
+            "weight",
+            "prominence",
+            "priority"
+          ]
+        },
+        {
+          "id": 23,
+          "word": "drawback",
+          "turkish_meaning": "dezavantaj",
+          "collocation": "main drawback",
+          "synonyms": [
+            "disadvantage",
+            "downside",
+            "weakness",
+            "flaw",
+            "shortcoming"
+          ]
+        },
+        {
+          "id": 24,
+          "word": "purpose",
+          "turkish_meaning": "amaç",
+          "collocation": "main purpose",
+          "synonyms": [
+            "aim",
+            "goal",
+            "objective",
+            "intention",
+            "target",
+            "function"
+          ]
+        },
+        {
+          "id": 25,
+          "word": "factor",
+          "turkish_meaning": "etken",
+          "collocation": "key/major factor",
+          "synonyms": [
+            "element",
+            "component",
+            "variable",
+            "influence",
+            "determinant"
+          ]
+        },
+        {
+          "id": 26,
+          "word": "overview",
+          "turkish_meaning": "genel bakış",
+          "collocation": "brief overview",
+          "synonyms": [
+            "summary",
+            "outline",
+            "survey",
+            "synopsis",
+            "general picture"
+          ]
+        },
+        {
+          "id": 27,
+          "word": "demand",
+          "turkish_meaning": "talep",
+          "collocation": "high demand for sth",
+          "synonyms": [
+            "need",
+            "requirement",
+            "desire",
+            "request",
+            "appetite"
+          ]
+        },
+        {
+          "id": 28,
+          "word": "opinion",
+          "turkish_meaning": "görüş",
+          "collocation": "public opinion",
+          "synonyms": [
+            "view",
+            "belief",
+            "idea",
+            "judgement",
+            "perspective",
+            "standpoint"
+          ]
+        },
+        {
+          "id": 29,
+          "word": "strategy",
+          "turkish_meaning": "strateji",
+          "collocation": "long-term strategy",
+          "synonyms": [
+            "plan",
+            "approach",
+            "tactic",
+            "policy",
+            "scheme"
+          ]
+        },
+        {
+          "id": 30,
+          "word": "burden",
+          "turkish_meaning": "yük",
+          "collocation": "financial burden",
+          "synonyms": [
+            "load",
+            "strain",
+            "responsibility",
+            "liability",
+            "weight"
+          ]
+        }
+      ]
+    },
+    {
+      "unit": 2,
+      "title": "Academic Adjectives",
+      "words": [
+        {
+          "id": 1,
+          "word": "significant",
+          "turkish_meaning": "önemli, kayda değer",
+          "collocation": "significant increase / change / impact",
+          "synonyms": [
+            "important",
+            "considerable",
+            "substantial",
+            "meaningful",
+            "notable",
+            "major"
+          ]
+        },
+        {
+          "id": 2,
+          "word": "inevitable",
+          "turkish_meaning": "kaçınılmaz",
+          "collocation": "inevitable result / consequence",
+          "synonyms": [
+            "unavoidable",
+            "inescapable",
+            "certain",
+            "bound to happen"
+          ]
+        },
+        {
+          "id": 3,
+          "word": "sufficient",
+          "turkish_meaning": "yeterli",
+          "collocation": "sufficient evidence / resources",
+          "synonyms": [
+            "enough",
+            "adequate",
+            "ample",
+            "satisfactory"
+          ]
+        },
+        {
+          "id": 4,
+          "word": "efficient",
+          "turkish_meaning": "verimli",
+          "collocation": "efficient system / method",
+          "synonyms": [
+            "productive",
+            "effective",
+            "well-organized",
+            "economical"
+          ]
+        },
+        {
+          "id": 5,
+          "word": "effective",
+          "turkish_meaning": "etkili",
+          "collocation": "effective solution / policy",
+          "synonyms": [
+            "successful",
+            "efficient",
+            "powerful",
+            "impactful"
+          ]
+        },
+        {
+          "id": 6,
+          "word": "apparent",
+          "turkish_meaning": "belli, aşikâr",
+          "collocation": "it became apparent that...",
+          "synonyms": [
+            "obvious",
+            "clear",
+            "evident",
+            "noticeable",
+            "visible"
+          ]
+        },
+        {
+          "id": 7,
+          "word": "visible",
+          "turkish_meaning": "görünür",
+          "collocation": "visible effect / difference",
+          "synonyms": [
+            "noticeable",
+            "evident",
+            "apparent",
+            "clear"
+          ]
+        },
+        {
+          "id": 8,
+          "word": "severe",
+          "turkish_meaning": "şiddetli, ağır",
+          "collocation": "severe problem / damage",
+          "synonyms": [
+            "serious",
+            "harsh",
+            "extreme",
+            "intense",
+            "grave"
+          ]
+        },
+        {
+          "id": 9,
+          "word": "widespread",
+          "turkish_meaning": "yaygın",
+          "collocation": "widespread support / use",
+          "synonyms": [
+            "extensive",
+            "common",
+            "prevalent",
+            "universal"
+          ]
+        },
+        {
+          "id": 10,
+          "word": "initial",
+          "turkish_meaning": "ilk, başlangıç",
+          "collocation": "initial stage / phase",
+          "synonyms": [
+            "first",
+            "primary",
+            "early",
+            "introductory"
+          ]
+        },
+        {
+          "id": 11,
+          "word": "reliable",
+          "turkish_meaning": "güvenilir",
+          "collocation": "reliable data / source",
+          "synonyms": [
+            "trustworthy",
+            "dependable",
+            "consistent",
+            "steady"
+          ]
+        },
+        {
+          "id": 12,
+          "word": "accurate",
+          "turkish_meaning": "doğru, hassas",
+          "collocation": "accurate information / measurement",
+          "synonyms": [
+            "precise",
+            "correct",
+            "exact",
+            "faithful"
+          ]
+        },
+        {
+          "id": 13,
+          "word": "stable",
+          "turkish_meaning": "istikrarlı",
+          "collocation": "stable economy / condition",
+          "synonyms": [
+            "steady",
+            "constant",
+            "firm",
+            "secure"
+          ]
+        },
+        {
+          "id": 14,
+          "word": "obvious",
+          "turkish_meaning": "açık, bariz",
+          "collocation": "obvious reason / fact",
+          "synonyms": [
+            "clear",
+            "evident",
+            "apparent",
+            "plain"
+          ]
+        },
+        {
+          "id": 15,
+          "word": "considerable",
+          "turkish_meaning": "önemli ölçüde, hatırı sayılır",
+          "collocation": "considerable amount / effect",
+          "synonyms": [
+            "significant",
+            "substantial",
+            "large",
+            "great"
+          ]
+        },
+        {
+          "id": 16,
+          "word": "adequate",
+          "turkish_meaning": "yeterli",
+          "collocation": "adequate support / protection",
+          "synonyms": [
+            "sufficient",
+            "enough",
+            "satisfactory"
+          ]
+        },
+        {
+          "id": 17,
+          "word": "relevant",
+          "turkish_meaning": "ilgili, konuya ilişkin",
+          "collocation": "relevant information / factor",
+          "synonyms": [
+            "applicable",
+            "related",
+            "connected",
+            "appropriate",
+            "pertinent"
+          ]
+        },
+        {
+          "id": 18,
+          "word": "suitable",
+          "turkish_meaning": "uygun",
+          "collocation": "suitable for / suitable candidate",
+          "synonyms": [
+            "appropriate",
+            "proper",
+            "fitting",
+            "acceptable"
+          ]
+        },
+        {
+          "id": 19,
+          "word": "intensive",
+          "turkish_meaning": "yoğun",
+          "collocation": "intensive course / training",
+          "synonyms": [
+            "concentrated",
+            "rigorous",
+            "demanding",
+            "thorough"
+          ]
+        },
+        {
+          "id": 20,
+          "word": "overall",
+          "turkish_meaning": "genel",
+          "collocation": "overall effect / picture",
+          "synonyms": [
+            "general",
+            "total",
+            "comprehensive",
+            "broad"
+          ]
+        },
+        {
+          "id": 21,
+          "word": "major",
+          "turkish_meaning": "büyük, önemli",
+          "collocation": "major problem / issue",
+          "synonyms": [
+            "significant",
+            "important",
+            "key",
+            "principal"
+          ]
+        },
+        {
+          "id": 22,
+          "word": "previous",
+          "turkish_meaning": "önceki",
+          "collocation": "previous study / research",
+          "synonyms": [
+            "earlier",
+            "former",
+            "prior",
+            "preceding"
+          ]
+        },
+        {
+          "id": 23,
+          "word": "temporary",
+          "turkish_meaning": "geçici",
+          "collocation": "temporary job / solution",
+          "synonyms": [
+            "short-term",
+            "brief",
+            "provisional",
+            "interim"
+          ]
+        },
+        {
+          "id": 24,
+          "word": "local",
+          "turkish_meaning": "yerel",
+          "collocation": "local government / community",
+          "synonyms": [
+            "regional",
+            "nearby",
+            "neighbourhood"
+          ]
+        },
+        {
+          "id": 25,
+          "word": "global",
+          "turkish_meaning": "küresel",
+          "collocation": "global problem / market",
+          "synonyms": [
+            "worldwide",
+            "international",
+            "universal"
+          ]
+        },
+        {
+          "id": 26,
+          "word": "dramatic",
+          "turkish_meaning": "çarpıcı, dramatik",
+          "collocation": "dramatic change / increase",
+          "synonyms": [
+            "striking",
+            "sudden",
+            "extreme",
+            "considerable"
+          ]
+        },
+        {
+          "id": 27,
+          "word": "complex",
+          "turkish_meaning": "karmaşık",
+          "collocation": "complex issue / system",
+          "synonyms": [
+            "complicated",
+            "intricate",
+            "involved",
+            "sophisticated"
+          ]
+        },
+        {
+          "id": 28,
+          "word": "vulnerable",
+          "turkish_meaning": "savunmasız, hassas",
+          "collocation": "vulnerable groups / position",
+          "synonyms": [
+            "exposed",
+            "weak",
+            "unprotected",
+            "at risk"
+          ]
+        },
+        {
+          "id": 29,
+          "word": "creative",
+          "turkish_meaning": "yaratıcı",
+          "collocation": "creative solution / thinking",
+          "synonyms": [
+            "imaginative",
+            "innovative",
+            "original",
+            "inventive"
+          ]
+        },
+        {
+          "id": 30,
+          "word": "flexible",
+          "turkish_meaning": "esnek",
+          "collocation": "flexible system / schedule",
+          "synonyms": [
+            "adaptable",
+            "adjustable",
+            "versatile"
+          ]
+        }
+      ]
+    },
+    {
+      "unit": 3,
+      "title": "Academic Adverbs",
+      "words": [
+        {
+          "id": 1,
+          "word": "significantly",
+          "turkish_meaning": "önemli ölçüde, kayda değer biçimde",
+          "collocation": "significantly increase / differ / affect",
+          "synonyms": [
+            "considerably",
+            "substantially",
+            "markedly",
+            "greatly",
+            "meaningfully"
+          ]
+        },
+        {
+          "id": 2,
+          "word": "considerably",
+          "turkish_meaning": "oldukça, epeyce",
+          "collocation": "considerably higher / lower / more / less",
+          "synonyms": [
+            "significantly",
+            "greatly",
+            "markedly",
+            "substantially"
+          ]
+        },
+        {
+          "id": 3,
+          "word": "largely",
+          "turkish_meaning": "büyük ölçüde",
+          "collocation": "largely depends on / largely based on",
+          "synonyms": [
+            "mostly",
+            "mainly",
+            "predominantly",
+            "to a great extent"
+          ]
+        },
+        {
+          "id": 4,
+          "word": "mainly",
+          "turkish_meaning": "ağırlıklı olarak",
+          "collocation": "mainly because of / mainly focused on",
+          "synonyms": [
+            "chiefly",
+            "primarily",
+            "largely",
+            "mostly",
+            "predominantly"
+          ]
+        },
+        {
+          "id": 5,
+          "word": "primarily",
+          "turkish_meaning": "öncelikle, esas olarak",
+          "collocation": "primarily concerned with / used primarily for",
+          "synonyms": [
+            "mainly",
+            "chiefly",
+            "largely",
+            "predominantly",
+            "essentially"
+          ]
+        },
+        {
+          "id": 6,
+          "word": "increasingly",
+          "turkish_meaning": "giderek artan biçimde",
+          "collocation": "increasingly important / common / difficult",
+          "synonyms": [
+            "more and more",
+            "progressively",
+            "steadily"
+          ]
+        },
+        {
+          "id": 7,
+          "word": "gradually",
+          "turkish_meaning": "yavaş yavaş, kademeli olarak",
+          "collocation": "gradually increase / decline / change",
+          "synonyms": [
+            "slowly",
+            "progressively",
+            "step by step",
+            "little by little"
+          ]
+        },
+        {
+          "id": 8,
+          "word": "eventually",
+          "turkish_meaning": "sonunda, eninde sonunda",
+          "collocation": "eventually lead to / eventually result in",
+          "synonyms": [
+            "in the end",
+            "ultimately",
+            "finally",
+            "at last"
+          ]
+        },
+        {
+          "id": 9,
+          "word": "ultimately",
+          "turkish_meaning": "nihayetinde, en sonunda",
+          "collocation": "ultimately responsible / ultimately depend on",
+          "synonyms": [
+            "eventually",
+            "finally",
+            "in the end",
+            "in the long run"
+          ]
+        },
+        {
+          "id": 10,
+          "word": "initially",
+          "turkish_meaning": "başlangıçta",
+          "collocation": "initially planned / initially expected",
+          "synonyms": [
+            "at first",
+            "originally",
+            "in the beginning"
+          ]
+        },
+        {
+          "id": 11,
+          "word": "previously",
+          "turkish_meaning": "daha önce",
+          "collocation": "previously reported / previously known",
+          "synonyms": [
+            "earlier",
+            "before",
+            "formerly",
+            "in the past"
+          ]
+        },
+        {
+          "id": 12,
+          "word": "currently",
+          "turkish_meaning": "şu anda, hâlen",
+          "collocation": "currently available / currently under discussion",
+          "synonyms": [
+            "presently",
+            "at the moment",
+            "at present",
+            "now"
+          ]
+        },
+        {
+          "id": 13,
+          "word": "recently",
+          "turkish_meaning": "son zamanlarda",
+          "collocation": "recently published / recently conducted",
+          "synonyms": [
+            "lately",
+            "in recent times",
+            "in the last few days/weeks/years"
+          ]
+        },
+        {
+          "id": 14,
+          "word": "typically",
+          "turkish_meaning": "tipik olarak",
+          "collocation": "typically found in / typically associated with",
+          "synonyms": [
+            "normally",
+            "usually",
+            "characteristically",
+            "conventionally"
+          ]
+        },
+        {
+          "id": 15,
+          "word": "generally",
+          "turkish_meaning": "genel olarak",
+          "collocation": "generally accepted / generally considered",
+          "synonyms": [
+            "usually",
+            "typically",
+            "in general",
+            "on the whole",
+            "overall"
+          ]
+        },
+        {
+          "id": 16,
+          "word": "widely",
+          "turkish_meaning": "yaygın biçimde",
+          "collocation": "widely used / widely recognized / widely accepted",
+          "synonyms": [
+            "extensively",
+            "broadly",
+            "commonly",
+            "widely spread"
+          ]
+        },
+        {
+          "id": 17,
+          "word": "approximately",
+          "turkish_meaning": "yaklaşık olarak",
+          "collocation": "approximately equal / approximately 50 percent",
+          "synonyms": [
+            "roughly",
+            "about",
+            "around",
+            "more or less"
+          ]
+        },
+        {
+          "id": 18,
+          "word": "severely",
+          "turkish_meaning": "ciddi şekilde, ağır biçimde",
+          "collocation": "severely damaged / severely limited / severely affected",
+          "synonyms": [
+            "seriously",
+            "badly",
+            "harshly",
+            "gravely"
+          ]
+        },
+        {
+          "id": 19,
+          "word": "strongly",
+          "turkish_meaning": "güçlü bir şekilde",
+          "collocation": "strongly support / strongly recommend / strongly oppose",
+          "synonyms": [
+            "firmly",
+            "powerfully",
+            "heavily",
+            "intensely"
+          ]
+        },
+        {
+          "id": 20,
+          "word": "partly",
+          "turkish_meaning": "kısmen",
+          "collocation": "partly due to / partly responsible for",
+          "synonyms": [
+            "partially",
+            "to some extent",
+            "in part",
+            "not completely"
+          ]
+        },
+        {
+          "id": 21,
+          "word": "barely",
+          "turkish_meaning": "zar zor, neredeyse hiç",
+          "collocation": "barely visible / barely enough / barely survive",
+          "synonyms": [
+            "hardly",
+            "scarcely",
+            "almost not",
+            "only just"
+          ]
+        },
+        {
+          "id": 22,
+          "word": "rarely",
+          "turkish_meaning": "nadiren",
+          "collocation": "rarely occur / rarely used",
+          "synonyms": [
+            "seldom",
+            "hardly ever",
+            "infrequently"
+          ]
+        },
+        {
+          "id": 23,
+          "word": "frequently",
+          "turkish_meaning": "sık sık",
+          "collocation": "frequently asked / frequently observed",
+          "synonyms": [
+            "often",
+            "regularly",
+            "repeatedly",
+            "commonly"
+          ]
+        },
+        {
+          "id": 24,
+          "word": "commonly",
+          "turkish_meaning": "yaygın olarak",
+          "collocation": "commonly used / commonly found / commonly referred to as",
+          "synonyms": [
+            "generally",
+            "widely",
+            "frequently",
+            "typically"
+          ]
+        },
+        {
+          "id": 25,
+          "word": "merely",
+          "turkish_meaning": "yalnızca, sadece",
+          "collocation": "merely a suggestion / not merely X but also Y",
+          "synonyms": [
+            "only",
+            "simply",
+            "just",
+            "no more than"
+          ]
+        },
+        {
+          "id": 26,
+          "word": "solely",
+          "turkish_meaning": "yalnızca, sadece, tek başına",
+          "collocation": "solely responsible / based solely on",
+          "synonyms": [
+            "only",
+            "exclusively",
+            "purely",
+            "alone"
+          ]
+        },
+        {
+          "id": 27,
+          "word": "entirely",
+          "turkish_meaning": "tamamen",
+          "collocation": "entirely different / entirely dependent / entirely based on",
+          "synonyms": [
+            "completely",
+            "totally",
+            "wholly",
+            "fully",
+            "absolutely"
+          ]
+        },
+        {
+          "id": 28,
+          "word": "highly",
+          "turkish_meaning": "son derece, oldukça",
+          "collocation": "highly effective / highly unlikely / highly successful",
+          "synonyms": [
+            "very",
+            "extremely",
+            "greatly",
+            "strongly"
+          ]
+        },
+        {
+          "id": 29,
+          "word": "relatively",
+          "turkish_meaning": "nispeten",
+          "collocation": "relatively small / relatively high / relatively stable",
+          "synonyms": [
+            "comparatively",
+            "to some extent",
+            "rather",
+            "somewhat"
+          ]
+        },
+        {
+          "id": 30,
+          "word": "particularly",
+          "turkish_meaning": "özellikle",
+          "collocation": "particularly important / particularly in X / particularly for Y",
+          "synonyms": [
+            "especially",
+            "notably",
+            "in particular",
+            "specifically"
+          ]
+        }
+      ]
+    },
+    {
+      "unit": 4,
+      "title": "Academic Verbs",
+      "words": [
+        {
+          "id": 1,
+          "word": "implement",
+          "turkish_meaning": "uygulamak",
+          "collocation": "implement a policy / plan / reform",
+          "synonyms": [
+            "carry out",
+            "put into practice",
+            "apply",
+            "execute"
+          ]
+        },
+        {
+          "id": 2,
+          "word": "maintain",
+          "turkish_meaning": "sürdürmek, korumak",
+          "collocation": "maintain control / standards / contact",
+          "synonyms": [
+            "keep",
+            "preserve",
+            "sustain",
+            "continue"
+          ]
+        },
+        {
+          "id": 3,
+          "word": "promote",
+          "turkish_meaning": "teşvik etmek",
+          "collocation": "promote equality / health / dialogue",
+          "synonyms": [
+            "encourage",
+            "foster",
+            "support",
+            "advance"
+          ]
+        },
+        {
+          "id": 4,
+          "word": "undermine",
+          "turkish_meaning": "zayıflatmak, baltalamak",
+          "collocation": "undermine trust / authority / stability",
+          "synonyms": [
+            "weaken",
+            "damage",
+            "erode",
+            "harm"
+          ]
+        },
+        {
+          "id": 5,
+          "word": "allocate",
+          "turkish_meaning": "tahsis etmek",
+          "collocation": "allocate resources / funds / time",
+          "synonyms": [
+            "assign",
+            "distribute",
+            "allot",
+            "set aside"
+          ]
+        },
+        {
+          "id": 6,
+          "word": "assess",
+          "turkish_meaning": "değerlendirmek",
+          "collocation": "assess impact / risk / progress",
+          "synonyms": [
+            "evaluate",
+            "judge",
+            "measure",
+            "appraise"
+          ]
+        },
+        {
+          "id": 7,
+          "word": "justify",
+          "turkish_meaning": "haklı çıkarmak, gerekçelendirmek",
+          "collocation": "justify a decision / action / expense",
+          "synonyms": [
+            "explain",
+            "defend",
+            "legitimize",
+            "give reasons for"
+          ]
+        },
+        {
+          "id": 8,
+          "word": "reveal",
+          "turkish_meaning": "ortaya çıkarmak, göstermek",
+          "collocation": "reveal results / patterns / secrets",
+          "synonyms": [
+            "show",
+            "uncover",
+            "disclose",
+            "expose"
+          ]
+        },
+        {
+          "id": 9,
+          "word": "perceive",
+          "turkish_meaning": "algılamak",
+          "collocation": "perceive as a threat / problem",
+          "synonyms": [
+            "see",
+            "regard",
+            "view",
+            "consider"
+          ]
+        },
+        {
+          "id": 10,
+          "word": "generate",
+          "turkish_meaning": "üretmek, ortaya çıkarmak",
+          "collocation": "generate income / ideas / interest",
+          "synonyms": [
+            "produce",
+            "create",
+            "cause",
+            "bring about"
+          ]
+        },
+        {
+          "id": 11,
+          "word": "mitigate",
+          "turkish_meaning": "hafifletmek",
+          "collocation": "mitigate risk / impact / damage",
+          "synonyms": [
+            "reduce",
+            "lessen",
+            "ease",
+            "alleviate"
+          ]
+        },
+        {
+          "id": 12,
+          "word": "restrict",
+          "turkish_meaning": "sınırlamak",
+          "collocation": "restrict access / movement / use",
+          "synonyms": [
+            "limit",
+            "confine",
+            "curb",
+            "control"
+          ]
+        },
+        {
+          "id": 13,
+          "word": "sustain",
+          "turkish_meaning": "sürdürmek, ayakta tutmak",
+          "collocation": "sustain growth / life / attention",
+          "synonyms": [
+            "maintain",
+            "continue",
+            "uphold",
+            "support"
+          ]
+        },
+        {
+          "id": 14,
+          "word": "transform",
+          "turkish_meaning": "dönüştürmek",
+          "collocation": "transform society / system / behaviour",
+          "synonyms": [
+            "change",
+            "convert",
+            "revolutionise",
+            "reshape"
+          ]
+        },
+        {
+          "id": 15,
+          "word": "expand",
+          "turkish_meaning": "genişletmek",
+          "collocation": "expand services / activities / market",
+          "synonyms": [
+            "enlarge",
+            "increase",
+            "broaden",
+            "extend"
+          ]
+        },
+        {
+          "id": 16,
+          "word": "violate",
+          "turkish_meaning": "ihlal etmek",
+          "collocation": "violate rights / rules / law",
+          "synonyms": [
+            "break",
+            "breach",
+            "infringe",
+            "disobey"
+          ]
+        },
+        {
+          "id": 17,
+          "word": "enforce",
+          "turkish_meaning": "zorla uygulamak",
+          "collocation": "enforce a law / rule / regulation",
+          "synonyms": [
+            "implement",
+            "apply",
+            "put into effect",
+            "impose"
+          ]
+        },
+        {
+          "id": 18,
+          "word": "monitor",
+          "turkish_meaning": "izlemek, takip etmek",
+          "collocation": "monitor progress / behaviour / performance",
+          "synonyms": [
+            "observe",
+            "track",
+            "watch",
+            "supervise"
+          ]
+        },
+        {
+          "id": 19,
+          "word": "adapt",
+          "turkish_meaning": "uyarlamak, uyum sağlamak",
+          "collocation": "adapt to change / adapt a method",
+          "synonyms": [
+            "adjust",
+            "modify",
+            "change",
+            "accommodate"
+          ]
+        },
+        {
+          "id": 20,
+          "word": "challenge",
+          "turkish_meaning": "sorgulamak, meydan okumak",
+          "collocation": "challenge an assumption / decision",
+          "synonyms": [
+            "question",
+            "dispute",
+            "contest",
+            "call into question"
+          ]
+        },
+        {
+          "id": 21,
+          "word": "investigate",
+          "turkish_meaning": "araştırmak",
+          "collocation": "investigate a claim / case / issue",
+          "synonyms": [
+            "examine",
+            "look into",
+            "explore",
+            "probe"
+          ]
+        },
+        {
+          "id": 22,
+          "word": "acknowledge",
+          "turkish_meaning": "kabul etmek, itiraf etmek",
+          "collocation": "acknowledge a problem / error",
+          "synonyms": [
+            "admit",
+            "accept",
+            "recognise",
+            "concede"
+          ]
+        },
+        {
+          "id": 23,
+          "word": "facilitate",
+          "turkish_meaning": "kolaylaştırmak",
+          "collocation": "facilitate communication / learning",
+          "synonyms": [
+            "ease",
+            "make easier",
+            "assist",
+            "enable"
+          ]
+        },
+        {
+          "id": 24,
+          "word": "accumulate",
+          "turkish_meaning": "biriktirmek, toplamak",
+          "collocation": "accumulate wealth / data / experience",
+          "synonyms": [
+            "collect",
+            "gather",
+            "build up",
+            "amass"
+          ]
+        },
+        {
+          "id": 25,
+          "word": "interpret",
+          "turkish_meaning": "yorumlamak",
+          "collocation": "interpret results / data / behaviour",
+          "synonyms": [
+            "explain",
+            "understand",
+            "clarify",
+            "make sense of"
+          ]
+        },
+        {
+          "id": 26,
+          "word": "attribute",
+          "turkish_meaning": "atfetmek",
+          "collocation": "attribute success to / attribute X to Y",
+          "synonyms": [
+            "ascribe",
+            "credit",
+            "connect",
+            "link"
+          ]
+        },
+        {
+          "id": 27,
+          "word": "preserve",
+          "turkish_meaning": "korumak",
+          "collocation": "preserve traditions / resources",
+          "synonyms": [
+            "protect",
+            "maintain",
+            "conserve",
+            "safeguard"
+          ]
+        },
+        {
+          "id": 28,
+          "word": "expose",
+          "turkish_meaning": "ortaya çıkarmak, maruz bırakmak",
+          "collocation": "expose corruption / expose to danger",
+          "synonyms": [
+            "reveal",
+            "uncover",
+            "display",
+            "disclose"
+          ]
+        },
+        {
+          "id": 29,
+          "word": "compromise",
+          "turkish_meaning": "uzlaşmak; tehlikeye atmak",
+          "collocation": "compromise on a solution / compromise safety",
+          "synonyms": [
+            "settle",
+            "negotiate",
+            "make concessions"
+          ]
+        },
+        {
+          "id": 30,
+          "word": "enhance",
+          "turkish_meaning": "geliştirmek, artırmak",
+          "collocation": "enhance quality / performance / reputation",
+          "synonyms": [
+            "improve",
+            "increase",
+            "boost",
+            "strengthen"
+          ]
+        }
+      ]
+    }
+  ]
+}

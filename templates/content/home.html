@@ -113,7 +113,7 @@
     .journal-card-delete { color: #e74c3c; font-size: 0.7rem; text-decoration: none; display: block; margin-top: 0.5rem; }
 
     .service-card {
-        background: rgba(220,222,225,0.5);
+        background: rgba(208, 208, 208, 0.5);
         backdrop-filter: saturate(150%) blur(28px);
         -webkit-backdrop-filter: saturate(150%) blur(28px);
         border: 0.5px solid rgba(0,0,0,0.08);
@@ -133,8 +133,8 @@
     @media (max-width: 768px) {
         .service-card { padding: 0.2rem 0.4rem; }
         .service-card img { width: 32px; height: 32px; }
-        .service-card h4 { font-size: 0.75rem; }
-        .service-card p { font-size: 0.65rem; margin-top: 0.2rem; line-height: 1.4; }
+        .service-card h4 { font-size: 1.25rem; }
+        .service-card p { font-size: 0.75rem; margin-top: 0.2rem; line-height: 1.4; }
     }
 </style>
 
@@ -208,8 +208,16 @@
     <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(230,126,34,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(230,126,34,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(230,126,34,0.35)'">
-        <img src="{% static 'images/icons/quiz.svg' %}" width="60" height="60" style="filter: brightness(0) invert(1);">
+        <img src="{% static 'images/icons/paragraph.svg' %}" width="60" height="60" style="filter: brightness(0) invert(1);">
         <span style="font-size:1rem; font-weight:600; text-align:center; font-style:italic;">rastgele paragraf sorusu</span>
+    </div>
+</a>
+<a href="/vocabulary/" style="text-decoration:none; display:inline-block;">
+    <div style="background:#16a085; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(22,160,133,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(22,160,133,0.5)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(22,160,133,0.35)'">
+        <img src="{% static 'images/icons/vocabulary.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1.1rem; font-weight:600; text-align:center; font-style:italic;">vocabulary çalış</span>
     </div>
 </a>
 

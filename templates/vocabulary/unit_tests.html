@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ unit.title }} | BD{% endblock %}
+
+{% block content %}
+<a href="/vocabulary/tests/" class="back-btn">←</a>
+
+<style>
+.test-card {
+    background: rgba(220,222,225,0.5);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.08);
+    border-left: 4px solid #8e44ad;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.test-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    background: rgba(220,222,225,0.7);
+}
+.test-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
+.test-meta { font-size: 0.75rem; color: #888; }
+.test-arrow { color: #8e44ad; font-size: 1.2rem; font-weight: 700; }
+</style>
+
+<div style="max-width:680px; margin:0 auto;">
+
+    <div style="margin-bottom:2rem;">
+        <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#8e44ad; margin-bottom:0.3rem;">Ünite {{ unit.number }}</div>
+        <div style="font-size:2rem; font-weight:700; color:#1a1a1a;">{{ unit.title }}</div>
+        <p style="color:#666; font-size:0.9rem; margin-top:0.3rem;">Çözmek istediğin testi seç.</p>
+    </div>
+
+    {% for test in tests %}
+    <a href="/vocabulary/quiz/{{ test.id }}/" class="test-card">
+        <div>
+            <div class="test-title">{{ test.title }}</div>
+            <div class="test-meta">{{ test.questions.count }} soru</div>
+        </div>
+        <div class="test-arrow">→</div>
+    </a>
+    {% endfor %}
+
+</div>
+{% endblock %}

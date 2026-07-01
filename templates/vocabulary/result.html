@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sonuç | BD{% endblock %}
+
+{% block content %}
+
+<style>
+.mav-btn {
+    background: rgba(220,222,225,0.5);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.08);
+    color: #333;
+    padding: 0.55rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.mav-btn.primary {
+    background: rgba(142,68,173,0.85);
+    color: white;
+    border: 0.5px solid rgba(142,68,173,0.9);
+    box-shadow: 0 2px 8px rgba(142,68,173,0.25);
+}
+.mav-btn.primary:hover {
+    background: rgba(142,68,173,1);
+    box-shadow: 0 6px 16px rgba(142,68,173,0.35);
+    transform: translateY(-1px);
+}
+
+.score-card {
+    background: rgba(220,222,225,0.5);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.08);
+    border-top: 4px solid #8e44ad;
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.score-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #8e44ad; margin-bottom: 0.5rem; }
+.score-value { font-size: 2.4rem; font-weight: 800; color: #1a1a1a; }
+.score-sub { font-size: 0.85rem; color: #888; margin-top: 0.3rem; }
+.score-test-title { font-size: 0.95rem; font-weight: 600; color: #555; margin-top: 0.6rem; }
+
+.answer-block {
+    background: rgba(220,222,225,0.5);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.answer-block.correct { border-left: 4px solid #16a085; }
+.answer-block.incorrect { border-left: 4px solid #e74c3c; }
+.answer-block.unanswered { border-left: 4px solid #999; }
+
+.question-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.8rem; }
+.question-text { font-size: 0.95rem; font-weight: 600; color: #1a1a1a; line-height: 1.6; flex: 1; }
+.status-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+
+.option-row { display: flex; align-items: flex-start; gap: 10px; padding: 0.5rem 0.85rem; border-radius: 8px; margin-bottom: 0.3rem; background: rgba(255,255,255,0.3); border: 0.5px solid rgba(0,0,0,0.06); }
+.option-row.is-correct-answer { background: rgba(22,160,133,0.15); border-color: rgba(22,160,133,0.4); }
+.option-row.is-wrong-selected { background: rgba(231,76,60,0.15); border-color: rgba(231,76,60,0.4); }
+.option-letter { font-size: 0.8rem; font-weight: 700; color: #999; min-width: 18px; margin-top: 1px; }
+.option-text { font-size: 0.9rem; color: #333; line-height: 1.5; flex:1; text-transform: lowercase;}
+.option-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; padding: 0.1rem 0.5rem; border-radius: 999px; white-space: nowrap; }
+.option-tag.tag-correct { background: #16a085; color: white; }
+.option-tag.tag-wrong { background: #e74c3c; color: white; }
+</style>
+
+<div style="max-width:680px; margin:0 auto;">
+
+    <div class="score-card">
+        <div class="score-label">Sonucun</div>
+        <div class="score-value">{{ attempt.total }} sorudan {{ attempt.score }} doğru</div>
+        <div class="score-test-title">{{ attempt.test.unit.title }} — {{ attempt.test.title }}</div>
+        <div style="display:flex; justify-content:space-between; margin-top:1.5rem;">
+    <a href="/vocabulary/tests/unit/{{ attempt.test.unit.number }}/" class="mav-btn">← Testlere Dön</a>
+    <div style="display:flex; gap:0.6rem;">
+        <a href="/vocabulary/result/{{ attempt.id }}/pdf/" class="mav-btn">
+            <img src="{% static 'images/icons/download.svg' %}" style="width:16px; height:16px;">
+            Sonucu Dışa Aktar
+        </a>
+        <a href="/vocabulary/quiz/{{ attempt.test.id }}/" class="mav-btn primary">Tekrar Çöz</a>
+    </div>
+</div>
+    </div>
+
+    {% for answer in answers %}
+    <div class="answer-block {% if answer.is_correct %}correct{% elif answer.selected_option %}incorrect{% else %}unanswered{% endif %}">
+        <div class="question-row">
+            <div class="question-text">{{ forloop.counter }}. {{ answer.question.text }}</div>
+            {% if answer.is_correct %}
+                <img src="{% static 'images/icons/correct.svg' %}" class="status-icon">
+            {% elif answer.selected_option %}
+                <img src="{% static 'images/icons/incorrect.svg' %}" class="status-icon">
+            {% else %}
+                <img src="{% static 'images/icons/unanswered.svg' %}" class="status-icon">
+            {% endif %}
+        </div>
+
+        {% for option in answer.question.options.all %}
+        <div class="option-row
+            {% if option.is_correct %}is-correct-answer{% endif %}
+            {% if answer.selected_option and option.id == answer.selected_option.id and not option.is_correct %}is-wrong-selected{% endif %}">
+            <span class="option-letter">{{ option.letter }})</span>
+            <span class="option-text">{{ option.text }}</span>
+            {% if option.is_correct %}
+                <span class="option-tag tag-correct">Doğru Cevap</span>
+            {% elif answer.selected_option and option.id == answer.selected_option.id %}
+                <span class="option-tag tag-wrong">Senin Cevabın</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <div style="display:flex; justify-content:space-between; margin-top:1.5rem;">
+        <a href="/vocabulary/tests/unit/{{ attempt.test.unit.number }}/" class="mav-btn">← Testlere Dön</a>
+        <a href="/vocabulary/quiz/{{ attempt.test.id }}/" class="mav-btn primary">Tekrar Çöz</a>
+    </div>
+
+</div>
+{% endblock %}

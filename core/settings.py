@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'content',
     'django.contrib.sitemaps',
     'quiz',
+    'vocabulary'
 ]
 
 MIDDLEWARE = [

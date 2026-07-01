@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Üniteler | BD{% endblock %}
+
+{% block content %}
+<a href="/vocabulary/" class="back-btn">←</a>
+
+<style>
+.unit-card {
+    background: rgba(220,222,225,0.5);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+}
+.unit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+    background: rgba(220,222,225,0.7);
+}
+.unit-card.locked {
+    opacity: 0.55;
+    filter: grayscale(0.7);
+    cursor: pointer;
+}
+.unit-card.locked:hover {
+    opacity: 0.75;
+    filter: grayscale(0.4);
+}
+.unit-icon { width: 56px; height: 56px; margin: 0 auto 0.8rem; }
+.unit-number { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #8e44ad; margin-bottom: 0.3rem; }
+.unit-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.3rem; }
+.unit-meta { font-size: 0.75rem; color: #888; }
+.lock-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+.info-box {
+    background: rgba(220,222,225,0.4);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+.info-box p { color: #555; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.8rem; }
+.info-box a {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: #00b427;
+    color: white;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-style: italic;
+}
+</style>
+
+<div style="max-width:820px; margin:0 auto;">
+
+    <div style="margin-bottom:2rem;">
+        <div style="font-size:2rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999; margin-bottom:0.4rem;">Üniteler</div>
+        <p style="color:#666; font-size:0.9rem;">Test çözmek istediğin üniteyi seç.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem;">
+        {% for item in unit_data %}
+            {% if item.is_locked %}
+            <a href="#" onclick="document.getElementById('lock-modal').style.display='flex'; return false;" class="unit-card locked">
+                <div class="lock-badge">🔒</div>
+                <img src="{% static 'images/icons/book-stack.svg' %}" class="unit-icon">
+                <div class="unit-number">Ünite {{ item.unit.number }}</div>
+                <div class="unit-title">{{ item.unit.title }}</div>
+                <div class="unit-meta">{{ item.test_count }} test</div>
+            </a>
+            {% else %}
+            <a href="/vocabulary/tests/unit/{{ item.unit.number }}/" class="unit-card">
+                <img src="{% static 'images/icons/book-stack.svg' %}" class="unit-icon">
+                <div class="unit-number">Ünite {{ item.unit.number }}</div>
+                <div class="unit-title">{{ item.unit.title }}</div>
+                <div class="unit-meta">{{ item.test_count }} test</div>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if not is_registered %}
+    <div class="info-box">
+        <p>Çalışma kütüphanemizde toplam <strong>10</strong> ünite bulunmaktadır. Tüm ünitelere erişmek için kayıt olabilir, iletişime geçebilirsiniz.</p>
+        <a href="https://wa.me/905303138755" target="_blank">WhatsApp ile İletişim</a>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- Lock modal -->
+<div id="lock-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(40,42,45,0.3); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:rgba(235,236,238,0.85); backdrop-filter:saturate(180%) blur(40px); -webkit-backdrop-filter:saturate(180%) blur(40px); border:0.5px solid rgba(255,255,255,0.5); border-radius:14px; padding:2rem; max-width:360px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.18); position:relative;">
+        <div style="font-size:2.5rem; margin-bottom:1rem;">🔒</div>
+        <h3 style="color:#2c3e50; margin-bottom:0.5rem;">Kayıt Ol</h3>
+        <p style="color:#555; font-size:0.9rem; line-height:1.6; margin-bottom:1.5rem;">Tüm ünitelere erişmek için kayıt olmanız gerekmektedir. Bizimle iletişime geçin.</p>
+        <a href="https://wa.me/905303138755" target="_blank" style="display:block; padding:0.7rem 1.4rem; background:#00b427; color:white; text-decoration:none; border-radius:999px; font-size:0.85rem; font-weight:600; font-style:italic;">WhatsApp ile İletişim</a>
+        <button onclick="document.getElementById('lock-modal').style.display='none'" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer; color:#aaa;">✕</button>
+    </div>
+</div>
+
+{% endblock %}

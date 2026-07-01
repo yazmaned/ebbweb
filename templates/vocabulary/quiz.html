@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kelime Testi | BD{% endblock %}
+
+{% block content %}
+<a href="/vocabulary/" class="back-btn">←</a>
+
+<style>
+.mav-btn {
+    background: rgba(220,222,225,0.5);
+    backdrop-filter: saturate(150%) blur(28px);
+    -webkit-backdrop-filter: saturate(150%) blur(28px);
+    border: 0.5px solid rgba(0,0,0,0.08);
+    color: #333;
+    padding: 0.55rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.mav-btn.primary {
+    background: rgba(142,68,173,0.85);
+    color: white;
+    border: 0.5px solid rgba(142,68,173,0.9);
+    box-shadow: 0 2px 8px rgba(142,68,173,0.25);
+}
+.mav-btn.primary:hover {
+    background: rgba(142,68,173,1);
+    box-shadow: 0 6px 16px rgba(142,68,173,0.35);
+    transform: translateY(-1px);
+}
+
+.quiz-header { background: rgba(220,222,225,0.5); backdrop-filter: saturate(150%) blur(28px); -webkit-backdrop-filter: saturate(150%) blur(28px); border: 0.5px solid rgba(0,0,0,0.08); border-top:4px solid #8e44ad; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.quiz-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #8e44ad; margin-bottom: 0.4rem; }
+.quiz-title { font-size: 1.15rem; font-weight: 700; color: #1a1a1a; }
+.question-block { background: rgba(220,222,225,0.5); backdrop-filter: saturate(150%) blur(28px); -webkit-backdrop-filter: saturate(150%) blur(28px); border: 0.5px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.question-text { font-size: 0.95rem; font-weight: 600; color: #1a1a1a; margin-bottom: 0.8rem; line-height: 1.6; }
+.option-label { display: flex; align-items: flex-start; gap: 10px; padding: 0.55rem 0.85rem; border-radius: 8px; cursor: pointer; border: 0.5px solid rgba(0,0,0,0.06); margin-bottom: 0.35rem; background: rgba(255,255,255,0.3); transition: background 0.1s, border-color 0.1s; }
+.option-label:hover { background: rgba(255,255,255,0.55); border-color: rgba(0,0,0,0.15); }
+.option-letter { font-size: 0.8rem; font-weight: 700; color: #999; min-width: 18px; margin-top: 1px; }
+.option-text { font-size: 0.9rem; color: #333; line-height: 1.5; text-transform: lowercase; }
+</style>
+
+<div style="max-width:680px; margin:0 auto;">
+
+    <div style="margin-bottom:1.5rem;">
+        <div style="font-size:2rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999; margin-bottom:0.4rem;">Çoktan Seçmeli</div>
+        <p style="color:#666; font-size:0.9rem;">Boşluğa uygun kelimeyi seç.</p>
+    </div>
+
+    <form method="POST" action="/vocabulary/quiz/submit/{{ test.id }}/">
+        {% csrf_token %}
+
+        <div class="quiz-header">
+            <div class="quiz-label">{{ test.unit.title }}</div>
+            <div class="quiz-title">{{ test.title }}</div>
+        </div>
+
+        {% for question in test.questions.all %}
+        <div class="question-block">
+            <div class="question-text">{{ forloop.counter }}. {{ question.text }}</div>
+            {% for option in question.options.all %}
+            <label class="option-label">
+                <input type="radio" name="q{{ question.id }}" value="{{ option.letter }}" style="margin-top:2px; width:auto; margin-bottom:0; flex-shrink:0;">
+                <span class="option-letter">{{ option.letter }})</span>
+                <span class="option-text">{{ option.text }}</span>
+            </label>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+            <button type="submit" class="mav-btn primary">Bitir →</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

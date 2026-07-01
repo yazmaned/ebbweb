@@ -283,33 +283,6 @@
     {% if user.is_authenticated %}
     <div id="alert-container" style="position:fixed; bottom:2rem; right:2rem; z-index:9999; display:flex; flex-direction:column; gap:0.5rem; max-width:350px;"></div>
     <script>
-        const shownMessages = new Set();
-        function checkMessages() {
-            fetch('/accounts/messages/')
-                .then(res => res.json())
-                .then(data => {
-                    data.messages.forEach(msg => {
-                        if (shownMessages.has(msg.id)) return;
-                        shownMessages.add(msg.id);
-                        const container = document.getElementById('alert-container');
-                        const box = document.createElement('div');
-                        box.className = 'alert-box';
-                        box.innerHTML = `<p>${msg.message}</p><button onclick="dismissMessage(${msg.id}, this)">X</button>`;
-                        container.appendChild(box);
-                    });
-                });
-        }
-        function dismissMessage(id, btn) {
-            fetch('/accounts/messages/read/' + id + '/').then(() => btn.closest('.alert-box').remove());
-        }
-        checkMessages();
-        setInterval(checkMessages, 10000);
-        document.querySelectorAll('.dropdown').forEach(d => {
-            d.addEventListener('click', () => {
-                const menu = d.querySelector('.dropdown-menu');
-                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-            });
-        });
         document.addEventListener('click', e => {
             if (!e.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');

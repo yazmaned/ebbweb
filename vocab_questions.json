@@ -1,0 +1,3676 @@
+{
+  "units": [
+    {
+      "unit": 1,
+      "title": "Academic Nouns",
+      "tests": [
+        {
+          "id": "test1",
+          "title": "Test 1 – Vocabulary in Context (Nouns)",
+          "type": "fill_in_the_blank",
+          "instructions": "In the following sentences, choose the noun that best completes the sentence.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The rapid expansion of social media platforms has had a profound ______ on the way individuals construct and present their identities in digital environments.",
+              "options": {
+                "A": "scarcity",
+                "B": "impact",
+                "C": "boundary",
+                "D": "remedy",
+                "E": "shelter"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "In many developing countries, limited ______ to high-quality education remains one of the main obstacles to social mobility and economic growth.",
+              "options": {
+                "A": "admission",
+                "B": "conflict",
+                "C": "access",
+                "D": "replacement",
+                "E": "foundation"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "The study revealed a strong ______ between excessive screen time and sleep disturbances among adolescents, highlighting the need for preventive measures.",
+              "options": {
+                "A": "expectation",
+                "B": "correlation",
+                "C": "interruption",
+                "D": "donation",
+                "E": "allowance"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 4,
+              "question": "The researcher emphasized that any ______ in the data collection process could significantly reduce the reliability of the final results.",
+              "options": {
+                "A": "forecast",
+                "B": "deficiency",
+                "C": "inquiry",
+                "D": "indication",
+                "E": "grain"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "Urbanization has led to a dramatic ______ in demand for affordable housing, particularly in metropolitan areas with limited land.",
+              "options": {
+                "A": "revenue",
+                "B": "boundary",
+                "C": "suspicion",
+                "D": "increase",
+                "E": "contrast"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 6,
+              "question": "The long-term ______ of climate change on coastal communities are still not fully understood, especially regarding migration patterns.",
+              "options": {
+                "A": "appliances",
+                "B": "privileges",
+                "C": "implications",
+                "D": "supplements",
+                "E": "residues"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 7,
+              "question": "Online learning platforms have created new ______ for adult learners who wish to continue their education while working full-time.",
+              "options": {
+                "A": "regulations",
+                "B": "obstacles",
+                "C": "substances",
+                "D": "opportunities",
+                "E": "narratives"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 8,
+              "question": "Without adequate financial ______, many promising research projects cannot move beyond the initial planning stage.",
+              "options": {
+                "A": "shipment",
+                "B": "loyalty",
+                "C": "ownership",
+                "D": "funding",
+                "E": "rainfall"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 9,
+              "question": "In epidemiology, accurate ______ of data is essential for identifying trends and predicting future outbreaks.",
+              "options": {
+                "A": "ceremony",
+                "B": "landscape",
+                "C": "analysis",
+                "D": "custody",
+                "E": "fame"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 10,
+              "question": "The documentary offers a critical ______ of how consumer culture shapes our daily choices and long-term values.",
+              "options": {
+                "A": "hesitation",
+                "B": "shortage",
+                "C": "treaty",
+                "D": "appetite",
+                "E": "examination"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 11,
+              "question": "Growing economic ______ between the two countries has encouraged closer political cooperation.",
+              "options": {
+                "A": "bankruptcy",
+                "B": "vacancy",
+                "C": "interdependence",
+                "D": "infancy",
+                "E": "negligence"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 12,
+              "question": "The success of the project depends on effective ______ among team members from different disciplines.",
+              "options": {
+                "A": "ethnicity",
+                "B": "literacy",
+                "C": "rainfall",
+                "D": "symmetry",
+                "E": "cooperation"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 13,
+              "question": "Many experts argue that access to clean water should be regarded as a basic human ______, not a commercial product.",
+              "options": {
+                "A": "forecast",
+                "B": "volume",
+                "C": "route",
+                "D": "courage",
+                "E": "right"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 14,
+              "question": "The university has introduced a new ______ system to evaluate the quality of teaching across all departments.",
+              "options": {
+                "A": "sculpture",
+                "B": "appetite",
+                "C": "margin",
+                "D": "assessment",
+                "E": "ratio"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 15,
+              "question": "Rapid technological advances have created a ______ between the skills employees possess and those employers require.",
+              "options": {
+                "A": "souvenir",
+                "B": "headline",
+                "C": "offspring",
+                "D": "boundary",
+                "E": "mismatch"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 16,
+              "question": "Due to limited resources, the committee had to set a clear ______ for which projects would receive funding.",
+              "options": {
+                "A": "horizon",
+                "B": "continent",
+                "C": "instinct",
+                "D": "diagram",
+                "E": "criterion"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 17,
+              "question": "The study highlighted a significant ______ in income levels between urban and rural households.",
+              "options": {
+                "A": "melody",
+                "B": "shipment",
+                "C": "ancestor",
+                "D": "monument",
+                "E": "disparity"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 18,
+              "question": "International organizations play a crucial role in the ______ of humanitarian aid to regions affected by war and natural disasters.",
+              "options": {
+                "A": "failure",
+                "B": "luxury",
+                "C": "dispute",
+                "D": "melody",
+                "E": "distribution"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 19,
+              "question": "The speaker's main ______ was that economic growth must be balanced with environmental protection.",
+              "options": {
+                "A": "harvest",
+                "B": "deadline",
+                "C": "privilege",
+                "D": "warehouse",
+                "E": "argument"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 20,
+              "question": "There is growing public ______ about the long-term effects of artificial intelligence on employment.",
+              "options": {
+                "A": "fiction",
+                "B": "bargain",
+                "C": "penalty",
+                "D": "ritual",
+                "E": "concern"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 21,
+              "question": "The researchers placed great ______ on the need for larger sample sizes to increase the reliability of their findings.",
+              "options": {
+                "A": "horizon",
+                "B": "famine",
+                "C": "texture",
+                "D": "rumour",
+                "E": "emphasis"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 22,
+              "question": "One major ______ of the new policy is that it may discourage small businesses from investing in innovation.",
+              "options": {
+                "A": "headline",
+                "B": "landmark",
+                "C": "ceremony",
+                "D": "arrival",
+                "E": "drawback"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 23,
+              "question": "The museum was established with the ______ of preserving local traditions for future generations.",
+              "options": {
+                "A": "margin",
+                "B": "symptom",
+                "C": "outlet",
+                "D": "refund",
+                "E": "purpose"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 24,
+              "question": "Strong leadership is often a key ______ in the successful transformation of an organization.",
+              "options": {
+                "A": "forecast",
+                "B": "harvest",
+                "C": "limb",
+                "D": "suburb",
+                "E": "factor"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 25,
+              "question": "The professor gave a brief ______ of the theory before moving on to its practical applications.",
+              "options": {
+                "A": "overview",
+                "B": "receipt",
+                "C": "merger",
+                "D": "famine",
+                "E": "headline"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 26,
+              "question": "The increase in life expectancy has led to a higher ______ for healthcare services among elderly populations.",
+              "options": {
+                "A": "demand",
+                "B": "vacancy",
+                "C": "cliff",
+                "D": "souvenir",
+                "E": "shelter"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 27,
+              "question": "In democratic societies, public ______ plays a vital role in holding political leaders accountable for their actions.",
+              "options": {
+                "A": "shortage",
+                "B": "chimney",
+                "C": "tuition",
+                "D": "cuisine",
+                "E": "opinion"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 28,
+              "question": "The company's long-term ______ includes expanding into emerging markets and investing heavily in digital technologies.",
+              "options": {
+                "A": "apology",
+                "B": "border",
+                "C": "remedy",
+                "D": "insect",
+                "E": "strategy"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 29,
+              "question": "The new regulations place a greater ______ on companies to report their environmental impact transparently.",
+              "options": {
+                "A": "scenery",
+                "B": "headline",
+                "C": "margin",
+                "D": "interval",
+                "E": "burden"
+              },
+              "correct_answer": "E"
+            }
+          ]
+        },
+        {
+          "id": "test2",
+          "title": "Test 2 – Vocabulary (Nouns: Synonyms)",
+          "type": "synonym",
+          "instructions": "In the following items, choose the option which is closest in meaning to the underlined word.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The scientist emphasized the long-term **impact** of air pollution on public health.\nWhich option is closest in meaning to \"impact\"?",
+              "options": {
+                "A": "influence",
+                "B": "entrance",
+                "C": "boundary",
+                "D": "luxury",
+                "E": "leisure"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 2,
+              "question": "Many children in rural areas still have limited **access** to digital learning tools.\nWhich option is closest in meaning to \"access\"?",
+              "options": {
+                "A": "entrance",
+                "B": "admission",
+                "C": "opportunity",
+                "D": "reach",
+                "E": "arrival"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 3,
+              "question": "The researchers found a strong **correlation** between physical exercise and mental well-being.\nWhich option is closest in meaning to \"correlation\"?",
+              "options": {
+                "A": "separation",
+                "B": "difficulty",
+                "C": "connection",
+                "D": "obstacle",
+                "E": "conclusion"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "Thanks to recent innovations, the **feasibility** of large-scale solar energy projects has increased.\nWhich option is closest in meaning to \"feasibility\"?",
+              "options": {
+                "A": "necessity",
+                "B": "practicality",
+                "C": "generosity",
+                "D": "stability",
+                "E": "variety"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "Even a small **deficiency** in vitamins can lead to serious health problems over time.\nWhich option is closest in meaning to \"deficiency\"?",
+              "options": {
+                "A": "shortage",
+                "B": "attempt",
+                "C": "location",
+                "D": "benefit",
+                "E": "prediction"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 6,
+              "question": "There has been a noticeable **increase** in the number of international students at the university.\nWhich option is closest in meaning to \"increase\"?",
+              "options": {
+                "A": "warning",
+                "B": "rise",
+                "C": "contrast",
+                "D": "regulation",
+                "E": "proposal"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "The **implications** of this new study for environmental policy are quite significant.\nWhich option is closest in meaning to \"implications\"?",
+              "options": {
+                "A": "decorations",
+                "B": "consequences",
+                "C": "suspicions",
+                "D": "improvements",
+                "E": "permissions"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 8,
+              "question": "Scholarships create valuable **opportunities** for students from disadvantaged backgrounds.\nWhich option is closest in meaning to \"opportunities\"?",
+              "options": {
+                "A": "chances",
+                "B": "conflicts",
+                "C": "rumours",
+                "D": "beliefs",
+                "E": "threats"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 9,
+              "question": "Without sufficient **funding**, many cultural projects cannot be maintained.\nWhich option is closest in meaning to \"funding\"?",
+              "options": {
+                "A": "interruption",
+                "B": "hesitation",
+                "C": "confusion",
+                "D": "financial support",
+                "E": "transport"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 10,
+              "question": "A detailed **analysis** of the results revealed several unexpected patterns.\nWhich option is closest in meaning to \"analysis\"?",
+              "options": {
+                "A": "preparation",
+                "B": "examination",
+                "C": "announcement",
+                "D": "restriction",
+                "E": "invitation"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 11,
+              "question": "The article provides a critical **examination** of how the media shapes political attitudes.\nWhich option is closest in meaning to \"examination\"?",
+              "options": {
+                "A": "relief",
+                "B": "survey",
+                "C": "destruction",
+                "D": "ceremony",
+                "E": "investment"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 12,
+              "question": "Growing economic **interdependence** has made countries more sensitive to global crises.\nWhich option is closest in meaning to \"interdependence\"?",
+              "options": {
+                "A": "suspicion",
+                "B": "mutual reliance",
+                "C": "competition",
+                "D": "prediction",
+                "E": "imitation"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 13,
+              "question": "Effective **cooperation** between governments is essential to address climate change.\nWhich option is closest in meaning to \"cooperation\"?",
+              "options": {
+                "A": "collaboration",
+                "B": "hesitation",
+                "C": "comparison",
+                "D": "interruption",
+                "E": "celebration"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 14,
+              "question": "Access to clean drinking water is considered a basic human **right**.\nWhich option is closest in meaning to \"right\"?",
+              "options": {
+                "A": "estimate",
+                "B": "adjustment",
+                "C": "complaint",
+                "D": "entitlement",
+                "E": "replacement"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 15,
+              "question": "The new **assessment** system aims to measure students' critical thinking skills more accurately.\nWhich option is closest in meaning to \"assessment\"?",
+              "options": {
+                "A": "indication",
+                "B": "evaluation",
+                "C": "admission",
+                "D": "request",
+                "E": "collection"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 16,
+              "question": "There is a serious **mismatch** between the qualifications of graduates and the needs of the labour market.\nWhich option is closest in meaning to \"mismatch\"?",
+              "options": {
+                "A": "harmony",
+                "B": "imbalance",
+                "C": "sequence",
+                "D": "schedule",
+                "E": "demonstration"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 17,
+              "question": "The main **criterion** for selection is the applicant's academic performance.\nWhich option is closest in meaning to \"criterion\"?",
+              "options": {
+                "A": "question",
+                "B": "explanation",
+                "C": "standard",
+                "D": "background",
+                "E": "restriction"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 18,
+              "question": "The report underlined the growing **disparity** in income between different social groups.\nWhich option is closest in meaning to \"disparity\"?",
+              "options": {
+                "A": "equality",
+                "B": "difference",
+                "C": "suspicion",
+                "D": "protection",
+                "E": "recovery"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 19,
+              "question": "Corruption is often seen as a major **drawback** of rapid economic liberalization.\nWhich option is closest in meaning to \"drawback\"?",
+              "options": {
+                "A": "advantage",
+                "B": "disadvantage",
+                "C": "intention",
+                "D": "instruction",
+                "E": "convention"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 20,
+              "question": "The company's long-term **strategy** focuses on innovation and international expansion.\nWhich option is closest in meaning to \"strategy\"?",
+              "options": {
+                "A": "account",
+                "B": "agenda",
+                "C": "effort",
+                "D": "profit",
+                "E": "plan"
+              },
+              "correct_answer": "E"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_1",
+          "title": "Mini Reading 1 – Digital Education and Social Inequality",
+          "type": "reading_comprehension",
+          "passage": "In recent years, many governments have adopted digital education as a central strategy for improving learning outcomes. Online platforms are often presented as a cheap and flexible solution that can increase access to high-quality materials for students in remote areas. However, a closer examination of the issue reveals that the impact of digital education on social inequality is far from straightforward.\n\nFirst, there is a clear disparity in students' ability to benefit from online resources. In wealthier households, children usually have personal devices, stable internet connections, and supportive learning environments. By contrast, students from low-income families may experience a serious deficiency in all of these areas. As a result, the opportunities created by digital tools often remain theoretical rather than real for large segments of the population.\n\nSecondly, there seems to be a strong correlation between a country's overall level of economic development and the effectiveness of its digital education policies. Without sufficient funding, it is difficult to provide schools with the necessary infrastructure or to train teachers to integrate technology into their lessons. Under these conditions, digital education can even become a burden for teachers, who are expected to use sophisticated platforms without receiving proper training or assessment.\n\nFinally, policymakers need to consider the broader implications of relying too heavily on technology. While digital tools can certainly increase the distribution and availability of educational content, they cannot replace the human interaction that many learners require. Therefore, any argument that technology alone will solve educational inequality should be treated with concern and healthy scepticism. A more balanced approach would place greater emphasis on cooperation between schools, families, and communities, using technology as one factor, rather than the only solution, in a comprehensive educational strategy.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "According to the passage, which of the following best describes the effect of digital education on social inequality?",
+              "options": {
+                "A": "It automatically reduces inequality.",
+                "B": "It clearly increases inequality in all cases.",
+                "C": "Its effect on inequality is more complex than it first appears.",
+                "D": "It is effective only in rural areas.",
+                "E": "It is effective only in private schools."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 2,
+              "question": "Why do many students from low-income families fail to benefit fully from digital education, according to the passage?",
+              "options": {
+                "A": "They develop a negative opinion about technology.",
+                "B": "They refuse to use online platforms.",
+                "C": "They suffer from a serious lack of necessary devices and learning conditions.",
+                "D": "Schools strongly oppose digital education.",
+                "E": "Their families use a special strategy to keep them away from technology."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "In the passage, what is suggested by describing digital education as a \"burden\" for teachers in some contexts?",
+              "options": {
+                "A": "It makes teaching more enjoyable.",
+                "B": "It reduces teachers' workload.",
+                "C": "It creates extra work and pressure for teachers.",
+                "D": "It increases students' motivation.",
+                "E": "It provides extra income for schools."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "What is the writer's attitude towards the idea that technology alone can solve educational inequality?",
+              "options": {
+                "A": "Completely supportive",
+                "B": "Clearly mocking and sarcastic",
+                "C": "Totally neutral",
+                "D": "Cautious and critical",
+                "E": "Partly positive, partly indifferent"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 5,
+              "question": "Which of the following best summarises the overall message of the passage?",
+              "options": {
+                "A": "Digital education should completely replace traditional education.",
+                "B": "Digital education can only be used in developed countries.",
+                "C": "Technology harms education and should be avoided.",
+                "D": "Digital education has already eliminated social inequality.",
+                "E": "Digital education can be useful, but without fair and balanced policies it cannot solve inequality on its own."
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the word \"disparity\" is closest in meaning to:",
+              "options": {
+                "A": "equality",
+                "B": "difference",
+                "C": "prediction",
+                "D": "protection",
+                "E": "requirement"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the word \"implications\" is closest in meaning to:",
+              "options": {
+                "A": "decorations",
+                "B": "consequences",
+                "C": "excuses",
+                "D": "permissions",
+                "E": "schedules"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_2",
+          "title": "Mini Reading 2 – Climate Change and Global Cooperation",
+          "type": "reading_comprehension",
+          "passage": "In many policy debates, climate change is still treated as a distant threat rather than an immediate concern. Yet scientific evidence clearly shows that its impact is already visible in rising sea levels, extreme weather events, and the loss of biodiversity. What makes climate change particularly complex is that its consequences are unevenly distributed: some regions face severe droughts, while others experience more frequent floods. This growing disparity between countries that contribute the most to greenhouse gas emissions and those that suffer the worst effects raises serious questions of fairness.\n\nBecause of this imbalance, purely national solutions are unlikely to be effective. Even if a single country adopts ambitious climate policies, the global burden of emissions will remain high unless others follow. Therefore, international cooperation is not simply desirable; it is a necessary condition for meaningful progress. However, such cooperation requires more than symbolic agreements. It depends on reliable funding mechanisms, transparent monitoring systems, and a shared strategy for reducing emissions while protecting vulnerable communities.\n\nCrucially, developing countries often lack the resources to implement large-scale environmental reforms. Without targeted financial support, they may be forced to choose short-term economic growth over long-term sustainability. For this reason, many experts argue that climate finance should not be viewed as charity, but as a key factor in a fair global response to climate change. Only when wealthier nations accept greater responsibility for both historical emissions and future solutions can international climate agreements move beyond promises and produce concrete results.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "What is the main idea of the passage?",
+              "options": {
+                "A": "Technological innovation will automatically solve global warming.",
+                "B": "Climate change should be managed individually by each country.",
+                "C": "Climate change is mainly a problem for wealthy nations.",
+                "D": "Effective action on climate change requires fair and well-funded international cooperation.",
+                "E": "International climate agreements are unnecessary and ineffective."
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 2,
+              "question": "According to the passage, why are purely national solutions to climate change unlikely to be effective?",
+              "options": {
+                "A": "Because most countries refuse to sign any international agreements.",
+                "B": "Because climate change only affects countries that are already poor.",
+                "C": "Because emissions in one country do not influence the global climate.",
+                "D": "Because climate policies are too expensive to implement at the national level.",
+                "E": "Because climate change is a global problem that continues unless many countries act together."
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 3,
+              "question": "What is suggested about \"funding\" in the passage?",
+              "options": {
+                "A": "It is less important than technological innovation.",
+                "B": "It should be considered charity from rich countries to poor ones.",
+                "C": "It is a central element in ensuring a fair and effective global climate response.",
+                "D": "It is only necessary for monitoring emissions.",
+                "E": "It is mainly needed to compensate companies for economic losses."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "According to the passage, why might developing countries \"choose short-term economic growth over long-term sustainability\"?",
+              "options": {
+                "A": "They are not interested in environmental protection.",
+                "B": "They have already received enough international support.",
+                "C": "They lack the financial resources to implement environmental reforms without support.",
+                "D": "Their emissions are too low to make any difference.",
+                "E": "They are legally forbidden to join international agreements."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 5,
+              "question": "Which of the following best describes the writer's attitude towards wealthier nations?",
+              "options": {
+                "A": "Completely admiring and uncritical",
+                "B": "Neutral and indifferent",
+                "C": "Strongly optimistic about their current efforts",
+                "D": "Critical of their limited responsibility and demanding greater action",
+                "E": "Convinced that they have no role in solving climate change"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the word \"disparity\" is closest in meaning to:",
+              "options": {
+                "A": "equality",
+                "B": "difference",
+                "C": "prediction",
+                "D": "protection",
+                "E": "requirement"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the word \"burden\" is used to refer to:",
+              "options": {
+                "A": "an extra advantage for developed countries",
+                "B": "an entertaining aspect of international cooperation",
+                "C": "the enjoyable part of reducing emissions",
+                "D": "a heavy responsibility or difficult load",
+                "E": "a legal right guaranteed by international law"
+              },
+              "correct_answer": "D"
+            }
+          ]
+        },
+        {
+          "id": "part3_b",
+          "title": "Part 3B – Synonym Revision (Multiple Choice)",
+          "type": "synonym",
+          "instructions": "Choose the option which is closest in meaning to the given word in each sentence.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The new regulations are expected to have a significant **impact** on small businesses.\nWhich option is closest in meaning to \"impact\"?",
+              "options": {
+                "A": "effort",
+                "B": "effect",
+                "C": "permission",
+                "D": "delay",
+                "E": "warning"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "Scholarships can create real **opportunities** for students from low-income families.\nWhich option is closest in meaning to \"opportunities\"?",
+              "options": {
+                "A": "conflicts",
+                "B": "chances",
+                "C": "doubts",
+                "D": "failures",
+                "E": "excuses"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "Many cultural projects depend on public **funding** to survive.\nWhich option is closest in meaning to \"funding\"?",
+              "options": {
+                "A": "entertainment",
+                "B": "punishment",
+                "C": "financial support",
+                "D": "criticism",
+                "E": "movement"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "At the end of the course, students receive a detailed **assessment** of their progress.\nWhich option is closest in meaning to \"assessment\"?",
+              "options": {
+                "A": "evaluation",
+                "B": "invitation",
+                "C": "cancellation",
+                "D": "complaint",
+                "E": "tradition"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 5,
+              "question": "The report shows a clear **disparity** in income between rural and urban areas.\nWhich option is closest in meaning to \"disparity\"?",
+              "options": {
+                "A": "equality",
+                "B": "celebration",
+                "C": "difference",
+                "D": "prediction",
+                "E": "protection"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "One major **drawback** of this method is that it requires a lot of time.\nWhich option is closest in meaning to \"drawback\"?",
+              "options": {
+                "A": "advantage",
+                "B": "disadvantage",
+                "C": "decoration",
+                "D": "opportunity",
+                "E": "permission"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "The main **purpose** of the project is to improve access to education.\nWhich option is closest in meaning to \"purpose\"?",
+              "options": {
+                "A": "habit",
+                "B": "limit",
+                "C": "aim",
+                "D": "excuse",
+                "E": "recovery"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 8,
+              "question": "The government announced a new **strategy** to reduce youth unemployment.\nWhich option is closest in meaning to \"strategy\"?",
+              "options": {
+                "A": "accident",
+                "B": "plan",
+                "C": "price",
+                "D": "border",
+                "E": "noise"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 9,
+              "question": "The introduction provides a brief **overview** of the book's main arguments.\nWhich option is closest in meaning to \"overview\"?",
+              "options": {
+                "A": "protest",
+                "B": "detailed table",
+                "C": "general summary",
+                "D": "warning",
+                "E": "punishment"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 10,
+              "question": "Increasing energy prices put a heavy **burden** on low-income households.\nWhich option is closest in meaning to \"burden\"?",
+              "options": {
+                "A": "reward",
+                "B": "curiosity",
+                "C": "load",
+                "D": "holiday",
+                "E": "discount"
+              },
+              "correct_answer": "C"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": 2,
+      "title": "Academic Adjectives",
+      "tests": [
+        {
+          "id": "test1",
+          "title": "Test 1 – Adjectives in Context",
+          "type": "fill_in_the_blank",
+          "instructions": "Choose the adjective that best completes the sentence.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The study reported a ______ increase in the incidence of respiratory diseases in polluted urban areas.",
+              "options": {
+                "A": "modest",
+                "B": "significant",
+                "C": "literal",
+                "D": "indoor",
+                "E": "weekly"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "If governments fail to act, it is almost ______ that global temperatures will continue to rise.",
+              "options": {
+                "A": "fragile",
+                "B": "inevitable",
+                "C": "partial",
+                "D": "reversible",
+                "E": "optional"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "The amount of data we collected is not ______ to support such a definitive claim.",
+              "options": {
+                "A": "apparent",
+                "B": "potential",
+                "C": "sufficient",
+                "D": "previous",
+                "E": "visible"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "The committee is looking for the most ______ solution that can be implemented with limited resources.",
+              "options": {
+                "A": "efficient",
+                "B": "random",
+                "C": "historic",
+                "D": "permanent",
+                "E": "symbolic"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 5,
+              "question": "Although the policy looks attractive, its long-term benefits are far from ______.",
+              "options": {
+                "A": "global",
+                "B": "apparent",
+                "C": "neighbouring",
+                "D": "extreme",
+                "E": "electronic"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 6,
+              "question": "The new regulations had a ______ impact on small local businesses, many of which were forced to close.",
+              "options": {
+                "A": "severe",
+                "B": "secondary",
+                "C": "conscious",
+                "D": "internal",
+                "E": "stable"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 7,
+              "question": "The survey shows that there is ______ support for stricter environmental laws among young voters.",
+              "options": {
+                "A": "visible",
+                "B": "widespread",
+                "C": "previous",
+                "D": "narrow",
+                "E": "experimental"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 8,
+              "question": "After the ______ phase of the project, the team revised its overall strategy.",
+              "options": {
+                "A": "global",
+                "B": "stable",
+                "C": "initial",
+                "D": "temporary",
+                "E": "economic"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 9,
+              "question": "Because the machine was not properly maintained, its performance became less ______ over time.",
+              "options": {
+                "A": "reliable",
+                "B": "conscious",
+                "C": "environmental",
+                "D": "urban",
+                "E": "symbolic"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 10,
+              "question": "The information given in the advertisement is not entirely ______; some of the figures are clearly exaggerated.",
+              "options": {
+                "A": "accurate",
+                "B": "visible",
+                "C": "frequent",
+                "D": "flexible",
+                "E": "industrial"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 11,
+              "question": "The researcher tried to keep all other conditions ______ so that only one factor would change.",
+              "options": {
+                "A": "stable",
+                "B": "marginal",
+                "C": "previous",
+                "D": "global",
+                "E": "inner"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 12,
+              "question": "There is a ______ link between poverty and poor health outcomes.",
+              "options": {
+                "A": "temporary",
+                "B": "obvious",
+                "C": "secondary",
+                "D": "inner",
+                "E": "prior"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 13,
+              "question": "Due to ______ economic pressure, many families have reduced their spending on education.",
+              "options": {
+                "A": "slight",
+                "B": "conscious",
+                "C": "considerable",
+                "D": "local",
+                "E": "academic"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 14,
+              "question": "The measures taken so far are not ______ to solve the housing crisis.",
+              "options": {
+                "A": "visible",
+                "B": "temporary",
+                "C": "political",
+                "D": "dramatic",
+                "E": "adequate"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 15,
+              "question": "The study focuses on the most ______ factors influencing job satisfaction among employees.",
+              "options": {
+                "A": "random",
+                "B": "relevant",
+                "C": "potential",
+                "D": "weekly",
+                "E": "inner"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 16,
+              "question": "The effects of the crisis were particularly ______ in rural areas where people depended heavily on agriculture.",
+              "options": {
+                "A": "visible",
+                "B": "initial",
+                "C": "urban",
+                "D": "previous",
+                "E": "cognitive"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 17,
+              "question": "The course is designed to be ______ to students with very different academic backgrounds.",
+              "options": {
+                "A": "suitable",
+                "B": "strict",
+                "C": "distant",
+                "D": "eventual",
+                "E": "inner"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 18,
+              "question": "The university has introduced a more ______ training programme, requiring daily workshops and regular feedback sessions.",
+              "options": {
+                "A": "rural",
+                "B": "external",
+                "C": "intensive",
+                "D": "approximate",
+                "E": "weekly"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 19,
+              "question": "The new method proved more ______ than traditional techniques in reducing error rates.",
+              "options": {
+                "A": "effective",
+                "B": "inner",
+                "C": "partial",
+                "D": "remote",
+                "E": "random"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 20,
+              "question": "The report provides an ______ overview of recent developments in climate policy.",
+              "options": {
+                "A": "overall",
+                "B": "inner",
+                "C": "economic",
+                "D": "secondary",
+                "E": "occasional"
+              },
+              "correct_answer": "A"
+            }
+          ]
+        },
+        {
+          "id": "test2",
+          "title": "Test 2 – Adjectives: Synonyms",
+          "type": "synonym",
+          "instructions": "Q1-10: choose closest in meaning: choose closest in meaning.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The new policy had a **significant** effect on students' motivation.\nWhich option is closest in meaning to \"significant\"?",
+              "options": {
+                "A": "minor",
+                "B": "important",
+                "C": "uncertain",
+                "D": "temporary",
+                "E": "distant"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "If the current trend continues, further price rises are **inevitable**.\nWhich option is closest in meaning to \"inevitable\"?",
+              "options": {
+                "A": "avoidable",
+                "B": "surprising",
+                "C": "unavoidable",
+                "D": "partial",
+                "E": "temporary"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "The evidence was not **sufficient** to prove the suspect's guilt.\nWhich option is closest in meaning to \"sufficient\"?",
+              "options": {
+                "A": "adequate",
+                "B": "attractive",
+                "C": "visible",
+                "D": "conscious",
+                "E": "complex"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 4,
+              "question": "The results of the experiment were highly **reliable**.\nWhich option is closest in meaning to \"reliable\"?",
+              "options": {
+                "A": "doubtful",
+                "B": "temporary",
+                "C": "trustworthy",
+                "D": "random",
+                "E": "superficial"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 5,
+              "question": "There is **widespread** agreement that climate change is a serious problem.\nWhich option is closest in meaning to \"widespread\"?",
+              "options": {
+                "A": "formal",
+                "B": "limited",
+                "C": "extensive",
+                "D": "individual",
+                "E": "selective"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "The figures in the report are remarkably **accurate**.\nWhich option is closest in meaning to \"accurate\"?",
+              "options": {
+                "A": "approximate",
+                "B": "precise",
+                "C": "flexible",
+                "D": "partial",
+                "E": "temporary"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "Only **relevant** information should be included in the final report.\nWhich option is closest in meaning to \"relevant\"?",
+              "options": {
+                "A": "visible",
+                "B": "academic",
+                "C": "applicable",
+                "D": "extreme",
+                "E": "obvious"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 8,
+              "question": "The new software is more **efficient** than the old system.\nWhich option is closest in meaning to \"efficient\"?",
+              "options": {
+                "A": "productive",
+                "B": "cultural",
+                "C": "conscious",
+                "D": "dramatic",
+                "E": "moderate"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 9,
+              "question": "Many of the problems were already **visible** before the crisis began.\nWhich option is closest in meaning to \"visible\"?",
+              "options": {
+                "A": "complex",
+                "B": "theoretical",
+                "C": "noticeable",
+                "D": "conscious",
+                "E": "distant"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 10,
+              "question": "During the **initial** stage of the project, we focused on collecting background information.\nWhich option is closest in meaning to \"initial\"?",
+              "options": {
+                "A": "final",
+                "B": "random",
+                "C": "first",
+                "D": "stable",
+                "E": "partial"
+              },
+              "correct_answer": "C"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_1",
+          "title": "Mini Reading 1 – Urban Growth and Environmental Pressure",
+          "type": "reading_comprehension",
+          "passage": "In many countries, rapid urban growth has become a major challenge for both local authorities and national governments. As cities expand, the demand for housing, transport and public services increases at a considerable rate. If this process is not carefully managed, the results can be severe: overcrowded neighbourhoods, rising pollution levels and a noticeable decline in the overall quality of life. These problems are especially visible in low-income districts, where infrastructure is often insufficient and public investment remains limited.\n\nFrom an environmental perspective, the situation is equally worrying. The intensive use of land for construction reduces green areas and puts additional pressure on local ecosystems. In many cities, waste-management systems are not adequate to deal with the growing volume of rubbish, leading to widespread dumping and contamination of rivers and soil. Although some governments have introduced strict regulations to control emissions and protect natural resources, the implementation of these rules is not always consistent. As a result, the gap between official policies and everyday practice remains significant.\n\nUrban growth is therefore neither entirely negative nor entirely positive. It can create potential opportunities for employment and cultural exchange, but it can also deepen existing social and environmental inequalities. A more effective response requires long-term planning, reliable data and close cooperation between different levels of government, as well as active participation from local communities.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "What is the main problem associated with rapid urban growth, according to the passage?",
+              "options": {
+                "A": "It always leads to economic collapse.",
+                "B": "It increases the number of tourists in cities.",
+                "C": "It creates serious social and environmental pressure if it is not managed well.",
+                "D": "It eliminates all green areas in every city.",
+                "E": "It mainly affects high-income districts."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 2,
+              "question": "Why are the effects of urban growth \"especially visible in low-income districts\"?",
+              "options": {
+                "A": "Because these districts receive the highest levels of public investment.",
+                "B": "Because infrastructure is often weak and public services are limited there.",
+                "C": "Because only rich families move to these areas.",
+                "D": "Because local authorities completely ignore environmental issues in rich districts.",
+                "E": "Because pollution does not exist in any other part of the city."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "What does the passage suggest about environmental regulations in many cities?",
+              "options": {
+                "A": "They are always strict and perfectly enforced.",
+                "B": "They exist on paper but are not always applied consistently.",
+                "C": "They focus only on protecting wildlife outside cities.",
+                "D": "They have completely solved waste-management problems.",
+                "E": "They are usually temporary and symbolic."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 4,
+              "question": "According to the passage, which of the following is presented as a potential advantage of urban growth?",
+              "options": {
+                "A": "Reduced cultural diversity",
+                "B": "Lower demand for public services",
+                "C": "New opportunities for employment and cultural exchange",
+                "D": "A guaranteed improvement in environmental quality",
+                "E": "A permanent decline in housing prices"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 5,
+              "question": "What does the writer imply is necessary for a more effective response to urban growth?",
+              "options": {
+                "A": "Short-term political promises and media campaigns",
+                "B": "Closing all low-income districts and moving people to rural areas",
+                "C": "Long-term planning, reliable data and cooperation between different actors",
+                "D": "Leaving the issue completely to the private sector",
+                "E": "Building only luxury housing in city centres"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the word \"insufficient\" is closest in meaning to:",
+              "options": {
+                "A": "not enough",
+                "B": "not visible",
+                "C": "not dangerous",
+                "D": "not expensive",
+                "E": "not accurate"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the word \"widespread\" is closest in meaning to:",
+              "options": {
+                "A": "local",
+                "B": "limited",
+                "C": "extensive",
+                "D": "distant",
+                "E": "temporary"
+              },
+              "correct_answer": "C"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_2",
+          "title": "Mini Reading 2 – Automation and the Future of Work",
+          "type": "reading_comprehension",
+          "passage": "Debates about the future of work often focus on the potential impact of automation and artificial intelligence on employment. Some commentators predict a dramatic loss of jobs, while others argue that new technologies will create considerable numbers of different, and perhaps more interesting, positions. The truth is likely to be more complex than either of these extreme views suggests. What seems obvious is that the nature of many occupations will change in a significant way.\n\nRoutine and highly predictable tasks are particularly vulnerable to automation. In such roles, machines can be more efficient and more accurate than human workers, and they do not require holidays, salaries or social benefits. However, jobs that demand creative, interpersonal or highly flexible skills are less likely to disappear. In these areas, human judgement remains essential, and technology is more likely to play a supportive rather than a dominant role.\n\nFrom a social perspective, the effects of automation are unlikely to be evenly distributed. Workers with strong digital skills and relevant education may gain substantial advantages, while those with limited qualifications could face severe difficulties. If governments fail to develop appropriate training programmes and effective social-protection systems, existing inequalities may become even more pronounced. For this reason, many experts argue that automation is not simply a technological issue; it is also a deeply political and ethical question that requires careful, long-term planning.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "What is the main point made in the passage about automation and employment?",
+              "options": {
+                "A": "Automation will definitely destroy all existing jobs.",
+                "B": "Automation will have no noticeable effect on the labour market.",
+                "C": "The impact of automation is complex and will change the nature of many jobs.",
+                "D": "Automation will make work easier but less efficient.",
+                "E": "Automation will only affect low-skilled workers."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 2,
+              "question": "According to the passage, which types of tasks are most vulnerable to automation?",
+              "options": {
+                "A": "Creative and interpersonal tasks",
+                "B": "Tasks requiring flexible problem-solving",
+                "C": "Routine and highly predictable tasks",
+                "D": "Jobs involving strong ethical decisions",
+                "E": "Roles that require advanced political knowledge"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "What is suggested about jobs that require creative or interpersonal skills?",
+              "options": {
+                "A": "They will probably be replaced first by machines.",
+                "B": "They will disappear in most developed countries.",
+                "C": "They are less likely to be fully automated because human judgement is essential.",
+                "D": "They are considered unimportant in the future labour market.",
+                "E": "They are easier and cheaper to automate."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "According to the passage, why might automation increase social inequality?",
+              "options": {
+                "A": "Because all workers will receive exactly the same salary.",
+                "B": "Because workers with strong digital skills may gain advantages, while others face serious problems.",
+                "C": "Because governments will ban all types of training programmes.",
+                "D": "Because automation will only affect people with high qualifications.",
+                "E": "Because technology will be completely free for everyone."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "What does the writer suggest governments should do in response to automation?",
+              "options": {
+                "A": "Ignore the problem and wait for the market to adjust.",
+                "B": "Invest in appropriate training and effective social-protection systems.",
+                "C": "Encourage companies to replace workers as quickly as possible.",
+                "D": "Ban the use of artificial intelligence in all workplaces.",
+                "E": "Focus only on protecting traditional manual jobs."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the word \"vulnerable\" is closest in meaning to:",
+              "options": {
+                "A": "protected",
+                "B": "weak and easily harmed",
+                "C": "highly efficient",
+                "D": "socially accepted",
+                "E": "completely independent"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the word \"pronounced\" (as in \"even more pronounced\") is closest in meaning to:",
+              "options": {
+                "A": "less visible",
+                "B": "more noticeable",
+                "C": "more temporary",
+                "D": "more ethical",
+                "E": "less significant"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "part3_b",
+          "title": "Part 3B – Synonym Revision (Multiple Choice)",
+          "type": "synonym",
+          "instructions": "Choose the option closest in meaning to the bold adjective.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The new regulations had a **significant** effect on air quality in the city.",
+              "options": {
+                "A": "minor",
+                "B": "limited",
+                "C": "important",
+                "D": "temporary",
+                "E": "invisible"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 2,
+              "question": "The information provided by the witness was not **reliable**, so the police asked for additional evidence.",
+              "options": {
+                "A": "emotional",
+                "B": "trustworthy",
+                "C": "creative",
+                "D": "visible",
+                "E": "complex"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "The doctor recommended a more **intensive** treatment plan to control the patient's condition.",
+              "options": {
+                "A": "relaxed",
+                "B": "shallow",
+                "C": "concentrated",
+                "D": "global",
+                "E": "occasional"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "The training programme is **suitable** for students from very different academic backgrounds.",
+              "options": {
+                "A": "flexible",
+                "B": "appropriate",
+                "C": "strict",
+                "D": "dramatic",
+                "E": "partial"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "There is **widespread** agreement that more investment in education is necessary.",
+              "options": {
+                "A": "local",
+                "B": "rare",
+                "C": "extensive",
+                "D": "weak",
+                "E": "temporary"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "The figures in the final report are extremely **accurate**.",
+              "options": {
+                "A": "approximate",
+                "B": "flexible",
+                "C": "precise",
+                "D": "complex",
+                "E": "occasional"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 7,
+              "question": "The problem is more **complex** than it appears at first sight.",
+              "options": {
+                "A": "simple",
+                "B": "limited",
+                "C": "predictable",
+                "D": "complicated",
+                "E": "visible"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 8,
+              "question": "Without **sufficient** resources, it will be impossible to continue the project.",
+              "options": {
+                "A": "enough",
+                "B": "visible",
+                "C": "conscious",
+                "D": "random",
+                "E": "unstable"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 9,
+              "question": "The new method turned out to be more **effective** than traditional approaches.",
+              "options": {
+                "A": "wasteful",
+                "B": "successful",
+                "C": "temporary",
+                "D": "partial",
+                "E": "stable"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 10,
+              "question": "The climate crisis is now a **global** issue that affects every region in the world.",
+              "options": {
+                "A": "local",
+                "B": "rural",
+                "C": "worldwide",
+                "D": "urban",
+                "E": "occasional"
+              },
+              "correct_answer": "C"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": 3,
+      "title": "Academic Adverbs",
+      "tests": [
+        {
+          "id": "test1",
+          "title": "Test 1 – Adverbs in Context",
+          "type": "fill_in_the_blank",
+          "instructions": "In the following sentences, choose the adverb that best completes the sentence in terms of meaning and grammar. All options are adverbs. There is only one correct answer for each question.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "Over the last decade, public awareness of climate change has increased ______, especially among younger generations.",
+              "options": {
+                "A": "merely",
+                "B": "gradually",
+                "C": "rarely",
+                "D": "barely",
+                "E": "previously"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "The success of the project will ______ depend on whether sufficient funding can be secured.",
+              "options": {
+                "A": "widely",
+                "B": "severely",
+                "C": "largely",
+                "D": "rarely",
+                "E": "approximately"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "Although the new policy was ______ criticised at first, it later proved to be highly effective.",
+              "options": {
+                "A": "highly",
+                "B": "partly",
+                "C": "barely",
+                "D": "previously",
+                "E": "solely"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 4,
+              "question": "The two groups differ ______ in terms of educational background and access to technology.",
+              "options": {
+                "A": "strongly",
+                "B": "significantly",
+                "C": "rarely",
+                "D": "recently",
+                "E": "merely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "In many developing countries, access to health services has ______ improved, but serious problems still remain.",
+              "options": {
+                "A": "solely",
+                "B": "formerly",
+                "C": "considerably",
+                "D": "barely",
+                "E": "rarely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "The new regulations were ______ introduced to protect consumers from misleading advertisements.",
+              "options": {
+                "A": "approximately",
+                "B": "initially",
+                "C": "severely",
+                "D": "widely",
+                "E": "merely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "Contrary to popular belief, the increase in crime rates is ______ related to economic recession.",
+              "options": {
+                "A": "previously",
+                "B": "relatively",
+                "C": "solely",
+                "D": "currently",
+                "E": "rarely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 8,
+              "question": "At the beginning of the course, students ______ focus on memorising facts rather than developing critical thinking skills.",
+              "options": {
+                "A": "strongly",
+                "B": "particularly",
+                "C": "commonly",
+                "D": "severely",
+                "E": "merely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 9,
+              "question": "The study shows that the policy changes have ______ affected low-income households, while middle-income groups remain relatively stable.",
+              "options": {
+                "A": "ultimately",
+                "B": "solely",
+                "C": "particularly",
+                "D": "approximately",
+                "E": "rarely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 10,
+              "question": "The information in this chapter is based ______ on data collected in European countries.",
+              "options": {
+                "A": "highly",
+                "B": "merely",
+                "C": "partly",
+                "D": "currently",
+                "E": "primarily"
+              },
+              "correct_answer": "E"
+            },
+            {
+              "question_number": 11,
+              "question": "The government has been ______ criticised for failing to respond quickly to the crisis.",
+              "options": {
+                "A": "frequently",
+                "B": "previously",
+                "C": "barely",
+                "D": "relatively",
+                "E": "accurately"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 12,
+              "question": "Although the new treatment is not perfect, it has been ______ successful in reducing pain.",
+              "options": {
+                "A": "rarely",
+                "B": "slightly",
+                "C": "highly",
+                "D": "hardly",
+                "E": "formerly"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 13,
+              "question": "The population of the city has grown ______ over the last fifty years, turning it into a major economic centre.",
+              "options": {
+                "A": "severely",
+                "B": "gradually",
+                "C": "barely",
+                "D": "recently",
+                "E": "solely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 14,
+              "question": "The results of the experiment can be ______ described as disappointing, given the amount of time and money invested.",
+              "options": {
+                "A": "largely",
+                "B": "significantly",
+                "C": "barely",
+                "D": "honestly",
+                "E": "accurately"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 15,
+              "question": "The new law does not ______ solve the problem, but it represents an important first step.",
+              "options": {
+                "A": "entirely",
+                "B": "previously",
+                "C": "currently",
+                "D": "widely",
+                "E": "rarely"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 16,
+              "question": "These two concepts are ______ confused by students, even at an advanced level.",
+              "options": {
+                "A": "severely",
+                "B": "formerly",
+                "C": "merely",
+                "D": "commonly",
+                "E": "rarely"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 17,
+              "question": "The theory has been ______ accepted by researchers working in the field of cognitive psychology.",
+              "options": {
+                "A": "widely",
+                "B": "weakly",
+                "C": "partly",
+                "D": "formerly",
+                "E": "rarely"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 18,
+              "question": "The two proposals are ______ similar, but there are some important differences in their practical implications.",
+              "options": {
+                "A": "solely",
+                "B": "highly",
+                "C": "completely",
+                "D": "relatively",
+                "E": "barely"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 19,
+              "question": "The figures given in the report are ______ estimates and may change after further analysis.",
+              "options": {
+                "A": "frequently",
+                "B": "approximately",
+                "C": "strongly",
+                "D": "severely",
+                "E": "lately"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 20,
+              "question": "The committee concluded that the accident was ______ the result of human error rather than a technical fault.",
+              "options": {
+                "A": "barely",
+                "B": "rarely",
+                "C": "merely",
+                "D": "widely",
+                "E": "recently"
+              },
+              "correct_answer": "C"
+            }
+          ]
+        },
+        {
+          "id": "test2",
+          "title": "Test 2 – Adverbs: Synonyms & Opposites",
+          "type": "synonym_and_antonym",
+          "instructions": "For Questions 1–10, choose the option which is closest in meaning to the underlined adverb. For Questions 11–20, choose the option which is opposite in meaning to the underlined adverb.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The new regulations have significantly improved safety standards in the workplace.\nWhich option is closest in meaning to \"significantly\"?",
+              "options": {
+                "A": "slightly",
+                "B": "traditionally",
+                "C": "considerably",
+                "D": "rarely",
+                "E": "eventually"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 2,
+              "question": "Consumer demand for electric cars has gradually increased over the last decade.\nWhich option is closest in meaning to \"gradually\"?",
+              "options": {
+                "A": "suddenly",
+                "B": "progressively",
+                "C": "rarely",
+                "D": "inaccurately",
+                "E": "solely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "The success of the programme largely depends on the level of public participation.\nWhich option is closest in meaning to \"largely\"?",
+              "options": {
+                "A": "hardly",
+                "B": "mainly",
+                "C": "rarely",
+                "D": "briefly",
+                "E": "equally"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 4,
+              "question": "The company's profits have recently declined due to rising production costs.\nWhich option is closest in meaning to \"recently\"?",
+              "options": {
+                "A": "formerly",
+                "B": "generally",
+                "C": "slowly",
+                "D": "lately",
+                "E": "widely"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 5,
+              "question": "The drug was initially tested on animals before being used in human trials.\nWhich option is closest in meaning to \"initially\"?",
+              "options": {
+                "A": "finally",
+                "B": "at first",
+                "C": "occasionally",
+                "D": "rarely",
+                "E": "increasingly"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 6,
+              "question": "This method is widely used in the field of medical research.\nWhich option is closest in meaning to \"widely\"?",
+              "options": {
+                "A": "barely",
+                "B": "commonly",
+                "C": "previously",
+                "D": "partly",
+                "E": "seldom"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "The disease can be severely disabling if it is not treated at an early stage.\nWhich option is closest in meaning to \"severely\"?",
+              "options": {
+                "A": "mildly",
+                "B": "seriously",
+                "C": "gradually",
+                "D": "rarely",
+                "E": "partly"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 8,
+              "question": "The theory was strongly criticised for ignoring social and cultural factors.\nWhich option is closest in meaning to \"strongly\"?",
+              "options": {
+                "A": "slightly",
+                "B": "gently",
+                "C": "heavily",
+                "D": "approximately",
+                "E": "barely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 9,
+              "question": "The institution is currently reviewing its admission policies.\nWhich option is closest in meaning to \"currently\"?",
+              "options": {
+                "A": "soon",
+                "B": "previously",
+                "C": "now",
+                "D": "rarely",
+                "E": "typically"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 10,
+              "question": "The two countries are relatively similar in terms of economic development.\nWhich option is closest in meaning to \"relatively\"?",
+              "options": {
+                "A": "absolutely",
+                "B": "comparatively",
+                "C": "extremely",
+                "D": "rarely",
+                "E": "previously"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 11,
+              "question": "This type of extreme weather event now occurs frequently in coastal regions.\nWhich option is opposite in meaning to \"frequently\"?",
+              "options": {
+                "A": "widely",
+                "B": "rarely",
+                "C": "strongly",
+                "D": "highly",
+                "E": "severely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 12,
+              "question": "The symptoms rarely appear in children under the age of five.\nWhich option is opposite in meaning to \"rarely\"?",
+              "options": {
+                "A": "frequently",
+                "B": "merely",
+                "C": "partly",
+                "D": "widely",
+                "E": "approximately"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 13,
+              "question": "The problem was partly caused by a lack of communication between departments.\nWhich option is opposite in meaning to \"partly\"?",
+              "options": {
+                "A": "previously",
+                "B": "entirely",
+                "C": "rarely",
+                "D": "gradually",
+                "E": "weakly"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 14,
+              "question": "The two versions of the story are barely different from each other.\nWhich option is opposite in meaning to \"barely\"?",
+              "options": {
+                "A": "hardly",
+                "B": "slightly",
+                "C": "clearly",
+                "D": "previously",
+                "E": "merely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 15,
+              "question": "The students were highly motivated to participate in the project.\nWhich option is opposite in meaning to \"highly\"?",
+              "options": {
+                "A": "slightly",
+                "B": "widely",
+                "C": "gradually",
+                "D": "merely",
+                "E": "formerly"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 16,
+              "question": "The system is designed to operate solely on renewable energy sources.\nWhich option is opposite in meaning to \"solely\"?",
+              "options": {
+                "A": "only",
+                "B": "exclusively",
+                "C": "partially",
+                "D": "entirely",
+                "E": "generally"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 17,
+              "question": "The results can be considered approximately accurate, but further checks are needed.\nWhich option is opposite in meaning to \"approximately\"?",
+              "options": {
+                "A": "relatively",
+                "B": "entirely",
+                "C": "roughly",
+                "D": "merely",
+                "E": "largely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 18,
+              "question": "The changes were ultimately rejected by the board of directors.\nWhich option is opposite in meaning to \"ultimately\"?",
+              "options": {
+                "A": "generally",
+                "B": "recently",
+                "C": "initially",
+                "D": "increasingly",
+                "E": "widely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 19,
+              "question": "The campaign was widely regarded as a failure.\nWhich option is opposite in meaning to \"widely\"?",
+              "options": {
+                "A": "strongly",
+                "B": "previously",
+                "C": "highly",
+                "D": "narrowly",
+                "E": "severely"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 20,
+              "question": "The survey focused specifically on the experiences of international students.\nWhich option is opposite in meaning to \"specifically\"?",
+              "options": {
+                "A": "particularly",
+                "B": "generally",
+                "C": "merely",
+                "D": "relatively",
+                "E": "solely"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_1",
+          "title": "Mini Reading 1 – Digital Distraction in Higher Education",
+          "type": "reading_comprehension",
+          "passage": "In recent years, university lecturers have become increasingly concerned about the impact of digital devices on students' concentration. During lectures, many students check their phones frequently, even when the material being presented is particularly important for exams. While such behaviour is commonly seen as a harmless habit, research suggests that it can significantly reduce a student's ability to process complex information.\n\nThe problem does not arise solely from the amount of time spent online, but also from the way in which attention is divided. When students switch constantly between listening to the lecturer and checking social media, they are barely able to engage deeply with the content. Over time, this fragmented attention may lead to gradually declining academic performance. Interestingly, the negative effects are not limited to weaker students; even highly motivated learners are relatively vulnerable to digital distraction.\n\nSome universities have recently introduced policies that strongly encourage students to keep their devices out of sight during classes. However, these measures are only partly effective. Unless students understand clearly how multitasking affects their learning, they are unlikely to change their behaviour in a meaningful way. For this reason, many experts argue that digital literacy courses should explicitly address not only technical skills but also the psychological consequences of being constantly connected.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "According to the passage, which of the following is one main concern of university lecturers?",
+              "options": {
+                "A": "Students do not have enough access to digital devices.",
+                "B": "Digital devices may prevent students from concentrating during lectures.",
+                "C": "Students are increasingly absent from lectures.",
+                "D": "Online materials are not suitable for academic study.",
+                "E": "Students prefer printed books to online sources."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "What does the passage suggest about students who frequently check their phones in class?",
+              "options": {
+                "A": "They usually remember the lecture better.",
+                "B": "Their ability to process complex information may decrease.",
+                "C": "They are not interested in passing the exams.",
+                "D": "They are fully aware of the risks of multitasking.",
+                "E": "They only use their phones for academic purposes."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "Why might even highly motivated students be affected by digital distraction, according to the passage?",
+              "options": {
+                "A": "Because they never study outside the classroom.",
+                "B": "Because universities do not provide enough online materials.",
+                "C": "Because divided attention makes deep engagement with content difficult for almost everyone.",
+                "D": "Because they refuse to follow any classroom rules.",
+                "E": "Because they do not use social media at all."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "What is implied about university policies that encourage students to hide their devices during class?",
+              "options": {
+                "A": "They are completely effective in all departments.",
+                "B": "They are unnecessary and unpopular among lecturers.",
+                "C": "They are only partly effective without a deeper understanding of the problem.",
+                "D": "They have eliminated digital distraction in most universities.",
+                "E": "They are mainly designed to protect university Wi-Fi systems."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 5,
+              "question": "According to the passage, what should digital literacy courses also focus on?",
+              "options": {
+                "A": "Training students to use more social media tools.",
+                "B": "Teaching only basic technical skills for beginners.",
+                "C": "Explaining the psychological effects of constant online connection.",
+                "D": "Encouraging students to ignore academic sources on the internet.",
+                "E": "Replacing traditional lectures with online videos."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the word \"frequently\" is closest in meaning to:",
+              "options": {
+                "A": "rarely",
+                "B": "regularly",
+                "C": "slowly",
+                "D": "partly",
+                "E": "barely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the word \"barely\" is closest in meaning to:",
+              "options": {
+                "A": "clearly",
+                "B": "almost not",
+                "C": "merely",
+                "D": "highly",
+                "E": "eventually"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_2",
+          "title": "Mini Reading 2 – Economic Inequality and Social Trust",
+          "type": "reading_comprehension",
+          "passage": "Social scientists have long debated why social trust tends to be higher in some societies than in others. One factor that is widely discussed is economic inequality. Studies show that when income and wealth are distributed very unevenly, people generally trust public institutions less. They are more likely to believe that political decisions are partly influenced by powerful interest groups rather than by the needs of ordinary citizens. As a result, citizens may become increasingly sceptical about the fairness of elections and public policies.\n\nHowever, the relationship between inequality and trust is not entirely straightforward. In some countries, social trust has remained relatively high despite growing inequality. This is partly because strong welfare systems can significantly reduce the negative consequences of unequal income. When people feel that basic services such as healthcare and education are strongly protected, they are less likely to lose confidence in democratic institutions, even if the rich are becoming considerably richer.\n\nPolicy responses also vary considerably from one country to another. Some governments respond to rising inequality by gradually increasing taxes on high incomes, while others react barely at all. There is currently no universal agreement on which strategy works best. Nevertheless, many researchers argue that if economic inequality continues to grow rapidly, levels of social trust will eventually decline, particularly among younger generations who feel increasingly excluded from economic opportunities.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "What is the main idea of the passage?",
+              "options": {
+                "A": "Economic inequality has no impact on social trust.",
+                "B": "Social trust depends only on cultural traditions.",
+                "C": "The relationship between economic inequality and social trust is complex and depends on several factors.",
+                "D": "Social trust is always low in democratic societies.",
+                "E": "Income equality automatically creates perfect trust in institutions."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 2,
+              "question": "According to the passage, why can strong welfare systems help maintain social trust?",
+              "options": {
+                "A": "Because they make people completely independent from the state.",
+                "B": "Because they eliminate economic inequality overnight.",
+                "C": "Because they reduce the negative effects of inequality by protecting basic services.",
+                "D": "Because they mainly benefit large corporations.",
+                "E": "Because they prevent people from participating in elections."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "What does the passage suggest about policy responses to inequality?",
+              "options": {
+                "A": "All governments follow exactly the same strategy.",
+                "B": "Most countries refuse to change their tax systems.",
+                "C": "Some governments increase taxes gradually, while others take almost no action.",
+                "D": "Policymakers rarely pay attention to inequality.",
+                "E": "Every country has already found the perfect solution."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "Why might young people be particularly affected by growing inequality, according to the passage?",
+              "options": {
+                "A": "They are not interested in education or work.",
+                "B": "They feel increasingly excluded from economic opportunities.",
+                "C": "They have greater access to welfare services.",
+                "D": "They rarely use social media.",
+                "E": "They are less aware of political decisions."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "Which of the following best summarises the writer's attitude?",
+              "options": {
+                "A": "Completely optimistic about the future of social trust.",
+                "B": "Certain that inequality will soon disappear.",
+                "C": "Neutral and uninterested in policy choices.",
+                "D": "Worried that rising inequality may eventually undermine trust in democratic institutions.",
+                "E": "Convinced that inequality is a purely technical economic issue."
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the word \"considerably\" is closest in meaning to:",
+              "options": {
+                "A": "slightly",
+                "B": "recently",
+                "C": "slowly",
+                "D": "significantly",
+                "E": "narrowly"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the word \"entirely\" is closest in meaning to:",
+              "options": {
+                "A": "completely",
+                "B": "rarely",
+                "C": "relatively",
+                "D": "partly",
+                "E": "initially"
+              },
+              "correct_answer": "A"
+            }
+          ]
+        },
+        {
+          "id": "revision_part_a",
+          "title": "Unit 3 Revision – Part A: Matching (Synonyms)",
+          "type": "matching",
+          "instructions": "Match each adverb in Column 1 with the closest synonym in Column 2.",
+          "column_1": [
+            {
+              "number": 1,
+              "item": "significantly"
+            },
+            {
+              "number": 2,
+              "item": "gradually"
+            },
+            {
+              "number": 3,
+              "item": "eventually"
+            },
+            {
+              "number": 4,
+              "item": "initially"
+            },
+            {
+              "number": 5,
+              "item": "currently"
+            },
+            {
+              "number": 6,
+              "item": "widely"
+            },
+            {
+              "number": 7,
+              "item": "severely"
+            },
+            {
+              "number": 8,
+              "item": "partly"
+            },
+            {
+              "number": 9,
+              "item": "rarely"
+            },
+            {
+              "number": 10,
+              "item": "highly"
+            }
+          ],
+          "column_2": [
+            {
+              "letter": "A",
+              "item": "very, extremely"
+            },
+            {
+              "letter": "B",
+              "item": "slowly, step by step"
+            },
+            {
+              "letter": "C",
+              "item": "at present, at the moment"
+            },
+            {
+              "letter": "D",
+              "item": "in the end, finally"
+            },
+            {
+              "letter": "E",
+              "item": "seriously, badly"
+            },
+            {
+              "letter": "F",
+              "item": "considerably, to a great extent"
+            },
+            {
+              "letter": "G",
+              "item": "commonly, extensively"
+            },
+            {
+              "letter": "H",
+              "item": "at first, in the beginning"
+            },
+            {
+              "letter": "I",
+              "item": "seldom, hardly ever"
+            },
+            {
+              "letter": "J",
+              "item": "to some extent, not completely"
+            }
+          ],
+          "correct_answers": {
+            "1": "F",
+            "2": "B",
+            "3": "D",
+            "4": "H",
+            "5": "C",
+            "6": "G",
+            "7": "E",
+            "8": "J",
+            "9": "I",
+            "10": "A"
+          }
+        },
+        {
+          "id": "revision_part_b",
+          "title": "Unit 3 Revision – Part B: Multiple Choice (Synonyms in Context)",
+          "type": "synonym",
+          "instructions": "Choose the option which is closest in meaning to the bold adverb.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "Public attitudes towards renewable energy have gradually changed over the last two decades.",
+              "options": {
+                "A": "slowly",
+                "B": "suddenly",
+                "C": "rarely",
+                "D": "briefly",
+                "E": "inaccurately"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 2,
+              "question": "The new policy has significantly reduced the number of serious accidents in the workplace.",
+              "options": {
+                "A": "slightly",
+                "B": "considerably",
+                "C": "formerly",
+                "D": "merely",
+                "E": "rarely"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 3,
+              "question": "The final decision will ultimately depend on the results of the national referendum.",
+              "options": {
+                "A": "initially",
+                "B": "temporarily",
+                "C": "in the end",
+                "D": "rarely",
+                "E": "partly"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "This method is widely used in the study of second language acquisition.",
+              "options": {
+                "A": "hardly",
+                "B": "privately",
+                "C": "commonly",
+                "D": "briefly",
+                "E": "rarely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 5,
+              "question": "The government is currently reviewing its long-term strategy for higher education.",
+              "options": {
+                "A": "occasionally",
+                "B": "recently",
+                "C": "now",
+                "D": "generally",
+                "E": "previously"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "The new regulations were initially welcomed by environmental organisations.",
+              "options": {
+                "A": "at first",
+                "B": "eventually",
+                "C": "repeatedly",
+                "D": "rarely",
+                "E": "partly"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 7,
+              "question": "If not treated on time, the disease can severely damage the nervous system.",
+              "options": {
+                "A": "slightly",
+                "B": "slowly",
+                "C": "seriously",
+                "D": "partly",
+                "E": "rarely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 8,
+              "question": "The scholarship programme is particularly attractive for students from low-income families.",
+              "options": {
+                "A": "clearly",
+                "B": "especially",
+                "C": "briefly",
+                "D": "previously",
+                "E": "nearly"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 9,
+              "question": "The new drug has proved highly effective in reducing chronic pain.",
+              "options": {
+                "A": "rarely",
+                "B": "slightly",
+                "C": "clearly",
+                "D": "extremely",
+                "E": "partly"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 10,
+              "question": "The two theories are largely based on the same set of experimental data.",
+              "options": {
+                "A": "mainly",
+                "B": "rarely",
+                "C": "temporarily",
+                "D": "inaccurately",
+                "E": "slowly"
+              },
+              "correct_answer": "A"
+            }
+          ]
+        },
+        {
+          "id": "revision_part_c",
+          "title": "Unit 3 Revision – Part C: Multiple Choice (Antonyms in Context)",
+          "type": "antonym",
+          "instructions": "Choose the option which is opposite in meaning to the bold adverb.",
+          "questions": [
+            {
+              "question_number": 11,
+              "question": "In rural areas, access to high-speed internet is still rarely available.",
+              "options": {
+                "A": "frequently",
+                "B": "briefly",
+                "C": "weakly",
+                "D": "merely",
+                "E": "partly"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 12,
+              "question": "The minister was strongly criticised for failing to respond to the crisis.",
+              "options": {
+                "A": "slightly",
+                "B": "carefully",
+                "C": "widely",
+                "D": "clearly",
+                "E": "gradually"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 13,
+              "question": "The organisation is entirely dependent on donations from the public.",
+              "options": {
+                "A": "nearly",
+                "B": "partly",
+                "C": "clearly",
+                "D": "currently",
+                "E": "previously"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 14,
+              "question": "The two accounts of the event are barely different from each other.",
+              "options": {
+                "A": "slowly",
+                "B": "eventually",
+                "C": "clearly",
+                "D": "highly",
+                "E": "strongly"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 15,
+              "question": "The reform was partly successful in reducing unemployment.",
+              "options": {
+                "A": "currently",
+                "B": "previously",
+                "C": "completely",
+                "D": "briefly",
+                "E": "rarely"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 16,
+              "question": "The research team met frequently during the initial phase of the project.",
+              "options": {
+                "A": "regularly",
+                "B": "rarely",
+                "C": "highly",
+                "D": "severely",
+                "E": "clearly"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 17,
+              "question": "The earthquake severely affected the city's transport infrastructure.",
+              "options": {
+                "A": "slightly",
+                "B": "constantly",
+                "C": "increasingly",
+                "D": "widely",
+                "E": "ultimately"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 18,
+              "question": "The figures given in the report are approximately correct.",
+              "options": {
+                "A": "relatively",
+                "B": "completely",
+                "C": "merely",
+                "D": "briefly",
+                "E": "lately"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 19,
+              "question": "Public spending on education has gradually increased since the early 2000s.",
+              "options": {
+                "A": "slowly",
+                "B": "cautiously",
+                "C": "suddenly",
+                "D": "clearly",
+                "E": "partly"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 20,
+              "question": "The agreement was largely ignored by the local authorities.",
+              "options": {
+                "A": "mainly",
+                "B": "briefly",
+                "C": "strongly",
+                "D": "narrowly",
+                "E": "hardly"
+              },
+              "correct_answer": "E"
+            }
+          ]
+        },
+        {
+          "id": "revision_part_d",
+          "title": "Unit 3 Revision – Part D: Short Productive Task (Synonym & Antonym Table)",
+          "type": "open_ended",
+          "instructions": "For each adverb, write one synonym and one antonym.",
+          "items": [
+            {
+              "number": 1,
+              "word": "frequently",
+              "suggested_synonym": "often",
+              "suggested_antonym": "rarely"
+            },
+            {
+              "number": 2,
+              "word": "merely",
+              "suggested_synonym": "only",
+              "suggested_antonym": "substantially"
+            },
+            {
+              "number": 3,
+              "word": "entirely",
+              "suggested_synonym": "completely",
+              "suggested_antonym": "partly"
+            },
+            {
+              "number": 4,
+              "word": "relatively",
+              "suggested_synonym": "comparatively",
+              "suggested_antonym": "absolutely"
+            },
+            {
+              "number": 5,
+              "word": "particularly",
+              "suggested_synonym": "especially",
+              "suggested_antonym": "generally"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit": 4,
+      "title": "Academic Verbs",
+      "tests": [
+        {
+          "id": "test1",
+          "title": "Test 1 – Verbs in Context",
+          "type": "fill_in_the_blank",
+          "instructions": "Choose the verb that best completes the sentence in terms of meaning and grammar. All options are verbs. There is only one correct answer.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "In order to reduce traffic congestion in city centres, many governments now ______ higher taxes on private car use.",
+              "options": {
+                "A": "assume",
+                "B": "enforce",
+                "C": "perceive",
+                "D": "accumulate",
+                "E": "neglect"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "The study aims to ______ the main factors that influence students' choice of university.",
+              "options": {
+                "A": "reveal",
+                "B": "compete",
+                "C": "prevent",
+                "D": "disturb",
+                "E": "ignore"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 3,
+              "question": "If policymakers fail to act quickly, the current economic problems may ______ into a much deeper crisis.",
+              "options": {
+                "A": "compensate",
+                "B": "emerge",
+                "C": "evolve",
+                "D": "derive",
+                "E": "adopt"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "The new programme is designed to ______ equal opportunities for children from different socio-economic backgrounds.",
+              "options": {
+                "A": "allocate",
+                "B": "promote",
+                "C": "justify",
+                "D": "defeat",
+                "E": "isolate"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "Because the sample size was very small, the researchers were careful not to ______ strong generalisations from their results.",
+              "options": {
+                "A": "generate",
+                "B": "engage",
+                "C": "derive",
+                "D": "draw",
+                "E": "locate"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 6,
+              "question": "In order to protect public health, the ministry decided to ______ a strict ban on the sale of unlicensed medicine.",
+              "options": {
+                "A": "enforce",
+                "B": "expose",
+                "C": "expand",
+                "D": "perceive",
+                "E": "withdraw"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 7,
+              "question": "The report clearly ______ that climate change is already having serious effects on food production.",
+              "options": {
+                "A": "participates",
+                "B": "indicates",
+                "C": "insists",
+                "D": "attends",
+                "E": "replaces"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 8,
+              "question": "Many people still ______ mental illness as a personal weakness rather than a medical condition.",
+              "options": {
+                "A": "predict",
+                "B": "maintain",
+                "C": "perceive",
+                "D": "accomplish",
+                "E": "adapt"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 9,
+              "question": "The government promised to ______ more funds to early childhood education over the next five years.",
+              "options": {
+                "A": "allocate",
+                "B": "reject",
+                "C": "revise",
+                "D": "interrupt",
+                "E": "violate"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 10,
+              "question": "If teachers constantly ______ students' efforts, they can help them build confidence and motivation.",
+              "options": {
+                "A": "complicate",
+                "B": "underestimate",
+                "C": "neglect",
+                "D": "reinforce",
+                "E": "divide"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 11,
+              "question": "The organisation was criticised for failing to ______ the human rights of migrant workers.",
+              "options": {
+                "A": "estimate",
+                "B": "preserve",
+                "C": "protect",
+                "D": "monitor",
+                "E": "acknowledge"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 12,
+              "question": "In recent decades, the internet has ______ the way people access information and communicate with each other.",
+              "options": {
+                "A": "sustained",
+                "B": "transformed",
+                "C": "interrupted",
+                "D": "prevented",
+                "E": "restored"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 13,
+              "question": "Before we can ______ this policy, we need more detailed data on its potential economic costs.",
+              "options": {
+                "A": "implement",
+                "B": "hesitate",
+                "C": "encounter",
+                "D": "adapt",
+                "E": "dismiss"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 14,
+              "question": "The article attempts to ______ why some communities recover quickly after natural disasters while others continue to struggle for years.",
+              "options": {
+                "A": "justify",
+                "B": "integrate",
+                "C": "eliminate",
+                "D": "investigate",
+                "E": "adopt"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 15,
+              "question": "If we want to ______ the negative impact of tourism on local culture, we must involve local communities in the decision-making process.",
+              "options": {
+                "A": "negotiate",
+                "B": "mitigate",
+                "C": "spread",
+                "D": "accelerate",
+                "E": "exploit"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "test2",
+          "title": "Test 2 – Verb Synonyms & Opposites",
+          "type": "synonym_and_antonym",
+          "instructions": "For Questions 1–8, choose the option which is closest in meaning to the underlined verb. For Questions 9–16, choose the option which is opposite in meaning to the underlined verb.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The government has decided to implement a new set of regulations on data protection.\nWhich option is closest in meaning to \"implement\"?",
+              "options": {
+                "A": "design",
+                "B": "apply",
+                "C": "discuss",
+                "D": "ignore",
+                "E": "challenge"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "The writer emphasises the importance of critical thinking in higher education.\nWhich option is closest in meaning to \"emphasises\"?",
+              "options": {
+                "A": "questions",
+                "B": "repeats",
+                "C": "highlights",
+                "D": "simplifies",
+                "E": "reverses"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "The charity aims to support families who have been affected by long-term unemployment.\nWhich option is closest in meaning to \"support\"?",
+              "options": {
+                "A": "identify",
+                "B": "assist",
+                "C": "observe",
+                "D": "expose",
+                "E": "employ"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 4,
+              "question": "The researchers could not justify the use of such a small sample in their experiment.\nWhich option is closest in meaning to \"justify\"?",
+              "options": {
+                "A": "defend",
+                "B": "avoid",
+                "C": "repeat",
+                "D": "record",
+                "E": "delay"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 5,
+              "question": "The report reveals that many workers are paid far below the legal minimum wage.\nWhich option is closest in meaning to \"reveals\"?",
+              "options": {
+                "A": "hides",
+                "B": "suggests",
+                "C": "shows",
+                "D": "protects",
+                "E": "finishes"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "The company plans to expand its operations into several neighbouring countries.\nWhich option is closest in meaning to \"expand\"?",
+              "options": {
+                "A": "reduce",
+                "B": "extend",
+                "C": "control",
+                "D": "freeze",
+                "E": "examine"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "The committee will assess the impact of the new law on small businesses.\nWhich option is closest in meaning to \"assess\"?",
+              "options": {
+                "A": "ignore",
+                "B": "measure",
+                "C": "promote",
+                "D": "adapt",
+                "E": "approve"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 8,
+              "question": "The programme was introduced to encourage students to participate in community projects.\nWhich option is closest in meaning to \"encourage\"?",
+              "options": {
+                "A": "prevent",
+                "B": "discourage",
+                "C": "persuade",
+                "D": "interrupt",
+                "E": "replace"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 9,
+              "question": "The new policy will restrict the use of plastic bags in supermarkets.\nWhich option is opposite in meaning to \"restrict\"?",
+              "options": {
+                "A": "limit",
+                "B": "allow",
+                "C": "contain",
+                "D": "repeat",
+                "E": "identify"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 10,
+              "question": "If universities continue to neglect the needs of disabled students, inequality will increase.\nWhich option is opposite in meaning to \"neglect\"?",
+              "options": {
+                "A": "ignore",
+                "B": "notice",
+                "C": "respect",
+                "D": "address",
+                "E": "assess"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 11,
+              "question": "The organisation tried to maintain its independence from political parties.\nWhich option is opposite in meaning to \"maintain\"?",
+              "options": {
+                "A": "protect",
+                "B": "preserve",
+                "C": "abandon",
+                "D": "repair",
+                "E": "confirm"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 12,
+              "question": "The scandal has undermined public trust in the legal system.\nWhich option is opposite in meaning to \"undermined\"?",
+              "options": {
+                "A": "weakened",
+                "B": "destroyed",
+                "C": "strengthened",
+                "D": "revealed",
+                "E": "divided"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 13,
+              "question": "Parents are encouraged to monitor their children's use of social media.\nWhich option is opposite in meaning to \"monitor\"?",
+              "options": {
+                "A": "supervise",
+                "B": "observe",
+                "C": "ignore",
+                "D": "adapt",
+                "E": "prevent"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 14,
+              "question": "The government promised to increase investment in renewable energy.\nWhich option is opposite in meaning to \"increase\"?",
+              "options": {
+                "A": "reduce",
+                "B": "generate",
+                "C": "accumulate",
+                "D": "guarantee",
+                "E": "maintain"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 15,
+              "question": "The new evidence clearly contradicts the official explanation of the accident.\nWhich option is opposite in meaning to \"contradicts\"?",
+              "options": {
+                "A": "supports",
+                "B": "repeats",
+                "C": "records",
+                "D": "challenges",
+                "E": "reveals"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 16,
+              "question": "The organisation has managed to sustain its activities despite the financial crisis.\nWhich option is opposite in meaning to \"sustain\"?",
+              "options": {
+                "A": "continue",
+                "B": "interrupt",
+                "C": "support",
+                "D": "stabilise",
+                "E": "simplify"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_1",
+          "title": "Mini Reading 1 – Research Ethics in Psychology",
+          "type": "reading_comprehension",
+          "passage": "Modern psychological research often deals with sensitive topics such as mental illness, childhood trauma and social prejudice. For this reason, researchers are expected to adhere to strict ethical guidelines. These guidelines aim to protect participants from harm, inform them clearly about the purpose of the study, and ensure that the data collected is used responsibly. If researchers fail to respect these principles, they may seriously damage public trust in the discipline.\n\nOne major ethical requirement is that participants must give informed consent. This means that researchers have to explain the risks and potential benefits in language that participants can easily understand. In addition, researchers must guarantee confidentiality: personal information should never be disclosed without permission. When working with vulnerable groups such as children or patients, researchers are often required to consult independent ethics committees before they carry out their studies.\n\nDespite these safeguards, ethical problems can still emerge in practice. For example, some researchers may underestimate the emotional impact of certain questions, or they may fail to anticipate how the results will be used by funding agencies or governments. For this reason, many experts argue that teaching research ethics should not be limited to a single compulsory course; instead, ethical reflection should accompany every stage of scientific training.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "What is the main purpose of ethical guidelines in psychological research, according to the passage?",
+              "options": {
+                "A": "To make research cheaper and faster.",
+                "B": "To protect participants and ensure responsible use of data.",
+                "C": "To increase competition between researchers.",
+                "D": "To limit the number of research projects.",
+                "E": "To promote the interests of funding agencies."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "According to the passage, what does “informed consent” require researchers to do?",
+              "options": {
+                "A": "Pay participants for their time.",
+                "B": "Ask participants to design the experiment.",
+                "C": "Clearly explain risks and potential benefits.",
+                "D": "Give participants full access to all raw data.",
+                "E": "Guarantee that the study will be published."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "Why might researchers need to consult ethics committees when working with vulnerable groups?",
+              "options": {
+                "A": "Because committees can provide free participants.",
+                "B": "Because vulnerable groups refuse to take part in any study.",
+                "C": "Because additional protection and oversight are necessary.",
+                "D": "Because committees control research funding.",
+                "E": "Because vulnerable groups cannot read consent forms."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "Which of the following is mentioned as a possible ethical problem?",
+              "options": {
+                "A": "Overestimating the emotional impact of certain questions.",
+                "B": "Failing to anticipate how research results will be used.",
+                "C": "Allowing participants to choose their own results.",
+                "D": "Publishing studies without any data.",
+                "E": "Paying participants too much money."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "What does the writer suggest about teaching research ethics?",
+              "options": {
+                "A": "It should be taught only at postgraduate level.",
+                "B": "It should be limited to one obligatory course.",
+                "C": "It should accompany all stages of scientific training.",
+                "D": "It should be replaced by online tutorials.",
+                "E": "It is unnecessary if researchers are experienced."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the verb \"disclose\" is closest in meaning to:",
+              "options": {
+                "A": "hide",
+                "B": "reveal",
+                "C": "reduce",
+                "D": "generate",
+                "E": "fix"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the verb \"emerge\" is closest in meaning to:",
+              "options": {
+                "A": "disappear",
+                "B": "appear",
+                "C": "increase",
+                "D": "decline",
+                "E": "refuse"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "mini_reading_2",
+          "title": "Mini Reading 2 – Automation and Low-Skilled Labour",
+          "type": "reading_comprehension",
+          "passage": "As automation technologies become cheaper and more advanced, many employers choose to replace human labour with machines, particularly in routine and low-skilled jobs. Supporters of automation argue that it can increase productivity, reduce costs and eliminate dangerous tasks. However, critics warn that rapid automation may displace large numbers of workers and widen existing social inequalities if governments fail to intervene.\n\nIn many countries, low-skilled workers already struggle to compete with machines that can perform repetitive tasks more quickly and accurately. When companies invest heavily in automation without offering adequate training programmes, workers may lose not only their jobs but also their sense of dignity and purpose. This, in turn, can fuel political anger and undermine trust in democratic institutions.\n\nTo address these risks, some governments attempt to encourage companies to create new types of jobs that require human creativity and social skills. Others introduce active labour-market policies that support unemployed workers through retraining and income assistance. Whether these measures will be sufficient remains uncertain, but most experts agree that doing nothing will only intensify the problem.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "What is one advantage of automation mentioned in the passage?",
+              "options": {
+                "A": "It always creates more jobs than it destroys.",
+                "B": "It can increase productivity and reduce costs.",
+                "C": "It removes the need for any human skills.",
+                "D": "It guarantees equal income for all workers.",
+                "E": "It automatically solves social inequality."
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "According to the passage, why are low-skilled workers especially vulnerable to automation?",
+              "options": {
+                "A": "They refuse to work with machines.",
+                "B": "They can perform repetitive tasks more quickly than machines.",
+                "C": "They mostly work in jobs that machines can perform more efficiently.",
+                "D": "They are not allowed to participate in training programmes.",
+                "E": "They prefer to remain unemployed."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 3,
+              "question": "What is a potential social consequence of rapid automation, according to the passage?",
+              "options": {
+                "A": "A complete end to political debates.",
+                "B": "A permanent increase in birth rates.",
+                "C": "Greater political anger and lower trust in institutions.",
+                "D": "A total ban on international trade.",
+                "E": "The disappearance of all low-skilled workers."
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 4,
+              "question": "Which of the following is one strategy that governments use to respond to automation?",
+              "options": {
+                "A": "Encouraging companies to create jobs requiring human creativity and social skills.",
+                "B": "Forbidding companies to invest in new technologies.",
+                "C": "Forcing all workers to retire early.",
+                "D": "Closing all labour-market institutions.",
+                "E": "Asking companies to replace only foreign workers."
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 5,
+              "question": "What is the writer's attitude towards government inaction?",
+              "options": {
+                "A": "Doing nothing will probably intensify the problem.",
+                "B": "Doing nothing will allow the market to solve everything.",
+                "C": "Doing nothing is the fairest approach for all groups.",
+                "D": "Doing nothing will protect low-skilled workers.",
+                "E": "Doing nothing is necessary to avoid political conflicts."
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 6,
+              "question": "In the passage, the verb \"displace\" is closest in meaning to:",
+              "options": {
+                "A": "employ",
+                "B": "replace",
+                "C": "train",
+                "D": "measure",
+                "E": "educate"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 7,
+              "question": "In the passage, the verb \"undermine\" is closest in meaning to:",
+              "options": {
+                "A": "weaken",
+                "B": "support",
+                "C": "protect",
+                "D": "expand",
+                "E": "gather"
+              },
+              "correct_answer": "A"
+            }
+          ]
+        },
+        {
+          "id": "revision_part_a",
+          "title": "Unit 4 Revision – Part A: Matching (Synonyms)",
+          "type": "matching",
+          "instructions": "Match each verb in Column 1 with the closest synonym in Column 2.",
+          "column_1": [
+            {
+              "number": 1,
+              "item": "implement"
+            },
+            {
+              "number": 2,
+              "item": "maintain"
+            },
+            {
+              "number": 3,
+              "item": "promote"
+            },
+            {
+              "number": 4,
+              "item": "undermine"
+            },
+            {
+              "number": 5,
+              "item": "allocate"
+            },
+            {
+              "number": 6,
+              "item": "assess"
+            },
+            {
+              "number": 7,
+              "item": "justify"
+            },
+            {
+              "number": 8,
+              "item": "reveal"
+            },
+            {
+              "number": 9,
+              "item": "restrict"
+            },
+            {
+              "number": 10,
+              "item": "enhance"
+            }
+          ],
+          "column_2": [
+            {
+              "letter": "A",
+              "item": "keep"
+            },
+            {
+              "letter": "B",
+              "item": "limit"
+            },
+            {
+              "letter": "C",
+              "item": "weaken"
+            },
+            {
+              "letter": "D",
+              "item": "carry out"
+            },
+            {
+              "letter": "E",
+              "item": "improve"
+            },
+            {
+              "letter": "F",
+              "item": "show"
+            },
+            {
+              "letter": "G",
+              "item": "distribute"
+            },
+            {
+              "letter": "H",
+              "item": "evaluate"
+            },
+            {
+              "letter": "I",
+              "item": "support"
+            },
+            {
+              "letter": "J",
+              "item": "defend"
+            }
+          ],
+          "correct_answers": {
+            "1": "D",
+            "2": "A",
+            "3": "I",
+            "4": "C",
+            "5": "G",
+            "6": "H",
+            "7": "J",
+            "8": "F",
+            "9": "B",
+            "10": "E"
+          }
+        },
+        {
+          "id": "revision_part_b",
+          "title": "Unit 4 Revision – Part B: Multiple Choice (Synonyms in Context)",
+          "type": "synonym",
+          "instructions": "Choose the option which is closest in meaning to the bold verb.",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "The new safety measures are intended to mitigate the risks associated with nuclear energy.",
+              "options": {
+                "A": "remove",
+                "B": "reduce",
+                "C": "ignore",
+                "D": "increase",
+                "E": "justify"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 2,
+              "question": "The scholarship programme was created to facilitate access to higher education for disadvantaged students.",
+              "options": {
+                "A": "make easier",
+                "B": "limit",
+                "C": "hide",
+                "D": "cancel",
+                "E": "record"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 3,
+              "question": "The police were called to investigate the cause of the explosion.",
+              "options": {
+                "A": "avoid",
+                "B": "examine",
+                "C": "repeat",
+                "D": "reduce",
+                "E": "employ"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 4,
+              "question": "Over the years, the organisation has accumulated a large amount of data on consumer behaviour.",
+              "options": {
+                "A": "spent",
+                "B": "collected",
+                "C": "lost",
+                "D": "questioned",
+                "E": "reduced"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 5,
+              "question": "The new policy aims to preserve traditional architecture in the city centre.",
+              "options": {
+                "A": "destroy",
+                "B": "protect",
+                "C": "advertise",
+                "D": "neglect",
+                "E": "simplify"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 6,
+              "question": "These findings challenge the assumption that happiness always increases with income.",
+              "options": {
+                "A": "support",
+                "B": "repeat",
+                "C": "question",
+                "D": "record",
+                "E": "confirm"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 7,
+              "question": "The museum plans to enhance its online exhibitions to reach a wider audience.",
+              "options": {
+                "A": "weaken",
+                "B": "delay",
+                "C": "improve",
+                "D": "divide",
+                "E": "hide"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 8,
+              "question": "The teacher asked students to interpret the results of the survey in their own words.",
+              "options": {
+                "A": "copy",
+                "B": "ignore",
+                "C": "explain",
+                "D": "reduce",
+                "E": "punish"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 9,
+              "question": "The manager must allocate enough time for staff training each month.",
+              "options": {
+                "A": "waste",
+                "B": "predict",
+                "C": "distribute",
+                "D": "remove",
+                "E": "reduce"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 10,
+              "question": "The report attempts to attribute the recent rise in prices to changes in global demand.",
+              "options": {
+                "A": "disconnect",
+                "B": "link",
+                "C": "deny",
+                "D": "hide",
+                "E": "separate"
+              },
+              "correct_answer": "B"
+            }
+          ]
+        },
+        {
+          "id": "revision_part_c",
+          "title": "Unit 4 Revision – Part C: Multiple Choice (Antonyms in Context)",
+          "type": "antonym",
+          "instructions": "Choose the option which is opposite in meaning to the bold verb.",
+          "questions": [
+            {
+              "question_number": 11,
+              "question": "The new law will restrict access to certain parts of the national park.",
+              "options": {
+                "A": "limit",
+                "B": "control",
+                "C": "widen",
+                "D": "divide",
+                "E": "monitor"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 12,
+              "question": "Local authorities are trying to preserve the historical character of the old town.",
+              "options": {
+                "A": "protect",
+                "B": "identify",
+                "C": "destroy",
+                "D": "paint",
+                "E": "measure"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 13,
+              "question": "The company has decided to enhance security at all of its offices.",
+              "options": {
+                "A": "improve",
+                "B": "weaken",
+                "C": "check",
+                "D": "continue",
+                "E": "measure"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 14,
+              "question": "Despite economic difficulties, the organisation has managed to sustain its main activities.",
+              "options": {
+                "A": "continue",
+                "B": "support",
+                "C": "interrupt",
+                "D": "stabilise",
+                "E": "improve"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 15,
+              "question": "Over the last decade, many households have accumulated large amounts of debt.",
+              "options": {
+                "A": "saved",
+                "B": "measured",
+                "C": "shared",
+                "D": "paid off",
+                "E": "added"
+              },
+              "correct_answer": "D"
+            },
+            {
+              "question_number": 16,
+              "question": "The government wants to promote healthier lifestyles among young people.",
+              "options": {
+                "A": "encourage",
+                "B": "assess",
+                "C": "discourage",
+                "D": "record",
+                "E": "accept"
+              },
+              "correct_answer": "C"
+            },
+            {
+              "question_number": 17,
+              "question": "The traffic police are expected to enforce the new speed limits strictly.",
+              "options": {
+                "A": "apply",
+                "B": "suspend",
+                "C": "monitor",
+                "D": "record",
+                "E": "confirm"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 18,
+              "question": "The new regulations are designed to mitigate the environmental impact of mining.",
+              "options": {
+                "A": "increase",
+                "B": "reduce",
+                "C": "record",
+                "D": "identify",
+                "E": "measure"
+              },
+              "correct_answer": "A"
+            },
+            {
+              "question_number": 19,
+              "question": "The investigation did not expose any evidence of corruption.",
+              "options": {
+                "A": "reveal",
+                "B": "hide",
+                "C": "display",
+                "D": "examine",
+                "E": "prove"
+              },
+              "correct_answer": "B"
+            },
+            {
+              "question_number": 20,
+              "question": "Few people were willing to challenge the director's decision publicly.",
+              "options": {
+                "A": "support",
+                "B": "repeat",
+                "C": "ignore",
+                "D": "record",
+                "E": "confirm"
+              },
+              "correct_answer": "A"
+            }
+          ]
+        },
+        {
+          "id": "revision_part_d",
+          "title": "Unit 4 Revision – Part D: Short Productive Task (Synonym & Antonym Table)",
+          "type": "open_ended",
+          "instructions": "For each verb, write one synonym and one antonym.",
+          "items": [
+            {
+              "number": 1,
+              "word": "undermine",
+              "suggested_synonym": "weaken",
+              "suggested_antonym": "strengthen"
+            },
+            {
+              "number": 2,
+              "word": "allocate",
+              "suggested_synonym": "distribute",
+              "suggested_antonym": "withhold"
+            },
+            {
+              "number": 3,
+              "word": "facilitate",
+              "suggested_synonym": "make easier",
+              "suggested_antonym": "hinder"
+            },
+            {
+              "number": 4,
+              "word": "interpret",
+              "suggested_synonym": "explain",
+              "suggested_antonym": "misinterpret"
+            },
+            {
+              "number": 5,
+              "word": "preserve",
+              "suggested_synonym": "protect",
+              "suggested_antonym": "destroy"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
