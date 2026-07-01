@@ -63,6 +63,12 @@
             <div class="quiz-label">{{ test.unit.title }}</div>
             <div class="quiz-title">{{ test.title }}</div>
         </div>
+        {% if test.passage %}
+<div class="question-block" style="border-left:4px solid #8e44ad;">
+    <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#8e44ad; margin-bottom:0.6rem;">Parça</div>
+    <div style="font-size:0.9rem; color:#333; line-height:1.7;">{{ test.passage|linebreaksbr }}</div>
+</div>
+{% endif %}
 
         {% for question in test.questions.all %}
         <div class="question-block">

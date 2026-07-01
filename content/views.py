@@ -56,6 +56,9 @@ def journal_archive(request):
         'seo_journals': seo_journals,
     })
 
+def construction(request):
+    return render(request, 'content/construction.html')
+
 def about(request):
     return render(request, 'content/about.html')
 

@@ -178,10 +178,10 @@
 <div class="rainbow-line"></div>
 
 <!-- COMMON BUTTONS -->
-<div style="display:flex; gap:1rem; justify-content:left; align-items:center; margin-bottom:1.5rem; width:100%; flex-wrap:wrap;">
+<div style="display:flex; gap:1rem; justify-content:center; align-items:center; margin-bottom:1.5rem; width:100%; flex-wrap:wrap;">
 
 {% if user.is_authenticated %}
-<a href="/dashboard/" style="text-decoration:none; display:inline-block;">
+<a href="/yakinda/" style="text-decoration:none; display:inline-block;">
 {% else %}
 <a href="#" onclick="document.getElementById('access-modal').style.display='flex'; return false;" style="text-decoration:none; display:inline-block;">
 {% endif %}
@@ -200,16 +200,16 @@
     <div style="background:#2980b9; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(41,128,185,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(41,128,185,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(41,128,185,0.35)'">
-        <img src="{% static 'images/icons/calculator.svg' %}" width="43" height="43" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>puan hesaplama</span>
+        <img src="{% static 'images/icons/calculator.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1.1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>puan hesaplama</span>
     </div>
 </a>
 <a href="/quiz/mini/" style="text-decoration:none; display:inline-block;">
     <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(230,126,34,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(230,126,34,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(230,126,34,0.35)'">
-        <img src="{% static 'images/icons/paragraph.svg' %}" width="60" height="60" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1rem; font-weight:600; text-align:center; font-style:italic;">rastgele paragraf sorusu</span>
+        <img src="{% static 'images/icons/paragraph.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1.1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>paragraf çalış</span>
     </div>
 </a>
 <a href="/vocabulary/" style="text-decoration:none; display:inline-block;">
@@ -217,7 +217,7 @@
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(22,160,133,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(22,160,133,0.35)'">
         <img src="{% static 'images/icons/vocabulary.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1.1rem; font-weight:600; text-align:center; font-style:italic;">vocabulary çalış</span>
+        <span style="font-size:1.1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>vocabulary çalış</span>
     </div>
 </a>
 

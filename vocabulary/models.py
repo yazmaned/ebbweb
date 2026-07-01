@@ -28,6 +28,7 @@ class VocabTest(models.Model):
     unit = models.ForeignKey(VocabUnit, on_delete=models.CASCADE, related_name='tests')
     test_id = models.CharField(max_length=50)
     title = models.CharField(max_length=200)
+    passage = models.TextField(blank=True) ###
 
     def __str__(self):
         return f"{self.unit} - {self.title}"

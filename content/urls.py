@@ -14,6 +14,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('puan-hesaplama/', views.score_calculator, name='score_calculator'),
+    path('yakinda/', views.construction, name='construction'),
 
 
 ]
