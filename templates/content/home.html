@@ -140,7 +140,31 @@
 
 <!-- SERVICES -->
 <div style="margin-bottom:0rem;">
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:1rem;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:1rem;">
+
+        {% if user.is_authenticated %}
+<div class="service-card" style="border-top:4px solid #333; border-right:1px solid rgba(0,0,0,0.15); padding-right:1.5rem;">
+    <img src="{% static 'images/icons/user.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
+    <h4 style="font-size:0.85rem; font-weight:700; line-height:1.4;">{{ user.username }}</h4>
+
+    {% if user_profile.registration_note %}
+    <div style="display:inline-block; background:#8e44ad; color:white; padding:0.15rem 0.55rem; border-radius:999px; font-weight:600; font-size:0.65rem; font-style:italic; margin-top:0.4rem;">
+        {{ user_profile.registration_note }}
+    </div>
+    {% endif %}
+
+    <p style="font-size:0.72rem; margin-top:0.5rem; line-height:1.5; color:#555;">
+        Deneme Sonucu:
+        {% if user_profile.latest_trial_score %}
+            <strong style="color:#16a085;">{{ user_profile.latest_trial_score }}</strong>
+        {% else %}
+            <span style="color:#aaa; font-style:italic;">Henüz Çözmediniz</span>
+        {% endif %}
+        <br>
+        Üyelik: {{ user.date_joined|date:"d M Y" }}
+    </p>
+</div>
+{% endif %}
 
         <div class="service-card" style="border-top:4px solid #671789;">
             <img src="{% static 'images/icons/book-stack.svg' %}" width="48" height="48" style="margin-bottom:0.6rem;">
@@ -200,16 +224,16 @@
     <div style="background:#2980b9; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(41,128,185,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(41,128,185,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(41,128,185,0.35)'">
-        <img src="{% static 'images/icons/calculator.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1.1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>puan hesaplama</span>
+        <img src="{% static 'images/icons/calculator.svg' %}" width="43" height="43" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>puan hesaplama</span>
     </div>
 </a>
 <a href="/quiz/mini/" style="text-decoration:none; display:inline-block;">
     <div style="background:#e67e22; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(230,126,34,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(230,126,34,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(230,126,34,0.35)'">
-        <img src="{% static 'images/icons/paragraph.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1.1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>paragraf çalış</span>
+        <img src="{% static 'images/icons/paragraph.svg' %}" width="60" height="60" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1rem; font-weight:600; text-align:center; font-style:italic;">rastgele paragraf sorusu</span>
     </div>
 </a>
 <a href="/vocabulary/" style="text-decoration:none; display:inline-block;">
@@ -217,7 +241,7 @@
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(22,160,133,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(22,160,133,0.35)'">
         <img src="{% static 'images/icons/vocabulary.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1.1rem; font-weight:700; text-align:center; font-style:italic;">YDS-YÖKDİL<br>vocabulary çalış</span>
+        <span style="font-size:1.1rem; font-weight:600; text-align:center; font-style:italic;">vocabulary çalış</span>
     </div>
 </a>
 

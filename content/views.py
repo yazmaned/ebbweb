@@ -6,15 +6,21 @@ from django.conf import settings
 from .models import Material, Category
 from accounts.models import SessionLog, Journal
 from django.http import HttpResponse
+from accounts.models import SessionLog, Journal, UserProfile
 
 from .models import Material, Category, CarouselItem
 
 def home(request):
     journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:4]
     carousel = CarouselItem.objects.filter(is_active=True)
+    context = {'journals': journals, 'carousel': carousel}
+
     if request.user.is_authenticated:
         SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Ana Sayfa')
-    return render(request, 'content/home.html', {'journals': journals, 'carousel': carousel})
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+        context['user_profile'] = profile
+
+    return render(request, 'content/home.html', context)
 
 def score_calculator(request):
     return render(request, 'content/calculator.html')

@@ -20,6 +20,11 @@
         <div>
             <strong>@{{ student.username }}</strong>
             <span style="color:#aaa; font-size:0.85rem; margin-left:0.8rem;"> Kayıt Tarihi > {{ student.date_joined|date:"d M Y" }}</span>
+            {% if student.userprofile.registration_note %}
+            <span style="display:inline-block; background:#8e44ad; color:white; padding:0.15rem 0.55rem; border-radius:999px; font-weight:600; font-size:0.7rem; font-style:italic; margin-left:0.8rem;">
+                {{ student.userprofile.registration_note }}
+            </span>
+            {% endif %}
         </div>
         <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c;" onclick="return confirm('{{ student.username }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
     </div>

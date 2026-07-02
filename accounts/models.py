@@ -12,6 +12,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     must_change_password = models.BooleanField(default=True)
+    registration_note = models.CharField(max_length=100, blank=True)
+    latest_trial_score = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.user.username

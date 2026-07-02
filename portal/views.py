@@ -31,7 +31,7 @@ def tr(text):
 @login_required
 @user_passes_test(is_bilge)
 def export_students_pdf(request):
-    students = User.objects.filter(is_staff=False).order_by('username')
+    students = User.objects.filter(is_staff=False).select_related('userprofile').order_by('username')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ogrenci_listesi.pdf"'
@@ -52,7 +52,8 @@ def export_students_pdf(request):
     p.setFillColor(colors.black)
     p.setFont("Helvetica-Bold", 11)
     p.drawString(50, height - 110, tr("Username"))
-    p.drawString(250, height - 110, tr("Attend Date"))
+    p.drawString(230, height - 110, tr("Attend Date"))
+    p.drawString(360, height - 110, tr("Registration Note"))
     p.line(50, height - 115, width - 50, height - 115)
 
     # rows
@@ -68,7 +69,13 @@ def export_students_pdf(request):
         p.rect(50, y - 5, width - 100, 18, fill=1, stroke=0)
         p.setFillColor(colors.black)
         p.drawString(55, y, tr(student.username))
-        p.drawString(255, y, student.date_joined.strftime('%d %b %Y'))
+        p.drawString(235, y, student.date_joined.strftime('%d %b %Y'))
+
+        note = ''
+        if hasattr(student, 'userprofile') and student.userprofile.registration_note:
+            note = tr(student.userprofile.registration_note)
+        p.drawString(365, y, note)
+
         y -= 20
 
     p.save()
@@ -83,6 +90,7 @@ def add_student(request):
 
     if request.method == 'POST':
         username = request.POST.get('username').strip()
+        registration_note = request.POST.get('registration_note', '').strip()
 
         if User.objects.filter(username=username).exists():
             error = 'Bu kullanıcı adı zaten mevcut.'
@@ -92,7 +100,10 @@ def add_student(request):
                 username=username,
                 password=generated_password,
             )
-            UserProfile.objects.get_or_create(user=user, defaults={'must_change_password': True})
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            profile.must_change_password = True
+            profile.registration_note = registration_note
+            profile.save()
             success = f'"{username}" başarıyla eklendi!'
 
     return render(request, 'portal/add_student.html', {
@@ -102,11 +113,10 @@ def add_student(request):
         'username': username if success else '',
     })
 
-
 @login_required
 @user_passes_test(is_bilge)
 def student_list(request):
-    students = User.objects.filter(is_staff=False).order_by('-date_joined')
+    students = User.objects.filter(is_staff=False).select_related('userprofile').order_by('-date_joined')
     return render(request, 'portal/student_list.html', {'students': students})
 
 

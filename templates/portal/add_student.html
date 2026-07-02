@@ -14,13 +14,12 @@
 
             <label style="font-weight:bold; display:block; margin-bottom:0.5rem;">Mesaj:</label>
             <textarea id="student-message" readonly rows="7" style="width:100%; padding:0.8rem; border:1px solid #b8dacc; border-radius:6px; font-family:'Lucida Grande', Arial, sans-serif; font-size:0.9rem; background:#f0fff4; color:#155724; resize:none;">Merhaba {{ username }},
-
-Çalışma kütüphanesine kaydınız oluşturulmuştur.
+Kaydınız oluşturulmuştur.
 
 Kullanıcı adınız: {{ username }}
 Geçici parolanız: {{ generated_password }}
 
-bilgehanhoca.com/ adresinden kütüpahneye erişebilirsiniz.
+https://bilgehanhoca.com/ adresinden kütüphaneye erişebilirsiniz.
 İlk girişinizde parolanızı değiştirmeniz istenecektir.
 
 Başarılar dileriz! 📚</textarea>
@@ -37,6 +36,10 @@ Başarılar dileriz! 📚</textarea>
         {% csrf_token %}
         <label>Kullanıcı Adı</label>
         <input type="text" name="username" autocomplete="off" required>
+
+        <label style="display:block; margin-top:0.8rem;">Kayıt Notu (opsiyonel)</label>
+        <input type="text" name="registration_note" autocomplete="off" placeholder="örn. Puan Arttıran Paket">
+
         <button type="submit" class="btn" style="width:100%; margin-top:0.5rem;">Öğrenci Ekle</button>
     </form>
 
