@@ -139,3 +139,22 @@ def view_video(request, pk):
         current_material=f'🎥 {material.title}'
     )
     return render(request, 'content/video_viewer.html', {'material': material})
+@login_required
+def serve_image(request, pk):
+    material = get_object_or_404(Material, pk=pk)
+    file_path = os.path.join(settings.MEDIA_ROOT, material.file.name)
+    if not os.path.exists(file_path):
+        raise Http404
+    ext = material.file.name.lower().rsplit('.', 1)[-1]
+    content_type = 'image/png' if ext == 'png' else 'image/jpeg'
+    response = FileResponse(open(file_path, 'rb'), content_type=content_type)
+    response['Content-Disposition'] = f'inline; filename="{material.title}.{ext}"'
+    return response
+
+@login_required
+def view_image(request, pk):
+    material = get_object_or_404(Material, pk=pk)
+    SessionLog.objects.filter(user=request.user, is_active=True).update(
+        current_material=f'Görsel: {material.title}'
+    )
+    return render(request, 'content/image_viewer.html', {'material': material})

@@ -28,7 +28,13 @@ class CarouselItem(models.Model):
         ordering = ['order']
 
 class Material(models.Model):
-    TYPE_CHOICES = [('pdf', 'PDF'), ('video', 'Video (Sunucuda)'), ('youtube', 'YouTube Gömme'), ('vimeo', 'Vimeo Gömme')]
+    TYPE_CHOICES = [
+        ('pdf', 'PDF'),
+        ('video', 'Video (Sunucuda)'),
+        ('youtube', 'YouTube Gömme'),
+        ('vimeo', 'Vimeo Gömme'),
+        ('image', 'Görsel (PNG/JPEG)'),  # NEW
+    ]
     title = models.CharField(max_length=200)
     material_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     file = models.FileField(upload_to='materials/', blank=True, null=True)
@@ -37,9 +43,15 @@ class Material(models.Model):
     order = models.IntegerField(default=0)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        if self.material_type == 'image' and self.file:
+            ext = self.file.name.lower().rsplit('.', 1)[-1]
+            if ext not in ('png', 'jpg', 'jpeg'):
+                raise ValidationError('Sadece PNG veya JPEG dosyaları desteklenir.')
+
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ['order', 'title']
-

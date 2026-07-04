@@ -25,6 +25,8 @@
             <div style="display:flex; align-items:center; gap:0.6rem;">
                 {% if material.material_type == 'pdf' %}
                     <img src="{% static 'images/icons/page.svg' %}" width="24" height="24">
+                {% elif material.material_type == 'image' %}
+                    <img src="{% static 'images/icons/image.svg' %}" width="24" height="24">
                 {% else %}
                     <img src="{% static 'images/icons/movie.svg' %}" width="24" height="24">
                 {% endif %}
@@ -33,6 +35,8 @@
             </div>
             {% if material.material_type == 'pdf' %}
                 <a href="/view/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</a>
+            {% elif material.material_type == 'image' %}
+                <a href="/image/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Görüntüle</a>
             {% else %}
                 <a href="/video/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</a>
             {% endif %}
