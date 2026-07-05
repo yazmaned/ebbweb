@@ -5,9 +5,21 @@
 {% block title %}Kütüphane | BD{% endblock %}
 
 {% block content %}
-<h2 style="margin-bottom: 1.5rem; text-align: center;">Çalışma Kütüphanesi</h2>
+<h2 style="margin-bottom: 0.3rem; text-align: center;">Çalışma Kütüphanesi</h2>
+<p style="text-align:center; color:#888; font-size:0.9rem; margin-bottom:0.8rem;">
+    <span id="video-count-num">0</span> Video,
+    <span id="material-count-num">0</span> Materyal
+</p>
 
-<div style="font-family:'Lucida Grande', Arial, sans-serif;">
+
+<div style="max-width:500px; margin:0 auto 1.5rem;" class="mac-search-wrap">
+    <input type="text" id="lib-search" placeholder="Materyal veya klasör ara...">
+</div>
+<div style="font-family:'inter', font-style:"thin";>
+    <div style="text-align:center; margin-bottom:1rem;">
+    <a href="/dashboard/explorer/" style="font-size:0.85rem; color:#888; text-decoration:none;">Dosya Görünümüne Geç</a>
+</div>
+
 
 {% for category in root_categories %}
     {% render_folder category 0 %}
@@ -15,33 +27,34 @@
 
 {% if uncategorized %}
 <div style="margin-top:1rem;">
-    <div onclick="toggleCategory('cat-uncategorized')"
+    <div class="lib-category-header" data-search-text="diğer" onclick="toggleCategory('cat-uncategorized')"
         style="display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.8rem; cursor:pointer; user-select:none; border-radius:6px; transition: background 0.15s;"
         onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
         <span id="arrow-cat-uncategorized" style="font-size:0.75rem; color:#888;">▶</span>
         <span style="font-size:1rem;">📁</span>
         <span style="font-weight:600; color:#aaa;">Diğer</span>
     </div>
-    <div id="cat-uncategorized" style="display:none; border-left:2px solid #aaa; padding-left:1rem; margin-left:1rem;">
+    <div id="cat-uncategorized" class="lib-category-content" style="display:none; border-left:2px solid #aaa; padding-left:1rem; margin-left:1rem;">
         {% for material in uncategorized %}
-<div style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px;"
+<div class="lib-material-row" data-search-text="{{ material.title|lower }}"
+    style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px;"
     onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
     <div style="display:flex; align-items:center; gap:0.6rem;">
         {% if material.material_type == 'pdf' %}
-            <img src="{% static 'images/icons/page.svg' %}" width="24" height="24">
+            <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
         {% elif material.material_type == 'image' %}
-            <img src="{% static 'images/icons/image.svg' %}" width="24" height="24">
+            <img src="{% static 'images/icons/img.png' %}" width="24" height="24">
         {% else %}
-            <img src="{% static 'images/icons/movie.svg' %}" width="24" height="24">
+            <img src="{% static 'images/icons/movie.png' %}" width="24" height="24">
         {% endif %}
         <span style="color:#2c3e50;">{{ material.title }}</span>
     </div>
     {% if material.material_type == 'pdf' %}
-        <a href="/view/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</a>
+        <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
     {% elif material.material_type == 'image' %}
-        <a href="/image/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</a>
+        <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
     {% else %}
-        <a href="/video/{{ material.pk }}/" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</a>
+        <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
     {% endif %}
 </div>
 {% endfor %}
@@ -67,5 +80,59 @@
             arrow.textContent = '▶';
         }
     }
+
+    // ---------- Count-up animation for the header stats ----------
+    function animateCount(elementId, targetValue, duration) {
+        const el = document.getElementById(elementId);
+        const start = 0;
+        const startTime = performance.now();
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(start + (targetValue - start) * progress);
+            el.textContent = current;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = targetValue;
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    animateCount('video-count-num', {{ video_count }}, 800);
+    animateCount('material-count-num', {{ material_count }}, 800);
+
+    // ---------- Search ----------
+    const searchInput = document.getElementById('lib-search');
+    const allCategoryContents = document.querySelectorAll('.lib-category-content');
+    const allCategoryHeaders = document.querySelectorAll('.lib-category-header');
+    const allMaterialRows = document.querySelectorAll('.lib-material-row');
+
+    function setAllArrows(expanded) {
+        document.querySelectorAll('[id^="arrow-cat-"]').forEach(arrow => {
+            arrow.textContent = expanded ? '▼' : '▶';
+        });
+    }
+
+    searchInput.addEventListener('input', () => {
+        const term = searchInput.value.trim().toLowerCase();
+
+        if (!term) {
+            allCategoryContents.forEach(el => el.style.display = 'none');
+            setAllArrows(false);
+            allMaterialRows.forEach(el => el.style.display = 'flex');
+            return;
+        }
+
+        allCategoryContents.forEach(el => el.style.display = 'block');
+        setAllArrows(true);
+
+        allMaterialRows.forEach(row => {
+            const text = row.dataset.searchText || '';
+            row.style.display = text.includes(term) ? 'flex' : 'none';
+        });
+    });
 </script>
 {% endblock %}

@@ -1,49 +1,77 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Bilgehan Öztekin Kimdir? | BD{% endblock %}
+{% block title %}Hakkımızda | Bilge Dil Sınavları Akademisi{% endblock %}
+
+{% block meta_description %}Bilge Dil Sınavları Akademisi kurucusu Bilgehan Onur Öztekin kimdir? YDS, YÖKDİL, YDT, TOEFL ve IELTS hazırlığında yılların deneyimi ve eğitim geçmişi.{% endblock %}
+
+{% block og_title %}Hakkımızda | Bilge Dil Sınavları Akademisi{% endblock %}
+
+{% block og_description %}YDS, YÖKDİL, YDT, TOEFL ve IELTS sınavlarına hazırlıkta yılların deneyimi. Bilge Dil Sınavları Akademisi kurucusu Bilgehan Onur Öztekin'i tanıyın.{% endblock %}
 
 {% block content %}
-<div style="max-width:680px; margin:0 auto;">
+<div itemscope itemtype="https://schema.org/Person" margin:0 auto;">
+
+    <a href="/home/" class="back-btn">←</a>
 
     <div style="border-bottom:3px solid #2c3e50; margin-bottom:1.5rem; padding-bottom:0.8rem;">
         <h1 style="font-size:1.8rem; color:#2c3e50; font-weight:800;">Hakkımızda</h1>
     </div>
-    <img src="{% static 'images/square.svg' %}" width="200" height="200">
-    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.5rem;">
+
+    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.5rem; overflow:hidden;">
+        <div style="background:white; border-radius:10px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); width:180px; float:left; margin:0 1.5rem 1rem 0;">
+            <img src="{% static 'images/square_solid.svg' %}" width="180" height="180" alt="Bilgehan Onur Öztekin - Bilge Dil Sınavları Akademisi Kurucusu" itemprop="image" style="display:block; width:100%; height:auto; border-radius:6px;">
+        </div>
         <p style="color:#555; font-size:0.95rem; line-height:1.8;">
-            Kurucumuz Bilgehan Öztekin, yıllardır YDS, YÖKDIL, YDT, TOEFL ve IELTS gibi sınavlara hazırlık konusunda uzmanlaşmış, yüzlerce öğrenciye rehberlik etmiştir. Deneyimi ve özgün ögretim yöntemleri sayesinde
-            ögrenciler, İngilizceyi sadece bir ders değil, günlük hayatlarinin bir parçası olarak ögrenir.
+            Bilge Dil Sınavları Akademisi, İngilizceyi öğrenmek ve sınavlarda yüksek başarı elde etmek
+            isteyen öğrenciler için kurulmuş özel bir dil eğitim platformudur. Amacımız, öğrencilerimize
+            sadece İngilizce öğretmek değil; aynı zamanda onları kendi hedeflerine ulaştıracak donanımla
+            desteklemektir. Kurucumuz <span itemprop="name">Bilgehan Onur Öztekin</span> İngilizce Öğretmeni olarak yıllardır YDS,
+            YÖKDİL, YDT, TOEFL ve IELTS gibi ulusal ve uluslararası sınavlara hazırlık konusunda
+            uzmanlaşmış, binlerce öğrenciye rehberlik etmiştir. Deneyimi ve özgün öğretim yöntemleri
+            sayesinde öğrenciler, İngilizceyi sadece bir ders veya sınav dili değil, günlük hayatlarının
+            bir parçası olarak öğrenir.
         </p>
     </div>
 
-    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.5rem;">
-        <h3 style="color:#2c3e50; margin-bottom:1rem;">Ne Sunuyoruz?</h3>
-        <div style="display:grid; gap:0.8rem;">
-            <div style="display:flex; align-items:center; gap:0.8rem;">
-                <span style="font-size:1.5rem;"><img src="{% static 'images/icons/page.svg' %}" width="24" height="24"></span>
-                <span style="color:#555; font-size:0.95rem;">Kapsamlı PDF ders materyalleri</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.8rem;">
-                <span style="font-size:1.5rem;"><img src="{% static 'images/icons/movie.svg' %}" width="24" height="24"></span>
-                <span style="color:#555; font-size:0.95rem;">Onlarca saatlik Onlıne ders tekrar videoları</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.8rem;">
-                <span style="font-size:1.5rem;">📚</span>
-                <span style="color:#555; font-size:0.95rem;">Online soru çözüm kampları, konu anlatımı</span>
-            </div>
+    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.5rem; overflow:hidden;">
+        <div style="background:white; border-radius:10px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); width:250px; float:right; margin:0 0 1rem 1.5rem;">
+            <img src="{% static 'images/bilgehan.png' %}" width="250" height="250" alt="Bilgehan Onur Öztekin - Bilge Dil Sınavları Akademisi Kurucusu" style="display:block; width:100%; height:auto; border-radius:6px;">
         </div>
+        <h3 style="color:#2c3e50; margin-bottom:1rem;">Bilgehan Onur Öztekin Kimdir?</h3>
+        <p style="color:#555; font-size:0.95rem; line-height:1.8; margin-bottom:1rem;">
+            İstanbul doğumlu olan Bilgehan Onur Öztekin İstek Vakfı Bilge Kağan Koleji mezunudur. Annesi Almanca öğretmeni, babası Türkçe öğretmeni
+            olan Bilgehan Onur Öztekin İngilizce ile ortaokul sıralarındayken tanıştığında zaten dil
+            öğrenmeye olan sevgisi ve merakı çoktan filizlenmişti:)
+            Bu yüzden üniversite için seçeceği bölümün Dokuz Eylül Üniversitesi Amerikan Kültürü ve
+            Edebiyatı olması hiç şaşırtıcı olmamıştı.
+        </p>
+        <p style="color:#555; font-size:0.95rem; line-height:1.8; margin-bottom:1rem;">
+            Lisans eğitiminden sonra Amerika Birleşik Devletleri Michigan Eyaletinde bulunan Western
+            Michigan University'de International Development Management Bölümünde yüksek lisansını
+            "Honoured Student" olarak bitiren ve aynı üniversitede Araştırma Görevlisi olarak da çalışmış olan Bilgehan Onur Öztekin daha sonra Almanya'da Padernborn
+            Üniversitesi'nde Almanca Dili üzerine kurs bitirmiş ve 1 yılda C1 seviyesine gelemezsin diyen Almanca
+            öğretmenine inat C1 sertifikasını almıştır :)
+        </p>
+        <p style="color:#555; font-size:0.95rem; line-height:1.8; margin-bottom:1rem;">
+            Almancayı da C1 düzeyinde bilen Bilgehan Onur Öztekin ailede genetik olan öğretmenlik
+            mesleği aşkıyla İstanbul Üniversitesi Eğitim Fakültesinde İngilizce Öğretmenliği Pedagojik
+            Formasyonunu almış ve bir çok özel okulda 15 yıl boyunca İngilizce öğretmenliği ve İngilizce
+            Bölüm Başkanlığı yapmış ve mesleğine tekrar tekrar aşık olmuştur. Mesleğinde daha da iyi
+            olabilmek için CELTA kursu, Waldorf Eğitimi kursu, Dil Öğretiminde Drama kursu gibi sayısız
+            nitelikli eğitim, kurs ve seminerlere katılarak kendisini daima geliştirmeyi
+            öğrencilerine karşı bir borç bilmiştir.
+        </p>
+        <p style="color:#555; font-size:0.95rem; line-height:1.8; margin-bottom:1rem;">
+            Sonraki yıllarda herkesin İngilizce öğrenmesine katkıda bulunma isteğiyle Bilge Dil Sınavları
+            Akademisi'ni kurarak binlerce öğrenciye dil öğrenimi konusunda yol gösteren bir öğretmen
+            olmak ve onların hayatlarına dokunabilmek için dil sınavlarında uzmanlaşmış ve aynı zamanda
+            Dil Eğitimi Koçluğu yapmaya başlamıştır.
+        </p>
+        <p style="color:#555; font-size:0.95rem; line-height:1.8;">
+            Bir çocuk annesidir ve yaşamına hala İstanbul'da devam etmektedir.
+        </p>
+        <meta itemprop="jobTitle" content="İngilizce Öğretmeni">
+        <meta itemprop="worksFor" content="Bilge Dil Sınavları Akademisi">
     </div>
-
-    <div style="background:white; border-radius:10px; padding:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
-        <h3 style="color:#2c3e50; margin-bottom:1rem;">İletişim</h3>
-        <div style="display:grid; gap:0.8rem;">
-            <div style="display:flex; align-items:center; gap:0.8rem;">
-                <span style="font-size:1.5rem;">💬</span>
-                <a href="https://wa.me/905330188812" target="_blank" style="color:#25d366; text-decoration:none; font-size:0.95rem;">WhatsApp ile ulaşın</a>
-            </div>
-        </div>
-    </div>
-
-</div>
 {% endblock %}

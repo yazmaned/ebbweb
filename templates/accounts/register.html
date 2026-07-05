@@ -1,29 +1,145 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Kayıt Ol | BD{% endblock %}
 
 {% block content %}
-<div style="max-width: 400px; margin: 3rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <h2 style="margin-bottom: 1.5rem;">Register</h2>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.5.0/css/flag-icons.min.css">
+
+<style>
+    .phone-row { display:flex; gap:0.5rem; margin-top:0.3rem; }
+    .country-dropdown-wrap { position:relative; }
+    .country-dropdown-btn {
+        display:flex; align-items:center; gap:0.5rem;
+        padding:0.5rem 0.7rem;
+        border:1px solid #ccc; border-radius:6px;
+        background:white; cursor:pointer;
+        font-size:0.9rem; white-space:nowrap;
+    }
+    .country-dropdown-list {
+        display:none;
+        position:absolute; top:100%; left:0;
+        background:white; border:1px solid #ccc; border-radius:6px;
+        max-height:220px; overflow-y:auto;
+        z-index:50; width:230px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        margin-top:0.2rem;
+    }
+    .country-dropdown-list.open { display:block; }
+    .country-option {
+        display:flex; align-items:center; gap:0.6rem;
+        padding:0.5rem 0.7rem; cursor:pointer; font-size:0.85rem;
+    }
+    .country-option:hover { background:#f0f0f0; }
+    .phone-number-input { flex:1; padding:0.5rem 0.7rem; border:1px solid #ccc; border-radius:6px; font-size:0.9rem; }
+</style>
+
+<div style="max-width: 420px; margin: 3rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="margin-bottom: 0.5rem;">Kayıt Ol</h2>
+    <p style="color:#888; font-size:0.85rem; margin-bottom:1.5rem;">
+        Bu kayıt vocabulary çalışmaları, deneme sınavı ve diğer ücretsiz araçlara erişim sağlar.
+        Çalışma Kütüphanesi erişimi ayrıca verilir — kayıt olduktan sonra bizimle iletişime geçebilirsiniz.
+    </p>
 
     {% if form.errors %}
-        <p style="color: red; margin-bottom: 1rem;">Please fix the errors below.</p>
+        <p style="background:#f8d7da; color:#721c24; padding:0.7rem 1rem; border-radius:6px; font-size:0.85rem; margin-bottom:1rem;">Lütfen aşağıdaki hataları düzeltin.</p>
     {% endif %}
 
-    <form method="post">
+    <form method="post" id="register-form">
         {% csrf_token %}
         {% for field in form %}
-            <label>{{ field.label }}</label>
-            {{ field }}
-            {% if field.errors %}
-                <p style="color:red; font-size:0.85rem;">{{ field.errors|striptags }}</p>
+            {% if field.name == 'phone_number' %}
+                <label style="display:block; margin-top:0.8rem; font-size:0.85rem; color:#555;">{{ field.label }}</label>
+                <div class="phone-row">
+                    <div class="country-dropdown-wrap">
+                        <div class="country-dropdown-btn" id="country-btn" onclick="toggleCountryList()">
+                            <span class="fi fi-tr" id="selected-flag"></span>
+                            <span id="selected-code">+90</span>
+                        </div>
+                        <div class="country-dropdown-list" id="country-list">
+                            <div class="country-option" data-code="+90" data-flag="fi-tr" onclick="selectCountry(this)">
+                                <span class="fi fi-tr"></span> Türkiye (+90)
+                            </div>
+                            <div class="country-option" data-code="+49" data-flag="fi-de" onclick="selectCountry(this)">
+                                <span class="fi fi-de"></span> Almanya (+49)
+                            </div>
+                            <div class="country-option" data-code="+31" data-flag="fi-nl" onclick="selectCountry(this)">
+                                <span class="fi fi-nl"></span> Hollanda (+31)
+                            </div>
+                            <div class="country-option" data-code="+33" data-flag="fi-fr" onclick="selectCountry(this)">
+                                <span class="fi fi-fr"></span> Fransa (+33)
+                            </div>
+                            <div class="country-option" data-code="+44" data-flag="fi-gb" onclick="selectCountry(this)">
+                                <span class="fi fi-gb"></span> Birleşik Krallık (+44)
+                            </div>
+                            <div class="country-option" data-code="+1" data-flag="fi-us" onclick="selectCountry(this)">
+                                <span class="fi fi-us"></span> ABD (+1)
+                            </div>
+                            <div class="country-option" data-code="+32" data-flag="fi-be" onclick="selectCountry(this)">
+                                <span class="fi fi-be"></span> Belçika (+32)
+                            </div>
+                            <div class="country-option" data-code="+43" data-flag="fi-at" onclick="selectCountry(this)">
+                                <span class="fi fi-at"></span> Avusturya (+43)
+                            </div>
+                            <div class="country-option" data-code="+41" data-flag="fi-ch" onclick="selectCountry(this)">
+                                <span class="fi fi-ch"></span> İsviçre (+41)
+                            </div>
+                            <div class="country-option" data-code="+994" data-flag="fi-az" onclick="selectCountry(this)">
+                                <span class="fi fi-az"></span> Azerbaycan (+994)
+                            </div>
+                            <div class="country-option" data-code="+966" data-flag="fi-sa" onclick="selectCountry(this)">
+                                <span class="fi fi-sa"></span> Suudi Arabistan (+966)
+                            </div>
+                            <div class="country-option" data-code="+971" data-flag="fi-ae" onclick="selectCountry(this)">
+                                <span class="fi fi-ae"></span> BAE (+971)
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="phone-number-input" id="phone-number-visible" placeholder="5XX XXX XX XX">
+                </div>
+                {{ field }}
+                {% if field.errors %}
+                    <p style="color:red; font-size:0.8rem;">{{ field.errors|striptags }}</p>
+                {% endif %}
+            {% else %}
+                <label style="display:block; margin-top:0.8rem; font-size:0.85rem; color:#555;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <p style="color:red; font-size:0.8rem;">{{ field.errors|striptags }}</p>
+                {% endif %}
             {% endif %}
         {% endfor %}
-        <button type="submit" class="btn" style="width:100%; margin-top: 0.5rem;">Register</button>
+        <button type="submit" class="btn" style="width:100%; margin-top: 1.2rem;">Kayıt Ol</button>
     </form>
 
-    <p style="margin-top: 1rem; text-align:center;">
-        Already have an account? <a href="/accounts/login/">Login</a>
+    <p style="margin-top: 1rem; text-align:center; font-size:0.85rem;">
+        Zaten hesabınız var mı? <a href="/accounts/login/">Giriş yapın</a>
     </p>
 </div>
+
+<script>
+    let selectedCode = '+90';
+
+    function toggleCountryList() {
+        document.getElementById('country-list').classList.toggle('open');
+    }
+
+    function selectCountry(el) {
+        selectedCode = el.dataset.code;
+        document.getElementById('selected-code').textContent = selectedCode;
+        document.getElementById('selected-flag').className = 'fi ' + el.dataset.flag;
+        document.getElementById('country-list').classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+        const wrap = document.querySelector('.country-dropdown-wrap');
+        if (!wrap.contains(e.target)) {
+            document.getElementById('country-list').classList.remove('open');
+        }
+    });
+
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+        const number = document.getElementById('phone-number-visible').value.trim();
+        document.getElementById('id_phone_number').value = selectedCode + ' ' + number;
+    });
+</script>
 {% endblock %}

@@ -5,14 +5,14 @@
 
 {% block content %}
 <div id="controls" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
-    <a href="/dashboard/" class="btn"><img src="{% static 'images/icons/arrow-left.svg' %}" width="30" height="30" style="filter: brightness(0) invert(1)"></a>
+    <button id="close-btn" class="btn"><img src="{% static 'images/icons/incorrect.svg' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></button>
     <h2>{{ material.title }}</h2>
     <div style="margin-left:auto; display:flex; align-items:center; gap:0.5rem;">
         <button class="btn" id="prev">←</button>
         <span id="page-info" style="color:#888; font-size:0.85rem;"></span>
         <button class="btn" id="next">→</button>
         <button class="btn" id="fullscreen">⛶ Tam Ekran</button>
-        <a href="/file/{{ material.pk }}/" target="_blank" class="btn"><img src="{% static 'images/icons/printing-page.svg' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></a>
+        <a href="/file/{{ material.pk }}/" target="_blank" class="btn"><img src="{% static 'images/icons/printing-pdf.png' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></a>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
 {% endif %}
 
 <div id="pdf-wrapper" style="display:flex; flex-direction:column; align-items:center; background:#757575; border-radius:8px;">
-    <button id="fs-close-fixed" style="display:none;">✕</button>
+    <button id="fs-close-fixed" style="display:none;"><img src="{% static 'images/icons/incorrect.svg' %}" width="16" height="16" style="filter: brightness(0) invert(1);"></button>
 
     <div id="canvas-scroll" style="width:100%; display:flex; justify-content:center; overflow:auto; touch-action:pan-x pan-y;">
         <canvas id="pdf-canvas" style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
@@ -97,10 +97,8 @@
         align-items: center;
         justify-content: center;
         background: rgba(0,0,0,0.6);
-        color: white;
         border: none;
         border-radius: 50%;
-        font-size: 1.2rem;
         cursor: pointer;
     }
     #pdf-wrapper:fullscreen #fs-close-fixed:hover {
@@ -213,10 +211,6 @@
     canvas.addEventListener('contextmenu', e => e.preventDefault());
 
     // ---------- Pinch-to-zoom (touch) ----------
-    // Two fingers: track the distance between them. While pinching, apply
-    // a cheap CSS transform for instant visual feedback (no re-render cost
-    // per frame). Once fingers lift, do one real pdf.js re-render at the
-    // final scale so the result stays crisp instead of blurry/stretched.
     let pinchStartDistance = null;
     let pinchStartScale = null;
     let pinchLiveScale = null;
@@ -237,7 +231,7 @@
 
     canvasScroll.addEventListener('touchmove', (e) => {
         if (e.touches.length === 2 && pinchStartDistance) {
-            e.preventDefault(); // stop native page zoom/scroll fighting with the gesture
+            e.preventDefault();
             const newDistance = touchDistance(e.touches);
             const ratio = newDistance / pinchStartDistance;
             pinchLiveScale = Math.min(Math.max(pinchStartScale * ratio, MIN_SCALE), MAX_SCALE);
@@ -252,7 +246,7 @@
             canvas.style.transform = '';
             if (pinchLiveScale !== null && Math.abs(pinchLiveScale - currentScale) > 0.01) {
                 currentScale = pinchLiveScale;
-                renderPage(currentPage); // real crisp re-render at the committed scale
+                renderPage(currentPage);
             }
             pinchStartDistance = null;
             pinchStartScale = null;
@@ -266,5 +260,13 @@
         pinchStartScale = null;
         pinchLiveScale = null;
     }, { passive: true });
+
+    // ---------- Close button ----------
+    document.getElementById('close-btn').addEventListener('click', () => {
+        window.close();
+        setTimeout(() => {
+            window.location.href = '/dashboard/';
+        }, 300);
+    });
 </script>
 {% endblock %}

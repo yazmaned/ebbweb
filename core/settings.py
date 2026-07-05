@@ -74,17 +74,8 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'accounts.validators.MinimumLengthValidator', 'OPTIONS': {'min_length': 7}},
 ]
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Europe/Istanbul'
 USE_I18N = True

@@ -14,7 +14,10 @@ class UserProfile(models.Model):
     must_change_password = models.BooleanField(default=True)
     registration_note = models.CharField(max_length=100, blank=True)
     latest_trial_score = models.FloatField(null=True, blank=True)
-    latest_trial_level = models.CharField(max_length=100, blank=True)  # NEW
+    latest_trial_level = models.CharField(max_length=100, blank=True)
+    is_self_registered = models.BooleanField(default=False)
+    has_library_access = models.BooleanField(default=False)
+    phone_number = models.CharField(max_length=20, blank=True)  # NEW
 
     def __str__(self):
         return self.user.username

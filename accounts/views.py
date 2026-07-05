@@ -12,6 +12,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import SetNewPasswordForm
 from .forms import CustomLoginForm, SetNewPasswordForm
+from .forms import RegisterForm
 
 @login_required
 def change_password(request):
@@ -84,3 +85,34 @@ def mark_read(request, message_id):
     AdminMessage.objects.filter(id=message_id, user=request.user).update(is_read=True)
     AdminMessage.objects.filter(id=message_id, user=None).update(is_read=True)
     return JsonResponse({'status': 'ok'})
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            profile.is_self_registered = True
+            profile.has_library_access = False
+            profile.must_change_password = False
+            profile.phone_number = form.cleaned_data['phone_number']
+            profile.save()
+
+            login(request, user)
+
+            ua_string = request.META.get('HTTP_USER_AGENT', '')
+            ua = user_agents.parse(ua_string)
+            SessionLog.objects.create(
+                user=user,
+                ip_address=get_client_ip(request),
+                device=ua.device.family,
+                browser=f"{ua.browser.family} {ua.browser.version_string}",
+                os=f"{ua.os.family} {ua.os.version_string}",
+            )
+            return redirect('/home/')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'accounts/register.html', {'form': form})

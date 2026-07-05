@@ -3,6 +3,25 @@
 {% block title %}Öğrenciler{% endblock %}
 
 {% block content %}
+<style>
+    .student-badge {
+        display: inline-block;
+        color: white;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+    .student-card {
+        background: white;
+        padding: 1.2rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        margin-bottom: 0.8rem;
+    }
+</style>
+
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
     <h2>Öğrenciler</h2>
     <a href="/portal/add-student/" class="btn">+ Yeni Öğrenci Kaydı</a>
@@ -13,24 +32,77 @@
         <a href="/portal/students/export/" class="btn" style="background: green">Listeden Rapor Oluştur (.pdf)</a>
     </div>
 </div>
+
 {% if students %}
-<div style="display:grid; gap:0.8rem;">
+<div>
     {% for student in students %}
-    <div style="background:white; padding:1.2rem 1.5rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:space-between; align-items:center;">
-        <div>
-            <strong>@{{ student.username }}</strong>
-            <span style="color:#aaa; font-size:0.85rem; margin-left:0.8rem;"> Kayıt Tarihi > {{ student.date_joined|date:"d M Y" }}</span>
-            {% if student.userprofile.registration_note %}
-            <span style="display:inline-block; background:#8e44ad; color:white; padding:0.15rem 0.55rem; border-radius:999px; font-weight:600; font-size:0.7rem; font-style:italic; margin-left:0.8rem;">
-                {{ student.userprofile.registration_note }}
-            </span>
-            {% endif %}
+    <div class="student-card">
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.8rem;">
+            <div>
+                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                    <strong style="font-size:1.05rem;">@{{ student.username }}</strong>
+
+                    {% if student.userprofile.registration_note %}
+                    <span class="student-badge" style="background:#8e44ad; font-style:italic;">
+                        {{ student.userprofile.registration_note }}
+                    </span>
+                    {% endif %}
+
+                    {% if student.userprofile.is_self_registered %}
+                    <span class="student-badge" style="background:#e67e22;">Self Registration</span>
+                    {% else %}
+                    <span class="student-badge" style="background:#2980b9;">Manual Library Registration</span>
+                    {% endif %}
+
+                    {% if student.userprofile.has_library_access %}
+                    <span class="student-badge" style="background:#16a085;">Kütüphane: Var</span>
+                    {% else %}
+                    <span class="student-badge" style="background:#999;">Kütüphane: Yok</span>
+                    {% endif %}
+                </div>
+
+                <div style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">
+                    Kayıt Tarihi: {{ student.date_joined|date:"d M Y" }}
+                    {% if student.userprofile.phone_number %} · {{ student.userprofile.phone_number }}{% endif %}
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.5rem; flex-shrink:0;">
+                <button type="button" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem;"
+                    onclick="editNote({{ student.pk }}, '{{ student.userprofile.registration_note|escapejs }}')">Notu Düzenle</button>
+                <a href="/portal/students/toggle-access/{{ student.pk }}/" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem; display:inline-flex; align-items:center; justify-content:center; line-height:1;">
+                    {% if student.userprofile.has_library_access %}Erişimi Kaldır{% else %}Erişim Ver{% endif %}
+                </a>
+                <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c; padding:0.3rem 0.7rem; font-size:0.75rem;" onclick="return confirm('{{ student.username }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
+            </div>
         </div>
-        <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c;" onclick="return confirm('{{ student.username }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
+
+        <form method="post" id="note-form-{{ student.pk }}" action="/portal/students/edit-note/{{ student.pk }}/" style="display:none;">
+            {% csrf_token %}
+            <input type="hidden" name="note" id="note-input-{{ student.pk }}">
+        </form>
+
     </div>
     {% endfor %}
 </div>
 {% else %}
     <p style="color:#888;">Henüz öğrenci eklenmedi.</p>
 {% endif %}
+
+<script>
+function editNote(studentId, currentNote) {
+    const confirmed = confirm(
+        "UYARI: Bu not, öğrencinin ana sayfasındaki kullanıcı kartında herkese görünür şekilde gösterilir.\n\n" +
+        "Lütfen dikkatli ve uygun bir not yazın. Devam etmek istiyor musunuz?"
+    );
+    if (!confirmed) return;
+
+    const newNote = prompt("Yeni not:", currentNote);
+    if (newNote === null) return; // user hit Cancel
+
+    document.getElementById('note-input-' + studentId).value = newNote;
+    document.getElementById('note-form-' + studentId).submit();
+}
+</script>
 {% endblock %}

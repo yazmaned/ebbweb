@@ -1,6 +1,30 @@
 from django import forms
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(label='E-posta', required=True)
+    phone_number = forms.CharField(
+        label='Telefon Numarası',
+        max_length=25,
+        required=True,
+        widget=forms.HiddenInput(),
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Kullanıcı Adı'
+        self.fields['password1'].label = 'Parola'
+        self.fields['password2'].label = 'Parolayı Tekrar Girin'
+        self.fields['username'].help_text = ''
+        self.fields['password1'].help_text = ''
+        self.fields['password2'].help_text = ''
 
 class SetNewPasswordForm(forms.Form):
     new_password1 = forms.CharField(

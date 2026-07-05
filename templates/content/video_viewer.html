@@ -4,13 +4,13 @@
 
 {% block content %}
 <div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
-    <a href="/dashboard/" class="btn"><img src="{% static 'images/icons/arrow-left.svg' %}" width="30" height="30" style="filter: brightness(0) invert(1)"></a>
+    <button id="close-btn" class="btn"><img src="{% static 'images/icons/incorrect.svg' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></button>
+    <h2>{{ material.title }}</h2>
 </div>
 
 {% if material.material_type == 'video' %}
-    
+
     <center>
-        <h3>{{ material.title }}</h3><br>
         <video
         controls
         controlsList="nodownload"
@@ -21,7 +21,6 @@
     </center>
 
 {% elif material.material_type == 'youtube' %}
-  <h2>{{ material.title }}</h2><br><h2>&nbsp;</h2>
   <center>
   <iframe src="{{ material.embed_url }}"
     referrerpolicy="strict-origin-when-cross-origin"
@@ -32,7 +31,6 @@
   </center>
 
 {% elif material.material_type == 'vimeo' %}
-    <h3>{{ material.title }}</h3>
     <iframe
         width="100%"
         height="600px"
@@ -42,6 +40,15 @@
         allowfullscreen
         style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
     </iframe>
-    
+
 {% endif %}
+
+<script>
+    document.getElementById('close-btn').addEventListener('click', () => {
+        window.close();
+        setTimeout(() => {
+            window.location.href = '/dashboard/';
+        }, 300);
+    });
+</script>
 {% endblock %}

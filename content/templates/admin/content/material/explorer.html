@@ -3,7 +3,7 @@
 
 {% block content %}
 <style>
-    .explorer-wrap { font-family: 'Lucida Grande', Arial, sans-serif; }
+    .explorer-wrap { font-family: 'inter', Arial, sans-serif; }
     .breadcrumb-row { display:flex; align-items:center; gap:0.4rem; margin-bottom:1rem; font-size:0.95rem; flex-wrap:wrap; }
     .breadcrumb-item { color:#671789; cursor:pointer; text-decoration:none; }
     .breadcrumb-item:hover { text-decoration:underline; }
@@ -128,11 +128,11 @@
                 <span class="delete-btn" title="Sil">✕</span>
             </div>
             {% if file.material_type == 'pdf' %}
-                <img src="{% static 'images/icons/page.svg' %}">
+                <img src="{% static 'images/icons/pdf.png' %}">
             {% elif file.material_type == 'image' %}
-                <img src="{% static 'images/icons/image.svg' %}">
+                <img src="{% static 'images/icons/img.png' %}">
             {% else %}
-                <img src="{% static 'images/icons/movie.svg' %}">
+                <img src="{% static 'images/icons/movie.png' %}">
             {% endif %}
             <div class="name">{{ file.title }}</div>
             <div class="meta">{{ file.material_type|upper }}</div>
@@ -363,10 +363,10 @@ searchInput.addEventListener('keydown', async (e) => {
         const iconSrc = result.type === 'category'
             ? "{% static 'images/icons/book-stack.svg' %}"
             : (result.material_type === 'pdf'
-                ? "{% static 'images/icons/page.svg' %}"
+                ? "{% static 'images/icons/pdf.png' %}"
                 : (result.material_type === 'image'
-                    ? "{% static 'images/icons/image.svg' %}"
-                    : "{% static 'images/icons/movie.svg' %}"));
+                    ? "{% static 'images/icons/img.png' %}"
+                    : "{% static 'images/icons/movie.png' %}"));
 
         card.innerHTML = `
             <img src="${iconSrc}">

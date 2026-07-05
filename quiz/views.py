@@ -3,11 +3,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Passage, Question, Option, QuizAttempt, QuizAnswer
 import random
 
+@login_required
 def mini_quiz(request):
-    # Random passage for free mini quiz - no login required
     passage = Passage.objects.order_by('?').first()
     return render(request, 'quiz/mini_quiz.html', {'passage': passage})
 
+@login_required
 def mini_quiz_submit(request, passage_id):
     if request.method != 'POST':
         return redirect('/quiz/mini/')
@@ -16,7 +17,7 @@ def mini_quiz_submit(request, passage_id):
     questions = passage.questions.all()
     
     attempt = QuizAttempt.objects.create(
-        user=request.user if request.user.is_authenticated else None,
+        user=request.user,
         passage=passage,
         total=questions.count()
     )
@@ -41,15 +42,12 @@ def mini_quiz_submit(request, passage_id):
     return redirect(f'/quiz/result/{attempt.id}/')
 
 
+@login_required
 def quiz_result(request, attempt_id):
     attempt = get_object_or_404(QuizAttempt, pk=attempt_id)
     
     if attempt.user and request.user != attempt.user:
         return redirect('/home/')
-    
-    if not attempt.user:
-        if int(request.session.get('last_attempt_id', 0)) != attempt_id:
-            return redirect('/home/')
     
     answers = attempt.answers.select_related('question', 'selected_option').prefetch_related('question__options')
     return render(request, 'quiz/result.html', {'attempt': attempt, 'answers': answers})

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description" content="{% block meta_description %}Bilge Dil Sınavları Akademisi — YDS, YÖKDİL, IELTS ve TOEFL sınavlarına online hazırlık. Kütüphane, canlı ders ve bireysel koçluk.{% endblock %}">
     <meta name="keywords" content="YDS hazırlık, YÖKDİL hazırlık, IELTS hazırlık, TOEFL hazırlık, online ingilizce, Bilgehan hoca, bilgehan öztekin, bilgehan onur öztekin, online ingilizce, e-teb">
@@ -217,6 +218,42 @@
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
+        .mac-search-wrap {
+    position: relative;
+    max-width: 100%;
+}
+.mac-search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #8e8e93;
+    stroke-width: 2;
+    pointer-events: none;
+}
+.mac-search-wrap input {
+    width: 100%;
+    padding: 0.5rem 0.9rem 0.5rem 2.1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: #ececec;
+    font-size: 0.85rem;
+    color: #1a1a1a;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+    transition: background 0.15s, box-shadow 0.15s;
+}
+.mac-search-wrap input::placeholder {
+    color: #9a9a9e;
+}
+.mac-search-wrap input:focus {
+    background: white;
+    box-shadow: 0 0 0 4px rgba(10,132,255,0.15), inset 0 1px 2px rgba(0,0,0,0.04);
+    border-color: rgba(10,132,255,0.4);
+}
     </style>
 </head>
 <body>
@@ -239,6 +276,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a href="/home/">Ana Sayfa</a>
+                    <a href="/about/">Hakkımızda</a>
                     <a href="/journal/">Blog Arşivi</a>
                     <a href="/puan-hesaplama/">YDS-YÖKDİL | Puan Hesaplama</a>
                 </div>
@@ -266,6 +304,7 @@
         <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:2rem;">
             <div>
                 <h4 style="margin-bottom:0.8rem; font-size:0.8rem; letter-spacing:2px;">Bilge Dil Sınavları Akademisi</h4>
+                <a href="/about/" style="color:#d8dde2; text-decoration:none; font-size:0.9rem; font-weight:500;">Hakkımızda</a>
             </div>
             <div>
                 <h4 style="margin-bottom:0.8rem; font-size:0.8rem; text-transform:uppercase; letter-spacing:2px;">İletişim</h4>

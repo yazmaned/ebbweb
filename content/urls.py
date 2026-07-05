@@ -17,4 +17,7 @@ urlpatterns = [
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('puan-hesaplama/', views.score_calculator, name='score_calculator'),
     path('yakinda/', views.construction, name='construction'),
+    path('dashboard/explorer/', views.dashboard_explorer, name='dashboard_explorer'),
+    path('dashboard/search/', views.dashboard_search, name='dashboard_search'),
+
 ]

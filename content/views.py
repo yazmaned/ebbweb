@@ -7,6 +7,7 @@ from .models import Material, Category
 from accounts.models import SessionLog, Journal
 from django.http import HttpResponse
 from accounts.models import SessionLog, Journal, UserProfile
+from django.http import JsonResponse
 
 from .models import Material, Category, CarouselItem
 
@@ -103,15 +104,33 @@ def view_journal(request, slug):
 
 @login_required
 def dashboard(request):
+    profile = getattr(request.user, 'userprofile', None)
+    if not profile or not profile.has_library_access:
+        return redirect('/home/')
+
     root_categories = Category.objects.filter(parent=None).prefetch_related(
         'children', 'children__children', 'children__materials',
         'materials', 'children__children__materials'
     )
     uncategorized = Material.objects.filter(category=None)
+
+    video_count = Material.objects.filter(material_type__in=['video', 'youtube', 'vimeo']).count()
+    material_count = Material.objects.filter(material_type__in=['pdf', 'image']).count()
+
     SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Dashboard')
     return render(request, 'content/dashboard.html', {
         'root_categories': root_categories,
         'uncategorized': uncategorized,
+        'video_count': video_count,
+        'material_count': material_count,
+    })
+
+    SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Dashboard')
+    return render(request, 'content/dashboard.html', {
+        'root_categories': root_categories,
+        'uncategorized': uncategorized,
+        'video_count': video_count,
+        'material_count': material_count,
     })
 
 @login_required
@@ -159,3 +178,76 @@ def view_image(request, pk):
         current_material=f'Görsel: {material.title}'
     )
     return render(request, 'content/image_viewer.html', {'material': material})
+
+@login_required
+def dashboard_explorer(request):
+    profile = getattr(request.user, 'userprofile', None)
+    if not profile or not profile.has_library_access:
+        return redirect('/home/')
+
+    category_id = request.GET.get('category')
+    current_category = None
+    if category_id:
+        current_category = get_object_or_404(Category, pk=category_id)
+
+    subfolders = Category.objects.filter(parent=current_category).order_by('order', 'name')
+    files = Material.objects.filter(category=current_category).order_by('order', 'title')
+
+    breadcrumbs = []
+    node = current_category
+    while node is not None:
+        breadcrumbs.insert(0, node)
+        node = node.parent
+
+    SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Dashboard (Explorer)')
+
+    return render(request, 'content/dashboard_explorer.html', {
+        'current_category': current_category,
+        'subfolders': subfolders,
+        'files': files,
+        'breadcrumbs': breadcrumbs,
+    })
+@login_required
+def dashboard_search(request):
+    query = request.GET.get('q', '').strip()
+    if not query:
+        return JsonResponse({'results': []})
+
+    def breadcrumb_path(category):
+        names = []
+        node = category
+        while node is not None:
+            names.insert(0, node.name)
+            node = node.parent
+        return ' / '.join(names) if names else 'Kütüphane'
+
+    results = []
+
+    for material in Material.objects.filter(title__icontains=query).select_related('category')[:50]:
+        if material.material_type == 'pdf':
+            open_url = f'/view/{material.pk}/'
+        elif material.material_type == 'image':
+            open_url = f'/image/{material.pk}/'
+        else:
+            open_url = f'/video/{material.pk}/'
+
+        results.append({
+            'type': 'material',
+            'id': material.pk,
+            'name': material.title,
+            'material_type': material.material_type,
+            'path': breadcrumb_path(material.category),
+            'open_url': open_url,
+            'navigate_to': material.category.pk if material.category else '',
+        })
+
+    for category in Category.objects.filter(name__icontains=query)[:50]:
+        results.append({
+            'type': 'category',
+            'id': category.pk,
+            'name': category.name,
+            'path': breadcrumb_path(category.parent),
+            'navigate_to': category.pk,
+        })
+
+    return JsonResponse({'results': results})

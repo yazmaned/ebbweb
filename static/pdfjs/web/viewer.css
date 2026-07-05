@@ -6347,13 +6347,13 @@ button.hasPopupMenu{
   --toolbarButton-search-icon:url(images/toolbarButton-search.svg);
   --findbarButton-previous-icon:url(images/findbarButton-previous.svg);
   --findbarButton-next-icon:url(images/findbarButton-next.svg);
-  --secondaryToolbarButton-firstPage-icon:url(images/secondaryToolbarButton-firstPage.svg);
-  --secondaryToolbarButton-lastPage-icon:url(images/secondaryToolbarButton-lastPage.svg);
+  --secondaryToolbarButton-firstPage-icon:url(images/secondaryToolbarButton-firstpdf.png);
+  --secondaryToolbarButton-lastPage-icon:url(images/secondaryToolbarButton-lastpdf.png);
   --secondaryToolbarButton-rotateCcw-icon:url(images/secondaryToolbarButton-rotateCcw.svg);
   --secondaryToolbarButton-rotateCw-icon:url(images/secondaryToolbarButton-rotateCw.svg);
   --secondaryToolbarButton-selectTool-icon:url(images/secondaryToolbarButton-selectTool.svg);
   --secondaryToolbarButton-handTool-icon:url(images/secondaryToolbarButton-handTool.svg);
-  --secondaryToolbarButton-scrollPage-icon:url(images/secondaryToolbarButton-scrollPage.svg);
+  --secondaryToolbarButton-scrollPage-icon:url(images/secondaryToolbarButton-scrollpdf.png);
   --secondaryToolbarButton-scrollVertical-icon:url(images/secondaryToolbarButton-scrollVertical.svg);
   --secondaryToolbarButton-scrollHorizontal-icon:url(images/secondaryToolbarButton-scrollHorizontal.svg);
   --secondaryToolbarButton-scrollWrapped-icon:url(images/secondaryToolbarButton-scrollWrapped.svg);

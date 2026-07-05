@@ -4,13 +4,23 @@
 {% block title %}{{ material.title }} | BD{% endblock %}
 
 {% block content %}
-<a href="/dashboard/" class="back-btn">←</a>
+<div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+    <button id="close-btn" class="btn"><img src="{% static 'images/icons/incorrect.svg' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></button>
+    <h2 style="font-size:1.2rem; font-weight:700; color:#1a1a1a; margin:0;">{{ material.title }}</h2>
+</div>
 
 <div style="max-width:900px; margin:1.5rem auto 0;">
-    <h2 style="font-size:1.2rem; font-weight:700; color:#1a1a1a; margin-bottom:1rem;">{{ material.title }}</h2>
-
     <div style="background:rgba(220,222,225,0.5); backdrop-filter:saturate(150%) blur(28px); -webkit-backdrop-filter:saturate(150%) blur(28px); border:0.5px solid rgba(0,0,0,0.08); border-radius:12px; padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); text-align:center;">
         <img src="/serve_image/{{ material.pk }}/" style="max-width:100%; height:auto; border-radius:8px; display:block; margin:0 auto;">
     </div>
 </div>
+
+<script>
+    document.getElementById('close-btn').addEventListener('click', () => {
+        window.close();
+        setTimeout(() => {
+            window.location.href = '/dashboard/';
+        }, 300);
+    });
+</script>
 {% endblock %}
