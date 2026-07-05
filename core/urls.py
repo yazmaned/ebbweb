@@ -32,5 +32,6 @@ urlpatterns = [
     path('quiz/', include('quiz.urls')),
     path('vocabulary/', include('vocabulary.urls')),
     path('', RedirectView.as_view(url='/home/')),
+    path('deneme-sinavi/', include('trial_exam.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,2033 @@
+{
+  "exam": {
+    "title": "BILGEHAN HOCA'DAN YDS / YOKDIL SINAVLARINA HAZIRLIK VE SINAV SEVIYENI BELIRLEYEN SORULAR",
+    "provider": "Bilge Dil Sinavlari Akademisi",
+    "author": "Bilgehan Hoca",
+    "website": "bilgehanhoca.com",
+    "description": "YDS/YOKDIL exam preparation and level-placement test for A2+ candidates. Solve, then read the diagnostic table based on the number of correct answers.",
+    "total_questions": 130,
+    "options_per_question": 5,
+    "note_tr": "YDS/YÖKDİL sınavlarına katılmak isteyen ve daha önce hiç İngilizce ders almamış adayların önce A1-A2 seviye Genel İngilizce Derslerini tamamlaması ve sınava hazırlanmak için \"hazır\" hale gelmeleri gerekmektedir."
+  },
+  "scoring_table": [
+    {
+      "range": "1-25",
+      "min_correct": 1,
+      "max_correct": 25,
+      "level": "A2 / pre-B1",
+      "feedback_tr": "İngilizce seviyen henüz \"sınav hazırlığı\" için yeterli değil. Önce A2 seviyesini tamamlamalı ve B1'e giriş yapmalısın. Sonra YDS/YÖKDİL sınavlarına \"sıfırdan\" hazırlayan bir kursa katılmalısın. Acele etme, önce genel İngilizce temelini CEFR A2 standartlarına getirip sonra sınava hazırlanmaya başla lütfen. Sınava sağlam adımlarla ilerle!"
+    },
+    {
+      "range": "26-65",
+      "min_correct": 26,
+      "max_correct": 65,
+      "level": "B1",
+      "feedback_tr": "Sen B1 Seviyesindesin. Harika! Şimdi \"Sınava Temelden Hazırlık\" yapmaya başlayıp 50-60 arası bir puanı rahatlıkla hedefleyebilirsin. İyi bir ders planı, programlı ve disiplinli bir çalışmayla harikalar yaratırsın. Yolun açık olsun!"
+    },
+    {
+      "range": "66-90",
+      "min_correct": 66,
+      "max_correct": 90,
+      "level": "late B1 / early B2",
+      "feedback_tr": "Sen B1 sonlarında B2 başlarındasın ve artık 70 puanı rahatlıkla hedefleyebilirsin. Yolun yine de zorlu olacak, çok çalışman gerekecek ama başarıya giden yollar hep taşlı yollardan geçer zaten! İyi bir ders programı ve disiplinli çalışma seni hedefine taşıyacaktır. Yolun açık olsun!"
+    },
+    {
+      "range": "91-130",
+      "min_correct": 91,
+      "max_correct": 130,
+      "level": "B2",
+      "feedback_tr": "Tebrikler! Sen B2'ye giriş yapmışsın bile! Harika! Artık 70 ve üzeri puana teredütsüz bir şekilde ilerleyebilirsin! Ancak unutma. Bu yol yine de çok kolay bir yol değil. Düzenli ve planlı çalışman gerek. Yolun açık olsun!"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Choose the best word or expression to fill in the space",
+      "question_start": 1,
+      "question_end": 26
+    },
+    {
+      "title": "Choose the best word or expression to fill in the space",
+      "question_start": 27,
+      "question_end": 53
+    },
+    {
+      "title": "Choose the best option to complete the given passage or sentence",
+      "question_start": 54,
+      "question_end": 73
+    },
+    {
+      "title": "Translation (English → Turkish / Turkish → English)",
+      "question_start": 74,
+      "question_end": 93
+    },
+    {
+      "title": "Choose the best option to complete the dialogue",
+      "question_start": 94,
+      "question_end": 108
+    },
+    {
+      "title": "Choose the best rephrased form of the given sentence",
+      "question_start": 109,
+      "question_end": 118
+    },
+    {
+      "title": "Answer the questions according to the given passages",
+      "question_start": 119,
+      "question_end": 130
+    }
+  ],
+  "questions": [
+    {
+      "number": 1,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The new policy aims to reduce pollution by encouraging companies to adopt more _______ production methods.",
+      "options": {
+        "A": "sustainable",
+        "B": "predictable",
+        "C": "excessive",
+        "D": "contradictory",
+        "E": "temporary"
+      },
+      "correct_answer": "A",
+      "correct_text": "sustainable"
+    },
+    {
+      "number": 2,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Although technological devices were once seen as optional, they can no longer be considered _______ to people's basic daily routines.",
+      "options": {
+        "A": "resistant",
+        "B": "irrelevant",
+        "C": "irreversible",
+        "D": "inconsistent",
+        "E": "moderate"
+      },
+      "correct_answer": "B",
+      "correct_text": "irrelevant"
+    },
+    {
+      "number": 3,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The museum is famous for its collection of ancient artifacts, some of which are extremely _______.",
+      "options": {
+        "A": "fragile",
+        "B": "reluctant",
+        "C": "suspicious",
+        "D": "repetitive",
+        "E": "uniform"
+      },
+      "correct_answer": "A",
+      "correct_text": "fragile"
+    },
+    {
+      "number": 4,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The scientist was awarded a prize for her _______ contribution to renewable energy research.",
+      "options": {
+        "A": "negligible",
+        "B": "controversial",
+        "C": "remarkable",
+        "D": "predictable",
+        "E": "redundant"
+      },
+      "correct_answer": "C",
+      "correct_text": "remarkable"
+    },
+    {
+      "number": 5,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Fast food is very tasty, but it isn't very _________ — containing high levels of fat and salt, but low levels of nutrients.",
+      "options": {
+        "A": "edible",
+        "B": "flourishing",
+        "C": "fulfilling",
+        "D": "tasteful",
+        "E": "nourishing"
+      },
+      "correct_answer": "E",
+      "correct_text": "nourishing"
+    },
+    {
+      "number": 6,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The committee members disagreed on several issues, which made it difficult to reach a/an _______ decision.",
+      "options": {
+        "A": "fictional",
+        "B": "excessive",
+        "C": "unanimous",
+        "D": "conditional",
+        "E": "superficial"
+      },
+      "correct_answer": "C",
+      "correct_text": "unanimous"
+    },
+    {
+      "number": 7,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The scientist's groundbreaking theory was initially rejected, but it later gained widespread _______ among experts.",
+      "options": {
+        "A": "opposition",
+        "B": "approval",
+        "C": "hesitation",
+        "D": "decline",
+        "E": "confusion"
+      },
+      "correct_answer": "A",
+      "correct_text": "opposition"
+    },
+    {
+      "number": 8,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Although the drug has proven to be effective, researchers still lack sufficient data to determine its long-term _______.",
+      "options": {
+        "A": "reliability",
+        "B": "interruption",
+        "C": "resistance",
+        "D": "resemblance",
+        "E": "deficiency"
+      },
+      "correct_answer": "A",
+      "correct_text": "reliability"
+    },
+    {
+      "number": 9,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "It is clear that there should be no _______ in religion, and everybody should choose with their own free will whether to believe in a supreme power or not.",
+      "options": {
+        "A": "compulsion",
+        "B": "impression",
+        "C": "eagerness",
+        "D": "requirement",
+        "E": "fairness"
+      },
+      "correct_answer": "D",
+      "correct_text": "requirement"
+    },
+    {
+      "number": 10,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The players of our team lack _______, as they can play extremely well in one match whereas in the next, they just wander around the pitch.",
+      "options": {
+        "A": "assistance",
+        "B": "desire",
+        "C": "fulfilment",
+        "D": "consistency",
+        "E": "adoption"
+      },
+      "correct_answer": "C",
+      "correct_text": "fulfilment"
+    },
+    {
+      "number": 11,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "About one third of New Zealand's land area is devoted to national parks, wilderness areas and other similar _______ efforts.",
+      "options": {
+        "A": "exploitation",
+        "B": "examination",
+        "C": "conservation",
+        "D": "security",
+        "E": "guidance"
+      },
+      "correct_answer": "A",
+      "correct_text": "exploitation"
+    },
+    {
+      "number": 12,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "In interior design, a certain amount of _______ of light and dark colours is necessary to attract attention.",
+      "options": {
+        "A": "interference",
+        "B": "ingredient",
+        "C": "recreation",
+        "D": "expertise",
+        "E": "contrast"
+      },
+      "correct_answer": "B",
+      "correct_text": "ingredient"
+    },
+    {
+      "number": 13,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Before the 18th Century, almost all the art collections were private, so access to them depended on the owner's _______.",
+      "options": {
+        "A": "diversity",
+        "B": "consent",
+        "C": "power",
+        "D": "effect",
+        "E": "assumption"
+      },
+      "correct_answer": "B",
+      "correct_text": "consent"
+    },
+    {
+      "number": 14,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The new software is designed to help users detect and remove viruses more _______.",
+      "options": {
+        "A": "clearly",
+        "B": "efficiently",
+        "C": "temporarily",
+        "D": "accidentally",
+        "E": "occasionally"
+      },
+      "correct_answer": "B",
+      "correct_text": "efficiently"
+    },
+    {
+      "number": 15,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Many scientists argue that climate models are becoming _____ accurate as computing power increases, enabling more precise simulations of atmospheric changes.",
+      "options": {
+        "A": "intentionally",
+        "B": "increasingly",
+        "C": "hardly",
+        "D": "seldom",
+        "E": "barely"
+      },
+      "correct_answer": "B",
+      "correct_text": "increasingly"
+    },
+    {
+      "number": 16,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The new policy aims to reduce carbon emissions by encouraging companies to adopt renewable technologies, which are _____ cost-effective than conventional energy sources.",
+      "options": {
+        "A": "rarely",
+        "B": "extremely",
+        "C": "randomly",
+        "D": "scarcely",
+        "E": "unwillingly"
+      },
+      "correct_answer": "B",
+      "correct_text": "extremely"
+    },
+    {
+      "number": 17,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Although the experiment was carefully designed, the results _____ differed from the researchers' expectations, leading them to repeat the study several times.",
+      "options": {
+        "A": "significantly",
+        "B": "eventually",
+        "C": "approximately",
+        "D": "deliberately",
+        "E": "insufficiently"
+      },
+      "correct_answer": "A",
+      "correct_text": "significantly"
+    },
+    {
+      "number": 18,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Wildlife corridors are essential because they allow animals to move _____ between fragmented habitats, increasing their chances of survival and reproduction.",
+      "options": {
+        "A": "thoughtfully",
+        "B": "smoothly",
+        "C": "critically",
+        "D": "barely",
+        "E": "mistakenly"
+      },
+      "correct_answer": "B",
+      "correct_text": "smoothly"
+    },
+    {
+      "number": 19,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Many species that once lived in these forests can now be found only in protected areas, as their populations have been _____ declining due to habitat destruction.",
+      "options": {
+        "A": "randomly",
+        "B": "thoroughly",
+        "C": "severely",
+        "D": "accidentally",
+        "E": "temporarily"
+      },
+      "correct_answer": "C",
+      "correct_text": "severely"
+    },
+    {
+      "number": 20,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The company has been trying to _______ its operations to remain competitive in the global market.",
+      "options": {
+        "A": "diversify",
+        "B": "imitate",
+        "C": "accept",
+        "D": "prohibit",
+        "E": "delete"
+      },
+      "correct_answer": "A",
+      "correct_text": "diversify"
+    },
+    {
+      "number": 21,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The company announced a major cyberattack, but refused to tell how much data had been _______.",
+      "options": {
+        "A": "given",
+        "B": "heard",
+        "C": "distributed",
+        "D": "calculated",
+        "E": "stolen"
+      },
+      "correct_answer": "E",
+      "correct_text": "stolen"
+    },
+    {
+      "number": 22,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Despite the economic crisis, many small businesses have managed to _______ by adapting to new market demands.",
+      "options": {
+        "A": "pronounce",
+        "B": "abandon",
+        "C": "survive",
+        "D": "avoid",
+        "E": "promise"
+      },
+      "correct_answer": "C",
+      "correct_text": "survive"
+    },
+    {
+      "number": 23,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Scientists worry that climate change will _______ the extinction of several vulnerable species.",
+      "options": {
+        "A": "accelerate",
+        "B": "blow",
+        "C": "justify",
+        "D": "resist",
+        "E": "participate"
+      },
+      "correct_answer": "A",
+      "correct_text": "accelerate"
+    },
+    {
+      "number": 24,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Because the results were unexpected, the researchers repeated the experiment to _______ their findings.",
+      "options": {
+        "A": "turn on",
+        "B": "put off",
+        "C": "make up",
+        "D": "back up",
+        "E": "give up"
+      },
+      "correct_answer": "D",
+      "correct_text": "back up"
+    },
+    {
+      "number": 25,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The patient's condition _______ rapidly, requiring immediate medical attention.",
+      "options": {
+        "A": "worsened",
+        "B": "recovered",
+        "C": "stabilized",
+        "D": "improved",
+        "E": "fixed"
+      },
+      "correct_answer": "A",
+      "correct_text": "worsened"
+    },
+    {
+      "number": 26,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The new policy aims to _______ the efficiency of the administrative process.",
+      "options": {
+        "A": "hinder",
+        "B": "enhance",
+        "C": "intend",
+        "D": "expect",
+        "E": "forgive"
+      },
+      "correct_answer": "B",
+      "correct_text": "enhance"
+    },
+    {
+      "number": 27,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "If global temperatures continue to rise, many coastal cities _______ severe flooding by 2050.",
+      "options": {
+        "A": "experience",
+        "B": "will experience",
+        "C": "have experienced",
+        "D": "are experiencing",
+        "E": "experienced"
+      },
+      "correct_answer": "B",
+      "correct_text": "will experience"
+    },
+    {
+      "number": 28,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Spending too much time in front of digital devices may increase stress and decrease happiness, but you _____________ this by taking a digital break regularly.",
+      "options": {
+        "A": "can reverse",
+        "B": "will reverse",
+        "C": "could reverse",
+        "D": "would reverse",
+        "E": "had to"
+      },
+      "correct_answer": "A",
+      "correct_text": "can reverse"
+    },
+    {
+      "number": 29,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "If the negotiations _______ successfully, both countries will sign the agreement next month.",
+      "options": {
+        "A": "conclude",
+        "B": "will conclude",
+        "C": "had concluded",
+        "D": "are concluding",
+        "E": "have been concluded"
+      },
+      "correct_answer": "A",
+      "correct_text": "conclude"
+    },
+    {
+      "number": 30,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "In 2004, a huge tsunami around Indian Ocean _____________ devastation around Indian Ocean while the following year several American coasts _____________ by a powerful hurricane called Katrina, both leaving millions of people homeless.",
+      "options": {
+        "A": "caused / are hit",
+        "B": "had caused / had been hit",
+        "C": "caused / were hit",
+        "D": "were causing / was hit",
+        "E": "is causing / was hit"
+      },
+      "correct_answer": "C",
+      "correct_text": "caused / were hit"
+    },
+    {
+      "number": 31,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Researchers predict that by 2050, global water demand _____ by nearly 30% due to population growth and industrial expansion.",
+      "options": {
+        "A": "increased",
+        "B": "has increased",
+        "C": "will have increased",
+        "D": "would increase",
+        "E": "was increasing"
+      },
+      "correct_answer": "C",
+      "correct_text": "will have increased"
+    },
+    {
+      "number": 32,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The committee members were surprised to learn that the project _____ significant progress.",
+      "options": {
+        "A": "made",
+        "B": "has made",
+        "C": "makes",
+        "D": "will make",
+        "E": "has been making"
+      },
+      "correct_answer": "A",
+      "correct_text": "made"
+    },
+    {
+      "number": 33,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Scientists _____ the data for months before they finally reached a conclusion about the cause of the unexpected climate anomaly.",
+      "options": {
+        "A": "are analyzing",
+        "B": "will analyze",
+        "C": "had analyzed",
+        "D": "analyze",
+        "E": "have analyzed"
+      },
+      "correct_answer": "C",
+      "correct_text": "had analyzed"
+    },
+    {
+      "number": 34,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "As soon as the team completes the field survey, they _____ a detailed report to the ministry.",
+      "options": {
+        "A": "submit",
+        "B": "submitted",
+        "C": "will submit",
+        "D": "have submitted",
+        "E": "were submitting"
+      },
+      "correct_answer": "C",
+      "correct_text": "will submit"
+    },
+    {
+      "number": 35,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "In recent years, renewable energy technologies _____ rapidly, leading to significant reductions in global carbon emissions.",
+      "options": {
+        "A": "will develop",
+        "B": "developed",
+        "C": "have developed",
+        "D": "had developed",
+        "E": "were developing"
+      },
+      "correct_answer": "C",
+      "correct_text": "have developed"
+    },
+    {
+      "number": 36,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "As globalization _________ dramatically throughout the world in recent decades, new kinds of requirements ____________ on employees' task performance.",
+      "options": {
+        "A": "had increased / could be set",
+        "B": "is increasing / are set",
+        "C": "was increasing / would have been set",
+        "D": "has increased / are being set",
+        "E": "increased / could have been set"
+      },
+      "correct_answer": "D",
+      "correct_text": "has increased / are being set"
+    },
+    {
+      "number": 37,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "In Çatalhöyük settlement, the houses ______________ together with only small spaces in between so that any invasion ______________ and attackers would not be allowed.",
+      "options": {
+        "A": "are packed / will be avoided",
+        "B": "were packed / would be avoided",
+        "C": "were being packed / can be avoided",
+        "D": "are being packed / shall be avoided",
+        "E": "could be packed / would be avoided"
+      },
+      "correct_answer": "B",
+      "correct_text": "were packed / would be avoided"
+    },
+    {
+      "number": 38,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The charity event was a huge success, _______ hundreds of volunteers and donors from across the country.",
+      "options": {
+        "A": "attracting",
+        "B": "attracted",
+        "C": "to attract",
+        "D": "having attracted",
+        "E": "to have attracted"
+      },
+      "correct_answer": "A",
+      "correct_text": "attracting"
+    },
+    {
+      "number": 39,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "________ the new regulations were introduced to improve safety standards, many factories still fail to comply with them.",
+      "options": {
+        "A": "Although",
+        "B": "Because",
+        "C": "Unless",
+        "D": "Since",
+        "E": "If"
+      },
+      "correct_answer": "A",
+      "correct_text": "Although"
+    },
+    {
+      "number": 40,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The population of the coastal cities has grown rapidly in recent years, ________ many residents are now concerned about sea pollution.",
+      "options": {
+        "A": "unless",
+        "B": "whereas",
+        "C": "but",
+        "D": "so",
+        "E": "even if"
+      },
+      "correct_answer": "D",
+      "correct_text": "so"
+    },
+    {
+      "number": 41,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "______________ the number of people engaged in farming declined rapidly, the agricultural products increased in the 20th Century.",
+      "options": {
+        "A": "because",
+        "B": "if",
+        "C": "even though",
+        "D": "so that",
+        "E": "in case"
+      },
+      "correct_answer": "C",
+      "correct_text": "even though"
+    },
+    {
+      "number": 42,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The company invested heavily in renewable energy technologies ________ reduce its carbon footprint and long-term costs.",
+      "options": {
+        "A": "in order to",
+        "B": "whereas",
+        "C": "although",
+        "D": "despite",
+        "E": "so"
+      },
+      "correct_answer": "A",
+      "correct_text": "in order to"
+    },
+    {
+      "number": 43,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "You should back up your files regularly ________ your computer crashes unexpectedly.",
+      "options": {
+        "A": "whereas",
+        "B": "in case",
+        "C": "unless",
+        "D": "even though",
+        "E": "so that"
+      },
+      "correct_answer": "B",
+      "correct_text": "in case"
+    },
+    {
+      "number": 44,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The meeting was postponed ________ several key members were unable to attend.",
+      "options": {
+        "A": "whereas",
+        "B": "as",
+        "C": "despite",
+        "D": "otherwise",
+        "E": "until"
+      },
+      "correct_answer": "B",
+      "correct_text": "as"
+    },
+    {
+      "number": 45,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Some countries have made significant progress in reducing emissions, ________ others continue to rely heavily on fossil fuels.",
+      "options": {
+        "A": "even if",
+        "B": "whereas",
+        "C": "so that",
+        "D": "because",
+        "E": "unless"
+      },
+      "correct_answer": "B",
+      "correct_text": "whereas"
+    },
+    {
+      "number": 46,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "We need to collect more data; ________, it will be difficult to draw reliable conclusions.",
+      "options": {
+        "A": "otherwise",
+        "B": "even though",
+        "C": "despite",
+        "D": "so that",
+        "E": "whereas"
+      },
+      "correct_answer": "A",
+      "correct_text": "otherwise"
+    },
+    {
+      "number": 47,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The report suggests implementing stricter laws, ________ the current measures are insufficient to protect public health.",
+      "options": {
+        "A": "unless",
+        "B": "though",
+        "C": "but",
+        "D": "even if",
+        "E": "because"
+      },
+      "correct_answer": "E",
+      "correct_text": "because"
+    },
+    {
+      "number": 48,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Children may sometimes repeat the words they hear, _________ it doesn't necessarily mean that they are learning their meaning.",
+      "options": {
+        "A": "however",
+        "B": "as",
+        "C": "because",
+        "D": "so",
+        "E": "in case"
+      },
+      "correct_answer": "A",
+      "correct_text": "however"
+    },
+    {
+      "number": 49,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The project was delayed ________ the unexpected weather conditions.",
+      "options": {
+        "A": "due to",
+        "B": "unless",
+        "C": "even if",
+        "D": "so that",
+        "E": "despite"
+      },
+      "correct_answer": "A",
+      "correct_text": "due to"
+    },
+    {
+      "number": 50,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The team worked overtime for months, _____________ they couldn't finish the project before the deadline.",
+      "options": {
+        "A": "Because",
+        "B": "Even though",
+        "C": "So that",
+        "D": "but",
+        "E": "Unless"
+      },
+      "correct_answer": "D",
+      "correct_text": "but"
+    },
+    {
+      "number": 51,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "The scientists repeated the experiment ________ the initial results were inconsistent.",
+      "options": {
+        "A": "as",
+        "B": "whereas",
+        "C": "so",
+        "D": "while",
+        "E": "though"
+      },
+      "correct_answer": "A",
+      "correct_text": "as"
+    },
+    {
+      "number": 52,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "He decided to take an online course ________ improve his professional skills.",
+      "options": {
+        "A": "so",
+        "B": "to",
+        "C": "as",
+        "D": "if",
+        "E": "since"
+      },
+      "correct_answer": "B",
+      "correct_text": "to"
+    },
+    {
+      "number": 53,
+      "section": "Choose the best word or expression to fill in the space",
+      "question": "Supermarkets usually place high-demand products such as milk or bread in the back of the store _____________ the consumer will have to walk through the entire store and perhaps buy extra items.",
+      "options": {
+        "A": "whereas",
+        "B": "even if",
+        "C": "although",
+        "D": "so that",
+        "E": "as if"
+      },
+      "correct_answer": "D",
+      "correct_text": "so that"
+    },
+    {
+      "number": 54,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The advances in genetic engineering have opened new possibilities for treating hereditary diseases. Scientists now can modify defective genes with remarkable precision. (….) As a result, many patients may avoid conditions that were once considered inevitable.",
+      "options": {
+        "A": "However, these techniques must be strictly regulated to prevent misuse.",
+        "B": "In contrast, some argue that traditional treatments are still more effective.",
+        "C": "For this reason, many governments have reduced funding for genetic studies.",
+        "D": "Yet, most genetic disorders remain unrelated to inherited factors.",
+        "E": "Furthermore, many people refuse to undergo genetic screening."
+      },
+      "correct_answer": "A",
+      "correct_text": "However, these techniques must be strictly regulated to prevent misuse."
+    },
+    {
+      "number": 55,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Modern cities rely heavily on digital infrastructure. From banking systems to transportation networks, nearly all essential services operate through interconnected computer systems. (….) This makes cybersecurity a critical issue for governments worldwide.",
+      "options": {
+        "A": "Although many people still prefer face-to-face services",
+        "B": "As a result, cities are becoming increasingly dependent on fossil fuels",
+        "C": "However, this dependency also increases vulnerability to cyberattacks",
+        "D": "Therefore, population growth does not directly affect city planning",
+        "E": "For example, rural areas have limited access to fast internet"
+      },
+      "correct_answer": "C",
+      "correct_text": "However, this dependency also increases vulnerability to cyberattacks"
+    },
+    {
+      "number": 56,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Research suggests that children who read regularly develop stronger cognitive skills. They tend to perform better academically and have wider vocabularies. (….) Encouraging reading habits early in life is therefore essential.",
+      "options": {
+        "A": "Still, many children prefer spending time outdoors",
+        "B": "This benefit, however, varies greatly depending on age",
+        "C": "Nevertheless, screen time has become increasingly popular",
+        "D": "These advantages highlight the long-term impact of reading",
+        "E": "Consequently, reading is no longer considered a valuable skill"
+      },
+      "correct_answer": "D",
+      "correct_text": "These advantages highlight the long-term impact of reading"
+    },
+    {
+      "number": 57,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Climate change is expected to increase the frequency of extreme weather events. Many regions are already experiencing more intense storms and longer droughts. (….) If no action is taken, these impacts will only worsen over time.",
+      "options": {
+        "A": "However, some countries have reduced their carbon emissions",
+        "B": "This trend shows that global climate patterns are becoming less stable",
+        "C": "Still, the majority of scientists deny climate-related risks",
+        "D": "On the other hand, people are now traveling less frequently",
+        "E": "Nevertheless, renewable energy investments are rapidly decreasing"
+      },
+      "correct_answer": "B",
+      "correct_text": "This trend shows that global climate patterns are becoming less stable"
+    },
+    {
+      "number": 58,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The rapid spread of misinformation on social media has become a major concern. People often share posts without verifying their accuracy. (….) As a result, false information can influence elections and public opinion.",
+      "options": {
+        "A": "Many users prefer reliable news sources",
+        "B": "Education systems now focus more on critical thinking",
+        "C": "This careless behavior contributes to the spread of fake news",
+        "D": "Most social media platforms only allow verified accounts",
+        "E": "However, misinformation rarely affects political decisions"
+      },
+      "correct_answer": "C",
+      "correct_text": "This careless behavior contributes to the spread of fake news"
+    },
+    {
+      "number": 59,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Although electric cars are becoming increasingly popular, their widespread use still faces several obstacles. One major challenge is the limited availability of charging stations. (….) Without enough infrastructure, many people hesitate to purchase electric vehicles.",
+      "options": {
+        "A": "Nevertheless, modern batteries can store more energy",
+        "B": "In contrast, traditional vehicles offer more convenience",
+        "C": "For instance, some countries have recently banned petrol cars",
+        "D": "However, these stations require significant investment",
+        "E": "As a result, electric cars produce no harmful emissions"
+      },
+      "correct_answer": "D",
+      "correct_text": "However, these stations require significant investment"
+    },
+    {
+      "number": 60,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Advances in medical technology have significantly improved life expectancy. Diseases that once caused widespread mortality can now be treated effectively. (….) Despite this progress, healthcare remains inaccessible for many people.",
+      "options": {
+        "A": "This progress has also increased global healthcare costs",
+        "B": "Nonetheless, new technologies create greater challenges",
+        "C": "Still, the lack of trained staff weakens many hospitals",
+        "D": "For example, heart surgeries have become less risky",
+        "E": "However, medical waste remains a critical problem"
+      },
+      "correct_answer": "D",
+      "correct_text": "For example, heart surgeries have become less risky"
+    },
+    {
+      "number": 61,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Modern agriculture relies heavily on chemical fertilizers and pesticides. These substances increase crop yields but also contaminate soil and water. (….) Sustainable farming methods are therefore becoming increasingly important.",
+      "options": {
+        "A": "However, they are considered harmless in small doses",
+        "B": "As a result, many farmers refuse to adopt modern methods",
+        "C": "These negative effects raise concerns about long-term food safety",
+        "D": "Nevertheless, organic farming has declined in recent years",
+        "E": "Farmers now earn higher profits thanks to government subsidies"
+      },
+      "correct_answer": "C",
+      "correct_text": "These negative effects raise concerns about long-term food safety"
+    },
+    {
+      "number": 62,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Even though online shopping has become extremely popular all over the globe, _____________________.",
+      "options": {
+        "A": "online platforms must ensure that their customers' private information should remain confidential.",
+        "B": "people are shopping online more frequently.",
+        "C": "many industries are placing strict rules to hinder its abuse.",
+        "D": "most buyers are still a bit worried about placing orders for some products.",
+        "E": "governments release policy guidelines for regulating the e-trade."
+      },
+      "correct_answer": "D",
+      "correct_text": "most buyers are still a bit worried about placing orders for some products."
+    },
+    {
+      "number": 63,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Urbanization has led to significant changes in the social structure of many societies. For instance, traditional family roles are shifting as more people migrate to cities for work. (…..)",
+      "options": {
+        "A": "Nevertheless, urban areas are becoming less populated",
+        "B": "Despite this, rural traditions remain unchanged",
+        "C": "Moreover, these transformations contribute to the emergence of diverse cultural identities.",
+        "D": "For example, some countries encourage people to return to villages",
+        "E": "On the other hand, global birth rates continue to decline"
+      },
+      "correct_answer": "C",
+      "correct_text": "Moreover, these transformations contribute to the emergence of diverse cultural identities."
+    },
+    {
+      "number": 64,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Global tourism has expanded rapidly over the past few decades. While it has generated economic opportunities for many countries, it has also created significant environmental problems. (….) This has led to concerns about the long-term sustainability of popular destinations.",
+      "options": {
+        "A": "Many tourists are now choosing eco-friendly travel options",
+        "B": "As a result, the number of international flights has declined",
+        "C": "In contrast, domestic tourism remains relatively stable",
+        "D": "Nevertheless, some regions still struggle to attract visitors",
+        "E": "For instance, excessive tourism can damage fragile ecosystems"
+      },
+      "correct_answer": "E",
+      "correct_text": "For instance, excessive tourism can damage fragile ecosystems"
+    },
+    {
+      "number": 65,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The rise of remote work has fundamentally changed the modern workplace. Many companies now allow employees to work from anywhere in the world. (….) As a result, work-life balance has become a key priority for professionals.",
+      "options": {
+        "A": "However, this shift has reduced global internet usage",
+        "B": "Nevertheless, some employees miss the social aspects of office life",
+        "C": "Therefore, office buildings are growing in number",
+        "D": "Yet, remote work is no longer seen as a flexible option",
+        "E": "In contrast, many employers refuse to adapt to new technologies"
+      },
+      "correct_answer": "B",
+      "correct_text": "Nevertheless, some employees miss the social aspects of office life"
+    },
+    {
+      "number": 66,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Space exploration has always been a symbol of human ambition and curiosity. In recent years, private companies have taken an active role in developing spacecraft and launching satellites. (….) This collaboration is expected to accelerate future discoveries.",
+      "options": {
+        "A": "Despite this, many countries have abandoned their space programs",
+        "B": "However, the cost of space travel has increased dramatically",
+        "C": "This new involvement complements government-led space initiatives",
+        "D": "On the other hand, scientists question the value of space research",
+        "E": "Yet, public interest in science has significantly declined"
+      },
+      "correct_answer": "C",
+      "correct_text": "This new involvement complements government-led space initiatives"
+    },
+    {
+      "number": 67,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Overfishing has become a major threat to marine biodiversity. Many fish species are declining rapidly due to excessive harvesting. (….) Without strict global regulations, future generations may face severe food shortages.",
+      "options": {
+        "A": "However, coastal communities mainly rely on agriculture",
+        "B": "Still, most countries refuse to trade seafood products",
+        "C": "Unfortunately, illegal fishing practices continue worldwide",
+        "D": "As a result, fish populations have grown steadily",
+        "E": "For example, aquaculture has become unnecessary"
+      },
+      "correct_answer": "C",
+      "correct_text": "Unfortunately, illegal fishing practices continue worldwide"
+    },
+    {
+      "number": 68,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The popularity of online learning platforms has increased dramatically. Students now have access to thousands of courses on a wide range of subjects. (….) This flexibility makes online education more preferable.",
+      "options": {
+        "A": "In contrast, traditional classrooms are becoming more crowded",
+        "B": "However, some platforms still struggle with technical issues",
+        "C": "Yet, online learning does not require time management skills",
+        "D": "Nevertheless, many learners prefer printed textbooks",
+        "E": "Moreover, these platforms allow students to learn at their own pace."
+      },
+      "correct_answer": "E",
+      "correct_text": "Moreover, these platforms allow students to learn at their own pace."
+    },
+    {
+      "number": 69,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The fashion industry is one of the largest contributors to global pollution. Fast-fashion brands produce massive amounts of waste due to rapidly changing trends. (….) As awareness grows, consumers are demanding more eco-friendly clothing options.",
+      "options": {
+        "A": "Consequently, high-quality fabrics are becoming cheaper",
+        "B": "This has encouraged designers to create more sustainable collections",
+        "C": "However, second-hand markets have become less popular",
+        "D": "In contrast, most people buy fewer clothes every year",
+        "E": "Still, luxury brands dominate the global fashion market"
+      },
+      "correct_answer": "B",
+      "correct_text": "This has encouraged designers to create more sustainable collections"
+    },
+    {
+      "number": 70,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Advances in neuroscience have allowed researchers to study the human brain in unprecedented detail. Sophisticated imaging techniques reveal how different regions communicate with each other. (….) These insights may lead to breakthroughs in treating neurological disorders.",
+      "options": {
+        "A": "Nevertheless, brain research receives little public attention",
+        "B": "For example, MRI scans help identify patterns in cognitive activity",
+        "C": "However, most scientists disagree on the importance of such studies",
+        "D": "Still, the brain remains the least understood organ",
+        "E": "Yet, many neurological diseases have already been eradicated"
+      },
+      "correct_answer": "B",
+      "correct_text": "For example, MRI scans help identify patterns in cognitive activity"
+    },
+    {
+      "number": 71,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "Modern society often emphasizes the importance of productivity. People are encouraged to work harder and achieve more in less time. (….) As a result, burnout has become increasingly common.",
+      "options": {
+        "A": "Consequently, leisure activities are more valued than before",
+        "B": "This constant pressure affects mental health negatively",
+        "C": "Therefore, companies are hiring fewer employees",
+        "D": "Still, most workers enjoy long working hours",
+        "E": "However, productivity has no impact on individual well-being"
+      },
+      "correct_answer": "B",
+      "correct_text": "This constant pressure affects mental health negatively"
+    },
+    {
+      "number": 72,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The discovery of antibiotics transformed modern medicine. Infections that were once fatal became easily treatable. (….) This growing resistance threatens the effectiveness of current treatments.",
+      "options": {
+        "A": "However, many bacteria have developed resistance over time",
+        "B": "Nevertheless, antibiotic use has significantly decreased",
+        "C": "Therefore, new drugs are rarely developed",
+        "D": "As a result, infectious diseases have been completely eradicated",
+        "E": "In contrast, viruses respond quickly to antibiotics"
+      },
+      "correct_answer": "A",
+      "correct_text": "However, many bacteria have developed resistance over time"
+    },
+    {
+      "number": 73,
+      "section": "Choose the best option to complete the given passage or sentence",
+      "question": "The demand for renewable energy sources has increased in response to global warming. Solar and wind power are being adopted by many countries seeking alternatives to fossil fuels. (….) The transition to cleaner energy is expected to increase in the coming decades.",
+      "options": {
+        "A": "However, renewable energy produces more emissions",
+        "B": "Still, some countries lack the technology to support such systems",
+        "C": "Despite this, fossil fuel prices have remained stable",
+        "D": "Nevertheless, climate change is no longer considered a threat",
+        "E": "For example, many governments now subsidize coal production"
+      },
+      "correct_answer": "B",
+      "correct_text": "Still, some countries lack the technology to support such systems"
+    },
+    {
+      "number": 74,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Rapid urbanization has forced governments to rethink their long-term environmental strategies.\"",
+      "options": {
+        "A": "Hızlı kentleşme, hükümetleri uzun vadeli çevresel stratejilerini yeniden gözden geçirmeye zorlamıştır.",
+        "B": "Hızlı kentleşme, hükümetlerin çevre politikalarını tamamen terk etmesine neden olmuştur.",
+        "C": "Hızlı kentleşme, hükümetlerin çevresel stratejilerinin uygulanmasını kolaylaştırmıştır.",
+        "D": "Hızlı kentleşme sonucu hükümetler, çevre sorunlarını artık önemsememektedir.",
+        "E": "Hızlı kentleşme, hükümetlerin gelecekte çevre politikaları geliştirmesine engel olmuştur."
+      },
+      "correct_answer": "A",
+      "correct_text": "Hızlı kentleşme, hükümetleri uzun vadeli çevresel stratejilerini yeniden gözden geçirmeye zorlamıştır."
+    },
+    {
+      "number": 75,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Although the project was completed on time, it exceeded the initial budget due to unexpected costs.\"",
+      "options": {
+        "A": "Proje zamanında tamamlanmasına rağmen, beklenmedik maliyetler nedeniyle ilk bütçeyi aşmıştır.",
+        "B": "Proje zamanında tamamlanmış ve beklenmedik maliyetler bütçeyi azaltmıştır.",
+        "C": "Proje geç tamamlandığı için bütçe önemli ölçüde aşılmıştır.",
+        "D": "Proje beklenmedik maliyetlere rağmen bütçenin altında tamamlanmıştır.",
+        "E": "Proje zamanında tamamlanmış olsa da, bütçe plandığı gibi harcanmıştır."
+      },
+      "correct_answer": "A",
+      "correct_text": "Proje zamanında tamamlanmasına rağmen, beklenmedik maliyetler nedeniyle ilk bütçeyi aşmıştır."
+    },
+    {
+      "number": 76,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Several experts argue that artificial intelligence will reshape the global workforce in the coming decades.\"",
+      "options": {
+        "A": "Birçok uzman, yapay zekânın küresel iş gücü üzerinde hiçbir etkisi olmadığını iddia etmektedir.",
+        "B": "Birçok uzman, yapay zekânın önümüzdeki yıllarda küresel iş gücünü yeniden şekillendireceğini savunmaktadır.",
+        "C": "Birçok uzman, yapay zekânın küresel iş gücünü azaltacağını ve işsizliği bitireceğini savunmaktadır.",
+        "D": "Birçok uzman, yapay zekâ sayesinde iş gücünün tamamen yok olacağını düşünmektedir.",
+        "E": "Birçok uzman, yapay zekânın iş gücünü yalnızca geçici olarak etkileyeceğini savunmaktadır."
+      },
+      "correct_answer": "B",
+      "correct_text": "Birçok uzman, yapay zekânın önümüzdeki yıllarda küresel iş gücünü yeniden şekillendireceğini savunmaktadır."
+    },
+    {
+      "number": 77,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Public awareness campaigns have proven effective in reducing the use of single-use plastics.\"",
+      "options": {
+        "A": "Kamu farkındalık kampanyaları, tek kullanımlık plastik kullanımını artırmıştır.",
+        "B": "Kamu farkındalık kampanyaları, plastik üretimini tamamen durdurmuştur.",
+        "C": "Kamu farkındalık kampanyaları, plastiklerin geri dönüşümünü zorlaştırmıştır.",
+        "D": "Kamu farkındalık kampanyaları, plastik kullanımının azaltılmasını gereksiz kılmıştır.",
+        "E": "Kamu farkındalık kampanyaları, tek kullanımlık plastiklerin kullanımını azaltmada etkili olduğunu kanıtlamıştır."
+      },
+      "correct_answer": "E",
+      "correct_text": "Kamu farkındalık kampanyaları, tek kullanımlık plastiklerin kullanımını azaltmada etkili olduğunu kanıtlamıştır."
+    },
+    {
+      "number": 78,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Renewable energy sources are expected to play a crucial role in combating global warming.\"",
+      "options": {
+        "A": "Yenilenebilir enerji kaynaklarının küresel ısınmayı artırması beklenmektedir.",
+        "B": "Yenilenebilir enerji kaynaklarının küresel ısınmayı tamamen çözmesi beklenmektedir.",
+        "C": "Yenilenebilir enerji kaynakları küresel ısınmayla mücadelede artık kullanılmamaktadır.",
+        "D": "Yenilenebilir enerji kaynaklarının küresel ısınmayla mücadelede önemli bir rol oynaması beklenmektedir.",
+        "E": "Yenilenebilir enerji kaynaklarının küresel ısınmayı önemsiz hâle getirmesi beklenmemektedir."
+      },
+      "correct_answer": "D",
+      "correct_text": "Yenilenebilir enerji kaynaklarının küresel ısınmayla mücadelede önemli bir rol oynaması beklenmektedir."
+    },
+    {
+      "number": 79,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Advances in biotechnology have enabled scientists to develop more effective treatments for rare diseases.\"",
+      "options": {
+        "A": "Biyoteknolojideki ilerlemeler, bilim insanlarının nadir hastalıklar için daha etkili tedaviler geliştirmesine olanak tanımıştır.",
+        "B": "Biyoteknolojik ilerlemeler, nadir hastalıkların tedavi edilmesini imkânsız hâle getirmiştir.",
+        "C": "Biyoteknolojideki gelişmeler, nadir hastalıkların tanı konmasını zorlaştırmıştır.",
+        "D": "Biyoteknolojideki ilerlemeler, tüm hastalıkların ortadan kalkmasını sağlamıştır.",
+        "E": "Biyoteknolojideki ilerlemeler, bilim insanlarının tedaviden vazgeçmesine yol açmıştır."
+      },
+      "correct_answer": "A",
+      "correct_text": "Biyoteknolojideki ilerlemeler, bilim insanlarının nadir hastalıklar için daha etkili tedaviler geliştirmesine olanak tanımıştır."
+    },
+    {
+      "number": 80,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"The failure to invest in renewable technologies has slowed progress toward reducing carbon emissions.\"",
+      "options": {
+        "A": "Yenilenebilir teknolojilere yatırım yapılmaması, karbon emisyonlarını azaltma yolundaki ilerlemeyi yavaşlatmıştır.",
+        "B": "Yenilenebilir teknolojilere yapılan yatırımlar, karbon emisyonlarını artırmıştır.",
+        "C": "Yenilenebilir teknolojilere yapılan yatırımlar, karbon azaltımını gereksiz kılmıştır.",
+        "D": "Yenilenebilir teknolojilere yatırım yapılması, karbon emisyonlarını sıfırlamıştır.",
+        "E": "Yenilenebilir enerjiden uzaklaşılması, karbon emisyonlarının azalmasını hızlandırmıştır."
+      },
+      "correct_answer": "A",
+      "correct_text": "Yenilenebilir teknolojilere yatırım yapılmaması, karbon emisyonlarını azaltma yolundaki ilerlemeyi yavaşlatmıştır."
+    },
+    {
+      "number": 81,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Governments around the world have increasingly recognized that addressing the impacts of climate change requires not only technological innovation but also long-term international cooperation.\"",
+      "options": {
+        "A": "Dünya genelindeki hükümetler, iklim değişikliğinin etkileriyle mücadelenin yalnızca teknolojik yenilik değil, aynı zamanda uzun vadeli uluslararası iş birliği gerektirdiğini giderek daha fazla kabul etmektedir.",
+        "B": "Dünya genelindeki hükümetler, teknolojik yenilikleri reddederek iklim değişikliğinin etkilerinin tamamen ortadan kalkacağını düşünmektedir.",
+        "C": "Hükümetler, iklim değişikliğiyle mücadelede uluslararası iş birliğinin gereksiz olduğunu ve sadece yerel çözümlerin yeterli olacağını savunmaktadır.",
+        "D": "Teknolojik yenilikler arttıkça, hükümetler uluslararası iş birliği olmadan iklim değişikliğinin kolayca çözülebileceğini kabul etmektedir.",
+        "E": "Hükümetler, iklim değişikliğiyle mücadelede uluslararası iş birliğini kullanmayı tercih etmemekte ve yalnızca kısa vadeli çözümlere yönelmektedir."
+      },
+      "correct_answer": "A",
+      "correct_text": "Dünya genelindeki hükümetler, iklim değişikliğinin etkileriyle mücadelenin yalnızca teknolojik yenilik değil, aynı zamanda uzun vadeli uluslararası iş birliği gerektirdiğini giderek daha fazla kabul etmektedir."
+    },
+    {
+      "number": 82,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"As scientific research advances, experts emphasize that understanding the long-term consequences of environmental degradation is essential for developing effective global policies.\"",
+      "options": {
+        "A": "Bilimsel araştırmaların ilerlemesi, çevresel bozulmanın etkilerini ortadan kaldırmak için artık politikalara gerek olmadığını göstermektedir.",
+        "B": "Uzmanlara göre, çevresel bozulmanın sonuçları kısa vadeli olduğundan küresel politikalara ihtiyaç duyulmamaktadır.",
+        "C": "Çevresel bozulmanın etkileri tamamen bilindiği için yeni bir politikaya ihtiyaç kalmamıştır.",
+        "D": "Bilimsel araştırmalar, çevresel bozulmanın yalnızca yerel düzeyde sonuçlar doğurduğunu ortaya koymaktadır.",
+        "E": "Bilimsel araştırmalar ilerledikçe, uzmanlar çevresel bozulmanın uzun vadeli sonuçlarını anlamanın etkili küresel politikalar geliştirmek için hayati olduğunu vurgulamaktadır."
+      },
+      "correct_answer": "E",
+      "correct_text": "Bilimsel araştırmalar ilerledikçe, uzmanlar çevresel bozulmanın uzun vadeli sonuçlarını anlamanın etkili küresel politikalar geliştirmek için hayati olduğunu vurgulamaktadır."
+    },
+    {
+      "number": 83,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Although technological progress has improved living standards in many regions, it has also created new challenges that require careful regulation and responsible global governance.\"",
+      "options": {
+        "A": "Teknolojik ilerleme yaşam standartlarını düşürdüğü için küresel yönetişime artık ihtiyaç duyulmamaktadır.",
+        "B": "Teknolojik ilerleme birçok bölgede yaşam standartlarını yükseltmiş olsa da, dikkatli düzenleme ve sorumlu küresel yönetişim gerektiren yeni zorluklar da ortaya çıkarmıştır.",
+        "C": "Teknolojik gelişmelerin hiçbir bölgede olumlu etkisi olmadığı için düzenlemelere gerek kalmamıştır.",
+        "D": "Teknolojik ilerleme yaşam koşullarını iyileştirmesine rağmen, herhangi bir düzenleme gerektiren bir sorun ortaya çıkmamıştır.",
+        "E": "Teknolojik gelişmelerin yarattığı zorluklar yalnızca bireysel kararlarla çözülebileceği için küresel yönetişim gereksizdir."
+      },
+      "correct_answer": "B",
+      "correct_text": "Teknolojik ilerleme birçok bölgede yaşam standartlarını yükseltmiş olsa da, dikkatli düzenleme ve sorumlu küresel yönetişim gerektiren yeni zorluklar da ortaya çıkarmıştır."
+    },
+    {
+      "number": 84,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Bilim insanları, iklim değişikliğinin gelecekteki etkilerini tahmin etmek için karmaşık modeller kullanıyor.\"",
+      "options": {
+        "A": "Scientists have avoided using complex models to understand climate change.",
+        "B": "Scientists used simple models to estimate how climate changed in the past.",
+        "C": "Scientists use complex models to predict the future effects of climate change.",
+        "D": "Scientists predict that climate change will not affect the future significantly.",
+        "E": "Scientists claim that complex models are unnecessary to study climate change."
+      },
+      "correct_answer": "C",
+      "correct_text": "Scientists use complex models to predict the future effects of climate change."
+    },
+    {
+      "number": 85,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Yeni teknolojilerin yaygınlaşması, insanların çalışma biçimini kökten değiştirdi.\"",
+      "options": {
+        "A": "The spread of new technologies has fundamentally changed the way people work.",
+        "B": "New technologies have rarely changed how people work in recent years.",
+        "C": "The development of new technologies forced people to stop working completely.",
+        "D": "The introduction of new technologies has prevented people from changing jobs.",
+        "E": "The spread of new technologies has made work environments much more predictable."
+      },
+      "correct_answer": "A",
+      "correct_text": "The spread of new technologies has fundamentally changed the way people work."
+    },
+    {
+      "number": 86,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Bilgiye erişimin bu kadar kolay olması, yanlış bilgilerin hızla yayılmasına yol açmıştır.\"",
+      "options": {
+        "A": "Accessing information has become more difficult, causing misinformation to disappear.",
+        "B": "Because information is hard to access, misinformation has spread faster than ever.",
+        "C": "The difficulty of accessing information has prevented misinformation from spreading.",
+        "D": "The ease of accessing information has led to the rapid spread of misinformation.",
+        "E": "Easy access to information has eliminated the possibility of misinformation spreading."
+      },
+      "correct_answer": "D",
+      "correct_text": "The ease of accessing information has led to the rapid spread of misinformation."
+    },
+    {
+      "number": 87,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Beklenen yağışların gerçekleşmemesi, bölgede ciddi su kıtlığına neden oldu.\"",
+      "options": {
+        "A": "The failure of the expected rainfall to occur has caused severe water shortages in the region.",
+        "B": "Heavy rainfall has resulted in serious water shortages in the region.",
+        "C": "The region has experienced water shortages despite excessive rainfall.",
+        "D": "Unexpected rainfall has prevented water shortages in the region.",
+        "E": "The lack of rainfall has had no impact on water resources in the region."
+      },
+      "correct_answer": "A",
+      "correct_text": "The failure of the expected rainfall to occur has caused severe water shortages in the region."
+    },
+    {
+      "number": 88,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Bazı araştırmalar, şehirde yaşayan insanların kırsal bölgelerde yaşayanlara göre daha fazla stres yaşadığını göstermektedir.\"",
+      "options": {
+        "A": "Some studies show that people living in rural areas are more stressed than urban residents.",
+        "B": "Some studies show that people living in cities experience more stress than those living in rural areas.",
+        "C": "Studies indicate that stress levels are the same in both rural and urban regions.",
+        "D": "Research suggests that stress is no longer a problem in urban environments.",
+        "E": "Research reveals that rural residents suffer from higher stress levels due to pollution."
+      },
+      "correct_answer": "B",
+      "correct_text": "Some studies show that people living in cities experience more stress than those living in rural areas."
+    },
+    {
+      "number": 89,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Uzmanlar, ekonomik büyümenin sürdürülebilir olabilmesi için çevresel faktörlerin dikkate alınması gerektiğini vurguluyor.\"",
+      "options": {
+        "A": "Experts emphasize that environmental factors must be considered for economic growth to be sustainable.",
+        "B": "Experts claim that environmental factors have no effect on economic growth.",
+        "C": "Experts insist that economic growth should continue regardless of environmental issues.",
+        "D": "Experts argue that economic growth is unnecessary for sustainability.",
+        "E": "Experts suggest that environmental concerns are less important than economic goals."
+      },
+      "correct_answer": "A",
+      "correct_text": "Experts emphasize that environmental factors must be considered for economic growth to be sustainable."
+    },
+    {
+      "number": 90,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Son araştırmalar, uyku düzeninin zihinsel performans üzerinde önemli bir etkisi olduğunu ortaya koymuştur.\"",
+      "options": {
+        "A": "Recent studies show that mental performance is unaffected by sleep patterns.",
+        "B": "Research indicates that sleep problems are rare among adults.",
+        "C": "Studies suggest that sleep has no long-term effects on brain function.",
+        "D": "Research reveals that sleep patterns affect only physical performance.",
+        "E": "Recent studies have revealed that sleep patterns have a significant impact on mental performance."
+      },
+      "correct_answer": "E",
+      "correct_text": "Recent studies have revealed that sleep patterns have a significant impact on mental performance."
+    },
+    {
+      "number": 91,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Artan nüfus, doğal kaynaklar üzerindeki baskıyı her geçen yıl daha da artırmaktadır.\"",
+      "options": {
+        "A": "The growing population puts increasing pressure on natural resources each year.",
+        "B": "The increasing population has reduced the pressure on natural resources.",
+        "C": "The growing population has made natural resources unnecessary.",
+        "D": "Natural resources have become more abundant due to population growth.",
+        "E": "Population growth has eliminated the need for natural resources."
+      },
+      "correct_answer": "A",
+      "correct_text": "The growing population puts increasing pressure on natural resources each year."
+    },
+    {
+      "number": 92,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Bilim insanları, iklim değişikliğinin etkilerini azaltmak için yenilenebilir enerji kaynaklarına yapılan yatırımların hızla artırılması gerektiğini belirtiyor.\"",
+      "options": {
+        "A": "Scientists argue that renewable energy sources will soon be unnecessary because the effects of climate change have already decreased.",
+        "B": "Scientists believe that the effects of climate change can be eliminated only by completely abandoning renewable energy sources.",
+        "C": "Scientists state that investments in renewable energy sources must be rapidly increased in order to mitigate the effects of climate change.",
+        "D": "According to scientists, investments in renewable energy sources should be reduced to prevent the impacts of climate change.",
+        "E": "Scientists claim that the rapid increase in renewable energy investments will worsen the effects of climate change."
+      },
+      "correct_answer": "C",
+      "correct_text": "Scientists state that investments in renewable energy sources must be rapidly increased in order to mitigate the effects of climate change."
+    },
+    {
+      "number": 93,
+      "section": "Translation (English → Turkish / Turkish → English)",
+      "question": "\"Hükümet, artan doğal afetlere karşı toplumun dayanıklılığını artırmak amacıyla uzun vadeli bir ulusal strateji hazırlamayı planlıyor.\"",
+      "options": {
+        "A": "The government plans to develop a long-term national strategy to strengthen society's resilience against increasing natural disasters.",
+        "B": "The government plans to weaken society's resilience because natural disasters are no longer considered a serious threat.",
+        "C": "According to the government, natural disasters will decrease soon, so no national strategy is required.",
+        "D": "The government believes that a long-term strategy would be unnecessary to improve resilience against natural disasters.",
+        "E": "The government claims that long-term planning is not useful in dealing with rising numbers of natural disasters."
+      },
+      "correct_answer": "A",
+      "correct_text": "The government plans to develop a long-term national strategy to strengthen society's resilience against increasing natural disasters."
+    },
+    {
+      "number": 94,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Alice: I heard the conference on renewable energy was postponed.\nMark: Yes, they needed more time to review the latest research findings.\nAlice: (…)\nMark: Exactly. Many experts said the data wasn't ready to be presented.",
+      "options": {
+        "A": "So, are they planning to cancel it completely?",
+        "B": "Does that mean the findings were not reliable enough yet?",
+        "C": "Why did they decide to shorten the conference?",
+        "D": "Were the participants unhappy with the venue?",
+        "E": "Did the conference include any workshops?"
+      },
+      "correct_answer": "B",
+      "correct_text": "Does that mean the findings were not reliable enough yet?"
+    },
+    {
+      "number": 95,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Tom: I'm thinking of moving to a smaller city.\nLinda: Really? What's motivating you to do that?\nTom: (…)\nLinda: I can understand that. Big cities can be overwhelming.",
+      "options": {
+        "A": "I want to be closer to my workplace.",
+        "B": "I've always enjoyed the noise and crowds.",
+        "C": "The cost of living there is much higher.",
+        "D": "Living in a big city makes everything easier.",
+        "E": "I don't think I can adapt to a quieter environment."
+      },
+      "correct_answer": "C",
+      "correct_text": "The cost of living there is much higher."
+    },
+    {
+      "number": 96,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Professor: Your research proposal looks promising, but it still needs more detail.\nStudent: (…)\nProfessor: Good. A well-organized structure will make your argument stronger.",
+      "options": {
+        "A": "I'll add more references to strengthen the theoretical background.",
+        "B": "I think the proposal is already too long.",
+        "C": "I may remove some key points to shorten it.",
+        "D": "I don't believe additional details will be necessary.",
+        "E": "Should I postpone writing the proposal?"
+      },
+      "correct_answer": "A",
+      "correct_text": "I'll add more references to strengthen the theoretical background."
+    },
+    {
+      "number": 97,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Julia: I really enjoyed the documentary on climate change last night.\nMichael: I haven't seen it yet. Was it informative?\nJulia: (…)\nMichael: I'll definitely watch it then.",
+      "options": {
+        "A": "Yes, but it mainly focused on entertainment.",
+        "B": "Not really; it didn't mention any scientific facts.",
+        "C": "Yes, it explained the issue in a clear and engaging way.",
+        "D": "It was interesting, but far too short to be useful.",
+        "E": "It only talked about events that happened decades ago."
+      },
+      "correct_answer": "C",
+      "correct_text": "Yes, it explained the issue in a clear and engaging way."
+    },
+    {
+      "number": 98,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Emma: I'm considering taking an online course to improve my programming skills.\nRyan: That sounds like a great idea. (…)\nEmma: True. I just need to find a course that fits my schedule.",
+      "options": {
+        "A": "But online courses are usually very expensive.",
+        "B": "You should avoid online learning; it's ineffective.",
+        "C": "There are many reliable platforms offering high-quality lessons.",
+        "D": "Most programming courses require no practice at all.",
+        "E": "However, online learning is only for beginners."
+      },
+      "correct_answer": "C",
+      "correct_text": "There are many reliable platforms offering high-quality lessons."
+    },
+    {
+      "number": 99,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Sarah: Have you noticed how much traffic has increased lately?\nDavid: Yes, it's becoming a serious problem for commuters.\nSarah: (…)\nDavid: That would definitely help reduce congestion.",
+      "options": {
+        "A": "I think expanding public transportation could be a solution.",
+        "B": "I'm planning to buy a second car.",
+        "C": "People should start driving bigger vehicles.",
+        "D": "We should encourage everyone to travel more often.",
+        "E": "I don't think traffic is an issue at all."
+      },
+      "correct_answer": "A",
+      "correct_text": "I think expanding public transportation could be a solution."
+    },
+    {
+      "number": 100,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Jack: Do you think artificial intelligence will replace human creativity?\nNina: I don't think so. Creativity is deeply connected to emotions and personal experience.\nJack: (…)\nNina: Exactly. That's something machines still lack.",
+      "options": {
+        "A": "Then why are machines better at solving emotional problems?",
+        "B": "So you believe AI can already feel emotions?",
+        "C": "So you're saying creativity cannot be replicated by algorithms?",
+        "D": "Do you think machines experience the world exactly like humans?",
+        "E": "Does creativity depend more on logic than on experience?"
+      },
+      "correct_answer": "C",
+      "correct_text": "So you're saying creativity cannot be replicated by algorithms?"
+    },
+    {
+      "number": 101,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Megan: I tried the new restaurant downtown yesterday.\nPaul: Really? Was it any good?\nMegan: (…)\nPaul: Then I might give it a try this weekend.",
+      "options": {
+        "A": "Not at all. I wouldn't recommend it to anyone.",
+        "B": "Yes, the food was delicious and the atmosphere was great.",
+        "C": "I didn't stay long enough to try anything.",
+        "D": "They only serve fast food, nothing special.",
+        "E": "The place was crowded, but the food tasted terrible."
+      },
+      "correct_answer": "B",
+      "correct_text": "Yes, the food was delicious and the atmosphere was great."
+    },
+    {
+      "number": 102,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Oliver: I'm thinking of starting my own business, but I'm worried about the risks.\nSophie: That's understandable. (…)\nOliver: That's true. I guess I need to research the market more carefully.",
+      "options": {
+        "A": "Running a business is always risk-free if you plan well.",
+        "B": "Every business succeeds eventually, no matter what.",
+        "C": "But with proper planning and research, the risks can be minimized.",
+        "D": "You should avoid starting a business at all costs.",
+        "E": "It's better to start a business without preparing too much."
+      },
+      "correct_answer": "C",
+      "correct_text": "But with proper planning and research, the risks can be minimized."
+    },
+    {
+      "number": 103,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Anna: I read a study about how social media affects mental health.\nLeo: Yes, it's becoming a serious concern for young people.\nAnna: (…)\nLeo: Absolutely. People need to be more aware of how much time they spend online.",
+      "options": {
+        "A": "I think social media has no influence on anyone.",
+        "B": "The study suggested limiting screen time could help reduce stress.",
+        "C": "The study recommended using social media more frequently.",
+        "D": "It claimed that mental health issues are unrelated to online habits.",
+        "E": "The study concluded that social media is harmless."
+      },
+      "correct_answer": "B",
+      "correct_text": "The study suggested limiting screen time could help reduce stress."
+    },
+    {
+      "number": 104,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Henry: I can't believe how fast technology is evolving.\nLaura: I know. Devices become outdated in just a few years.\nHenry: (…)\nLaura: Right. It's almost impossible to keep up with new trends.",
+      "options": {
+        "A": "That's why I never replace my old devices.",
+        "B": "But I think technological progress has slowed down.",
+        "C": "So buying new devices every year seems pointless.",
+        "D": "It would be better if devices never changed.",
+        "E": "I think companies should stop producing new models."
+      },
+      "correct_answer": "C",
+      "correct_text": "So buying new devices every year seems pointless."
+    },
+    {
+      "number": 105,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Peter: The meeting has been rescheduled for Friday morning.\nClara: Oh no, I already have another appointment then.\nPeter: (…)\nClara: I'd appreciate that. Thank you.",
+      "options": {
+        "A": "Do you want me to cancel your appointment?",
+        "B": "You should skip the meeting. It's not important.",
+        "C": "I can talk to the manager to see if the time can be changed.",
+        "D": "You could attend both events at the same time.",
+        "E": "Friday morning is the only available time."
+      },
+      "correct_answer": "C",
+      "correct_text": "I can talk to the manager to see if the time can be changed."
+    },
+    {
+      "number": 106,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Nora: I missed the deadline for submitting the assignment.\nKevin: Really? What happened?\nNora: (…)\nKevin: You should talk to the professor. Maybe you can get an extension.",
+      "options": {
+        "A": "I submitted it a week early.",
+        "B": "I completely forgot about it because of my workload.",
+        "C": "The assignment wasn't important at all.",
+        "D": "I didn't feel like submitting it although I completed it.",
+        "E": "The professor said deadlines don't matter."
+      },
+      "correct_answer": "B",
+      "correct_text": "I completely forgot about it because of my workload."
+    },
+    {
+      "number": 107,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Mia: The government announced a new plan to reduce air pollution.\nEthan: That sounds promising. What does the plan include?\nMia: (…)\nEthan: That could make a real difference.",
+      "options": {
+        "A": "It focuses on expanding public transportation and limiting car emissions.",
+        "B": "It encourages people to buy larger vehicles.",
+        "C": "It aims to increase the use of coal for electricity.",
+        "D": "It suggests eliminating all public transportation services.",
+        "E": "It proposes raising pollution levels for industrial growth."
+      },
+      "correct_answer": "A",
+      "correct_text": "It focuses on expanding public transportation and limiting car emissions."
+    },
+    {
+      "number": 108,
+      "section": "Choose the best option to complete the dialogue",
+      "question": "Daniel: I feel like I'm not making any progress learning Spanish.\nKate: Maybe you need to change your approach.\nDaniel: (…)\nKate: That's a great idea. Practice makes perfect.",
+      "options": {
+        "A": "Should I stop studying altogether?",
+        "B": "I guess I should practice speaking more with native speakers.",
+        "C": "I think studying less will improve my learning.",
+        "D": "Maybe I should switch to a language I already know.",
+        "E": "Is it possible to learn a language without practicing?"
+      },
+      "correct_answer": "B",
+      "correct_text": "I guess I should practice speaking more with native speakers."
+    },
+    {
+      "number": 109,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "Although renewable energy sources are becoming more affordable, many countries still rely heavily on fossil fuels.",
+      "options": {
+        "A": "Even though renewable energy is getting cheaper, fossil fuels remain the primary energy source for many nations.",
+        "B": "Since renewable energy is affordable, countries have almost stopped using fossil fuels.",
+        "C": "Fossil fuels are no longer used widely because renewable energy is now very inexpensive.",
+        "D": "If renewable energy were more affordable, countries would stop using fossil fuels.",
+        "E": "Many countries prefer fossil fuels because renewable energy will never be affordable."
+      },
+      "correct_answer": "A",
+      "correct_text": "Even though renewable energy is getting cheaper, fossil fuels remain the primary energy source for many nations."
+    },
+    {
+      "number": 110,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "Scientists warn that if immediate action is not taken, global temperatures will continue to rise rapidly.",
+      "options": {
+        "A": "Scientists believe global temperatures will stabilize even if no action is taken.",
+        "B": "Without urgent measures, scientists predict that the increase in global temperatures will accelerate.",
+        "C": "If action is taken immediately, temperatures will rise at the same pace.",
+        "D": "Scientists claim it is too late to stop global temperatures from rising.",
+        "E": "Temperatures are expected to decrease once urgent actions are implemented."
+      },
+      "correct_answer": "B",
+      "correct_text": "Without urgent measures, scientists predict that the increase in global temperatures will accelerate."
+    },
+    {
+      "number": 111,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "The new policy aims to reduce pollution by encouraging companies to adopt environmentally friendly technologies.",
+      "options": {
+        "A": "The new regulation forces companies to stop using environmentally friendly technologies.",
+        "B": "The purpose of the new policy is to decrease pollution through the promotion of eco-friendly technologies.",
+        "C": "Companies will face penalties if they do not adopt environmentally friendly devices.",
+        "D": "According to the new policy, companies must ignore eco-friendly solutions.",
+        "E": "Pollution will stop rising once companies start using environmentally friendly technologies."
+      },
+      "correct_answer": "B",
+      "correct_text": "The purpose of the new policy is to decrease pollution through the promotion of eco-friendly technologies."
+    },
+    {
+      "number": 112,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "Having worked in the field for over twenty years, scientists have gained extensive experience in climate science.",
+      "options": {
+        "A": "Scientists have little experience in climate science despite working in the field for decades.",
+        "B": "Because scientists lack experience, they have worked in climate science for more than twenty years.",
+        "C": "Scientists' long-term involvement in climate science has provided them with significant expertise.",
+        "D": "Although scientists have worked in climate science for a long time, they have not gained enough experience.",
+        "E": "Scientists have been involved in climate science only for a short period of time."
+      },
+      "correct_answer": "C",
+      "correct_text": "Scientists' long-term involvement in climate science has provided them with significant expertise."
+    },
+    {
+      "number": 113,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "The study revealed that people who exercise regularly are less likely to develop chronic diseases.",
+      "options": {
+        "A": "The research found that frequent exercise increases the risk of chronic illnesses.",
+        "B": "According to the study, exercising on a regular basis reduces the likelihood of chronic diseases.",
+        "C": "Chronic diseases are inevitable even for those who exercise regularly.",
+        "D": "The study showed that chronic diseases occur mainly because people exercise often.",
+        "E": "People who rarely exercise are less at risk of developing chronic diseases."
+      },
+      "correct_answer": "B",
+      "correct_text": "According to the study, exercising on a regular basis reduces the likelihood of chronic diseases."
+    },
+    {
+      "number": 114,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "Despite the government's efforts to improve public transportation, traffic congestion remains a major problem.",
+      "options": {
+        "A": "Traffic congestion has been eliminated thanks to improvements in public transportation.",
+        "B": "Even though the government has tried to enhance public transportation, heavy traffic is still a serious issue.",
+        "C": "Traffic congestion has increased because the government ignored public transportation.",
+        "D": "The government's failure to improve public transportation has worsened traffic congestion.",
+        "E": "Traffic congestion is no longer a problem since the government improved public transportation."
+      },
+      "correct_answer": "B",
+      "correct_text": "Even though the government has tried to enhance public transportation, heavy traffic is still a serious issue."
+    },
+    {
+      "number": 115,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "It is believed that artificial intelligence will transform many industries in the coming decades.",
+      "options": {
+        "A": "Artificial intelligence is expected to bring major changes to several industries in the future.",
+        "B": "Artificial intelligence has already transformed every industry around the world.",
+        "C": "It is certain that artificial intelligence will destroy all existing industries.",
+        "D": "Experts claim artificial intelligence will have no effect on industrial development.",
+        "E": "Artificial intelligence has no potential to impact industries in the coming years."
+      },
+      "correct_answer": "A",
+      "correct_text": "Artificial intelligence is expected to bring major changes to several industries in the future."
+    },
+    {
+      "number": 116,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "Because the data was incomplete, the researchers decided to repeat the experiment.",
+      "options": {
+        "A": "The researchers repeated the experiment although the data was complete.",
+        "B": "Since the data lacked necessary information, the researchers chose to conduct the experiment again.",
+        "C": "The researchers refused to repeat the experiment even though the data was insufficient.",
+        "D": "The complete data encouraged the researchers to repeat the experiment.",
+        "E": "The researchers repeated the experiment to make the data incomplete."
+      },
+      "correct_answer": "B",
+      "correct_text": "Since the data lacked necessary information, the researchers chose to conduct the experiment again."
+    },
+    {
+      "number": 117,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "The museum will close temporarily next month for renovation work.",
+      "options": {
+        "A": "The museum will remain open during the renovation period.",
+        "B": "Renovation work will begin next month, during which the museum will be closed for a short time.",
+        "C": "The museum will never reopen after the renovations start.",
+        "D": "The temporary closure of the museum is due to a lack of visitors.",
+        "E": "Renovations will not affect the museum's schedule next month."
+      },
+      "correct_answer": "B",
+      "correct_text": "Renovation work will begin next month, during which the museum will be closed for a short time."
+    },
+    {
+      "number": 118,
+      "section": "Choose the best rephrased form of the given sentence",
+      "question": "Unless more funding is provided, the research project cannot be completed on time.",
+      "options": {
+        "A": "The research project will finish on schedule even if no additional funding is provided.",
+        "B": "More funding is unnecessary for the timely completion of the research project.",
+        "C": "The project will be delayed if additional financial support is not received.",
+        "D": "The research project has already been completed despite limited funding.",
+        "E": "The project will not require more funding in the future."
+      },
+      "correct_answer": "C",
+      "correct_text": "The project will be delayed if additional financial support is not received."
+    },
+    {
+      "number": 119,
+      "section": "Answer the questions according to the given passages",
+      "question": "Throughout history, major scientific breakthroughs have often occurred unexpectedly. While many discoveries result from years of systematic research, others happen by chance when scientists notice something unusual and decide to investigate further. Such accidental discoveries have played a crucial role in shaping modern science, reminding us that curiosity and open-mindedness are just as important as careful planning.\n\nWhich statement is true according to the passage?",
+      "options": {
+        "A": "Accidental discoveries show the importance of curiosity.",
+        "B": "Accidental discoveries rarely contribute to science.",
+        "C": "Most scientific progress depends on luck alone.",
+        "D": "Scientists no longer value careful planning.",
+        "E": "Discovery by chance is considered unscientific."
+      },
+      "correct_answer": "C",
+      "correct_text": "Most scientific progress depends on luck alone."
+    },
+    {
+      "number": 120,
+      "section": "Answer the questions according to the given passages",
+      "question": "With the rapid increase in global population, cities are becoming more crowded and less affordable. Many young people are therefore moving to smaller towns in search of a better quality of life. These towns, once overlooked, are now transforming as new residents bring diverse skills, businesses, and cultural activities.\n\nThe writer indicates that _________.",
+      "options": {
+        "A": "Small towns are losing cultural diversity.",
+        "B": "Small towns are becoming more attractive to young people.",
+        "C": "Cities are cheaper to live in than small towns.",
+        "D": "Rural areas are becoming depopulated.",
+        "E": "Young people avoid small towns due to lack of opportunities."
+      },
+      "correct_answer": "B",
+      "correct_text": "Small towns are becoming more attractive to young people."
+    },
+    {
+      "number": 121,
+      "section": "Answer the questions according to the given passages",
+      "question": "Although renewable energy sources such as solar and wind power are becoming increasingly common, they still face many challenges. One major issue is energy storage, as these sources do not produce power consistently. Researchers are working on advanced battery technologies to solve this problem, but large-scale solutions are still in development.\n\nWhat is the main problem mentioned in the passage?",
+      "options": {
+        "A": "Renewable energy is too expensive.",
+        "B": "Renewable energy is harmful to the environment.",
+        "C": "Renewable energy is inconsistent in power production.",
+        "D": "Renewable energy cannot support large cities.",
+        "E": "Renewable energy is not supported by governments."
+      },
+      "correct_answer": "C",
+      "correct_text": "Renewable energy is inconsistent in power production."
+    },
+    {
+      "number": 122,
+      "section": "Answer the questions according to the given passages",
+      "question": "The rise of remote work has altered traditional workplace dynamics, giving employees more autonomy over their schedules. Yet, this flexibility comes with new challenges: without clear boundaries between personal and professional life, some workers experience increased stress and longer working hours. Experts argue that companies must rethink productivity models to ensure employees maintain a healthy work-life balance in an increasingly digital environment.\n\nWhich one is emphasized by the writer?",
+      "options": {
+        "A": "Remote work reduces stress by clearly separating home and office life.",
+        "B": "Flexible schedules make employees significantly less productive.",
+        "C": "Remote work requires updated strategies to protect employee well-being.",
+        "D": "Companies should eliminate digital platforms from the workplace.",
+        "E": "Employees prefer strict office routines over flexible ones."
+      },
+      "correct_answer": "C",
+      "correct_text": "Remote work requires updated strategies to protect employee well-being."
+    },
+    {
+      "number": 123,
+      "section": "Answer the questions according to the given passages",
+      "question": "Humans have always been fascinated by the possibility of life beyond Earth. Recent discoveries of planets with Earth-like conditions have intensified this interest. Although there is still no direct evidence of extraterrestrial life, many scientists believe that future technological advancements may help detect signs of life in distant solar systems.\n\nAccording to the passage _________.",
+      "options": {
+        "A": "Extraterrestrial life has already been discovered.",
+        "B": "New planet discoveries have increased scientific interest.",
+        "C": "Scientists are becoming less interested in space.",
+        "D": "It is impossible to detect signs of life elsewhere.",
+        "E": "Evidence of aliens visiting Earth exists."
+      },
+      "correct_answer": "B",
+      "correct_text": "New planet discoveries have increased scientific interest."
+    },
+    {
+      "number": 124,
+      "section": "Answer the questions according to the given passages",
+      "question": "While globalization has brought economic opportunities to many regions, it has also contributed to the loss of local cultures. As global brands expand and dominate markets, traditional practices and languages face increasing pressure. Many communities are now working to preserve their cultural identity before it disappears completely.\n\nWhich one is true according to the passage?",
+      "options": {
+        "A": "Globalization protects traditional culture.",
+        "B": "Globalization threatens some local cultures.",
+        "C": "Global brands prevent economic development.",
+        "D": "Local languages are becoming more common.",
+        "E": "Cultural identity is stronger than ever."
+      },
+      "correct_answer": "B",
+      "correct_text": "Globalization threatens some local cultures."
+    },
+    {
+      "number": 125,
+      "section": "Answer the questions according to the given passages",
+      "question": "Marine pollution is becoming a growing concern as plastic waste continues to accumulate in the oceans. This pollution harms marine animals, disrupts ecosystems, and even affects human health through the food chain. Scientists warn that without urgent action, the damage may become irreversible.\n\nWhich problem is highlighted by the writer?",
+      "options": {
+        "A": "Ocean pollution mainly affects humans.",
+        "B": "Marine life is seriously threatened by plastic pollution.",
+        "C": "Plastic pollution benefits ecosystems.",
+        "D": "Only a few species are affected.",
+        "E": "Marine pollution is decreasing."
+      },
+      "correct_answer": "B",
+      "correct_text": "Marine life is seriously threatened by plastic pollution."
+    },
+    {
+      "number": 126,
+      "section": "Answer the questions according to the given passages",
+      "question": "Technological innovation has greatly improved the efficiency of modern transportation systems. However, as more autonomous vehicles enter the market, concerns about safety and regulation continue to rise. Policymakers are now debating how to create laws that both encourage innovation and protect the public.\n\nThe passage mainly discusses ________.",
+      "options": {
+        "A": "why autonomous vehicles should be banned",
+        "B": "how to balance progress and safety",
+        "C": "why traditional vehicles are better",
+        "D": "the decline of transportation technologies",
+        "E": "how to eliminate safety regulations"
+      },
+      "correct_answer": "B",
+      "correct_text": "how to balance progress and safety"
+    },
+    {
+      "number": 127,
+      "section": "Answer the questions according to the given passages",
+      "question": "As people live longer due to medical advances, age-related diseases are becoming more common. Conditions such as dementia and arthritis require long-term care, placing a heavy burden on healthcare systems. Experts suggest that preventive measures and healthier lifestyles may help reduce this strain in the future.\n\nWhat is suggested as a solution in the paragraph?",
+      "options": {
+        "A": "Reducing access to healthcare",
+        "B": "Building more hospitals",
+        "C": "Encouraging healthier lifestyles",
+        "D": "Ending research on aging",
+        "E": "Limiting treatment options"
+      },
+      "correct_answer": "C",
+      "correct_text": "Encouraging healthier lifestyles"
+    },
+    {
+      "number": 128,
+      "section": "Answer the questions according to the given passages",
+      "question": "Archaeologists studying ancient trade routes have discovered that cultural exchange was far more extensive than once believed. Goods such as spices, textiles, and precious metals traveled thousands of kilometers, but so did ideas, artistic traditions, and technological knowledge. This movement of information helped shape entire civilizations, demonstrating that early societies were interconnected in ways comparable to modern globalization.\n\nWhich one is emphasized by the writer in the paragraph?",
+      "options": {
+        "A": "Ancient trade routes were used only for transporting luxury goods.",
+        "B": "Cultural exchange in ancient times was limited to neighboring regions.",
+        "C": "Early civilizations were more isolated than previously assumed.",
+        "D": "Trade routes facilitated significant cultural and intellectual interaction.",
+        "E": "Modern globalization had no historical equivalent."
+      },
+      "correct_answer": "D",
+      "correct_text": "Trade routes facilitated significant cultural and intellectual interaction."
+    },
+    {
+      "number": 129,
+      "section": "Answer the questions according to the given passages",
+      "question": "Although digital technologies have transformed the way people communicate, many psychologists argue that these tools may not necessarily lead to deeper social connections. While online platforms allow individuals to stay in constant contact, they also encourage brief, superficial interactions that lack emotional depth. As a result, some researchers claim that the growing dependence on digital communication may actually reduce the quality of relationships, particularly among younger generations who rely heavily on such platforms.\n\nWhat is the main argument of the writer?",
+      "options": {
+        "A": "Digital tools have strengthened emotional communication among young people.",
+        "B": "Online platforms prevent individuals from forming any type of connection.",
+        "C": "Increased use of digital communication may weaken the depth of human relationships.",
+        "D": "Psychologists believe that face-to-face interaction is no longer necessary today.",
+        "E": "Digital communication improves relationships only when used excessively."
+      },
+      "correct_answer": "C",
+      "correct_text": "Increased use of digital communication may weaken the depth of human relationships."
+    },
+    {
+      "number": 130,
+      "section": "Answer the questions according to the given passages",
+      "question": "In recent decades, cities around the world have attempted to reduce air pollution by limiting car use and expanding public transportation networks. However, these measures have not always been successful because they rarely address people's underlying travel habits. Many commuters still prefer private vehicles due to convenience, personal comfort, and flexibility. Consequently, environmental policies that focus solely on infrastructure often fail unless accompanied by broader cultural and behavioral changes.\n\nAccording to the passage some environmental policies fail because ________________.",
+      "options": {
+        "A": "they make public transportation more expensive than private vehicles.",
+        "B": "they do not consider the personal preferences that shape people's travel habits.",
+        "C": "they require advanced technology that most cities cannot afford.",
+        "D": "they encourage commuters to avoid using new transportation systems.",
+        "E": "they mainly target industrial pollution rather than vehicle emissions."
+      },
+      "correct_answer": "B",
+      "correct_text": "they do not consider the personal preferences that shape people's travel habits."
+    }
+  ],
+  "answer_key": {
+    "1": "A",
+    "2": "B",
+    "3": "A",
+    "4": "C",
+    "5": "E",
+    "6": "C",
+    "7": "A",
+    "8": "A",
+    "9": "D",
+    "10": "C",
+    "11": "A",
+    "12": "B",
+    "13": "B",
+    "14": "B",
+    "15": "B",
+    "16": "B",
+    "17": "A",
+    "18": "B",
+    "19": "C",
+    "20": "A",
+    "21": "E",
+    "22": "C",
+    "23": "A",
+    "24": "D",
+    "25": "A",
+    "26": "B",
+    "27": "B",
+    "28": "A",
+    "29": "A",
+    "30": "C",
+    "31": "C",
+    "32": "A",
+    "33": "C",
+    "34": "C",
+    "35": "C",
+    "36": "D",
+    "37": "B",
+    "38": "A",
+    "39": "A",
+    "40": "D",
+    "41": "C",
+    "42": "A",
+    "43": "B",
+    "44": "B",
+    "45": "B",
+    "46": "A",
+    "47": "E",
+    "48": "A",
+    "49": "A",
+    "50": "D",
+    "51": "A",
+    "52": "B",
+    "53": "D",
+    "54": "A",
+    "55": "C",
+    "56": "D",
+    "57": "B",
+    "58": "C",
+    "59": "D",
+    "60": "D",
+    "61": "C",
+    "62": "D",
+    "63": "C",
+    "64": "E",
+    "65": "B",
+    "66": "C",
+    "67": "C",
+    "68": "E",
+    "69": "B",
+    "70": "B",
+    "71": "B",
+    "72": "A",
+    "73": "B",
+    "74": "A",
+    "75": "A",
+    "76": "B",
+    "77": "E",
+    "78": "D",
+    "79": "A",
+    "80": "A",
+    "81": "A",
+    "82": "E",
+    "83": "B",
+    "84": "C",
+    "85": "A",
+    "86": "D",
+    "87": "A",
+    "88": "B",
+    "89": "A",
+    "90": "E",
+    "91": "A",
+    "92": "C",
+    "93": "A",
+    "94": "B",
+    "95": "C",
+    "96": "A",
+    "97": "C",
+    "98": "C",
+    "99": "A",
+    "100": "C",
+    "101": "B",
+    "102": "C",
+    "103": "B",
+    "104": "C",
+    "105": "C",
+    "106": "B",
+    "107": "A",
+    "108": "B",
+    "109": "A",
+    "110": "B",
+    "111": "B",
+    "112": "C",
+    "113": "B",
+    "114": "B",
+    "115": "A",
+    "116": "B",
+    "117": "B",
+    "118": "C",
+    "119": "C",
+    "120": "B",
+    "121": "C",
+    "122": "C",
+    "123": "B",
+    "124": "B",
+    "125": "B",
+    "126": "B",
+    "127": "C",
+    "128": "D",
+    "129": "C",
+    "130": "B"
+  }
+}

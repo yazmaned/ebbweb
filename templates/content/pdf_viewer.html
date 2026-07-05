@@ -16,18 +16,23 @@
     </div>
 </div>
 
+{% if is_large_pdf %}
+<p style="color:#999; font-size:0.8rem; margin-bottom:0.8rem; text-align:center;">Büyük PDF dosyalarının yüklenmesi biraz zaman alabilir.</p>
+{% endif %}
+
 <div id="pdf-wrapper" style="display:flex; flex-direction:column; align-items:center; background:#757575; border-radius:8px;">
-    <div id="canvas-scroll" style="width:100%; display:flex; justify-content:center; overflow:auto;">
+    <button id="fs-close-fixed" style="display:none;">✕</button>
+
+    <div id="canvas-scroll" style="width:100%; display:flex; justify-content:center; overflow:auto; touch-action:pan-x pan-y;">
         <canvas id="pdf-canvas" style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
     </div>
-    <div id="fs-controls" style="display:none; gap:1rem; align-items:center; padding:1rem; flex-shrink:0;">
+    <div id="fs-controls" style="display:none; gap:0.6rem; align-items:center; justify-content:center; padding:1rem; flex-shrink:0; flex-wrap:wrap;">
         <button class="btn" id="fs-prev">←</button>
         <span id="fs-page-info" style="color:#fff; font-size:0.85rem;"></span>
         <button class="btn" id="fs-next">→</button>
-         <button class="btn" id="zoom-out">－</button>
+        <button class="btn" id="zoom-out">－</button>
         <span id="zoom-level" style="color:#fff; font-size:0.85rem;">100%</span>
         <button class="btn" id="zoom-in">＋</button>
-        <button class="btn" id="fs-exit">✕</button>
     </div>
 </div>
 
@@ -59,6 +64,7 @@
         background: #222;
         padding: 1rem;
         height: 100vh;
+        position: relative;
     }
     #pdf-wrapper:fullscreen #canvas-scroll {
         flex: 1;
@@ -74,6 +80,39 @@
     #pdf-wrapper:fullscreen #fs-controls {
         display: flex !important;
     }
+    #pdf-wrapper:fullscreen #fs-controls .btn {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1rem;
+    }
+
+    #pdf-wrapper:fullscreen #fs-close-fixed {
+        display: flex !important;
+        position: fixed;
+        top: max(12px, env(safe-area-inset-top));
+        right: max(12px, env(safe-area-inset-right));
+        z-index: 9999;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    #pdf-wrapper:fullscreen #fs-close-fixed:hover {
+        background: rgba(0,0,0,0.85);
+    }
+
+    @media (max-width: 768px) {
+        #pdf-wrapper:fullscreen #fs-controls {
+            padding-bottom: max(1rem, env(safe-area-inset-bottom));
+            gap: 0.4rem;
+        }
+    }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -82,6 +121,7 @@
 
     const url = '/file/{{ material.pk }}/';
     const canvas = document.getElementById('pdf-canvas');
+    const canvasScroll = document.getElementById('canvas-scroll');
     const ctx = canvas.getContext('2d');
     let pdfDoc = null;
     let currentPage = 1;
@@ -141,14 +181,24 @@
         }
     });
 
-    document.getElementById('fullscreen').addEventListener('click', () => {
+    function enterFullscreen() {
         const wrapper = document.getElementById('pdf-wrapper');
         if (wrapper.requestFullscreen) wrapper.requestFullscreen();
         else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-    });
+    }
 
-    document.getElementById('fs-exit').addEventListener('click', () => {
-        document.exitFullscreen();
+    function exitFullscreen() {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    }
+
+    document.getElementById('fullscreen').addEventListener('click', enterFullscreen);
+    document.getElementById('fs-close-fixed').addEventListener('click', exitFullscreen);
+
+    document.getElementById('pdf-wrapper').addEventListener('click', (e) => {
+        if (document.fullscreenElement && e.target.id === 'pdf-wrapper') {
+            exitFullscreen();
+        }
     });
 
     document.addEventListener('keydown', (e) => {
@@ -161,5 +211,60 @@
     });
 
     canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+    // ---------- Pinch-to-zoom (touch) ----------
+    // Two fingers: track the distance between them. While pinching, apply
+    // a cheap CSS transform for instant visual feedback (no re-render cost
+    // per frame). Once fingers lift, do one real pdf.js re-render at the
+    // final scale so the result stays crisp instead of blurry/stretched.
+    let pinchStartDistance = null;
+    let pinchStartScale = null;
+    let pinchLiveScale = null;
+
+    function touchDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    canvasScroll.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            pinchStartDistance = touchDistance(e.touches);
+            pinchStartScale = currentScale;
+            pinchLiveScale = currentScale;
+        }
+    }, { passive: true });
+
+    canvasScroll.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && pinchStartDistance) {
+            e.preventDefault(); // stop native page zoom/scroll fighting with the gesture
+            const newDistance = touchDistance(e.touches);
+            const ratio = newDistance / pinchStartDistance;
+            pinchLiveScale = Math.min(Math.max(pinchStartScale * ratio, MIN_SCALE), MAX_SCALE);
+            const visualRatio = pinchLiveScale / currentScale;
+            canvas.style.transform = `scale(${visualRatio})`;
+            canvas.style.transformOrigin = 'center center';
+        }
+    }, { passive: false });
+
+    canvasScroll.addEventListener('touchend', (e) => {
+        if (pinchStartDistance !== null && e.touches.length < 2) {
+            canvas.style.transform = '';
+            if (pinchLiveScale !== null && Math.abs(pinchLiveScale - currentScale) > 0.01) {
+                currentScale = pinchLiveScale;
+                renderPage(currentPage); // real crisp re-render at the committed scale
+            }
+            pinchStartDistance = null;
+            pinchStartScale = null;
+            pinchLiveScale = null;
+        }
+    }, { passive: true });
+
+    canvasScroll.addEventListener('touchcancel', () => {
+        canvas.style.transform = '';
+        pinchStartDistance = null;
+        pinchStartScale = null;
+        pinchLiveScale = null;
+    }, { passive: true });
 </script>
 {% endblock %}

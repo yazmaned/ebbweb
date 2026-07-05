@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Deneme Sınavı | BD{% endblock %}
+
+{% block content %}
+<a href="/home/" class="back-btn">←</a>
+
+<style>
+    .mav-btn {
+        background: rgba(220,222,225,0.5);
+        border: 0.5px solid rgba(0,0,0,0.08);
+        color: #333;
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .mav-btn.primary { background:#8e44ad; color:white; border:none; }
+    .mav-btn:disabled { opacity:0.4; cursor:not-allowed; }
+
+    .intro-card {
+        background: rgba(220,222,225,0.5);
+        border: 0.5px solid rgba(0,0,0,0.08);
+        border-top: 4px solid #8e44ad;
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .intro-card p { color:#555; font-size:0.9rem; line-height:1.6; margin:0.2rem 0; }
+
+    .progress-row { display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem; }
+    .progress-bar-track { flex:1; height:6px; background:rgba(0,0,0,0.08); border-radius:999px; overflow:hidden; }
+    .progress-bar-fill { height:100%; background:#8e44ad; width:0%; transition:width 0.2s; }
+    .progress-label { font-size:0.8rem; color:#888; white-space:nowrap; }
+
+    .section-header {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #8e44ad;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.8rem;
+    }
+    .question-block {
+        background: rgba(220,222,225,0.5);
+        border: 0.5px solid rgba(0,0,0,0.08);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    .question-text { font-size: 0.95rem; font-weight: 600; color: #1a1a1a; margin-bottom: 0.8rem; line-height: 1.6; white-space: pre-line; }
+    .option-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0.5rem 0.85rem;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 0.3rem;
+        background: rgba(255,255,255,0.3);
+    }
+    .option-label:hover { background: rgba(255,255,255,0.55); }
+    .option-label input[type="radio"] {
+        width: auto;
+        flex-shrink: 0;
+        margin: 2px 0 0 0;
+        accent-color: #8e44ad;
+    }
+    .option-letter { font-size: 0.8rem; font-weight: 700; color: #999; min-width: 18px; text-transform: lowercase; }
+    .option-text { font-size: 0.9rem; color: #333; line-height: 1.5; text-transform: lowercase; }
+
+    .nav-row { display:flex; justify-content:space-between; align-items:center; margin-top:1rem; }
+</style>
+
+<div style="max-width:720px; margin:0 auto;">
+
+    <div style="margin-bottom:1.5rem;">
+        <div style="font-size:2rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999;">Bilgehan Hoca'dan Sınav Seviyeni Belirleyen Sorular.ı</div>
+    </div>
+
+    <div class="intro-card" id="intro-card">
+        <p><strong>Test 130 sorudur, süre sınırı yoktur. Başarılar dileriz!</strong></p>
+    </div>
+
+    <div class="progress-row">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-bar-fill"></div></div>
+        <div class="progress-label" id="progress-label">Soru 1 / {{ questions.count }}</div>
+    </div>
+
+    <form method="POST" action="/deneme-sinavi/submit/" id="exam-form">
+        {% csrf_token %}
+
+        {% for question in questions %}
+        <div class="question-slide" data-index="{{ forloop.counter0 }}" style="{% if not forloop.first %}display:none;{% endif %}">
+            <div class="section-header">{{ question.section }}</div>
+            <div class="question-block">
+                <div class="question-text">{{ question.number }}. {{ question.text }}</div>
+                {% for option in question.options.all %}
+                <label class="option-label">
+                    <input type="radio" name="q{{ question.id }}" value="{{ option.letter }}">
+                    <span class="option-letter">{{ option.letter }})</span>
+                    <span class="option-text">{{ option.text }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="nav-row">
+            <button type="button" class="mav-btn" id="prev-btn" disabled>← Geri</button>
+            <button type="button" class="mav-btn primary" id="next-btn">İleri →</button>
+            <button type="submit" class="mav-btn primary" id="finish-btn" style="display:none;">Sınavı Bitir →</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const slides = Array.from(document.querySelectorAll('.question-slide'));
+    const total = slides.length;
+    let current = 0;
+
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const finishBtn = document.getElementById('finish-btn');
+    const progressFill = document.getElementById('progress-bar-fill');
+    const progressLabel = document.getElementById('progress-label');
+
+    function showSlide(index) {
+    slides[current].style.display = 'none';
+    current = index;
+    slides[current].style.display = 'block';
+
+    prevBtn.disabled = (current === 0);
+    const isLast = (current === total - 1);
+    nextBtn.style.display = isLast ? 'none' : 'inline-block';
+    finishBtn.style.display = isLast ? 'inline-block' : 'none';
+
+    progressLabel.textContent = `Soru ${current + 1} / ${total}`;
+    progressFill.style.width = `${((current + 1) / total) * 100}%`;
+}
+
+    nextBtn.addEventListener('click', () => {
+        if (current < total - 1) showSlide(current + 1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (current > 0) showSlide(current - 1);
+    });
+
+    showSlide(0);
+</script>
+{% endblock %}

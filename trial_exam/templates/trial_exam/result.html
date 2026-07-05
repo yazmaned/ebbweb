@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sonuç | BD{% endblock %}
+
+{% block content %}
+<a href="/home/" class="back-btn">←</a>
+
+<style>
+    .mav-btn {
+        background: rgba(220,222,225,0.5);
+        border: 0.5px solid rgba(0,0,0,0.08);
+        color: #333;
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .mav-btn.primary { background:#8e44ad; color:white; border:none; }
+
+    .score-card {
+        background: rgba(220,222,225,0.5);
+        border: 0.5px solid rgba(0,0,0,0.08);
+        border-top: 4px solid #8e44ad;
+        border-radius: 12px;
+        padding: 1.75rem 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .score-value { font-size: 2.2rem; font-weight: 800; color: #1a1a1a; }
+    .level-badge {
+        display: inline-block;
+        background: #8e44ad;
+        color: white;
+        padding: 0.25rem 0.9rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-top: 0.6rem;
+    }
+    .level-feedback { color:#555; font-size:0.9rem; line-height:1.7; margin-top:1rem; text-align:left; }
+
+    .answer-block { background: rgba(220,222,225,0.5); border: 0.5px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; }
+    .answer-block.correct { border-left: 4px solid #16a085; }
+    .answer-block.incorrect { border-left: 4px solid #e74c3c; }
+    .answer-block.unanswered { border-left: 4px solid #999; }
+    .question-text { font-size: 0.9rem; font-weight: 600; color: #1a1a1a; margin-bottom: 0.7rem; white-space: pre-line; }
+    .option-row { padding: 0.4rem 0.7rem; border-radius: 8px; margin-bottom: 0.25rem; background: rgba(255,255,255,0.3); font-size: 0.85rem; text-transform: lowercase; }
+    .option-row.is-correct-answer { background: rgba(22,160,133,0.15); }
+    .option-row.is-wrong-selected { background: rgba(231,76,60,0.15); }
+</style>
+
+<div style="max-width:680px; margin:0 auto;">
+
+    <div class="score-card">
+        <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#8e44ad;">Deneme Sınavı Sonucu</div>
+        <div class="score-value" style="margin-top:0.6rem;">{{ attempt.score }} / {{ attempt.total }}</div>
+        {% if attempt.level %}<div class="level-badge">{{ attempt.level }}</div>{% endif %}
+        {% if level_feedback %}<div class="level-feedback">{{ level_feedback }}</div>{% endif %}
+    </div>
+
+    {% for answer in answers %}
+    <div class="answer-block {% if answer.is_correct %}correct{% elif answer.selected_option %}incorrect{% else %}unanswered{% endif %}">
+        <div class="question-text">{{ answer.question.number }}. {{ answer.question.text }}</div>
+        {% for option in answer.question.options.all %}
+        <div class="option-row
+            {% if option.is_correct %}is-correct-answer{% endif %}
+            {% if answer.selected_option and option.id == answer.selected_option.id and not option.is_correct %}is-wrong-selected{% endif %}">
+            {{ option.letter }}) {{ option.text }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <div style="display:flex; justify-content:center; margin-top:1.5rem;">
+        <a href="/home/" class="mav-btn primary">Ana Sayfaya Dön</a>
+    </div>
+</div>
+{% endblock %}

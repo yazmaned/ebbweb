@@ -154,15 +154,18 @@
     {% endif %}
 
     <p style="font-size:0.72rem; margin-top:0.5rem; line-height:1.5; color:#555;">
-        Deneme Sonucu:
-        {% if user_profile.latest_trial_score %}
-            <strong style="color:#16a085;">{{ user_profile.latest_trial_score }}</strong>
-        {% else %}
-            <span style="color:#aaa; font-style:italic;">Henüz Çözmediniz</span>
+    Deneme:
+    {% if user_profile.latest_trial_score %}
+        <strong style="color:#16a085;">{{ user_profile.latest_trial_score|floatformat:0 }}/130</strong>
+        {% if user_profile.latest_trial_level %}
+        <span style="color:#8e44ad; font-weight:600;">({{ user_profile.latest_trial_level }})</span>
         {% endif %}
-        <br>
-        Üyelik: {{ user.date_joined|date:"d M Y" }}
-    </p>
+    {% else %}
+        <span style="color:#aaa; font-style:italic;">Henüz Çözmediniz</span>
+    {% endif %}
+    <br>
+    Üyelik: {{ user.date_joined|date:"d M Y" }}
+</p>
 </div>
 {% endif %}
 
@@ -240,8 +243,16 @@
     <div style="background:#16a085; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px rgba(22,160,133,0.35); transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px rgba(22,160,133,0.5)'"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(22,160,133,0.35)'">
-        <img src="{% static 'images/icons/vocabulary.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
-        <span style="font-size:1.1rem; font-weight:600; text-align:center; font-style:italic;">vocabulary çalış</span>
+        <img src="{% static 'images/icons/vocabulary.svg' %}" width="52" height="52" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1.1rem; font-weight:600; text-align:center; font-style:italic;">vocabulary<br>çalış</span>
+    </div>
+</a>
+<a href="/deneme-sinavi/" style="text-decoration:none; display:inline-block;">
+    <div style="background:#c0392b;; color:white; border-radius:10px; width:150px; height:130px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7rem; box-shadow:0 6px 20px #d05345;; transition: transform 0.15s, box-shadow 0.15s; cursor:pointer;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 32px #c0392b;'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px #c0392b;'">
+        <img src="{% static 'images/icons/sinavi.svg' %}" width="48" height="48" style="filter: brightness(0) invert(1);">
+        <span style="font-size:1.1rem; font-weight:600; text-align:center; font-style:italic;">seviye belirleme testi</span>
     </div>
 </a>
 
