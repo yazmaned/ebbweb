@@ -36,7 +36,7 @@
     }
     .explorer-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
         gap: 1.2rem;
     }
     .explorer-item {
@@ -56,13 +56,35 @@
     .explorer-item:hover { background: rgba(61,127,214,0.08); }
     .explorer-item img { width: 56px; height: 56px; margin-bottom: 0.4rem; }
     .explorer-item .item-name {
+        position: relative;
         font-size: 0.78rem;
         line-height: 1.3;
         word-break: break-word;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+    .explorer-item .item-name.is-truncated:hover::after {
+        content: attr(data-full);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 6px;
+        background: rgba(26,26,26,0.92);
+        color: white;
+        padding: 0.35rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        white-space: normal;
+        width: max-content;
+        max-width: 220px;
+        -webkit-line-clamp: unset;
+        z-index: 20;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     .explorer-empty { color:#999; text-align:center; padding:3rem 0; grid-column:1/-1; }
     .search-result-path { font-size:0.68rem; color:#3d7fd6; margin-top:0.15rem; }
@@ -116,7 +138,7 @@
             {% for folder in subfolders %}
             <a class="explorer-item" data-name="{{ folder.name|lower }}" href="?category={{ folder.pk }}">
                 <img src="{% static 'images/icons/explorer-folder.png' %}">
-                <div class="item-name">{{ folder.name }}</div>
+                <div class="item-name" data-full="{{ folder.name }}">{{ folder.name }}</div>
             </a>
             {% endfor %}
 
@@ -124,17 +146,17 @@
                 {% if file.material_type == 'pdf' %}
                 <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/view/{{ file.pk }}/', '_blank')">
                     <img src="{% static 'images/icons/pdf.png' %}">
-                    <div class="item-name">{{ file.title }}</div>
+                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
                 </button>
                 {% elif file.material_type == 'image' %}
                 <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/image/{{ file.pk }}/', '_blank')">
                     <img src="{% static 'images/icons/img.png' %}">
-                    <div class="item-name">{{ file.title }}</div>
+                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
                 </button>
                 {% else %}
                 <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/video/{{ file.pk }}/', '_blank')">
                     <img src="{% static 'images/icons/movie.png' %}">
-                    <div class="item-name">{{ file.title }}</div>
+                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
                 </button>
                 {% endif %}
             {% endfor %}
@@ -150,6 +172,20 @@
     const searchInput = document.getElementById('explorer-search');
     const grid = document.getElementById('explorer-grid');
     const infoEl = document.getElementById('explorer-search-info');
+
+    // --- Mark item-names that are actually clipped by the 3-line clamp,
+    //     so the hover tooltip only shows up when there's really more to see ---
+    function markTruncated(scope) {
+        scope.querySelectorAll('.item-name').forEach(el => {
+            if (el.scrollHeight > el.clientHeight + 1) {
+                el.classList.add('is-truncated');
+            } else {
+                el.classList.remove('is-truncated');
+            }
+        });
+    }
+    markTruncated(document);
+    window.addEventListener('resize', () => markTruncated(document));
 
     // --- Instant filter of what's currently on screen ---
     searchInput.addEventListener('input', () => {
@@ -203,7 +239,7 @@
 
             card.innerHTML = `
                 <img src="${iconSrc}">
-                <div class="item-name">${result.name}</div>
+                <div class="item-name" data-full="${result.name}">${result.name}</div>
                 <div class="search-result-path">${result.path}</div>
             `;
 
@@ -219,6 +255,8 @@
 
             grid.appendChild(card);
         }
+
+        markTruncated(grid);
     });
 </script>
 {% endblock %}
