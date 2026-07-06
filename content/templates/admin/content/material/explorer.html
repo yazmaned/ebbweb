@@ -11,7 +11,7 @@
 
     .search-result-path { font-size:0.68rem; color:#671789; margin-top:0.15rem; }
 
-    .toolbar { display:flex; gap:0.6rem; margin-bottom:1rem; flex-wrap:wrap; }
+    .toolbar { display:flex; gap:0.6rem; margin-bottom:1rem; flex-wrap:wrap; align-items:center; }
     .toolbar button {
         background: rgba(220,222,225,0.6);
         border: 0.5px solid rgba(0,0,0,0.1);
@@ -22,6 +22,7 @@
     }
     .toolbar button:hover { background: rgba(220,222,225,0.9); }
     .toolbar button.primary { background:#671789; color:white; border:none; }
+    .selection-info { font-size:0.8rem; color:#671789; }
 
     .drop-hint {
         border: 2px dashed rgba(103,23,137,0.35);
@@ -51,9 +52,22 @@
         cursor: pointer;
         position: relative;
         transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+        user-select: none;
     }
     .explorer-card:hover { background: rgba(220,222,225,0.75); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
     .explorer-card.drag-target { outline: 2px solid #671789; background: rgba(103,23,137,0.12); }
+    .explorer-card.selected { outline: 2px solid #671789; background: rgba(103,23,137,0.18); }
+    .explorer-card.reorder-left::before,
+    .explorer-card.reorder-right::after {
+        content: "";
+        position: absolute;
+        top: 4px; bottom: 4px;
+        width: 3px;
+        background: #671789;
+        border-radius: 2px;
+    }
+    .explorer-card.reorder-left::before { left: -6px; }
+    .explorer-card.reorder-right::after { right: -6px; }
     .explorer-card img { width:40px; height:40px; margin-bottom:0.5rem; }
     .explorer-card .name { font-size:0.82rem; color:#1a1a1a; word-break:break-word; }
     .explorer-card .meta { font-size:0.7rem; color:#999; margin-top:0.2rem; }
@@ -94,11 +108,14 @@
     <input type="text" id="search-input" placeholder="Ara... (Enter: tüm kütüphanede ara)"
         style="flex:1; min-width:200px; padding:0.5rem 1rem; border-radius:999px; border:0.5px solid rgba(0,0,0,0.15); font-size:0.85rem;">
     <input type="file" id="file-input" multiple accept=".pdf,.png,.jpg,.jpeg" style="display:none;">
+    <span class="selection-info" id="selection-info" style="display:none;"></span>
 </div>
 
 <div id="search-results-info" style="display:none; margin-bottom:0.6rem; color:#671789; font-size:0.85rem;"></div>
 
-    <div class="drop-hint" id="drop-hint">Dosyaları buraya sürükleyip bırakabilirsiniz</div>
+    <div class="drop-hint" id="drop-hint">
+        Dosyaları buraya sürükleyip bırakabilirsiniz · Ctrl/Cmd+tık: çoklu seçim · Shift+tık: aralık seçimi
+    </div>
 
     <div id="explorer-grid" class="explorer-grid"
          data-current-category-id="{% if current_category %}{{ current_category.pk }}{% else %}{% endif %}">
@@ -152,6 +169,23 @@
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const grid = document.getElementById('explorer-grid');
     const currentCategoryId = grid.dataset.currentCategoryId || '';
+    const selectionInfo = document.getElementById('selection-info');
+
+    let selected = new Set();
+
+    function cardKey(card) { return card.dataset.itemType + ':' + card.dataset.itemId; }
+
+    function updateSelectionVisuals() {
+        document.querySelectorAll('.explorer-card').forEach(c => {
+            c.classList.toggle('selected', selected.has(cardKey(c)));
+        });
+        if (selected.size > 1) {
+            selectionInfo.textContent = `${selected.size} öğe seçildi`;
+            selectionInfo.style.display = 'inline';
+        } else {
+            selectionInfo.style.display = 'none';
+        }
+    }
 
     function post(url, data) {
         const formData = new FormData();
@@ -165,15 +199,59 @@
         window.location.href = window.location.pathname + params;
     }
 
-    // --- Breadcrumb navigation ---
+    async function handleReorder(draggedItems, targetCard, insertBefore) {
+        const itemType = targetCard.dataset.itemType;
+        const draggedIds = draggedItems.filter(d => d.type === itemType).map(d => String(d.id));
+        if (draggedIds.length === 0) return;
+
+        const allCardsOfType = Array.from(document.querySelectorAll(`.explorer-card[data-item-type="${itemType}"]`));
+        let orderedIds = allCardsOfType.map(c => c.dataset.itemId).filter(id => !draggedIds.includes(id));
+
+        const targetId = targetCard.dataset.itemId;
+        const targetIndex = orderedIds.indexOf(targetId);
+        const insertAt = insertBefore ? targetIndex : targetIndex + 1;
+        orderedIds.splice(insertAt, 0, ...draggedIds);
+
+        const result = await post('reorder/', {
+            item_type: itemType,
+            ordered_ids: JSON.stringify(orderedIds),
+        });
+        if (result.ok) location.reload();
+        else alert(result.error || 'Sıralama güncellenemedi.');
+    }
+
     document.querySelectorAll('.breadcrumb-item').forEach(el => {
         el.addEventListener('click', () => navigateTo(el.dataset.categoryId));
     });
 
-    // --- Card click to open / navigate ---
     document.querySelectorAll('.explorer-card').forEach(card => {
         card.addEventListener('click', (e) => {
             if (e.target.classList.contains('rename-btn') || e.target.classList.contains('delete-btn')) return;
+
+            if (e.ctrlKey || e.metaKey) {
+                const key = cardKey(card);
+                if (selected.has(key)) selected.delete(key); else selected.add(key);
+                updateSelectionVisuals();
+                return;
+            }
+
+            if (e.shiftKey && selected.size > 0) {
+                const cards = Array.from(document.querySelectorAll('.explorer-card'));
+                const lastKey = [...selected][selected.size - 1];
+                const lastCard = cards.find(c => cardKey(c) === lastKey);
+                if (lastCard) {
+                    const start = cards.indexOf(lastCard);
+                    const end = cards.indexOf(card);
+                    const [from, to] = start < end ? [start, end] : [end, start];
+                    for (let i = from; i <= to; i++) selected.add(cardKey(cards[i]));
+                    updateSelectionVisuals();
+                }
+                return;
+            }
+
+            selected.clear();
+            updateSelectionVisuals();
+
             const type = card.dataset.itemType;
             if (type === 'category') {
                 navigateTo(card.dataset.itemId);
@@ -183,33 +261,78 @@
             }
         });
 
-        // --- Drag start ---
         card.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', JSON.stringify({
-                type: card.dataset.itemType,
-                id: card.dataset.itemId,
-            }));
+            const key = cardKey(card);
+            let itemsToDrag;
+            if (selected.has(key) && selected.size > 1) {
+                itemsToDrag = [...selected].map(k => {
+                    const [type, id] = k.split(':');
+                    return { type, id };
+                });
+            } else {
+                itemsToDrag = [{ type: card.dataset.itemType, id: card.dataset.itemId }];
+                selected = new Set([key]);
+                updateSelectionVisuals();
+            }
+            e.dataTransfer.setData('text/plain', JSON.stringify(itemsToDrag));
         });
 
-        // --- Drop target (only folders accept drops) ---
         if (card.dataset.itemType === 'category') {
-            card.addEventListener('dragover', (e) => { e.preventDefault(); card.classList.add('drag-target'); });
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const rect = card.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
+                card.classList.remove('drag-target', 'reorder-left', 'reorder-right');
+                if (offsetX < rect.width * 0.25) {
+                    card.classList.add('reorder-left');
+                } else if (offsetX > rect.width * 0.75) {
+                    card.classList.add('reorder-right');
+                } else {
+                    card.classList.add('drag-target');
+                }
+            });
+            card.addEventListener('dragleave', () => {
+                card.classList.remove('drag-target', 'reorder-left', 'reorder-right');
+            });
+            card.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                const rect = card.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
+                const isLeftEdge = offsetX < rect.width * 0.25;
+                const isRightEdge = offsetX > rect.width * 0.75;
+                card.classList.remove('drag-target', 'reorder-left', 'reorder-right');
+
+                const dragged = JSON.parse(e.dataTransfer.getData('text/plain'));
+
+                if (isLeftEdge || isRightEdge) {
+                    await handleReorder(dragged, card, isLeftEdge);
+                } else {
+                    const result = await post('move-bulk/', {
+                        items: JSON.stringify(dragged),
+                        target_category_id: card.dataset.itemId,
+                    });
+                    if (result.ok) location.reload();
+                    else alert(result.error || 'Taşıma başarısız.');
+                }
+            });
+        }
+
+        if (card.dataset.itemType === 'material') {
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                card.classList.add('drag-target');
+            });
             card.addEventListener('dragleave', () => card.classList.remove('drag-target'));
             card.addEventListener('drop', async (e) => {
                 e.preventDefault();
                 card.classList.remove('drag-target');
+                const rect = card.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
                 const dragged = JSON.parse(e.dataTransfer.getData('text/plain'));
-                const result = await post('move/', {
-                    item_type: dragged.type,
-                    item_id: dragged.id,
-                    target_category_id: card.dataset.itemId,
-                });
-                if (result.ok) location.reload();
-                else alert(result.error || 'Taşıma başarısız.');
+                await handleReorder(dragged, card, offsetX < rect.width * 0.5);
             });
         }
 
-        // --- Rename ---
         const renameBtn = card.querySelector('.rename-btn');
         if (renameBtn) {
             renameBtn.addEventListener('click', async (e) => {
@@ -226,7 +349,6 @@
             });
         }
 
-        // --- Delete ---
         const deleteBtn = card.querySelector('.delete-btn');
         if (deleteBtn) {
             deleteBtn.addEventListener('click', async (e) => {
@@ -243,7 +365,6 @@
         }
     });
 
-    // --- Root drop zone (moving something back to the top level / current folder root) ---
     const dropHint = document.getElementById('drop-hint');
     dropHint.addEventListener('dragover', (e) => { e.preventDefault(); dropHint.classList.add('drag-over'); });
     dropHint.addEventListener('dragleave', () => dropHint.classList.remove('drag-over'));
@@ -251,19 +372,16 @@
         e.preventDefault();
         dropHint.classList.remove('drag-over');
 
-        // Real OS files dragged in (from Finder) -> quick upload.
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             await uploadFiles(e.dataTransfer.files);
             return;
         }
 
-        // An internal card dragged here -> move to current folder level.
         const raw = e.dataTransfer.getData('text/plain');
         if (raw) {
             const dragged = JSON.parse(raw);
-            const result = await post('move/', {
-                item_type: dragged.type,
-                item_id: dragged.id,
+            const result = await post('move-bulk/', {
+                items: JSON.stringify(dragged),
                 target_category_id: currentCategoryId,
             });
             if (result.ok) location.reload();
@@ -271,7 +389,6 @@
         }
     });
 
-    // --- New folder ---
     document.getElementById('new-folder-btn').addEventListener('click', async () => {
         const name = prompt('Yeni klasör adı:');
         if (!name) return;
@@ -279,7 +396,7 @@
         if (result.ok) location.reload();
         else alert(result.error || 'Klasör oluşturulamadı.');
     });
-        // --- Add Vimeo ---
+
     document.getElementById('add-vimeo-btn').addEventListener('click', async () => {
         const title = prompt('Video başlığı:');
         if (!title) return;
@@ -295,7 +412,6 @@
         else alert(result.error || 'Vimeo eklenemedi.');
     });
 
-    // --- Upload ---
     const fileInput = document.getElementById('file-input');
     document.getElementById('upload-btn').addEventListener('click', () => fileInput.click());
     fileInput.addEventListener('change', () => {
@@ -319,67 +435,66 @@
         }
         location.reload();
     }
-    // --- Live filter of what's currently on screen ---
-const searchInput = document.getElementById('search-input');
 
-searchInput.addEventListener('input', () => {
-    const term = searchInput.value.trim().toLowerCase();
-    if (!term) {
-        document.querySelectorAll('#explorer-grid .explorer-card').forEach(c => c.style.display = '');
-        return;
-    }
-    document.querySelectorAll('#explorer-grid .explorer-card').forEach(card => {
-        const name = (card.dataset.name || '').toLowerCase();
-        card.style.display = name.includes(term) ? '' : 'none';
-    });
-});
+    const searchInput = document.getElementById('search-input');
 
-// --- Full-library search on Enter ---
-searchInput.addEventListener('keydown', async (e) => {
-    if (e.key !== 'Enter') return;
-    const term = searchInput.value.trim();
-    if (!term) return;
-
-    const infoEl = document.getElementById('search-results-info');
-    const response = await fetch(`search/?q=${encodeURIComponent(term)}`);
-    const data = await response.json();
-
-    if (data.results.length === 0) {
-        infoEl.textContent = `"${term}" için sonuç bulunamadı.`;
-        infoEl.style.display = 'block';
-        grid.innerHTML = '';
-        return;
-    }
-
-    infoEl.textContent = `"${term}" için ${data.results.length} sonuç bulundu (tüm kütüphanede):`;
-    infoEl.style.display = 'block';
-
-    grid.innerHTML = '';
-    for (const result of data.results) {
-        const card = document.createElement('div');
-        card.className = 'explorer-card';
-        card.style.cursor = 'pointer';
-
-        const iconSrc = result.type === 'category'
-            ? "{% static 'images/icons/book-stack.svg' %}"
-            : (result.material_type === 'pdf'
-                ? "{% static 'images/icons/pdf.png' %}"
-                : (result.material_type === 'image'
-                    ? "{% static 'images/icons/img.png' %}"
-                    : "{% static 'images/icons/movie.png' %}"));
-
-        card.innerHTML = `
-            <img src="${iconSrc}">
-            <div class="name">${result.name}</div>
-            <div class="search-result-path">${result.path}</div>
-        `;
-        card.addEventListener('click', () => {
-            const params = result.navigate_to ? `?category=${result.navigate_to}` : '';
-            window.location.href = window.location.pathname + params;
+    searchInput.addEventListener('input', () => {
+        const term = searchInput.value.trim().toLowerCase();
+        if (!term) {
+            document.querySelectorAll('#explorer-grid .explorer-card').forEach(c => c.style.display = '');
+            return;
+        }
+        document.querySelectorAll('#explorer-grid .explorer-card').forEach(card => {
+            const name = (card.dataset.name || '').toLowerCase();
+            card.style.display = name.includes(term) ? '' : 'none';
         });
-        grid.appendChild(card);
-    }
-});
+    });
+
+    searchInput.addEventListener('keydown', async (e) => {
+        if (e.key !== 'Enter') return;
+        const term = searchInput.value.trim();
+        if (!term) return;
+
+        const infoEl = document.getElementById('search-results-info');
+        const response = await fetch(`search/?q=${encodeURIComponent(term)}`);
+        const data = await response.json();
+
+        if (data.results.length === 0) {
+            infoEl.textContent = `"${term}" için sonuç bulunamadı.`;
+            infoEl.style.display = 'block';
+            grid.innerHTML = '';
+            return;
+        }
+
+        infoEl.textContent = `"${term}" için ${data.results.length} sonuç bulundu (tüm kütüphanede):`;
+        infoEl.style.display = 'block';
+
+        grid.innerHTML = '';
+        for (const result of data.results) {
+            const card = document.createElement('div');
+            card.className = 'explorer-card';
+            card.style.cursor = 'pointer';
+
+            const iconSrc = result.type === 'category'
+                ? "{% static 'images/icons/book-stack.svg' %}"
+                : (result.material_type === 'pdf'
+                    ? "{% static 'images/icons/pdf.png' %}"
+                    : (result.material_type === 'image'
+                        ? "{% static 'images/icons/img.png' %}"
+                        : "{% static 'images/icons/movie.png' %}"));
+
+            card.innerHTML = `
+                <img src="${iconSrc}">
+                <div class="name">${result.name}</div>
+                <div class="search-result-path">${result.path}</div>
+            `;
+            card.addEventListener('click', () => {
+                const params = result.navigate_to ? `?category=${result.navigate_to}` : '';
+                window.location.href = window.location.pathname + params;
+            });
+            grid.appendChild(card);
+        }
+    });
 })();
 </script>
 {% endblock %}

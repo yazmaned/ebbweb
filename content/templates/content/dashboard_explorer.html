@@ -1,262 +1,518 @@
-{% extends 'base.html' %}
+{% extends "admin/base_site.html" %}
 {% load static %}
-
-{% block title %}Kütüphane Gezgini | BD{% endblock %}
 
 {% block content %}
 <style>
-    .explorer-window {
-        max-width: 900px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-        border: 1px solid rgba(0,0,0,0.08);
-    }
+    .explorer-wrap { font-family: 'inter', Arial, sans-serif; }
+    .breadcrumb-row { display:flex; align-items:center; gap:0.4rem; margin-bottom:1rem; font-size:0.95rem; flex-wrap:wrap; }
+    .breadcrumb-item { color:#671789; cursor:pointer; text-decoration:none; }
+    .breadcrumb-item:hover { text-decoration:underline; }
+    .breadcrumb-sep { color:#aaa; }
 
-    .explorer-pathbar {
-        background: #f5f5f5;
-        padding: 0.7rem 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
+    .search-result-path { font-size:0.68rem; color:#671789; margin-top:0.15rem; }
+
+    .toolbar { display:flex; gap:0.6rem; margin-bottom:1rem; flex-wrap:wrap; align-items:center; }
+    .toolbar button {
+        background: rgba(220,222,225,0.6);
+        border: 0.5px solid rgba(0,0,0,0.1);
+        border-radius: 999px;
+        padding: 0.5rem 1.1rem;
         font-size: 0.85rem;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-        flex-wrap: wrap;
+        cursor: pointer;
     }
-    .explorer-path-item { color: #3d7fd6; cursor: pointer; text-decoration: none; }
-    .explorer-path-item:hover { text-decoration: underline; }
-    .explorer-path-sep { color: #aaa; }
+    .toolbar button:hover { background: rgba(220,222,225,0.9); }
+    .toolbar button.primary { background:#671789; color:white; border:none; }
+    .selection-info { font-size:0.8rem; color:#671789; }
 
-    .explorer-body {
-        background: white;
-        padding: 1.5rem;
-        min-height: 380px;
+    .drop-hint {
+        border: 2px dashed rgba(103,23,137,0.35);
+        border-radius: 12px;
+        padding: 0.8rem;
+        text-align: center;
+        color: #888;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
     }
+    .drop-hint.drag-over { background: rgba(103,23,137,0.08); border-color: #671789; color:#671789; }
+
     .explorer-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
     }
-    .explorer-item {
+    .explorer-card {
+        background: rgba(220,222,225,0.5);
+        backdrop-filter: saturate(150%) blur(28px);
+        -webkit-backdrop-filter: saturate(150%) blur(28px);
+        border: 0.5px solid rgba(0,0,0,0.08);
+        border-radius: 10px;
+        padding: 1rem 0.6rem;
         text-align: center;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
         cursor: pointer;
-        text-decoration: none;
-        color: #333;
-        padding: 0.6rem 0.3rem;
-        border-radius: 8px;
-        transition: background 0.1s;
-        display: block;
-        border: none;
-        background: none;
-        width: 100%;
-        font-family: inherit;
-    }
-    .explorer-item:hover { background: rgba(61,127,214,0.08); }
-    .explorer-item img { width: 56px; height: 56px; margin-bottom: 0.4rem; }
-    .explorer-item .item-name {
         position: relative;
-        font-size: 0.78rem;
-        line-height: 1.3;
-        word-break: break-word;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+        user-select: none;
     }
-    .explorer-item .item-name.is-truncated:hover::after {
-        content: attr(data-full);
+    .explorer-card:hover { background: rgba(220,222,225,0.75); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .explorer-card.drag-target { outline: 2px solid #671789; background: rgba(103,23,137,0.12); }
+    .explorer-card.selected { outline: 2px solid #671789; background: rgba(103,23,137,0.18); }
+    .explorer-card.reorder-left::before,
+    .explorer-card.reorder-right::after {
+        content: "";
         position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-bottom: 6px;
-        background: rgba(26,26,26,0.92);
-        color: white;
-        padding: 0.35rem 0.6rem;
-        border-radius: 6px;
-        font-size: 0.75rem;
-        line-height: 1.4;
-        white-space: normal;
-        width: max-content;
-        max-width: 220px;
-        -webkit-line-clamp: unset;
-        z-index: 20;
-        pointer-events: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        top: 4px; bottom: 4px;
+        width: 3px;
+        background: #671789;
+        border-radius: 2px;
     }
-    .explorer-empty { color:#999; text-align:center; padding:3rem 0; grid-column:1/-1; }
-    .search-result-path { font-size:0.68rem; color:#3d7fd6; margin-top:0.15rem; }
+    .explorer-card.reorder-left::before { left: -6px; }
+    .explorer-card.reorder-right::after { right: -6px; }
+    .explorer-card img { width:40px; height:40px; margin-bottom:0.5rem; }
+    .explorer-card .name { font-size:0.82rem; color:#1a1a1a; word-break:break-word; }
+    .explorer-card .meta { font-size:0.7rem; color:#999; margin-top:0.2rem; }
 
-    .view-toggle-link {
-        display: block;
-        text-align: center;
-        margin-top: 1rem;
-        font-size: 0.85rem;
-        color: #888;
-        text-decoration: none;
+    .card-actions {
+        position: absolute; top:4px; right:4px;
+        display:none; gap:0.2rem;
     }
-    .view-toggle-link:hover { text-decoration: underline; }
+    .explorer-card:hover .card-actions { display:flex; }
+    .card-actions span {
+        background: rgba(255,255,255,0.85);
+        border-radius: 50%;
+        width: 20px; height:20px;
+        display:flex; align-items:center; justify-content:center;
+        font-size: 0.7rem;
+        cursor: pointer;
+    }
+    .card-actions span:hover { background: white; }
 
-    .explorer-search-row {
-        padding: 0.8rem 1rem 0;
-    }
-    .explorer-search-row input {
-        width: 100%;
-        padding: 0.5rem 1rem;
-        border-radius: 999px;
-        border: 1px solid rgba(0,0,0,0.15);
-        font-size: 0.85rem;
-    }
-    .explorer-search-info {
-        padding: 0 1rem;
-        font-size: 0.8rem;
-        color: #3d7fd6;
-        display: none;
-    }
+    .empty-msg { color:#999; text-align:center; padding:2rem; }
 </style>
 
-<a href="/dashboard/" class="view-toggle-link">← Klasik liste görünümüne dön</a><br>
+<div class="explorer-wrap">
+    <h1>Materyal Gezgini</h1>
 
-<div class="explorer-window">
-    <div class="explorer-search-row mac-search-wrap">
-
-    <input type="text" id="explorer-search" placeholder="Ara...">
-</div>
-
-    <div class="explorer-pathbar">
-        <a class="explorer-path-item" href="?">Kütüphane</a>
+    <div class="breadcrumb-row">
+        <a class="breadcrumb-item" data-category-id="">Kütüphane</a>
         {% for crumb in breadcrumbs %}
-            <span class="explorer-path-sep">›</span>
-            <a class="explorer-path-item" href="?category={{ crumb.pk }}">{{ crumb.name }}</a>
+            <span class="breadcrumb-sep">/</span>
+            <a class="breadcrumb-item" data-category-id="{{ crumb.pk }}">{{ crumb.name }}</a>
         {% endfor %}
     </div>
 
-    <div class="explorer-body">
-        <div class="explorer-grid" id="explorer-grid">
-            {% for folder in subfolders %}
-            <a class="explorer-item" data-name="{{ folder.name|lower }}" href="?category={{ folder.pk }}">
-                <img src="{% static 'images/icons/explorer-folder.png' %}">
-                <div class="item-name" data-full="{{ folder.name }}">{{ folder.name }}</div>
-            </a>
-            {% endfor %}
+    <div class="toolbar">
+    <button id="new-folder-btn">+ Yeni Klasör</button>
+    <button id="upload-btn" class="primary">+ Dosya Yükle (PDF/Görsel)</button>
+    <button id="add-vimeo-btn">+ Vimeo Ekle</button>
+    <input type="text" id="search-input" placeholder="Ara... (Enter: tüm kütüphanede ara)"
+        style="flex:1; min-width:200px; padding:0.5rem 1rem; border-radius:999px; border:0.5px solid rgba(0,0,0,0.15); font-size:0.85rem;">
+    <input type="file" id="file-input" multiple accept=".pdf,.png,.jpg,.jpeg" style="display:none;">
+    <span class="selection-info" id="selection-info" style="display:none;"></span>
+</div>
 
-            {% for file in files %}
-                {% if file.material_type == 'pdf' %}
-                <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/view/{{ file.pk }}/', '_blank')">
-                    <img src="{% static 'images/icons/pdf.png' %}">
-                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
-                </button>
-                {% elif file.material_type == 'image' %}
-                <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/image/{{ file.pk }}/', '_blank')">
-                    <img src="{% static 'images/icons/img.png' %}">
-                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
-                </button>
-                {% else %}
-                <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/video/{{ file.pk }}/', '_blank')">
-                    <img src="{% static 'images/icons/movie.png' %}">
-                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
-                </button>
-                {% endif %}
-            {% endfor %}
+<div id="search-results-info" style="display:none; margin-bottom:0.6rem; color:#671789; font-size:0.85rem;"></div>
 
-            {% if not subfolders and not files %}
-            <div class="explorer-empty">Bu klasör boş.</div>
-            {% endif %}
+    <div class="drop-hint" id="drop-hint">
+        Dosyaları buraya sürükleyip bırakabilirsiniz · Ctrl/Cmd+tık: çoklu seçim · Shift+tık: aralık seçimi
+    </div>
+
+    <div id="explorer-grid" class="explorer-grid"
+         data-current-category-id="{% if current_category %}{{ current_category.pk }}{% else %}{% endif %}">
+        {% for folder in subfolders %}
+        <div class="explorer-card" draggable="true"
+             data-item-type="category" data-item-id="{{ folder.pk }}"
+             data-name="{{ folder.name }}">
+            <div class="card-actions">
+                <span class="rename-btn" title="Yeniden adlandır">✎</span>
+                <span class="delete-btn" title="Sil">✕</span>
+            </div>
+            <img src="{% static 'images/icons/book-stack.svg' %}">
+            <div class="name">{{ folder.name }}</div>
+            <div class="meta">{{ folder.children.count }} klasör · {{ folder.materials.count }} dosya</div>
         </div>
+        {% endfor %}
+
+        {% for file in files %}
+        <div class="explorer-card" draggable="true"
+             data-item-type="material" data-item-id="{{ file.pk }}"
+             data-name="{{ file.title }}" data-open-url="
+                {% if file.material_type == 'pdf' %}/view/{{ file.pk }}/
+                {% elif file.material_type == 'image' %}/image/{{ file.pk }}/
+                {% else %}/video/{{ file.pk }}/{% endif %}">
+            <div class="card-actions">
+                <span class="rename-btn" title="Yeniden adlandır">✎</span>
+                <span class="delete-btn" title="Sil">✕</span>
+            </div>
+            {% if file.material_type == 'pdf' %}
+                <img src="{% static 'images/icons/pdf.png' %}">
+            {% elif file.material_type == 'image' %}
+                <img src="{% static 'images/icons/img.png' %}">
+            {% else %}
+                <img src="{% static 'images/icons/movie.png' %}">
+            {% endif %}
+            <div class="name">{{ file.title }}</div>
+            <div class="meta">{{ file.material_type|upper }}</div>
+        </div>
+        {% endfor %}
+
+        {% if not subfolders and not files %}
+        <div class="empty-msg" style="grid-column: 1/-1;">Bu klasör boş.</div>
+        {% endif %}
     </div>
 </div>
 
+{% csrf_token %}
+
 <script>
-    const searchInput = document.getElementById('explorer-search');
+(function() {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const grid = document.getElementById('explorer-grid');
-    const infoEl = document.getElementById('explorer-search-info');
+    const currentCategoryId = grid.dataset.currentCategoryId || '';
+    const selectionInfo = document.getElementById('selection-info');
 
-    // --- Mark item-names that are actually clipped by the 3-line clamp,
-    //     so the hover tooltip only shows up when there's really more to see ---
-    function markTruncated(scope) {
-        scope.querySelectorAll('.item-name').forEach(el => {
-            if (el.scrollHeight > el.clientHeight + 1) {
-                el.classList.add('is-truncated');
-            } else {
-                el.classList.remove('is-truncated');
-            }
+    // --- Multi-select state: Set of "type:id" strings ---
+    let selected = new Set();
+
+    function cardKey(card) { return card.dataset.itemType + ':' + card.dataset.itemId; }
+
+    function updateSelectionVisuals() {
+        document.querySelectorAll('.explorer-card').forEach(c => {
+            c.classList.toggle('selected', selected.has(cardKey(c)));
         });
-    }
-    markTruncated(document);
-    window.addEventListener('resize', () => markTruncated(document));
-
-    // --- Instant filter of what's currently on screen ---
-    searchInput.addEventListener('input', () => {
-        const term = searchInput.value.trim().toLowerCase();
-        if (!term) {
-            document.querySelectorAll('#explorer-grid .explorer-item').forEach(el => el.style.display = '');
-            infoEl.style.display = 'none';
-            return;
+        if (selected.size > 1) {
+            selectionInfo.textContent = `${selected.size} öğe seçildi`;
+            selectionInfo.style.display = 'inline';
+        } else {
+            selectionInfo.style.display = 'none';
         }
-        document.querySelectorAll('#explorer-grid .explorer-item').forEach(el => {
-            const name = el.dataset.name || '';
-            el.style.display = name.includes(term) ? '' : 'none';
+    }
+
+    function post(url, data) {
+        const formData = new FormData();
+        for (const key in data) formData.append(key, data[key]);
+        return fetch(url, { method: 'POST', headers: { 'X-CSRFToken': csrftoken }, body: formData })
+            .then(r => r.json());
+    }
+
+    function navigateTo(categoryId) {
+        const params = categoryId ? `?category=${categoryId}` : '';
+        window.location.href = window.location.pathname + params;
+    }
+
+    // --- Reorder helper: recompute this folder's order for one item_type,
+    //     inserting the dragged id(s) before/after the drop target ---
+    async function handleReorder(draggedItems, targetCard, insertBefore) {
+        const itemType = targetCard.dataset.itemType;
+        const draggedIds = draggedItems.filter(d => d.type === itemType).map(d => String(d.id));
+        if (draggedIds.length === 0) return;
+
+        const allCardsOfType = Array.from(document.querySelectorAll(`.explorer-card[data-item-type="${itemType}"]`));
+        let orderedIds = allCardsOfType.map(c => c.dataset.itemId).filter(id => !draggedIds.includes(id));
+
+        const targetId = targetCard.dataset.itemId;
+        const targetIndex = orderedIds.indexOf(targetId);
+        const insertAt = insertBefore ? targetIndex : targetIndex + 1;
+        orderedIds.splice(insertAt, 0, ...draggedIds);
+
+        const result = await post('reorder/', {
+            item_type: itemType,
+            ordered_ids: JSON.stringify(orderedIds),
         });
+        if (result.ok) location.reload();
+        else alert(result.error || 'Sıralama güncellenemedi.');
+    }
+
+    // --- Breadcrumb navigation ---
+    document.querySelectorAll('.breadcrumb-item').forEach(el => {
+        el.addEventListener('click', () => navigateTo(el.dataset.categoryId));
     });
 
-    // --- Full-library search on Enter ---
-    searchInput.addEventListener('keydown', async (e) => {
-        if (e.key !== 'Enter') return;
-        const term = searchInput.value.trim();
-        if (!term) return;
+    // --- Card click (select / multi-select) / open / navigate ---
+    document.querySelectorAll('.explorer-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.classList.contains('rename-btn') || e.target.classList.contains('delete-btn')) return;
 
-        const response = await fetch(`/dashboard/search/?q=${encodeURIComponent(term)}`);
+            if (e.ctrlKey || e.metaKey) {
+                const key = cardKey(card);
+                if (selected.has(key)) selected.delete(key); else selected.add(key);
+                updateSelectionVisuals();
+                return;
+            }
+
+            if (e.shiftKey && selected.size > 0) {
+                const cards = Array.from(document.querySelectorAll('.explorer-card'));
+                const lastKey = [...selected][selected.size - 1];
+                const lastCard = cards.find(c => cardKey(c) === lastKey);
+                if (lastCard) {
+                    const start = cards.indexOf(lastCard);
+                    const end = cards.indexOf(card);
+                    const [from, to] = start < end ? [start, end] : [end, start];
+                    for (let i = from; i <= to; i++) selected.add(cardKey(cards[i]));
+                    updateSelectionVisuals();
+                }
+                return;
+            }
+
+            // Plain click: clear selection, open/navigate as before
+            selected.clear();
+            updateSelectionVisuals();
+
+            const type = card.dataset.itemType;
+            if (type === 'category') {
+                navigateTo(card.dataset.itemId);
+            } else {
+                const url = card.dataset.openUrl.trim();
+                if (url && url !== '#') window.open(url, '_blank');
+            }
+        });
+
+        // --- Drag start: drag the whole selection if this card is part of it,
+        //     otherwise just drag this one card (and select only it) ---
+        card.addEventListener('dragstart', (e) => {
+            const key = cardKey(card);
+            let itemsToDrag;
+            if (selected.has(key) && selected.size > 1) {
+                itemsToDrag = [...selected].map(k => {
+                    const [type, id] = k.split(':');
+                    return { type, id };
+                });
+            } else {
+                itemsToDrag = [{ type: card.dataset.itemType, id: card.dataset.itemId }];
+                selected = new Set([key]);
+                updateSelectionVisuals();
+            }
+            e.dataTransfer.setData('text/plain', JSON.stringify(itemsToDrag));
+        });
+
+        // --- Drop target: folders accept "move into" (center) or "reorder" (edges) ---
+        if (card.dataset.itemType === 'category') {
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const rect = card.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
+                card.classList.remove('drag-target', 'reorder-left', 'reorder-right');
+                if (offsetX < rect.width * 0.25) {
+                    card.classList.add('reorder-left');
+                } else if (offsetX > rect.width * 0.75) {
+                    card.classList.add('reorder-right');
+                } else {
+                    card.classList.add('drag-target');
+                }
+            });
+            card.addEventListener('dragleave', () => {
+                card.classList.remove('drag-target', 'reorder-left', 'reorder-right');
+            });
+            card.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                const rect = card.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
+                const isLeftEdge = offsetX < rect.width * 0.25;
+                const isRightEdge = offsetX > rect.width * 0.75;
+                card.classList.remove('drag-target', 'reorder-left', 'reorder-right');
+
+                const dragged = JSON.parse(e.dataTransfer.getData('text/plain'));
+
+                if (isLeftEdge || isRightEdge) {
+                    await handleReorder(dragged, card, isLeftEdge);
+                } else {
+                    const result = await post('move-bulk/', {
+                        items: JSON.stringify(dragged),
+                        target_category_id: card.dataset.itemId,
+                    });
+                    if (result.ok) location.reload();
+                    else alert(result.error || 'Taşıma başarısız.');
+                }
+            });
+        }
+
+        // --- Drop target: files can't contain anything, so any drop = reorder ---
+        if (card.dataset.itemType === 'material') {
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                card.classList.add('drag-target');
+            });
+            card.addEventListener('dragleave', () => card.classList.remove('drag-target'));
+            card.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                card.classList.remove('drag-target');
+                const rect = card.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
+                const dragged = JSON.parse(e.dataTransfer.getData('text/plain'));
+                await handleReorder(dragged, card, offsetX < rect.width * 0.5);
+            });
+        }
+
+        // --- Rename ---
+        const renameBtn = card.querySelector('.rename-btn');
+        if (renameBtn) {
+            renameBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                const newName = prompt('Yeni isim:', card.dataset.name);
+                if (!newName) return;
+                const result = await post('rename/', {
+                    item_type: card.dataset.itemType,
+                    item_id: card.dataset.itemId,
+                    new_name: newName,
+                });
+                if (result.ok) location.reload();
+                else alert(result.error || 'Yeniden adlandırma başarısız.');
+            });
+        }
+
+        // --- Delete ---
+        const deleteBtn = card.querySelector('.delete-btn');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                const label = card.dataset.itemType === 'category' ? 'klasör ve içindeki her şey' : 'dosya';
+                if (!confirm(`Bu ${label} silinsin mi? Bu işlem geri alınamaz.`)) return;
+                const result = await post('delete/', {
+                    item_type: card.dataset.itemType,
+                    item_id: card.dataset.itemId,
+                });
+                if (result.ok) location.reload();
+                else alert(result.error || 'Silme başarısız.');
+            });
+        }
+    });
+
+    // --- Root drop zone (moving something back to the top level / current folder root) ---
+    const dropHint = document.getElementById('drop-hint');
+    dropHint.addEventListener('dragover', (e) => { e.preventDefault(); dropHint.classList.add('drag-over'); });
+    dropHint.addEventListener('dragleave', () => dropHint.classList.remove('drag-over'));
+    dropHint.addEventListener('drop', async (e) => {
+        e.preventDefault();
+        dropHint.classList.remove('drag-over');
+
+        // Real OS files dragged in (from Finder) -> quick upload.
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            await uploadFiles(e.dataTransfer.files);
+            return;
+        }
+
+        // Internal card(s) dragged here -> move to current folder level.
+        const raw = e.dataTransfer.getData('text/plain');
+        if (raw) {
+            const dragged = JSON.parse(raw);
+            const result = await post('move-bulk/', {
+                items: JSON.stringify(dragged),
+                target_category_id: currentCategoryId,
+            });
+            if (result.ok) location.reload();
+            else alert(result.error || 'Taşıma başarısız.');
+        }
+    });
+
+    // --- New folder ---
+    document.getElementById('new-folder-btn').addEventListener('click', async () => {
+        const name = prompt('Yeni klasör adı:');
+        if (!name) return;
+        const result = await post('create-folder/', { name: name, parent_id: currentCategoryId });
+        if (result.ok) location.reload();
+        else alert(result.error || 'Klasör oluşturulamadı.');
+    });
+        // --- Add Vimeo ---
+    document.getElementById('add-vimeo-btn').addEventListener('click', async () => {
+        const title = prompt('Video başlığı:');
+        if (!title) return;
+        const url = prompt('Vimeo linki (örn. https://vimeo.com/123456789):');
+        if (!url) return;
+
+        const result = await post('add-vimeo/', {
+            title: title,
+            url: url,
+            category_id: currentCategoryId,
+        });
+        if (result.ok) location.reload();
+        else alert(result.error || 'Vimeo eklenemedi.');
+    });
+
+    // --- Upload ---
+    const fileInput = document.getElementById('file-input');
+    document.getElementById('upload-btn').addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) uploadFiles(fileInput.files);
+    });
+
+    async function uploadFiles(fileList) {
+        const formData = new FormData();
+        for (const f of fileList) formData.append('files', f);
+        formData.append('category_id', currentCategoryId);
+
+        const response = await fetch('upload/', {
+            method: 'POST',
+            headers: { 'X-CSRFToken': csrftoken },
+            body: formData,
+        });
         const data = await response.json();
 
-        if (data.results.length === 0) {
-            infoEl.textContent = `"${term}" için sonuç bulunamadı.`;
-            infoEl.style.display = 'block';
-            grid.innerHTML = '';
-            return;
+        if (data.rejected && data.rejected.length > 0) {
+            alert(`Şunlar desteklenmiyor (video vb.), normal ekleme formunu kullanın:\n${data.rejected.join('\n')}`);
         }
+        location.reload();
+    }
+    // --- Live filter of what's currently on screen ---
+const searchInput = document.getElementById('search-input');
 
-        infoEl.textContent = `"${term}" için ${data.results.length} sonuç bulundu (tüm kütüphanede):`;
-        infoEl.style.display = 'block';
-
-        grid.innerHTML = '';
-        for (const result of data.results) {
-            const card = document.createElement('div');
-            card.className = 'explorer-item';
-            card.style.cursor = 'pointer';
-
-            let iconSrc;
-            if (result.type === 'category') {
-                iconSrc = "{% static 'images/icons/explorer-folder.png' %}";
-            } else if (result.material_type === 'pdf') {
-                iconSrc = "{% static 'images/icons/pdf.png' %}";
-            } else if (result.material_type === 'image') {
-                iconSrc = "{% static 'images/icons/img.png' %}";
-            } else {
-                iconSrc = "{% static 'images/icons/movie.png' %}";
-            }
-
-            card.innerHTML = `
-                <img src="${iconSrc}">
-                <div class="item-name" data-full="${result.name}">${result.name}</div>
-                <div class="search-result-path">${result.path}</div>
-            `;
-
-            if (result.type === 'category') {
-                card.addEventListener('click', () => {
-                    window.location.href = `?category=${result.navigate_to}`;
-                });
-            } else {
-                card.addEventListener('click', () => {
-                    window.open(result.open_url, '_blank');
-                });
-            }
-
-            grid.appendChild(card);
-        }
-
-        markTruncated(grid);
+searchInput.addEventListener('input', () => {
+    const term = searchInput.value.trim().toLowerCase();
+    if (!term) {
+        document.querySelectorAll('#explorer-grid .explorer-card').forEach(c => c.style.display = '');
+        return;
+    }
+    document.querySelectorAll('#explorer-grid .explorer-card').forEach(card => {
+        const name = (card.dataset.name || '').toLowerCase();
+        card.style.display = name.includes(term) ? '' : 'none';
     });
+});
+
+// --- Full-library search on Enter ---
+searchInput.addEventListener('keydown', async (e) => {
+    if (e.key !== 'Enter') return;
+    const term = searchInput.value.trim();
+    if (!term) return;
+
+    const infoEl = document.getElementById('search-results-info');
+    const response = await fetch(`search/?q=${encodeURIComponent(term)}`);
+    const data = await response.json();
+
+    if (data.results.length === 0) {
+        infoEl.textContent = `"${term}" için sonuç bulunamadı.`;
+        infoEl.style.display = 'block';
+        grid.innerHTML = '';
+        return;
+    }
+
+    infoEl.textContent = `"${term}" için ${data.results.length} sonuç bulundu (tüm kütüphanede):`;
+    infoEl.style.display = 'block';
+
+    grid.innerHTML = '';
+    for (const result of data.results) {
+        const card = document.createElement('div');
+        card.className = 'explorer-card';
+        card.style.cursor = 'pointer';
+
+        const iconSrc = result.type === 'category'
+            ? "{% static 'images/icons/book-stack.svg' %}"
+            : (result.material_type === 'pdf'
+                ? "{% static 'images/icons/pdf.png' %}"
+                : (result.material_type === 'image'
+                    ? "{% static 'images/icons/img.png' %}"
+                    : "{% static 'images/icons/movie.png' %}"));
+
+        card.innerHTML = `
+            <img src="${iconSrc}">
+            <div class="name">${result.name}</div>
+            <div class="search-result-path">${result.path}</div>
+        `;
+        card.addEventListener('click', () => {
+            const params = result.navigate_to ? `?category=${result.navigate_to}` : '';
+            window.location.href = window.location.pathname + params;
+        });
+        grid.appendChild(card);
+    }
+});
+})();
 </script>
 {% endblock %}

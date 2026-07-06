@@ -6,6 +6,7 @@ from django.urls import path
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.core.files.base import ContentFile
+import json
 
 from .models import Material, Category, CarouselItem
 
@@ -43,6 +44,8 @@ class MaterialAdmin(admin.ModelAdmin):
             path('explorer/upload/', self.admin_site.admin_view(self.explorer_upload), name='content_material_explorer_upload'),
             path('explorer/add-vimeo/', self.admin_site.admin_view(self.explorer_add_vimeo), name='content_material_explorer_add_vimeo'),
             path('explorer/search/', self.admin_site.admin_view(self.explorer_search), name='content_material_explorer_search'),
+            path('explorer/move-bulk/', self.admin_site.admin_view(self.explorer_move_bulk), name='content_material_explorer_move_bulk'),
+            path('explorer/reorder/', self.admin_site.admin_view(self.explorer_reorder), name='content_material_explorer_reorder'),
         ]
         return custom_urls + super().get_urls()
 
@@ -71,6 +74,68 @@ class MaterialAdmin(admin.ModelAdmin):
             breadcrumbs=breadcrumbs,
         )
         return render(request, 'admin/content/material/explorer.html', context)
+    # ---------- AJAX: move multiple items at once (multi-select drag) ----------
+
+    def _explorer_move_one(self, item_type, item_id, target_category):
+        """Mirrors explorer_move's per-item logic, used by the bulk endpoint."""
+        if item_type == 'material':
+            material = get_object_or_404(Material, pk=item_id)
+            material.category = target_category
+            material.save()
+            return True, None
+        elif item_type == 'category':
+            category = get_object_or_404(Category, pk=item_id)
+            if target_category is not None:
+                if target_category.pk == category.pk:
+                    return False, 'A folder cannot be moved into itself.'
+                node = target_category
+                while node is not None:
+                    if node.pk == category.pk:
+                        return False, 'Cannot move a folder into its own subfolder.'
+                    node = node.parent
+            category.parent = target_category
+            category.save()
+            return True, None
+        return False, 'Unknown item type.'
+
+    def explorer_move_bulk(self, request):
+        target_id = request.POST.get('target_category_id')
+        target_category = None
+        if target_id and target_id not in ('null', ''):
+            target_category = get_object_or_404(Category, pk=target_id)
+
+        try:
+            items = json.loads(request.POST.get('items', '[]'))
+        except (ValueError, TypeError):
+            return JsonResponse({'ok': False, 'error': 'Invalid items payload.'}, status=400)
+
+        errors = []
+        for entry in items:
+            ok, error = self._explorer_move_one(entry.get('type'), entry.get('id'), target_category)
+            if not ok:
+                errors.append(error)
+
+        if errors:
+            return JsonResponse({'ok': False, 'error': '; '.join(errors)}, status=400)
+        return JsonResponse({'ok': True})
+
+    # ---------- AJAX: persist drag-to-reorder within the current folder ----------
+
+    def explorer_reorder(self, request):
+        item_type = request.POST.get('item_type')  # reordering never mixes folders and files
+        try:
+            ordered_ids = json.loads(request.POST.get('ordered_ids', '[]'))
+        except (ValueError, TypeError):
+            return JsonResponse({'ok': False, 'error': 'Invalid ordered_ids payload.'}, status=400)
+
+        model = {'material': Material, 'category': Category}.get(item_type)
+        if model is None:
+            return JsonResponse({'ok': False, 'error': 'Unknown item type.'}, status=400)
+
+        for index, item_id in enumerate(ordered_ids):
+            model.objects.filter(pk=item_id).update(order=index)
+
+        return JsonResponse({'ok': True})
 
     # ---------- AJAX: move (drag & drop) ----------
 
