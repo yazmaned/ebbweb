@@ -7,7 +7,7 @@ class HomeSitemap(Sitemap):
     priority = 1.0
 
     def items(self):
-        return ['home']
+        return ['home','about']
 
     def location(self, item):
         return reverse(item)
@@ -41,7 +41,6 @@ class SeoJournalSitemap(Sitemap):
 class StaticSitemap(Sitemap):
     pages = {
         'journal_archive': (0.6, 'weekly'),
-        'about': (0.5, 'monthly'),
         'score_calculator': (0.7, 'monthly'),
         'mini_quiz': (0.6, 'monthly'),
     }

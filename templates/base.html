@@ -70,7 +70,7 @@
             display: none;
             position: absolute;
             right: 0;
-            top: 110%;
+            top: calc(100% - 2px);
             background: rgba(44,62,80,0.82);
             backdrop-filter: saturate(180%) blur(24px);
             -webkit-backdrop-filter: saturate(180%) blur(24px);
@@ -94,6 +94,7 @@
         .dropdown-menu a:last-child { border-bottom: none; }
         .dropdown-menu a:hover { background: rgba(124,58,237,0.8); }
         .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu.open { display: block; }
 
         .container {
             flex: 1;
@@ -270,18 +271,16 @@
             <span class="welcome-text">Hoş Geldin, <strong>{{ user.username }}</strong></span>
             {% endif %}
 
-            <div class="dropdown">
-                <a href="#" style="display:flex; align-items:center;">
+           <div class="dropdown" id="menu-dropdown">
+                <a href="javascript:void(0)" id="menu-toggle" style="display:flex; align-items:center;">
                     <img src="{% static 'images/icons/menu.svg' %}" width="26" height="26">
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" id="menu-dropdown-list">
                     <a href="/home/">Ana Sayfa</a>
                     <a href="/about/">Hakkımızda</a>
                     <a href="/journal/">Blog Arşivi</a>
-                    <a href="/puan-hesaplama/">YDS-YÖKDİL | Puan Hesaplama</a>
                 </div>
             </div>
-
             {% if user.is_authenticated %}
                 <a href="/accounts/logout" style="display:flex; align-items:center;">
                     <img src="{% static 'images/icons/system-shut.svg' %}" width="26" height="26">
@@ -322,9 +321,13 @@
     {% if user.is_authenticated %}
     <div id="alert-container" style="position:fixed; bottom:2rem; right:2rem; z-index:9999; display:flex; flex-direction:column; gap:0.5rem; max-width:350px;"></div>
     <script>
+        document.getElementById('menu-toggle').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('menu-dropdown-list').classList.toggle('open');
+        });
         document.addEventListener('click', e => {
             if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
             }
         });
     </script>
