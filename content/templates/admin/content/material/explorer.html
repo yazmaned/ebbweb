@@ -114,7 +114,7 @@
 <div id="search-results-info" style="display:none; margin-bottom:0.6rem; color:#671789; font-size:0.85rem;"></div>
 
     <div class="drop-hint" id="drop-hint">
-        Dosyaları buraya sürükleyip bırakabilirsiniz · Ctrl/Cmd+tık: çoklu seçim · Shift+tık: aralık seçimi
+        Dosyaları buraya sürükleyip bırakabilirsiniz · Bir klasörü sürükleyip bırakırsanız, sadece klasör yapısı oluşturulur (dosyalar eklenmez) · Ctrl/Cmd+tık: çoklu seçim · Shift+tık: aralık seçimi
     </div>
 
     <div id="explorer-grid" class="explorer-grid"
@@ -218,6 +218,37 @@
         });
         if (result.ok) location.reload();
         else alert(result.error || 'Sıralama güncellenemedi.');
+    }
+
+    // --- Recursively read a dropped directory's structure (folders only, no files) ---
+    function readEntryTree(entry) {
+        return new Promise((resolve) => {
+            if (entry.isFile) {
+                resolve(null);
+            } else if (entry.isDirectory) {
+                const reader = entry.createReader();
+                let allEntries = [];
+                function readBatch() {
+                    reader.readEntries((batch) => {
+                        if (batch.length === 0) {
+                            Promise.all(allEntries.map(readEntryTree)).then((children) => {
+                                resolve({ name: entry.name, children: children.filter(Boolean) });
+                            });
+                        } else {
+                            allEntries = allEntries.concat(batch);
+                            readBatch(); // readEntries can require multiple calls to get everything
+                        }
+                    });
+                }
+                readBatch();
+            } else {
+                resolve(null);
+            }
+        });
+    }
+
+    function countFolders(node) {
+        return 1 + node.children.reduce((sum, c) => sum + countFolders(c), 0);
     }
 
     document.querySelectorAll('.breadcrumb-item').forEach(el => {
@@ -372,11 +403,36 @@
         e.preventDefault();
         dropHint.classList.remove('drag-over');
 
+        // --- Dragged folder(s) from Finder -> recreate folder structure only ---
+        const items = e.dataTransfer.items;
+        if (items && items.length > 0) {
+            const entries = [];
+            for (const item of items) {
+                const entry = item.webkitGetAsEntry && item.webkitGetAsEntry();
+                if (entry) entries.push(entry);
+            }
+            if (entries.some(en => en.isDirectory)) {
+                const trees = (await Promise.all(entries.map(readEntryTree))).filter(Boolean);
+                const totalFolders = trees.reduce((sum, t) => sum + countFolders(t), 0);
+                if (!confirm(`${totalFolders} klasör oluşturulacak. Dosyalar eklenmeyecek, sadece klasör yapısı. Devam edilsin mi?`)) return;
+
+                const result = await post('create-tree/', {
+                    parent_id: currentCategoryId,
+                    tree: JSON.stringify(trees),
+                });
+                if (result.ok) location.reload();
+                else alert(result.error || 'Klasör ağacı oluşturulamadı.');
+                return;
+            }
+        }
+
+        // Real OS files dragged in (from Finder) -> quick upload.
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             await uploadFiles(e.dataTransfer.files);
             return;
         }
 
+        // Internal card(s) dragged here -> move to current folder level.
         const raw = e.dataTransfer.getData('text/plain');
         if (raw) {
             const dragged = JSON.parse(raw);

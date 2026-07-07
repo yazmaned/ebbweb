@@ -33,6 +33,7 @@ class MaterialAdmin(admin.ModelAdmin):
     list_editable = ('order',)
     search_fields = ('title',)
     change_list_template = 'admin/content/material/change_list.html'
+    
 
     def get_urls(self):
         custom_urls = [
@@ -46,6 +47,8 @@ class MaterialAdmin(admin.ModelAdmin):
             path('explorer/search/', self.admin_site.admin_view(self.explorer_search), name='content_material_explorer_search'),
             path('explorer/move-bulk/', self.admin_site.admin_view(self.explorer_move_bulk), name='content_material_explorer_move_bulk'),
             path('explorer/reorder/', self.admin_site.admin_view(self.explorer_reorder), name='content_material_explorer_reorder'),
+            path('explorer/create-tree/', self.admin_site.admin_view(self.explorer_create_tree), name='content_material_explorer_create_tree'),
+            
         ]
         return custom_urls + super().get_urls()
 
@@ -173,6 +176,34 @@ class MaterialAdmin(admin.ModelAdmin):
             return JsonResponse({'ok': True})
 
         return JsonResponse({'ok': False, 'error': 'Unknown item type.'}, status=400)
+    
+        # ---------- AJAX: recreate a dragged folder's subfolder structure ----------
+    # Folders only — no files are ever uploaded here, materials get added by hand after.
+
+    def explorer_create_tree(self, request):
+        parent_id = request.POST.get('parent_id')
+        parent = None
+        if parent_id and parent_id not in ('null', ''):
+            parent = get_object_or_404(Category, pk=parent_id)
+
+        try:
+            tree = json.loads(request.POST.get('tree', '[]'))
+        except (ValueError, TypeError):
+            return JsonResponse({'ok': False, 'error': 'Invalid tree payload.'}, status=400)
+
+        def create_recursive(nodes, parent_category):
+            count = 0
+            for node in nodes:
+                name = (node.get('name') or '').strip()
+                if not name:
+                    continue
+                category, _ = Category.objects.get_or_create(name=name, parent=parent_category)
+                count += 1
+                count += create_recursive(node.get('children') or [], category)
+            return count
+
+        total_created = create_recursive(tree, parent)
+        return JsonResponse({'ok': True, 'created': total_created})
 
     # ---------- AJAX: create folder ----------
 
