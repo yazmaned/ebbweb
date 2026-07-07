@@ -18,6 +18,7 @@ urlpatterns = [
     path('puan-hesaplama/', views.score_calculator, name='score_calculator'),
     path('yakinda/', views.construction, name='construction'),
     path('dashboard/explorer/', views.dashboard_explorer, name='dashboard_explorer'),
+    path('dashboard/explorer/data/', views.dashboard_explorer_data, name='dashboard_explorer_data'),
     path('dashboard/search/', views.dashboard_search, name='dashboard_search'),
 
 ]

@@ -4,15 +4,22 @@
 {% block title %}{{ material.title }}{% endblock %}
 
 {% block content %}
-<div id="controls" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+<div id="controls" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
     <button id="close-btn" class="btn"><img src="{% static 'images/icons/incorrect.svg' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></button>
     <h2>{{ material.title }}</h2>
-    <div style="margin-left:auto; display:flex; align-items:center; gap:0.5rem;">
+    <div style="margin-left:auto; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
         <button class="btn" id="prev">←</button>
         <span id="page-info" style="color:#888; font-size:0.85rem;"></span>
         <button class="btn" id="next">→</button>
+
+        <span style="width:1px; height:20px; background:#ddd; display:inline-block;"></span>
+
+        <button class="btn" id="zoom-out">－</button>
+        <span id="zoom-level" style="color:#888; font-size:0.85rem;">100%</span>
+        <button class="btn" id="zoom-in">＋</button>
+
         <button class="btn" id="fullscreen">⛶ Tam Ekran</button>
-        <a href="/file/{{ material.pk }}/" target="_blank" class="btn"><img src="{% static 'images/icons/printing-pdf.png' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></a>
+        <a href="/file/{{ material.pk }}/" target="_blank" class="btn"><img src="{% static 'images/icons/download.svg' %}" width="24" height="24" style="filter: brightness(0) invert(1)"></a>
     </div>
 </div>
 
@@ -20,23 +27,84 @@
 <p style="color:#999; font-size:0.8rem; margin-bottom:0.8rem; text-align:center;">Büyük PDF dosyalarının yüklenmesi biraz zaman alabilir.</p>
 {% endif %}
 
-<div id="pdf-wrapper" style="display:flex; flex-direction:column; align-items:center; background:#757575; border-radius:8px;">
+<div id="pdf-wrapper" style="position:relative; display:flex; flex-direction:column; align-items:center; background:#757575; border-radius:8px;">
     <button id="fs-close-fixed" style="display:none;"><img src="{% static 'images/icons/incorrect.svg' %}" width="16" height="16" style="filter: brightness(0) invert(1);"></button>
 
-    <div id="canvas-scroll" style="width:100%; display:flex; justify-content:center; overflow:auto; touch-action:pan-x pan-y;">
-        <canvas id="pdf-canvas" style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
+    <div id="loading-overlay" style="display:flex; position:absolute; inset:0; background:rgba(117,117,117,0.9); align-items:center; justify-content:center; z-index:5; border-radius:8px;">
+        <div class="pdf-spinner"></div>
+    </div>
+
+    <!-- Fullscreen-only annotation toolbar -->
+    <div id="draw-toolbar">
+        <button class="draw-tool-btn active" id="tool-navigate" data-mode="navigate" title="Gezinme">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 8-6 2-2 6z"/></svg>
+        </button>
+        <button class="draw-tool-btn" id="tool-pen" data-mode="pen" title="Kalem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg>
+        </button>
+        <button class="draw-tool-btn" id="tool-eraser" data-mode="eraser" title="Silgi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8l-8 8H4v-4l8-8 4 4z"/><path d="M4 16h8"/></svg>
+        </button>
+
+        <div class="draw-toolbar-sep"></div>
+
+        <div class="draw-color-row">
+            <button class="draw-color-dot active" data-color="#1a1a1a" style="background:#1a1a1a" title="Siyah"></button>
+            <button class="draw-color-dot" data-color="#e63946" style="background:#e63946" title="Kırmızı"></button>
+            <button class="draw-color-dot" data-color="#3d7fd6" style="background:#3d7fd6" title="Mavi"></button>
+            <button class="draw-color-dot" data-color="#2a9d8f" style="background:#2a9d8f" title="Yeşil"></button>
+            <button class="draw-color-dot" data-color="#7c3aed" style="background:#7c3aed" title="Mor"></button>
+        </div>
+
+        <div class="draw-toolbar-sep"></div>
+
+        <div class="draw-size-row">
+            <button class="draw-size-dot" data-size="2" title="İnce"><span style="width:4px;height:4px;"></span></button>
+            <button class="draw-size-dot active" data-size="5" title="Orta"><span style="width:7px;height:7px;"></span></button>
+            <button class="draw-size-dot" data-size="10" title="Kalın"><span style="width:10px;height:10px;"></span></button>
+        </div>
+
+        <div class="draw-toolbar-sep"></div>
+
+        <button class="draw-tool-btn" id="tool-clear" title="Tümünü Temizle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14"/><path d="M9 7V4h6v3"/><path d="M7 7l1 13h8l1-13"/></svg>
+        </button>
+    </div>
+
+    <div id="canvas-scroll" style="width:100%; text-align:center; overflow:auto; touch-action:pan-x pan-y;">
+        <div id="canvas-stack" style="position:relative; display:inline-block;">
+            <canvas id="pdf-canvas" style="border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
+            <canvas id="draw-canvas" style="position:absolute; top:0; left:0; touch-action:none;"></canvas>
+        </div>
     </div>
     <div id="fs-controls" style="display:none; gap:0.6rem; align-items:center; justify-content:center; padding:1rem; flex-shrink:0; flex-wrap:wrap;">
         <button class="btn" id="fs-prev">←</button>
         <span id="fs-page-info" style="color:#fff; font-size:0.85rem;"></span>
         <button class="btn" id="fs-next">→</button>
-        <button class="btn" id="zoom-out">－</button>
-        <span id="zoom-level" style="color:#fff; font-size:0.85rem;">100%</span>
-        <button class="btn" id="zoom-in">＋</button>
+        <button class="btn" id="fs-zoom-out">－</button>
+        <span id="fs-zoom-level" style="color:#fff; font-size:0.85rem;">100%</span>
+        <button class="btn" id="fs-zoom-in">＋</button>
     </div>
 </div>
 
 <style>
+    /* --- Compact nav override, this page only (base.html untouched) --- */
+    nav {
+        height: 56px !important;
+    }
+    nav a[href="/home/"] img {
+        display: none !important;
+    }
+    nav .welcome-text,
+    nav .dropdown,
+    nav a[href="/accounts/logout"],
+    nav a[href="/accounts/login"] {
+        display: none !important;
+    }
+    .accent-bar {
+        top: 56px !important;
+    }
+
     @media (max-width: 768px) {
         #controls {
             flex-wrap: wrap;
@@ -55,8 +123,11 @@
         }
     }
     #pdf-canvas {
-        width: 100%;
-        display: block;
+        display: inline-block;
+        vertical-align: top;
+    }
+    #draw-canvas {
+        pointer-events: none;
     }
     #pdf-wrapper:fullscreen {
         display: flex;
@@ -69,12 +140,8 @@
     #pdf-wrapper:fullscreen #canvas-scroll {
         flex: 1;
         overflow: auto;
-        align-items: flex-start;
     }
     #pdf-wrapper:fullscreen #pdf-canvas {
-        width: auto;
-        max-width: none;
-        height: auto;
         box-shadow: 0 4px 16px rgba(0,0,0,0.4);
     }
     #pdf-wrapper:fullscreen #fs-controls {
@@ -111,6 +178,114 @@
             gap: 0.4rem;
         }
     }
+
+    .pdf-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255,255,255,0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: pdf-spin 0.8s linear infinite;
+    }
+    @keyframes pdf-spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* ---------- Annotation toolbar (fullscreen only, Apple-Markup-style floating pill) ---------- */
+    #draw-toolbar {
+        display: none;
+        position: fixed;
+        right: max(14px, env(safe-area-inset-right));
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem;
+        background: rgba(30,30,32,0.55);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        z-index: 9998;
+    }
+    #pdf-wrapper:fullscreen #draw-toolbar {
+        display: flex !important;
+    }
+
+    .draw-tool-btn {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        border-radius: 10px;
+        color: rgba(255,255,255,0.85);
+        cursor: pointer;
+        transition: background 0.12s, color 0.12s;
+    }
+    .draw-tool-btn svg { width: 17px; height: 17px; }
+    .draw-tool-btn:hover { background: rgba(255,255,255,0.1); }
+    .draw-tool-btn.active {
+        background: rgba(255,255,255,0.22);
+        color: #fff;
+    }
+
+    .draw-toolbar-sep {
+        width: 22px;
+        height: 1px;
+        background: rgba(255,255,255,0.15);
+        margin: 0.1rem 0;
+    }
+
+    .draw-color-row, .draw-size-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: center;
+    }
+
+    .draw-color-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+    .draw-color-dot.active {
+        outline: 2px solid rgba(255,255,255,0.9);
+        outline-offset: 2px;
+    }
+
+    .draw-size-dot {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .draw-size-dot span {
+        display: block;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.85);
+    }
+    .draw-size-dot.active {
+        background: rgba(255,255,255,0.18);
+    }
+
+    @media (max-width: 480px) {
+        #draw-toolbar { padding: 0.4rem; gap: 0.35rem; }
+        .draw-tool-btn { width: 30px; height: 30px; }
+        .draw-size-dot { width: 22px; height: 22px; }
+    }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -120,32 +295,59 @@
     const url = '/file/{{ material.pk }}/';
     const canvas = document.getElementById('pdf-canvas');
     const canvasScroll = document.getElementById('canvas-scroll');
+    const loadingOverlay = document.getElementById('loading-overlay');
     const ctx = canvas.getContext('2d');
     let pdfDoc = null;
     let currentPage = 1;
-    let currentScale = 1.5;
-    const MIN_SCALE = 0.5;
+    let currentScale = 1;
+    const MIN_SCALE = 0.25;
     const MAX_SCALE = 4.0;
     const SCALE_STEP = 0.25;
 
+    function showLoading() { loadingOverlay.style.display = 'flex'; }
+    function hideLoading() { loadingOverlay.style.display = 'none'; }
+
     async function renderPage(num) {
-        const page = await pdfDoc.getPage(num);
-        const viewport = page.getViewport({ scale: currentScale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        await page.render({ canvasContext: ctx, viewport }).promise;
-        document.getElementById('page-info').textContent = `Page ${num} of ${pdfDoc.numPages}`;
-        document.getElementById('fs-page-info').textContent = `Page ${num} of ${pdfDoc.numPages}`;
-        updateZoomDisplay();
+        showLoading();
+        try {
+            const page = await pdfDoc.getPage(num);
+            const viewport = page.getViewport({ scale: currentScale });
+
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            canvas.style.width = viewport.width + 'px';
+            canvas.style.height = viewport.height + 'px';
+
+            await page.render({ canvasContext: ctx, viewport }).promise;
+            document.getElementById('page-info').textContent = `Sayfa ${num} / ${pdfDoc.numPages}`;
+            document.getElementById('fs-page-info').textContent = `Sayfa ${num} / ${pdfDoc.numPages}`;
+            updateZoomDisplay();
+
+            // Annotations are page/zoom-specific scratch marks, not saved —
+            // clearing here keeps the coordinate math simple (no remapping
+            // ink across different page/zoom states).
+            clearStrokes();
+            resizeDrawCanvas();
+        } finally {
+            hideLoading();
+        }
     }
 
     function updateZoomDisplay() {
-        const percent = Math.round((currentScale / 1.5) * 100);
+        const percent = Math.round(currentScale * 100);
         document.getElementById('zoom-level').textContent = `${percent}%`;
+        document.getElementById('fs-zoom-level').textContent = `${percent}%`;
     }
 
-    pdfjsLib.getDocument(url).promise.then(doc => {
+    pdfjsLib.getDocument(url).promise.then(async (doc) => {
         pdfDoc = doc;
+
+        const firstPage = await doc.getPage(1);
+        const nativeViewport = firstPage.getViewport({ scale: 1 });
+        const availableWidth = canvasScroll.clientWidth || 600;
+        const fitScale = availableWidth / nativeViewport.width;
+        currentScale = Math.min(Math.max(fitScale * 0.9, MIN_SCALE), MAX_SCALE);
+
         renderPage(currentPage);
     });
 
@@ -165,19 +367,22 @@
         if (currentPage < pdfDoc.numPages) { currentPage++; renderPage(currentPage); }
     });
 
-    document.getElementById('zoom-in').addEventListener('click', () => {
+    function zoomIn() {
         if (currentScale < MAX_SCALE) {
             currentScale += SCALE_STEP;
             renderPage(currentPage);
         }
-    });
-
-    document.getElementById('zoom-out').addEventListener('click', () => {
+    }
+    function zoomOut() {
         if (currentScale > MIN_SCALE) {
             currentScale -= SCALE_STEP;
             renderPage(currentPage);
         }
-    });
+    }
+    document.getElementById('zoom-in').addEventListener('click', zoomIn);
+    document.getElementById('zoom-out').addEventListener('click', zoomOut);
+    document.getElementById('fs-zoom-in').addEventListener('click', zoomIn);
+    document.getElementById('fs-zoom-out').addEventListener('click', zoomOut);
 
     function enterFullscreen() {
         const wrapper = document.getElementById('pdf-wrapper');
@@ -222,6 +427,7 @@
     }
 
     canvasScroll.addEventListener('touchstart', (e) => {
+        if (drawMode !== 'navigate') return; // annotation tool has priority over pinch/swipe while active
         if (e.touches.length === 2) {
             pinchStartDistance = touchDistance(e.touches);
             pinchStartScale = currentScale;
@@ -230,6 +436,7 @@
     }, { passive: true });
 
     canvasScroll.addEventListener('touchmove', (e) => {
+        if (drawMode !== 'navigate') return;
         if (e.touches.length === 2 && pinchStartDistance) {
             e.preventDefault();
             const newDistance = touchDistance(e.touches);
@@ -242,6 +449,7 @@
     }, { passive: false });
 
     canvasScroll.addEventListener('touchend', (e) => {
+        if (drawMode !== 'navigate') return;
         if (pinchStartDistance !== null && e.touches.length < 2) {
             canvas.style.transform = '';
             if (pinchLiveScale !== null && Math.abs(pinchLiveScale - currentScale) > 0.01) {
@@ -255,11 +463,197 @@
     }, { passive: true });
 
     canvasScroll.addEventListener('touchcancel', () => {
+        if (drawMode !== 'navigate') return;
         canvas.style.transform = '';
         pinchStartDistance = null;
         pinchStartScale = null;
         pinchLiveScale = null;
     }, { passive: true });
+
+    // ---------- Swipe-to-turn-page (single finger) ----------
+    let swipeStartX = null;
+    let swipeStartY = null;
+    let swipeActive = false;
+    const SWIPE_THRESHOLD = 60;
+
+    canvasScroll.addEventListener('touchstart', (e) => {
+        if (drawMode !== 'navigate') return;
+        if (e.touches.length === 1) {
+            swipeStartX = e.touches[0].clientX;
+            swipeStartY = e.touches[0].clientY;
+            swipeActive = true;
+        } else {
+            swipeActive = false;
+            swipeStartX = null;
+        }
+    }, { passive: true });
+
+    canvasScroll.addEventListener('touchmove', (e) => {
+        if (drawMode !== 'navigate') return;
+        if (swipeActive && e.touches.length !== 1) {
+            swipeActive = false;
+            swipeStartX = null;
+        }
+    }, { passive: true });
+
+    canvasScroll.addEventListener('touchend', (e) => {
+        if (drawMode !== 'navigate') return;
+        if (!swipeActive || swipeStartX === null || e.changedTouches.length !== 1) {
+            swipeActive = false;
+            swipeStartX = null;
+            return;
+        }
+        const isZoomedHorizontally = canvasScroll.scrollWidth > canvasScroll.clientWidth + 2;
+        if (!isZoomedHorizontally) {
+            const dx = e.changedTouches[0].clientX - swipeStartX;
+            const dy = e.changedTouches[0].clientY - swipeStartY;
+            if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                if (dx < 0 && pdfDoc && currentPage < pdfDoc.numPages) {
+                    currentPage++;
+                    renderPage(currentPage);
+                } else if (dx > 0 && currentPage > 1) {
+                    currentPage--;
+                    renderPage(currentPage);
+                }
+            }
+        }
+        swipeActive = false;
+        swipeStartX = null;
+    }, { passive: true });
+
+    // ---------- Annotation tool ----------
+    const drawCanvas = document.getElementById('draw-canvas');
+    const drawCtx = drawCanvas.getContext('2d');
+
+    let drawMode = 'navigate'; // 'navigate' | 'pen' | 'eraser'
+    let currentColor = '#1a1a1a';
+    let currentWidth = 5;
+    let strokes = [];
+    let activeStroke = null;
+
+    function resizeDrawCanvas() {
+        drawCanvas.width = canvas.width;
+        drawCanvas.height = canvas.height;
+        drawCanvas.style.width = canvas.style.width;
+        drawCanvas.style.height = canvas.style.height;
+        redrawStrokes();
+    }
+
+    function redrawStrokes() {
+        drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+        strokes.forEach(stroke => {
+            drawCtx.strokeStyle = stroke.color;
+            drawCtx.lineWidth = stroke.width;
+            drawCtx.lineCap = 'round';
+            drawCtx.lineJoin = 'round';
+            drawCtx.beginPath();
+            stroke.points.forEach((pt, i) => {
+                if (i === 0) drawCtx.moveTo(pt.x, pt.y);
+                else drawCtx.lineTo(pt.x, pt.y);
+            });
+            drawCtx.stroke();
+        });
+    }
+
+    function clearStrokes() {
+        strokes = [];
+        if (drawCtx) drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+    }
+
+    function setMode(mode) {
+        drawMode = mode;
+        drawCanvas.style.pointerEvents = mode === 'navigate' ? 'none' : 'auto';
+        document.querySelectorAll('.draw-tool-btn[data-mode]').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === mode);
+        });
+    }
+
+    function getCanvasPoint(e) {
+        const rect = drawCanvas.getBoundingClientRect();
+        const scaleX = drawCanvas.width / rect.width;
+        const scaleY = drawCanvas.height / rect.height;
+        return {
+            x: (e.clientX - rect.left) * scaleX,
+            y: (e.clientY - rect.top) * scaleY,
+        };
+    }
+
+    function distanceToSegment(p, a, b) {
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const lengthSq = dx * dx + dy * dy;
+        if (lengthSq === 0) return Math.hypot(p.x - a.x, p.y - a.y);
+        let t = ((p.x - a.x) * dx + (p.y - a.y) * dy) / lengthSq;
+        t = Math.max(0, Math.min(1, t));
+        const projX = a.x + t * dx, projY = a.y + t * dy;
+        return Math.hypot(p.x - projX, p.y - projY);
+    }
+
+    function eraseAt(point) {
+        const threshold = 14;
+        for (let i = strokes.length - 1; i >= 0; i--) {
+            const stroke = strokes[i];
+            for (let j = 0; j < stroke.points.length - 1; j++) {
+                if (distanceToSegment(point, stroke.points[j], stroke.points[j + 1]) <= threshold + stroke.width / 2) {
+                    strokes.splice(i, 1);
+                    redrawStrokes();
+                    return;
+                }
+            }
+        }
+    }
+
+    drawCanvas.addEventListener('pointerdown', (e) => {
+        if (drawMode === 'navigate') return;
+        e.preventDefault();
+        const point = getCanvasPoint(e);
+
+        if (drawMode === 'eraser') {
+            eraseAt(point);
+            return;
+        }
+
+        activeStroke = { color: currentColor, width: currentWidth, points: [point] };
+        strokes.push(activeStroke);
+        drawCanvas.setPointerCapture(e.pointerId);
+    });
+
+    drawCanvas.addEventListener('pointermove', (e) => {
+        if (drawMode !== 'pen' || !activeStroke) return;
+        e.preventDefault();
+        const point = getCanvasPoint(e);
+        activeStroke.points.push(point);
+        redrawStrokes();
+    });
+
+    drawCanvas.addEventListener('pointerup', () => { activeStroke = null; });
+    drawCanvas.addEventListener('pointercancel', () => { activeStroke = null; });
+
+    document.querySelectorAll('.draw-tool-btn[data-mode]').forEach(btn => {
+        btn.addEventListener('click', () => setMode(btn.dataset.mode));
+    });
+
+    document.querySelectorAll('.draw-color-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            currentColor = dot.dataset.color;
+            document.querySelectorAll('.draw-color-dot').forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            if (drawMode === 'navigate') setMode('pen');
+        });
+    });
+
+    document.querySelectorAll('.draw-size-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            currentWidth = parseInt(dot.dataset.size, 10);
+            document.querySelectorAll('.draw-size-dot').forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+        });
+    });
+
+    document.getElementById('tool-clear').addEventListener('click', () => {
+        if (strokes.length && confirm('Bu sayfadaki tüm çizimler silinsin mi?')) {
+            clearStrokes();
+        }
+    });
 
     // ---------- Close button ----------
     document.getElementById('close-btn').addEventListener('click', () => {

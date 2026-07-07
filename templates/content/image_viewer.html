@@ -15,6 +15,25 @@
     </div>
 </div>
 
+<style>
+    /* --- Compact nav override, this page only (base.html untouched) --- */
+    nav {
+        height: 56px !important;
+    }
+    nav a[href="/home/"] img {
+        display: none !important;
+    }
+    nav .welcome-text,
+    nav .dropdown,
+    nav a[href="/accounts/logout"],
+    nav a[href="/accounts/login"] {
+        display: none !important;
+    }
+    .accent-bar {
+        top: 56px !important;
+    }
+</style>
+
 <script>
     document.getElementById('close-btn').addEventListener('click', () => {
         window.close();

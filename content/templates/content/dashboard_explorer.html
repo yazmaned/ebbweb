@@ -1,10 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Kütüphane Gezgini | BD{% endblock %}
+{% block title %}Kütüphane | BD{% endblock %}
 
 {% block content %}
 <style>
+    :root {
+        --control-height: 40px;
+    }
+
+    .kutuphane-frame {
+        max-width: 940px;
+        margin: 0 auto;
+        border: 1.5px solid transparent;
+        border-radius: 0px;
+        border-image: linear-gradient(90deg, #e63946, #f4a261, #2a9d8f, #264653, #e63946) 1;
+        padding: 1rem;
+        background: rgba(206, 206, 206, 0.45);
+        backdrop-filter: saturate(150%) blur(28px);
+        -webkit-backdrop-filter: saturate(150%) blur(28px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+    @media (max-width: 768px) {
+        .kutuphane-frame {
+            padding: 0.6rem;
+            border-radius: 14px;
+        }
+    }
+
+    .lib-heading {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #2c3e50;
+        text-align: center;
+        letter-spacing: 0.3px;
+        margin: 0.3rem 0 0;
+    }
+
+    .lib-count-line {
+        text-align: center;
+        color: #888;
+        font-size: 0.9rem;
+        margin: 0 0 1rem;
+    }
+
     .explorer-window {
         max-width: 900px;
         margin: 0 auto;
@@ -20,7 +59,7 @@
         padding: 0.7rem 1rem;
         display: flex;
         align-items: center;
-        gap: 0.3rem;
+        gap: 0.5rem;
         font-size: 0.85rem;
         border-bottom: 1px solid rgba(0,0,0,0.08);
         flex-wrap: wrap;
@@ -89,25 +128,22 @@
     .explorer-empty { color:#999; text-align:center; padding:3rem 0; grid-column:1/-1; }
     .search-result-path { font-size:0.68rem; color:#3d7fd6; margin-top:0.15rem; }
 
-    .view-toggle-link {
-        display: block;
-        text-align: center;
-        margin-top: 1rem;
-        font-size: 0.85rem;
-        color: #888;
-        text-decoration: none;
-    }
-    .view-toggle-link:hover { text-decoration: underline; }
-
     .explorer-search-row {
-        padding: 0.8rem 1rem 0;
+        padding: 0.8rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
     }
-    .explorer-search-row input {
-        width: 100%;
-        padding: 0.5rem 1rem;
-        border-radius: 999px;
-        border: 1px solid rgba(0,0,0,0.15);
-        font-size: 0.85rem;
+    .explorer-search-row .mac-search-wrap {
+        flex: 1;
+        min-width: 160px;
+        height: var(--control-height);
+    }
+    .explorer-search-row .mac-search-wrap input {
+        height: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     .explorer-search-info {
         padding: 0 1rem;
@@ -115,66 +151,150 @@
         color: #3d7fd6;
         display: none;
     }
+
+    .view-toggle {
+        display: flex;
+        align-items: stretch;
+        height: var(--control-height);
+        background: #ececec;
+        border-radius: 999px;
+        padding: 3px;
+        gap: 2px;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+    .view-toggle-option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0 0.9rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: #8e8e93;
+        transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+        white-space: nowrap;
+    }
+    .view-toggle-option svg {
+        width: 15px; height: 15px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+        flex-shrink: 0;
+    }
+    .view-toggle-option.active {
+        background: white;
+        color: #2c3e50;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .view-toggle-option:not(.active):hover {
+        color: #2c3e50;
+    }
 </style>
 
-<a href="/dashboard/" class="view-toggle-link">← Klasik liste görünümüne dön</a><br>
+<div class="kutuphane-frame">
+    <h2 class="lib-heading">Çalışma Kütüphanesi</h2>
+    <p class="lib-count-line">
+        <span id="video-count-num">0</span> Video,
+        <span id="material-count-num">0</span> Materyal
+    </p>
 
-<div class="explorer-window">
-    <div class="explorer-search-row mac-search-wrap">
+    <div class="explorer-window">
+        <div class="explorer-search-row">
+            <div class="mac-search-wrap">
+                <input type="text" id="explorer-search" placeholder="Ara...">
+            </div>
+            <div class="view-toggle" role="tablist" aria-label="Görünüm seçimi">
+                <a href="/dashboard/" class="view-toggle-option">
+                    <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    Liste
+                </a>
+                <a href="/dashboard/explorer/" class="view-toggle-option active" aria-current="page">
+                    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+                    Klasör
+                </a>
+            </div>
+        </div>
 
-    <input type="text" id="explorer-search" placeholder="Ara...">
-</div>
+        <div class="explorer-pathbar">
+            <span id="pathbar-crumbs">
+                <a class="explorer-path-item" href="?" data-category-id="">Kütüphane</a>
+                {% for crumb in breadcrumbs %}
+                    <span class="explorer-path-sep">›</span>
+                    <a class="explorer-path-item" href="?category={{ crumb.pk }}" data-category-id="{{ crumb.pk }}">{{ crumb.name }}</a>
+                {% endfor %}
+            </span>
+        </div>
 
-    <div class="explorer-pathbar">
-        <a class="explorer-path-item" href="?">Kütüphane</a>
-        {% for crumb in breadcrumbs %}
-            <span class="explorer-path-sep">›</span>
-            <a class="explorer-path-item" href="?category={{ crumb.pk }}">{{ crumb.name }}</a>
-        {% endfor %}
-    </div>
+        <div class="explorer-body">
+            <div class="explorer-grid" id="explorer-grid"
+                 data-current-category-id="{% if current_category %}{{ current_category.pk }}{% else %}{% endif %}">
+                {% for folder in subfolders %}
+                <a class="explorer-item" data-item-type="category" data-category-id="{{ folder.pk }}"
+                   data-name="{{ folder.name|lower }}" href="?category={{ folder.pk }}">
+                    <img src="{% static 'images/icons/explorer-folder.png' %}">
+                    <div class="item-name" data-full="{{ folder.name }}">{{ folder.name }}</div>
+                </a>
+                {% endfor %}
 
-    <div class="explorer-body">
-        <div class="explorer-grid" id="explorer-grid">
-            {% for folder in subfolders %}
-            <a class="explorer-item" data-name="{{ folder.name|lower }}" href="?category={{ folder.pk }}">
-                <img src="{% static 'images/icons/explorer-folder.png' %}">
-                <div class="item-name" data-full="{{ folder.name }}">{{ folder.name }}</div>
-            </a>
-            {% endfor %}
+                {% for file in files %}
+                    {% if file.material_type == 'pdf' %}
+                    <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/view/{{ file.pk }}/', '_blank')">
+                        <img src="{% static 'images/icons/pdf.png' %}">
+                        <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
+                    </button>
+                    {% elif file.material_type == 'image' %}
+                    <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/image/{{ file.pk }}/', '_blank')">
+                        <img src="{% static 'images/icons/img.png' %}">
+                        <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
+                    </button>
+                    {% else %}
+                    <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/video/{{ file.pk }}/', '_blank')">
+                        <img src="{% static 'images/icons/movie.png' %}">
+                        <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
+                    </button>
+                    {% endif %}
+                {% endfor %}
 
-            {% for file in files %}
-                {% if file.material_type == 'pdf' %}
-                <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/view/{{ file.pk }}/', '_blank')">
-                    <img src="{% static 'images/icons/pdf.png' %}">
-                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
-                </button>
-                {% elif file.material_type == 'image' %}
-                <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/image/{{ file.pk }}/', '_blank')">
-                    <img src="{% static 'images/icons/img.png' %}">
-                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
-                </button>
-                {% else %}
-                <button class="explorer-item" data-name="{{ file.title|lower }}" onclick="window.open('/video/{{ file.pk }}/', '_blank')">
-                    <img src="{% static 'images/icons/movie.png' %}">
-                    <div class="item-name" data-full="{{ file.title }}">{{ file.title }}</div>
-                </button>
+                {% if not subfolders and not files %}
+                <div class="explorer-empty">Bu klasör boş.</div>
                 {% endif %}
-            {% endfor %}
-
-            {% if not subfolders and not files %}
-            <div class="explorer-empty">Bu klasör boş.</div>
-            {% endif %}
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+    // ---------- Count-up animation for the header stats (same as dashboard.html) ----------
+    function animateCount(elementId, targetValue, duration) {
+        const el = document.getElementById(elementId);
+        const start = 0;
+        const startTime = performance.now();
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(start + (targetValue - start) * progress);
+            el.textContent = current;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = targetValue;
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    animateCount('video-count-num', {{ video_count }}, 800);
+    animateCount('material-count-num', {{ material_count }}, 800);
+
     const searchInput = document.getElementById('explorer-search');
     const grid = document.getElementById('explorer-grid');
     const infoEl = document.getElementById('explorer-search-info');
+    const pathbarCrumbs = document.getElementById('pathbar-crumbs');
 
-    // --- Mark item-names that are actually clipped by the 3-line clamp,
-    //     so the hover tooltip only shows up when there's really more to see ---
     function markTruncated(scope) {
         scope.querySelectorAll('.item-name').forEach(el => {
             if (el.scrollHeight > el.clientHeight + 1) {
@@ -187,7 +307,86 @@
     markTruncated(document);
     window.addEventListener('resize', () => markTruncated(document));
 
-    // --- Instant filter of what's currently on screen ---
+    function renderGridItems(subfolders, files) {
+        grid.innerHTML = '';
+
+        subfolders.forEach(folder => {
+            const a = document.createElement('a');
+            a.className = 'explorer-item';
+            a.href = `?category=${folder.id}`;
+            a.dataset.itemType = 'category';
+            a.dataset.categoryId = folder.id;
+            a.dataset.name = folder.name.toLowerCase();
+            a.innerHTML = `
+                <img src="{% static 'images/icons/explorer-folder.png' %}">
+                <div class="item-name" data-full="${folder.name}">${folder.name}</div>
+            `;
+            grid.appendChild(a);
+        });
+
+        files.forEach(file => {
+            const btn = document.createElement('button');
+            btn.className = 'explorer-item';
+            btn.dataset.name = file.title.toLowerCase();
+            btn.addEventListener('click', () => window.open(file.open_url, '_blank'));
+
+            let iconSrc;
+            if (file.material_type === 'pdf') iconSrc = "{% static 'images/icons/pdf.png' %}";
+            else if (file.material_type === 'image') iconSrc = "{% static 'images/icons/img.png' %}";
+            else iconSrc = "{% static 'images/icons/movie.png' %}";
+
+            btn.innerHTML = `
+                <img src="${iconSrc}">
+                <div class="item-name" data-full="${file.title}">${file.title}</div>
+            `;
+            grid.appendChild(btn);
+        });
+
+        if (subfolders.length === 0 && files.length === 0) {
+            grid.innerHTML = '<div class="explorer-empty">Bu klasör boş.</div>';
+        }
+
+        markTruncated(grid);
+    }
+
+    function renderBreadcrumbs(breadcrumbs) {
+        let html = `<a class="explorer-path-item" href="?" data-category-id="">Kütüphane</a>`;
+        breadcrumbs.forEach(crumb => {
+            html += `<span class="explorer-path-sep">›</span><a class="explorer-path-item" href="?category=${crumb.id}" data-category-id="${crumb.id}">${crumb.name}</a>`;
+        });
+        pathbarCrumbs.innerHTML = html;
+    }
+
+    async function navigateToCategory(categoryId) {
+        const idParam = categoryId || '';
+        const response = await fetch(`/dashboard/explorer/data/?category=${idParam}`);
+        const data = await response.json();
+        if (!data.ok) return;
+
+        renderGridItems(data.subfolders, data.files);
+        renderBreadcrumbs(data.breadcrumbs);
+        grid.dataset.currentCategoryId = data.category_id || '';
+
+        searchInput.value = '';
+        infoEl.style.display = 'none';
+    }
+
+    grid.addEventListener('click', (e) => {
+        const link = e.target.closest('a.explorer-item[data-item-type="category"]');
+        if (link && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
+            e.preventDefault();
+            navigateToCategory(link.dataset.categoryId);
+        }
+    });
+
+    pathbarCrumbs.addEventListener('click', (e) => {
+        const link = e.target.closest('a.explorer-path-item');
+        if (link && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
+            e.preventDefault();
+            navigateToCategory(link.dataset.categoryId || '');
+        }
+    });
+
     searchInput.addEventListener('input', () => {
         const term = searchInput.value.trim().toLowerCase();
         if (!term) {
@@ -201,7 +400,6 @@
         });
     });
 
-    // --- Full-library search on Enter ---
     searchInput.addEventListener('keydown', async (e) => {
         if (e.key !== 'Enter') return;
         const term = searchInput.value.trim();
@@ -245,7 +443,7 @@
 
             if (result.type === 'category') {
                 card.addEventListener('click', () => {
-                    window.location.href = `?category=${result.navigate_to}`;
+                    navigateToCategory(result.navigate_to);
                 });
             } else {
                 card.addEventListener('click', () => {

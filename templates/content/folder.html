@@ -4,9 +4,9 @@
 <div style="margin-bottom: 0.3rem;">
     <div class="lib-category-header" data-search-text="{{ category.name|lower }}"
         onclick="toggleCategory('cat-{{ category.id }}')"
-        style="display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.8rem; cursor:pointer; user-select:none; border-radius:6px; margin-left:{{ depth }}rem; transition: background 0.15s;"
+        style="display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.8rem; cursor:pointer; user-select:none; border-radius:6px; margin-left:calc(var(--indent-step) * {{ depth }}); transition: background 0.15s;"
         onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
-        <span id="arrow-cat-{{ category.id }}" style="font-size:0.75rem; color:#888;">▶</span>
+        <span id="arrow-cat-{{ category.id }}" class="lib-arrow" style="font-size:0.75rem; color:#888;">▶</span>
         <span style="font-size:1rem;">📁</span>
         <span style="font-weight:600; color:{{ category.color }};">{{ category.name }}</span>
         <span style="color:#aaa; font-size:0.75rem;">
@@ -14,36 +14,38 @@
         </span>
     </div>
 
-    <div id="cat-{{ category.id }}" class="lib-category-content" style="display:none; border-left:2px solid {{ category.color }}30; padding-left:1rem; margin-left:{{ depth|add:1 }}rem;">
+    <div id="cat-{{ category.id }}" class="lib-category-content" style="margin-left:var(--indent-content);">
+        <div class="lib-category-content-inner" style="border-left:2px solid {{ category.color }}30; padding-left:1rem;">
 
-        {% for child in children %}
-            {% render_folder child next_depth %}
-        {% endfor %}
+            {% for child in children %}
+                {% render_folder child next_depth %}
+            {% endfor %}
 
-        {% for material in materials %}
-        <div class="lib-material-row" data-search-text="{{ material.title|lower }}"
-            style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px; transition: background 0.15s;"
-            onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
-            <div style="display:flex; align-items:center; gap:0.6rem;">
+            {% for material in materials %}
+            <div class="lib-material-row" data-search-text="{{ material.title|lower }}"
+                style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px; transition: background 0.15s;"
+                onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+                <div style="display:flex; align-items:center; gap:0.6rem;">
+                    {% if material.material_type == 'pdf' %}
+                        <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
+                    {% elif material.material_type == 'image' %}
+                        <img src="{% static 'images/icons/img.png' %}" width="24" height="24">
+                    {% else %}
+                        <img src="{% static 'images/icons/movie.png' %}" width="24" height="24">
+                    {% endif %}
+                    <span style="color:#2c3e50;">{{ material.title }}</span>
+                    <span style="color:#bbb; font-size:0.75rem;">{{ material.material_type|upper }}</span>
+                </div>
                 {% if material.material_type == 'pdf' %}
-                    <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
+                    <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
                 {% elif material.material_type == 'image' %}
-                    <img src="{% static 'images/icons/img.png' %}" width="24" height="24">
+                    <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Görüntüle</button>
                 {% else %}
-                    <img src="{% static 'images/icons/movie.png' %}" width="24" height="24">
+                    <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
                 {% endif %}
-                <span style="color:#2c3e50;">{{ material.title }}</span>
-                <span style="color:#bbb; font-size:0.75rem;">{{ material.material_type|upper }}</span>
             </div>
-            {% if material.material_type == 'pdf' %}
-                <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
-            {% elif material.material_type == 'image' %}
-                <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Görüntüle</button>
-            {% else %}
-                <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
-            {% endif %}
-        </div>
-        {% endfor %}
+            {% endfor %}
 
+        </div>
     </div>
 </div>

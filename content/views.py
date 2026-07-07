@@ -199,6 +199,9 @@ def dashboard_explorer(request):
         breadcrumbs.insert(0, node)
         node = node.parent
 
+    video_count = Material.objects.filter(material_type__in=['video', 'youtube', 'vimeo']).count()
+    material_count = Material.objects.filter(material_type__in=['pdf', 'image']).count()
+
     SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Dashboard (Explorer)')
 
     return render(request, 'content/dashboard_explorer.html', {
@@ -206,7 +209,51 @@ def dashboard_explorer(request):
         'subfolders': subfolders,
         'files': files,
         'breadcrumbs': breadcrumbs,
+        'video_count': video_count,
+        'material_count': material_count,
     })
+@login_required
+def dashboard_explorer_data(request):
+    """AJAX companion to dashboard_explorer — same queries, JSON instead of a template."""
+    profile = getattr(request.user, 'userprofile', None)
+    if not profile or not profile.has_library_access:
+        return JsonResponse({'ok': False, 'error': 'forbidden'}, status=403)
+
+    category_id = request.GET.get('category')
+    current_category = None
+    if category_id:
+        current_category = get_object_or_404(Category, pk=category_id)
+
+    subfolders = Category.objects.filter(parent=current_category).order_by('order', 'name')
+    files = Material.objects.filter(category=current_category).order_by('order', 'title')
+
+    breadcrumbs = []
+    node = current_category
+    while node is not None:
+        breadcrumbs.insert(0, node)
+        node = node.parent
+
+    SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Dashboard (Explorer)')
+
+    def open_url_for(material):
+        if material.material_type == 'pdf':
+            return f'/view/{material.pk}/'
+        elif material.material_type == 'image':
+            return f'/image/{material.pk}/'
+        else:
+            return f'/video/{material.pk}/'
+
+    return JsonResponse({
+        'ok': True,
+        'category_id': current_category.pk if current_category else None,
+        'subfolders': [{'id': f.pk, 'name': f.name} for f in subfolders],
+        'files': [
+            {'id': m.pk, 'title': m.title, 'material_type': m.material_type, 'open_url': open_url_for(m)}
+            for m in files
+        ],
+        'breadcrumbs': [{'id': c.pk, 'name': c.name} for c in breadcrumbs],
+    })
+
 @login_required
 def dashboard_search(request):
     query = request.GET.get('q', '').strip()

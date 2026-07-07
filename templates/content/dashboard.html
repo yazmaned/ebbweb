@@ -5,83 +5,209 @@
 {% block title %}Kütüphane | BD{% endblock %}
 
 {% block content %}
-<h2 style="margin-bottom: 0.3rem; text-align: center;">Çalışma Kütüphanesi</h2>
-<p style="text-align:center; color:#888; font-size:0.9rem; margin-bottom:0.8rem;">
-    <span id="video-count-num">0</span> Video,
-    <span id="material-count-num">0</span> Materyal
-</p>
+<style>
+    :root {
+        --indent-step: 1rem;
+        --indent-content: 1.2rem;
+        --control-height: 40px;
+    }
+    @media (max-width: 768px) {
+        :root {
+            --indent-step: 0.5rem;
+            --indent-content: 0.6rem;
+        }
+    }
 
+    .lib-category-content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.25s ease;
+    }
+    .lib-category-content.expanded {
+        grid-template-rows: 1fr;
+    }
+    .lib-category-content-inner {
+        overflow: hidden;
+        min-height: 0;
+    }
 
-<div style="max-width:500px; margin:0 auto 1.5rem;" class="mac-search-wrap">
-    <input type="text" id="lib-search" placeholder="Materyal veya klasör ara...">
-</div>
-<div style="font-family:'inter', font-style:"thin";>
-    <div style="text-align:center; margin-bottom:1rem;">
-    <a href="/dashboard/explorer/" style="font-size:0.85rem; color:#888; text-decoration:none;">Dosya Görünümüne Geç</a>
-</div>
+    .kutuphane-frame {
+        border: 1.5px solid transparent;
+        border-radius: 0px;
+        border-image: linear-gradient(90deg, #e63946, #f4a261, #2a9d8f, #264653, #e63946) 1;
+        padding: 2rem 2rem 2.5rem;
+        background: rgba(206, 206, 206, 0.45);
+        backdrop-filter: saturate(150%) blur(28px);
+        -webkit-backdrop-filter: saturate(150%) blur(28px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+    @media (max-width: 768px) {
+        .kutuphane-frame {
+            padding: 1.25rem 1rem 1.5rem;
+            border-radius: 14px;
+        }
+    }
 
+    .lib-heading {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #2c3e50;
+        text-align: center;
+        letter-spacing: 0.3px;
+        margin-bottom: 0;
+    }
 
-{% for category in root_categories %}
-    {% render_folder category 0 %}
-{% endfor %}
+    /* No longer sticky itself — just centers the row. Only the search box inside sticks now. */
+    .sticky-search-wrap {
+        background: transparent;
+        padding: 0.8rem 0;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+    }
 
-{% if uncategorized %}
-<div style="margin-top:1rem;">
-    <div class="lib-category-header" data-search-text="diğer" onclick="toggleCategory('cat-uncategorized')"
-        style="display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.8rem; cursor:pointer; user-select:none; border-radius:6px; transition: background 0.15s;"
-        onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
-        <span id="arrow-cat-uncategorized" style="font-size:0.75rem; color:#888;">▶</span>
-        <span style="font-size:1rem;">📁</span>
-        <span style="font-weight:600; color:#aaa;">Diğer</span>
+    .search-and-toggle-row {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        width: 100%;
+        max-width: 620px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* --- Only the search box sticks on scroll; the toggle stays in normal flow and scrolls away with the page --- */
+    .search-and-toggle-row .mac-search-wrap {
+        flex: 1;
+        min-width: 200px;
+        height: var(--control-height);
+        position: sticky;
+        top: 108px;
+        z-index: 60;
+    }
+    .search-and-toggle-row .mac-search-wrap input {
+        height: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .view-toggle {
+        display: flex;
+        align-items: stretch;
+        height: var(--control-height);
+        background: #ececec;
+        border-radius: 999px;
+        padding: 3px;
+        gap: 2px;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+    .view-toggle-option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0 0.9rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: #8e8e93;
+        transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+        white-space: nowrap;
+    }
+    .view-toggle-option svg {
+        width: 15px; height: 15px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+        flex-shrink: 0;
+    }
+    .view-toggle-option.active {
+        background: white;
+        color: #2c3e50;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .view-toggle-option:not(.active):hover {
+        color: #2c3e50;
+    }
+</style>
+
+<div class="kutuphane-frame">
+
+    <h2 class="lib-heading">Çalışma Kütüphanesi</h2>
+    <p style="text-align:center; color:#888; font-size:0.9rem; margin-bottom:0.8rem;">
+        <span id="video-count-num">0</span> Video,
+        <span id="material-count-num">0</span> Materyal
+    </p>
+
+    <div class="sticky-search-wrap">
+        <div class="search-and-toggle-row">
+            <div class="mac-search-wrap">
+                <input type="text" id="lib-search" placeholder="Materyal veya klasör ara...">
+            </div>
+            <div class="view-toggle" role="tablist" aria-label="Görünüm seçimi">
+                <a href="/dashboard/" class="view-toggle-option active" aria-current="page">
+                    <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    Liste
+                </a>
+                <a href="/dashboard/explorer/" class="view-toggle-option">
+                    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+                    Klasör
+                </a>
+            </div>
+        </div>
     </div>
-    <div id="cat-uncategorized" class="lib-category-content" style="display:none; border-left:2px solid #aaa; padding-left:1rem; margin-left:1rem;">
-        {% for material in uncategorized %}
-<div class="lib-material-row" data-search-text="{{ material.title|lower }}"
-    style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px;"
-    onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
-    <div style="display:flex; align-items:center; gap:0.6rem;">
-        {% if material.material_type == 'pdf' %}
-            <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
-        {% elif material.material_type == 'image' %}
-            <img src="{% static 'images/icons/img.png' %}" width="24" height="24">
-        {% else %}
-            <img src="{% static 'images/icons/movie.png' %}" width="24" height="24">
+
+    <div style="font-family:'inter', font-style:"thin";>
+
+        {% for category in root_categories %}
+            {% render_folder category 0 %}
+        {% endfor %}
+
+        {% if uncategorized %}
+        <div style="margin-top:1rem;">
+            {% for material in uncategorized %}
+            <div class="lib-material-row" data-search-text="{{ material.title|lower }}"
+                style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px;"
+                onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+                <div style="display:flex; align-items:center; gap:0.6rem;">
+                    {% if material.material_type == 'pdf' %}
+                        <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
+                    {% elif material.material_type == 'image' %}
+                        <img src="{% static 'images/icons/img.png' %}" width="24" height="24">
+                    {% else %}
+                        <img src="{% static 'images/icons/movie.png' %}" width="24" height="24">
+                    {% endif %}
+                    <span style="color:#2c3e50;">{{ material.title }}</span>
+                </div>
+                {% if material.material_type == 'pdf' %}
+                    <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
+                {% elif material.material_type == 'image' %}
+                    <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
+                {% else %}
+                    <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
-        <span style="color:#2c3e50;">{{ material.title }}</span>
-    </div>
-    {% if material.material_type == 'pdf' %}
-        <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
-    {% elif material.material_type == 'image' %}
-        <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
-    {% else %}
-        <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
-    {% endif %}
-</div>
-{% endfor %}
-    </div>
-</div>
-{% endif %}
 
-{% if not root_categories and not uncategorized %}
-    <p style="color:#888; text-align:center; margin-top:2rem;">Henüz materyal yüklenmedi.</p>
-{% endif %}
+        {% if not root_categories and not uncategorized %}
+            <p style="color:#888; text-align:center; margin-top:2rem;">Henüz materyal yüklenmedi.</p>
+        {% endif %}
 
+    </div>
 </div>
 
 <script>
     function toggleCategory(id) {
         const content = document.getElementById(id);
         const arrow = document.getElementById('arrow-' + id);
-        if (content.style.display === 'none') {
-            content.style.display = 'block';
-            arrow.textContent = '▼';
-        } else {
-            content.style.display = 'none';
-            arrow.textContent = '▶';
-        }
+        const isExpanded = content.classList.toggle('expanded');
+        arrow.textContent = isExpanded ? '▼' : '▶';
     }
 
-    // ---------- Count-up animation for the header stats ----------
     function animateCount(elementId, targetValue, duration) {
         const el = document.getElementById(elementId);
         const start = 0;
@@ -104,14 +230,13 @@
     animateCount('video-count-num', {{ video_count }}, 800);
     animateCount('material-count-num', {{ material_count }}, 800);
 
-    // ---------- Search ----------
     const searchInput = document.getElementById('lib-search');
     const allCategoryContents = document.querySelectorAll('.lib-category-content');
-    const allCategoryHeaders = document.querySelectorAll('.lib-category-header');
     const allMaterialRows = document.querySelectorAll('.lib-material-row');
 
-    function setAllArrows(expanded) {
-        document.querySelectorAll('[id^="arrow-cat-"]').forEach(arrow => {
+    function setAllExpanded(expanded) {
+        allCategoryContents.forEach(el => el.classList.toggle('expanded', expanded));
+        document.querySelectorAll('.lib-arrow').forEach(arrow => {
             arrow.textContent = expanded ? '▼' : '▶';
         });
     }
@@ -120,14 +245,12 @@
         const term = searchInput.value.trim().toLowerCase();
 
         if (!term) {
-            allCategoryContents.forEach(el => el.style.display = 'none');
-            setAllArrows(false);
+            setAllExpanded(false);
             allMaterialRows.forEach(el => el.style.display = 'flex');
             return;
         }
 
-        allCategoryContents.forEach(el => el.style.display = 'block');
-        setAllArrows(true);
+        setAllExpanded(true);
 
         allMaterialRows.forEach(row => {
             const text = row.dataset.searchText || '';
