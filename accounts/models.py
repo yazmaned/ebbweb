@@ -63,14 +63,28 @@ class VisitorLog(models.Model):
         ordering = ['-visited_at']
     
 class AdminMessage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # null = send to all
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='targeted_messages')
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    is_read = models.BooleanField(default=False)
 
     def __str__(self):
         target = self.user.username if self.user else 'Everyone'
         return f"To {target}: {self.message[:50]}"
+
+    class Meta:
+        ordering = ['-created_at']
+
+
+class MessageRead(models.Model):
+    # Broadcast messages (user=None) need per-recipient read tracking,
+    # which a single is_read boolean on AdminMessage can't represent —
+    # this join table replaces that field entirely.
+    message = models.ForeignKey(AdminMessage, on_delete=models.CASCADE, related_name='reads')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    read_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('message', 'user')
     
 class Journal(models.Model):
     title = models.CharField(max_length=200)

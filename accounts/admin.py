@@ -39,8 +39,8 @@ class VisitorLogAdmin(admin.ModelAdmin):
 
 @admin.register(AdminMessage)
 class AdminMessageAdmin(admin.ModelAdmin):
-    list_display = ('user', 'message', 'created_at', 'is_read')
-    list_filter = ('is_read', 'user')
+    list_display = ('user', 'message', 'created_at')
+    list_filter = ('user',)
     search_fields = ('message', 'user__username')
     ordering = ('-created_at',)
 

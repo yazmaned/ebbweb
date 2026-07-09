@@ -13,6 +13,7 @@ from django.contrib.auth import update_session_auth_hash
 from .forms import SetNewPasswordForm
 from .forms import CustomLoginForm, SetNewPasswordForm
 from .forms import RegisterForm
+from .models import AdminMessage, UserProfile, StudentPasswordLog, MessageRead
 
 @login_required
 def change_password(request):
@@ -73,19 +74,18 @@ def logout_view(request):
 
 @login_required
 def get_messages(request):
+    read_ids = MessageRead.objects.filter(user=request.user).values_list('message_id', flat=True)
     messages = AdminMessage.objects.filter(
-        is_read=False
-    ).filter(
         models.Q(user=request.user) | models.Q(user=None)
-    ).values('id', 'message', 'created_at')
+    ).exclude(
+        id__in=read_ids
+    ).order_by('-created_at').values('id', 'message', 'created_at')
     return JsonResponse({'messages': list(messages)})
 
 @login_required
 def mark_read(request, message_id):
-    AdminMessage.objects.filter(id=message_id, user=request.user).update(is_read=True)
-    AdminMessage.objects.filter(id=message_id, user=None).update(is_read=True)
+    MessageRead.objects.get_or_create(message_id=message_id, user=request.user)
     return JsonResponse({'status': 'ok'})
-
 
 def register_view(request):
     if request.method == 'POST':

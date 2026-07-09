@@ -9,10 +9,81 @@ from reportlab.pdfgen import canvas as pdf_canvas
 from reportlab.lib import colors
 from reportlab.pdfbase.pdfmetrics import stringWidth
 import datetime
-
+from content.models import Category
+from accounts.models import AdminMessage
 
 def is_bilge(user):
     return user.username == 'bilge'
+@login_required
+@user_passes_test(is_bilge)
+def delete_message(request, pk):
+    AdminMessage.objects.filter(pk=pk).delete()
+    return redirect('/portal/messages/')
+
+@login_required
+@user_passes_test(is_bilge)
+def compose_message(request):
+    students = User.objects.filter(is_staff=False).exclude(username='bilge').order_by('username')
+    sent = False
+
+    if request.method == 'POST':
+        target = request.POST.get('target')
+        text = request.POST.get('message', '').strip()
+        if text:
+            if target == 'all':
+                AdminMessage.objects.create(user=None, message=text)
+            else:
+                AdminMessage.objects.create(user_id=target, message=text)
+            sent = True
+
+    recent_messages = AdminMessage.objects.select_related('user').order_by('-created_at')[:20]
+
+    return render(request, 'portal/compose_message.html', {
+        'students': students,
+        'sent': sent,
+        'recent_messages': recent_messages,
+    })
+
+@login_required
+@user_passes_test(is_bilge)
+def manage_active_course(request):
+    active_course = Category.objects.filter(is_active_course=True, parent=None).first()
+    root_categories = Category.objects.filter(parent=None).order_by('order', 'name')
+    students = User.objects.filter(
+        is_staff=False, userprofile__has_library_access=True
+    ).exclude(username='bilge').order_by('username')
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'end_course':
+            if active_course:
+                active_course.is_active_course = False
+                active_course.allowed_users.clear()
+                active_course.save()
+            return redirect('/portal/active-course/')
+
+        elif action == 'set_course':
+            category_id = request.POST.get('category_id')
+            selected_user_ids = request.POST.getlist('user_ids')
+
+            Category.objects.filter(is_active_course=True).update(is_active_course=False)
+
+            category = get_object_or_404(Category, pk=category_id, parent=None)
+            category.is_active_course = True
+            category.save()
+            category.allowed_users.set(selected_user_ids)
+
+            return redirect('/portal/active-course/')
+
+    allowed_ids = set(active_course.allowed_users.values_list('pk', flat=True)) if active_course else set()
+
+    return render(request, 'portal/active_course.html', {
+        'active_course': active_course,
+        'root_categories': root_categories,
+        'students': students,
+        'allowed_ids': allowed_ids,
+    })
 
 TR_MAP = str.maketrans({
     'ğ': 'g', 'Ğ': 'G',

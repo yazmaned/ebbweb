@@ -255,6 +255,55 @@
     box-shadow: 0 0 0 4px rgba(10,132,255,0.15), inset 0 1px 2px rgba(0,0,0,0.04);
     border-color: rgba(10,132,255,0.4);
 }
+
+        /* ---------- Mailbox ---------- */
+        #mailbox-badge {
+            display: none;
+            position: absolute;
+            top: -4px;
+            right: -6px;
+            background: #e63946;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            min-width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 3px;
+        }
+        #mailbox-list a {
+            cursor: pointer;
+        }
+        #mailbox-popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        #mailbox-popup-box {
+            background: white;
+            max-width: 480px;
+            width: 90%;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        #mailbox-popup-close {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #999;
+        }
     </style>
 </head>
 <body>
@@ -269,6 +318,16 @@
         <div style="display:flex; align-items:center; gap:1rem;">
             {% if user.is_authenticated %}
             <span class="welcome-text">Hoş Geldin, <strong>{{ user.username }}</strong></span>
+
+            <div class="dropdown" id="mailbox-dropdown">
+                <a href="javascript:void(0)" id="mailbox-toggle" style="display:flex; align-items:center; position:relative;">
+                    <img src="{% static 'images/icons/mailbox.svg' %}" width="26" height="26">
+                    <span id="mailbox-badge"></span>
+                </a>
+                <div class="dropdown-menu" id="mailbox-list" style="min-width:280px;">
+                    <div style="padding:0.9rem 1.2rem; color:rgba(255,255,255,0.5); font-size:0.85rem;">Yükleniyor...</div>
+                </div>
+            </div>
             {% endif %}
 
            <div class="dropdown" id="menu-dropdown">
@@ -320,6 +379,15 @@
 
     {% if user.is_authenticated %}
     <div id="alert-container" style="position:fixed; bottom:2rem; right:2rem; z-index:9999; display:flex; flex-direction:column; gap:0.5rem; max-width:350px;"></div>
+
+    <div id="mailbox-popup-overlay">
+        <div id="mailbox-popup-box">
+            <button id="mailbox-popup-close">✕</button>
+            <div id="mailbox-popup-date" style="color:#aaa; font-size:0.8rem; margin-bottom:0.6rem;"></div>
+            <div id="mailbox-popup-body" style="font-size:1rem; line-height:1.6; color:#1a1a1a; white-space:pre-wrap;"></div>
+        </div>
+    </div>
+
     <script>
         document.getElementById('menu-toggle').addEventListener('click', (e) => {
             e.preventDefault();
@@ -330,6 +398,76 @@
                 document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
             }
         });
+
+        // ---------- Mailbox ----------
+        const mailboxToggle = document.getElementById('mailbox-toggle');
+        const mailboxList = document.getElementById('mailbox-list');
+        const mailboxBadge = document.getElementById('mailbox-badge');
+        const popupOverlay = document.getElementById('mailbox-popup-overlay');
+        const popupDate = document.getElementById('mailbox-popup-date');
+        const popupBody = document.getElementById('mailbox-popup-body');
+
+        let unreadMessages = [];
+
+        function renderMailboxList() {
+            if (unreadMessages.length === 0) {
+                mailboxList.innerHTML = '<div style="padding:0.9rem 1.2rem; color:rgba(255,255,255,0.5); font-size:0.85rem;">Yeni mesaj yok.</div>';
+                mailboxBadge.style.display = 'none';
+                return;
+            }
+
+            mailboxBadge.textContent = unreadMessages.length;
+            mailboxBadge.style.display = 'flex';
+
+            mailboxList.innerHTML = '';
+            unreadMessages.forEach(msg => {
+                const item = document.createElement('a');
+                item.href = 'javascript:void(0)';
+                const preview = msg.message.length > 60 ? msg.message.slice(0, 60) + '…' : msg.message;
+                item.textContent = preview;
+                item.addEventListener('click', () => openMessage(msg));
+                mailboxList.appendChild(item);
+            });
+        }
+
+        async function fetchMessages() {
+            try {
+                const response = await fetch('/accounts/messages/');
+                const data = await response.json();
+                unreadMessages = data.messages || [];
+                renderMailboxList();
+            } catch (e) {
+                // Silent fail — mailbox just stays empty rather than breaking the page.
+            }
+        }
+
+        async function openMessage(msg) {
+            popupDate.textContent = new Date(msg.created_at).toLocaleString('tr-TR');
+            popupBody.textContent = msg.message;
+            popupOverlay.style.display = 'flex';
+            mailboxList.classList.remove('open');
+
+            await fetch(`/accounts/messages/read/${msg.id}/`);
+            unreadMessages = unreadMessages.filter(m => m.id !== msg.id);
+            renderMailboxList();
+        }
+
+        document.getElementById('mailbox-popup-close').addEventListener('click', () => {
+            popupOverlay.style.display = 'none';
+        });
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) popupOverlay.style.display = 'none';
+        });
+
+        mailboxToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                if (m !== mailboxList) m.classList.remove('open');
+            });
+            mailboxList.classList.toggle('open');
+        });
+
+        fetchMessages();
     </script>
     {% endif %}
 

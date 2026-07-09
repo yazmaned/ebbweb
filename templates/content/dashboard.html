@@ -57,7 +57,6 @@
         margin-bottom: 0;
     }
 
-    /* No longer sticky itself — just centers the row. Only the search box inside sticks now. */
     .sticky-search-wrap {
         background: transparent;
         padding: 0.8rem 0;
@@ -76,7 +75,6 @@
         justify-content: center;
     }
 
-    /* --- Only the search box sticks on scroll; the toggle stays in normal flow and scrolls away with the page --- */
     .search-and-toggle-row .mac-search-wrap {
         flex: 1;
         min-width: 200px;
@@ -131,6 +129,22 @@
     .view-toggle-option:not(.active):hover {
         color: #2c3e50;
     }
+
+    /* --- Active course: special folder pinned above everything else --- */
+    .active-course-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        color: #671789;
+        text-transform: uppercase;
+        margin: 0 0 0.5rem 0.2rem;
+    }
+    .active-course-divider {
+        height: 3px;
+        background: #ccc;
+        border-radius: 999px;
+        margin: 1.3rem 0 1.6rem;
+    }
 </style>
 
 <div class="kutuphane-frame">
@@ -160,6 +174,14 @@
     </div>
 
     <div style="font-family:'inter', font-style:"thin";>
+
+        {% if active_course %}
+        <div>
+            <div class="active-course-label">AKTİF KURS | {{ active_course.name }}</div>
+            {% render_folder active_course 0 %}
+        </div>
+        <div class="active-course-divider"></div>
+        {% endif %}
 
         {% for category in root_categories %}
             {% render_folder category 0 %}
@@ -193,7 +215,7 @@
         </div>
         {% endif %}
 
-        {% if not root_categories and not uncategorized %}
+        {% if not active_course and not root_categories and not uncategorized %}
             <p style="color:#888; text-align:center; margin-top:2rem;">Henüz materyal yüklenmedi.</p>
         {% endif %}
 

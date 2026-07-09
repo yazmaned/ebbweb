@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Mesaj Gönder{% endblock %}
+
+{% block content %}
+<style>
+    .student-card {
+        background: white;
+        padding: 1.2rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        margin-bottom: 0.8rem;
+    }
+    .cm-target-row {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .cm-target-row label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-weight: 500;
+        text-transform: none;
+        cursor: pointer;
+    }
+    .cm-target-row input[type="radio"] {
+        accent-color: #671789;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+    }
+    .cm-recent-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .cm-recent-row:last-child { border-bottom: none; }
+    .cm-recent-target {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #671789;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+    <h2>Mesaj Gönder</h2>
+    <a href="/portal/students/" class="btn">← Öğrencilere Dön</a>
+</div>
+
+{% if sent %}
+<div class="student-card" style="border-left:4px solid #16a085;">
+    <strong style="color:#16a085;">Mesaj gönderildi.</strong>
+</div>
+{% endif %}
+
+<div class="student-card">
+    <form method="post">
+        {% csrf_token %}
+
+        <label style="display:block; font-weight:700; font-size:0.85rem; text-transform:uppercase; margin-bottom:0.6rem;">Kime</label>
+        <div class="cm-target-row">
+            <label>
+                <input type="radio" name="target" value="all" checked onchange="document.getElementById('cm-student-select').style.display='none'; document.getElementById('cm-student-select').disabled=true;">
+                Herkese
+            </label>
+            <label>
+                <input type="radio" name="target" value="one" onchange="document.getElementById('cm-student-select').style.display='block'; document.getElementById('cm-student-select').disabled=false;">
+                Tek öğrenciye
+            </label>
+        </div>
+
+        <select id="cm-student-select" name="student_id" disabled style="display:none; width:100%; padding:0.5rem; margin-bottom:1.2rem;">
+            {% for student in students %}
+                <option value="{{ student.pk }}">@{{ student.username }}</option>
+            {% endfor %}
+        </select>
+        <label style="display:block; font-weight:700; font-size:0.85rem; text-transform:uppercase; margin-bottom:0.4rem;">Mesaj</label>
+        <textarea name="message" required rows="4" style="width:100%; padding:0.6rem; margin-bottom:1.2rem; font-family:inherit; font-size:0.95rem;"></textarea>
+
+        <button type="submit" class="btn" style="background:#671789;">Gönder</button>
+    </form>
+</div>
+
+<div class="student-card">
+    <h3 style="margin-bottom:0.6rem;">Son Gönderilenler</h3>
+    {% for msg in recent_messages %}
+    <div class="cm-recent-row">
+        <div>
+            <div class="cm-recent-target">{% if msg.user %}to @{{ msg.user.username }}{% else %}HERKESE{% endif %}</div>
+            <div style="font-size:0.9rem; color:#2c3e50; margin-top:0.2rem;">{{ msg.message|truncatechars:120 }}</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.8rem; flex-shrink:0;">
+            <span style="color:#aaa; font-size:0.75rem; white-space:nowrap;">{{ msg.created_at|date:"d M Y H:i" }}</span>
+            <a href="/portal/messages/delete/{{ msg.pk }}/" class="btn" style="background:#e74c3c; padding:0.3rem 0.7rem; font-size:0.75rem;" onclick="return confirm('Bu mesaj silinsin mi?');">Sil</a>
+        </div>
+    </div>
+    {% empty %}
+    <p style="color:#888;">Henüz mesaj gönderilmedi.</p>
+    {% endfor %}
+</div>
+
+<script>
+    // Radio "Tek öğrenciye" selected → the <select> itself carries name="target"
+    // with the student's pk as its value, overriding the radio's "one" value
+    // once a real selection is made. Simplify: keep radio value in sync.
+    document.getElementById('cm-student-select').addEventListener('change', function() {
+        document.querySelector('input[name="target"][value="one"]').setAttribute('value', this.value);
+    });
+</script>
+{% endblock %}

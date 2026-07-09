@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import FileResponse, Http404
 from django.conf import settings
+from django.db.models import Q
 from .models import Material, Category
 from accounts.models import SessionLog, Journal
 from django.http import HttpResponse
@@ -10,6 +11,13 @@ from accounts.models import SessionLog, Journal, UserProfile
 from django.http import JsonResponse
 
 from .models import Material, Category, CarouselItem
+
+
+def _visible_categories_q(user):
+    """A category is hidden unless it's not an active-course folder,
+    or it is and this user is explicitly on its allowed list."""
+    return Q(is_active_course=False) | Q(is_active_course=True, allowed_users=user)
+
 
 def home(request):
     journals = Journal.objects.filter(is_active=True, show_on_home=True, is_seo=False)[:4]
@@ -108,7 +116,15 @@ def dashboard(request):
     if not profile or not profile.has_library_access:
         return redirect('/home/')
 
-    root_categories = Category.objects.filter(parent=None).prefetch_related(
+    active_course = Category.objects.filter(
+        is_active_course=True, parent=None, allowed_users=request.user
+    ).first()
+
+    root_categories = Category.objects.filter(parent=None).filter(
+        _visible_categories_q(request.user)
+    ).exclude(
+        pk=active_course.pk if active_course else None
+    ).distinct().prefetch_related(
         'children', 'children__children', 'children__materials',
         'materials', 'children__children__materials'
     )
@@ -123,14 +139,7 @@ def dashboard(request):
         'uncategorized': uncategorized,
         'video_count': video_count,
         'material_count': material_count,
-    })
-
-    SessionLog.objects.filter(user=request.user, is_active=True).update(current_material='Dashboard')
-    return render(request, 'content/dashboard.html', {
-        'root_categories': root_categories,
-        'uncategorized': uncategorized,
-        'video_count': video_count,
-        'material_count': material_count,
+        'active_course': active_course,
     })
 
 @login_required
@@ -149,7 +158,7 @@ def view_pdf(request, pk):
     SessionLog.objects.filter(user=request.user, is_active=True).update(
         current_material=f'📄 {material.title}'
     )
-    is_large_pdf = material.file.size > 5 * 1024 * 1024  # 5MB
+    is_large_pdf = material.file.size > 5 * 1024 * 1024
     return render(request, 'content/pdf_viewer.html', {'material': material, 'is_large_pdf': is_large_pdf})
 
 @login_required
@@ -159,6 +168,7 @@ def view_video(request, pk):
         current_material=f'🎥 {material.title}'
     )
     return render(request, 'content/video_viewer.html', {'material': material})
+
 @login_required
 def serve_image(request, pk):
     material = get_object_or_404(Material, pk=pk)
@@ -189,8 +199,12 @@ def dashboard_explorer(request):
     current_category = None
     if category_id:
         current_category = get_object_or_404(Category, pk=category_id)
+        if current_category.is_active_course and not current_category.allowed_users.filter(pk=request.user.pk).exists():
+            return redirect('/dashboard/explorer/')
 
-    subfolders = Category.objects.filter(parent=current_category).order_by('order', 'name')
+    subfolders = Category.objects.filter(parent=current_category).filter(
+        _visible_categories_q(request.user)
+    ).distinct().order_by('order', 'name')
     files = Material.objects.filter(category=current_category).order_by('order', 'title')
 
     breadcrumbs = []
@@ -212,6 +226,7 @@ def dashboard_explorer(request):
         'video_count': video_count,
         'material_count': material_count,
     })
+
 @login_required
 def dashboard_explorer_data(request):
     """AJAX companion to dashboard_explorer — same queries, JSON instead of a template."""
@@ -223,8 +238,12 @@ def dashboard_explorer_data(request):
     current_category = None
     if category_id:
         current_category = get_object_or_404(Category, pk=category_id)
+        if current_category.is_active_course and not current_category.allowed_users.filter(pk=request.user.pk).exists():
+            return JsonResponse({'ok': False, 'error': 'forbidden'}, status=403)
 
-    subfolders = Category.objects.filter(parent=current_category).order_by('order', 'name')
+    subfolders = Category.objects.filter(parent=current_category).filter(
+        _visible_categories_q(request.user)
+    ).distinct().order_by('order', 'name')
     files = Material.objects.filter(category=current_category).order_by('order', 'title')
 
     breadcrumbs = []
@@ -268,9 +287,17 @@ def dashboard_search(request):
             node = node.parent
         return ' / '.join(names) if names else 'Kütüphane'
 
+    def material_visible(material):
+        if material.category and material.category.is_active_course:
+            return material.category.allowed_users.filter(pk=request.user.pk).exists()
+        return True
+
     results = []
 
     for material in Material.objects.filter(title__icontains=query).select_related('category')[:50]:
+        if not material_visible(material):
+            continue
+
         if material.material_type == 'pdf':
             open_url = f'/view/{material.pk}/'
         elif material.material_type == 'image':
@@ -288,7 +315,9 @@ def dashboard_search(request):
             'navigate_to': material.category.pk if material.category else '',
         })
 
-    for category in Category.objects.filter(name__icontains=query)[:50]:
+    for category in Category.objects.filter(name__icontains=query).filter(
+        _visible_categories_q(request.user)
+    ).distinct()[:50]:
         results.append({
             'type': 'category',
             'id': category.pk,

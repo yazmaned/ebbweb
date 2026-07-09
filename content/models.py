@@ -1,10 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
     color = models.CharField(max_length=7, default='#2c3e50')
     order = models.IntegerField(default=0)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+
+    # --- Active-course feature: a single root-level folder can be flagged as
+    # the current course, visible only to the students Bilge picks. When she
+    # ends it, is_active_course flips back to False and it becomes a normal
+    # folder visible to everyone — no data migration needed for that part.
+    is_active_course = models.BooleanField(default=False)
+    allowed_users = models.ManyToManyField(User, blank=True, related_name='visible_active_courses')
 
     def __str__(self):
         return self.name
@@ -33,7 +41,7 @@ class Material(models.Model):
         ('video', 'Video (Sunucuda)'),
         ('youtube', 'YouTube Gömme'),
         ('vimeo', 'Vimeo Gömme'),
-        ('image', 'Görsel (PNG/JPEG)'),  # NEW
+        ('image', 'Görsel (PNG/JPEG)'),
     ]
     title = models.CharField(max_length=200)
     material_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
