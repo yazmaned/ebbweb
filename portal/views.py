@@ -12,18 +12,27 @@ import datetime
 from content.models import Category
 from accounts.models import AdminMessage
 
+# Bilge and yazman are the two privileged (admin/superuser teacher) accounts —
+# both get full portal access, and both are excluded from every "student" list
+# since neither of them is actually a student.
+PRIVILEGED_USERNAMES = ('bilge', 'yazman')
+
+
 def is_bilge(user):
-    return user.username == 'bilge'
+    return user.username in PRIVILEGED_USERNAMES
+
+
 @login_required
 @user_passes_test(is_bilge)
 def delete_message(request, pk):
     AdminMessage.objects.filter(pk=pk).delete()
     return redirect('/portal/messages/')
 
+
 @login_required
 @user_passes_test(is_bilge)
 def compose_message(request):
-    students = User.objects.filter(is_staff=False).exclude(username='bilge').order_by('username')
+    students = User.objects.filter(is_staff=False).exclude(username__in=PRIVILEGED_USERNAMES).order_by('username')
     sent = False
 
     if request.method == 'POST':
@@ -44,6 +53,7 @@ def compose_message(request):
         'recent_messages': recent_messages,
     })
 
+
 @login_required
 @user_passes_test(is_bilge)
 def manage_active_course(request):
@@ -51,7 +61,7 @@ def manage_active_course(request):
     root_categories = Category.objects.filter(parent=None).order_by('order', 'name')
     students = User.objects.filter(
         is_staff=False, userprofile__has_library_access=True
-    ).exclude(username='bilge').order_by('username')
+    ).exclude(username__in=PRIVILEGED_USERNAMES).order_by('username')
 
     if request.method == 'POST':
         action = request.POST.get('action')
@@ -84,6 +94,7 @@ def manage_active_course(request):
         'students': students,
         'allowed_ids': allowed_ids,
     })
+
 
 TR_MAP = str.maketrans({
     'ğ': 'g', 'Ğ': 'G',
@@ -131,7 +142,7 @@ def draw_table_header(p, y, width):
 @login_required
 @user_passes_test(is_bilge)
 def export_students_pdf(request):
-    students = User.objects.filter(is_staff=False).exclude(username='bilge').select_related('userprofile').order_by('username')
+    students = User.objects.filter(is_staff=False).exclude(username__in=PRIVILEGED_USERNAMES).select_related('userprofile').order_by('username')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ogrenci_listesi.pdf"'
@@ -139,7 +150,6 @@ def export_students_pdf(request):
     p = pdf_canvas.Canvas(response, pagesize=landscape(A4))
     width, height = landscape(A4)
 
-    # title
     p.setFont("Helvetica-Bold", 16)
     p.drawString(40, height - 45, tr("Student (User) List"))
 
@@ -234,7 +244,7 @@ def add_student(request):
 @login_required
 @user_passes_test(is_bilge)
 def student_list(request):
-    students = User.objects.filter(is_staff=False).exclude(username='bilge').select_related('userprofile').order_by('-date_joined')
+    students = User.objects.filter(is_staff=False).exclude(username__in=PRIVILEGED_USERNAMES).select_related('userprofile').order_by('-date_joined')
     return render(request, 'portal/student_list.html', {'students': students})
 
 @login_required

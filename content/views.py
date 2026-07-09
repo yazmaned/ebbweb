@@ -13,9 +13,21 @@ from django.http import JsonResponse
 from .models import Material, Category, CarouselItem
 
 
+# Bilge and yazman (admin/superuser teacher accounts) always see every
+# active-course folder, regardless of allowed_users — but they're never
+# listed as selectable students in the portal picker either.
+PRIVILEGED_USERNAMES = ('bilge', 'yazman')
+
+
+def _is_privileged(user):
+    return user.username in PRIVILEGED_USERNAMES
+
+
 def _visible_categories_q(user):
     """A category is hidden unless it's not an active-course folder,
-    or it is and this user is explicitly on its allowed list."""
+    this user is explicitly on its allowed list, or this user is privileged."""
+    if _is_privileged(user):
+        return Q()
     return Q(is_active_course=False) | Q(is_active_course=True, allowed_users=user)
 
 
@@ -116,9 +128,12 @@ def dashboard(request):
     if not profile or not profile.has_library_access:
         return redirect('/home/')
 
-    active_course = Category.objects.filter(
-        is_active_course=True, parent=None, allowed_users=request.user
-    ).first()
+    if _is_privileged(request.user):
+        active_course = Category.objects.filter(is_active_course=True, parent=None).first()
+    else:
+        active_course = Category.objects.filter(
+            is_active_course=True, parent=None, allowed_users=request.user
+        ).first()
 
     root_categories = Category.objects.filter(parent=None).filter(
         _visible_categories_q(request.user)
@@ -199,7 +214,9 @@ def dashboard_explorer(request):
     current_category = None
     if category_id:
         current_category = get_object_or_404(Category, pk=category_id)
-        if current_category.is_active_course and not current_category.allowed_users.filter(pk=request.user.pk).exists():
+        if (current_category.is_active_course
+                and not _is_privileged(request.user)
+                and not current_category.allowed_users.filter(pk=request.user.pk).exists()):
             return redirect('/dashboard/explorer/')
 
     subfolders = Category.objects.filter(parent=current_category).filter(
@@ -238,7 +255,9 @@ def dashboard_explorer_data(request):
     current_category = None
     if category_id:
         current_category = get_object_or_404(Category, pk=category_id)
-        if current_category.is_active_course and not current_category.allowed_users.filter(pk=request.user.pk).exists():
+        if (current_category.is_active_course
+                and not _is_privileged(request.user)
+                and not current_category.allowed_users.filter(pk=request.user.pk).exists()):
             return JsonResponse({'ok': False, 'error': 'forbidden'}, status=403)
 
     subfolders = Category.objects.filter(parent=current_category).filter(
@@ -289,6 +308,8 @@ def dashboard_search(request):
 
     def material_visible(material):
         if material.category and material.category.is_active_course:
+            if _is_privileged(request.user):
+                return True
             return material.category.allowed_users.filter(pk=request.user.pk).exists()
         return True
 
