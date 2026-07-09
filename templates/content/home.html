@@ -330,7 +330,7 @@
                 </div>
                 {% endif %}
                 <p>
-                    Seviye: {% if user_profile.latest_trial_score %}<strong style="color:#16a085;">{{ user_profile.latest_trial_score|floatformat:0 }}/130</strong>{% if user_profile.latest_trial_level %} <span style="color:#8e44ad; font-weight:600;">({{ user_profile.latest_trial_level }})</span>{% endif %}{% else %}<span style="color:#aaa; font-style:italic;">Henüz Çözmediniz</span>{% endif %}
+                    Seviye B. Skoru: {% if user_profile.latest_trial_score %}<strong style="color:#16a085;">{{ user_profile.latest_trial_score|floatformat:0 }}/130</strong>{% if user_profile.latest_trial_level %} <span style="color:#8e44ad; font-weight:600;">({{ user_profile.latest_trial_level }})</span>{% endif %}{% else %}<span style="color:#aaa; font-style:italic;">Henüz Çözmediniz</span>{% endif %}
                     · Kütüphane: {% if user_profile.has_library_access %}<strong style="color:#16a085;">Var</strong>{% else %}<span style="color:grey; font-weight:600;">Yok</span>{% endif %}
                 </p>
             </div>
