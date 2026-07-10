@@ -14,6 +14,8 @@ from .forms import SetNewPasswordForm
 from .forms import CustomLoginForm, SetNewPasswordForm
 from .forms import RegisterForm
 from .models import AdminMessage, UserProfile, StudentPasswordLog, MessageRead
+from django.views.decorators.http import require_GET
+from django.contrib.auth.models import User
 
 @login_required
 def change_password(request):
@@ -81,6 +83,14 @@ def get_messages(request):
         id__in=read_ids
     ).order_by('-created_at').values('id', 'message', 'created_at')
     return JsonResponse({'messages': list(messages)})
+
+@require_GET
+def check_username_available(request):
+    username = request.GET.get('username', '').strip()
+    if not username:
+        return JsonResponse({'available': False})
+    exists = User.objects.filter(username__iexact=username).exists()
+    return JsonResponse({'available': not exists})
 
 @login_required
 def mark_read(request, message_id):

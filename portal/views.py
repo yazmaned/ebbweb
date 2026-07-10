@@ -212,10 +212,15 @@ def add_student(request):
     error = None
     generated_password = None
     username = ''
+    active_course = Category.objects.filter(is_active_course=True, parent=None).first()
 
     if request.method == 'POST':
         username = request.POST.get('username').strip()
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
         registration_note = request.POST.get('registration_note', '').strip()
+        grant_library_access = 'grant_library_access' in request.POST
+        grant_active_course = 'grant_active_course' in request.POST
 
         if User.objects.filter(username=username).exists():
             error = 'Bu kullanıcı adı zaten mevcut.'
@@ -224,13 +229,27 @@ def add_student(request):
             user = User.objects.create_user(
                 username=username,
                 password=generated_password,
+                first_name=first_name,
+                last_name=last_name,
             )
+
+            # Active course visibility requires library access as a prerequisite
+            # (checked before the course lookup even runs in the dashboard views) —
+            # so a course-only checkbox with no library access would leave the
+            # student unable to see anything at all. Force it on together.
+            if grant_active_course and active_course:
+                grant_library_access = True
+
             profile, _ = UserProfile.objects.get_or_create(user=user)
             profile.must_change_password = True
             profile.registration_note = registration_note
             profile.is_self_registered = False
-            profile.has_library_access = True
+            profile.has_library_access = grant_library_access
             profile.save()
+
+            if grant_active_course and active_course:
+                active_course.allowed_users.add(user)
+
             success = f'"{username}" başarıyla eklendi!'
 
     return render(request, 'portal/add_student.html', {
@@ -238,8 +257,26 @@ def add_student(request):
         'error': error,
         'generated_password': generated_password,
         'username': username if success else '',
+        'active_course': active_course,
     })
 
+@login_required
+@user_passes_test(is_bilge)
+def rename_student(request, pk):
+    if request.method == 'POST':
+        user = get_object_or_404(User, pk=pk)
+        new_username = request.POST.get('new_username', '').strip()
+        new_first_name = request.POST.get('new_first_name', '').strip()
+        new_last_name = request.POST.get('new_last_name', '').strip()
+
+        if new_username and not User.objects.exclude(pk=pk).filter(username=new_username).exists():
+            user.username = new_username
+
+        user.first_name = new_first_name
+        user.last_name = new_last_name
+        user.save()
+
+    return redirect('/portal/students/')
 
 @login_required
 @user_passes_test(is_bilge)

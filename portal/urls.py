@@ -11,4 +11,5 @@ urlpatterns = [
     path('active-course/', views.manage_active_course, name='manage_active_course'),
     path('messages/', views.compose_message, name='compose_message'),
     path('messages/delete/<int:pk>/', views.delete_message, name='delete_message'),
+    path('students/rename/<int:pk>/', views.rename_student, name='rename_student'),
 ]

@@ -13,12 +13,99 @@
         font-size: 0.7rem;
         white-space: nowrap;
     }
+
     .student-card {
         background: white;
         padding: 1.2rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         margin-bottom: 0.8rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .student-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 30%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+        pointer-events: none;
+    }
+    .student-card:hover {
+        transform: scale(1.008);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+    .student-card > div { position: relative; z-index: 1; }
+
+    /* --- Avatar: simplified, one soft gradient + gentle highlight, not overbuilt --- */
+    .student-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(160deg, #5cb8ff, #0a63d6);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 2px 6px rgba(10,99,214,0.3);
+    }
+
+    /* --- Just the name+username stack, nothing else wrapped --- */
+    .student-name-stack {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+    }
+
+    .student-fullname {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+    .student-username {
+        font-size: 0.8rem;
+        color: #999;
+        font-weight: 500;
+    }
+
+    .rename-btn { display: none; }
+    body.debug-mode .rename-btn { display: inline-block; }
+
+    #rename-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(40,42,45,0.3);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+    }
+    #rename-modal-box {
+        background: rgba(235,236,238,0.9);
+        backdrop-filter: saturate(180%) blur(40px);
+        -webkit-backdrop-filter: saturate(180%) blur(40px);
+        border: 0.5px solid rgba(255,255,255,0.5);
+        border-radius: 14px;
+        padding: 2rem;
+        max-width: 380px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+    #rename-modal-close {
+        position: absolute;
+        top: 1rem; right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: #aaa;
     }
 </style>
 
@@ -26,11 +113,12 @@
     <h2>Öğrenciler</h2>
     <a href="/portal/add-student/" class="btn">+ Yeni Öğrenci Kaydı</a>
 </div>
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:0.8rem;">
     <p style="color: gray;">Detaylı bilgi, log ve yetki düzenlemesi için adminle iletişime geçiniz.</p>
-    <div style="display:flex; gap:0.5rem;">
+    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
         <a href="/portal/students/export/" class="btn" style="background: green">Listeden Rapor Oluştur (.pdf)</a>
-        <a href="/portal/active-course/" class="btn" style="background:#671789;">Aktif Kurs</a>
+        <a href="/portal/active-course/" class="btn" style="background:#671789;">Aktif Kurs Yönetimi</a>
+        <a href="/portal/messages/" class="btn" style="background:#3d7fd6;">Mesaj Gönder</a>
     </div>
 </div>
 
@@ -40,42 +128,57 @@
     <div class="student-card">
 
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.8rem;">
-            <div>
-                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                    <strong style="font-size:1.05rem;">@{{ student.username }}</strong>
-
-                    {% if student.userprofile.registration_note %}
-                    <span class="student-badge" style="background:#8e44ad; font-style:italic;">
-                        {{ student.userprofile.registration_note }}
-                    </span>
-                    {% endif %}
-
-                    {% if student.userprofile.is_self_registered %}
-                    <span class="student-badge" style="background:#e67e22;">Self Registration</span>
-                    {% else %}
-                    <span class="student-badge" style="background:#2980b9;">Manual Library Registration</span>
-                    {% endif %}
-
-                    {% if student.userprofile.has_library_access %}
-                    <span class="student-badge" style="background:#16a085;">Kütüphane: Var</span>
-                    {% else %}
-                    <span class="student-badge" style="background:#999;">Kütüphane: Yok</span>
-                    {% endif %}
+            <div style="display:flex; gap:0.9rem; align-items:flex-start;">
+                <div class="student-avatar">
+                    {% if student.first_name %}{{ student.first_name|first|upper }}{{ student.last_name|first|upper }}{% else %}{{ student.username|first|upper }}{% endif %}
                 </div>
 
-                <div style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">
-                    Kayıt Tarihi: {{ student.date_joined|date:"d M Y" }}
-                    {% if student.userprofile.phone_number %} · {{ student.userprofile.phone_number }}{% endif %}
+                <div>
+                    <div style="display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap;">
+                        <div class="student-name-stack">
+                            {% if student.first_name or student.last_name %}
+                                <span class="student-fullname">{{ student.first_name }} {{ student.last_name }}</span>
+                                <span class="student-username">@{{ student.username }}</span>
+                            {% else %}
+                                <span class="student-fullname">@{{ student.username }}</span>
+                            {% endif %}
+                        </div>
+
+                        {% if student.userprofile.registration_note %}
+                        <span class="student-badge" style="background:#8e44ad; font-style:italic;">
+                            {{ student.userprofile.registration_note }}
+                        </span>
+                        {% endif %}
+
+                        {% if student.userprofile.is_self_registered %}
+                        <span class="student-badge" style="background:#e67e22;">Self Registration</span>
+                        {% else %}
+                        <span class="student-badge" style="background:#2980b9;">Manual Library Registration</span>
+                        {% endif %}
+
+                        {% if student.userprofile.has_library_access %}
+                        <span class="student-badge" style="background:#16a085;">Kütüphane: Var</span>
+                        {% else %}
+                        <span class="student-badge" style="background:#999;">Kütüphane: Yok</span>
+                        {% endif %}
+                    </div>
+
+                    <div style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">
+                        Kayıt Tarihi: {{ student.date_joined|date:"d M Y" }}
+                        {% if student.userprofile.phone_number %} · {{ student.userprofile.phone_number }}{% endif %}
+                    </div>
                 </div>
             </div>
 
-            <div style="display:flex; gap:0.5rem; flex-shrink:0;">
+            <div style="display:flex; gap:0.5rem; flex-shrink:0; flex-wrap:wrap;">
+                <button type="button" class="btn rename-btn" style="background:#f39c12; padding:0.3rem 0.7rem; font-size:0.75rem;"
+                    onclick="openRenameModal({{ student.pk }}, '{{ student.username|escapejs }}', '{{ student.first_name|escapejs }}', '{{ student.last_name|escapejs }}')">Yeniden Adlandır</button>
                 <button type="button" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem;"
                     onclick="editNote({{ student.pk }}, '{{ student.userprofile.registration_note|escapejs }}')">Notu Düzenle</button>
                 <a href="/portal/students/toggle-access/{{ student.pk }}/" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem; display:inline-flex; align-items:center; justify-content:center; line-height:1;">
                     {% if student.userprofile.has_library_access %}Erişimi Kaldır{% else %}Erişim Ver{% endif %}
                 </a>
-                <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c; padding:0.3rem 0.7rem; font-size:0.75rem;" onclick="return confirm('{{ student.username }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
+                <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c; padding:0.3rem 0.7rem; font-size:0.75rem;" onclick="return confirm('{{ student.first_name|default:student.username }} {{ student.last_name }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
             </div>
         </div>
 
@@ -91,6 +194,29 @@
     <p style="color:#888;">Henüz öğrenci eklenmedi.</p>
 {% endif %}
 
+<!-- ---------- Rename modal (shared, one instance, populated per-student on open) ---------- -->
+<div id="rename-modal-overlay">
+    <div id="rename-modal-box">
+        <button id="rename-modal-close" onclick="closeRenameModal()">✕</button>
+        <h3 style="color:#2c3e50; margin-bottom:1.2rem;">Öğrenciyi Yeniden Adlandır</h3>
+
+        <form method="post" id="rename-form">
+            {% csrf_token %}
+
+            <label style="display:block; font-weight:700; font-size:0.85rem; text-transform:uppercase; margin-bottom:0.3rem;">Ad</label>
+            <input type="text" name="new_first_name" id="rename-first-name" autocomplete="off" style="margin-bottom:1rem;">
+
+            <label style="display:block; font-weight:700; font-size:0.85rem; text-transform:uppercase; margin-bottom:0.3rem;">Soyad</label>
+            <input type="text" name="new_last_name" id="rename-last-name" autocomplete="off" style="margin-bottom:1rem;">
+
+            <label style="display:block; font-weight:700; font-size:0.85rem; text-transform:uppercase; margin-bottom:0.3rem;">Kullanıcı Adı</label>
+            <input type="text" name="new_username" id="rename-username" autocomplete="off" required style="margin-bottom:1.2rem;">
+
+            <button type="submit" class="btn" style="width:100%; background:#f39c12;">Kaydet</button>
+        </form>
+    </div>
+</div>
+
 <script>
 function editNote(studentId, currentNote) {
     const confirmed = confirm(
@@ -105,5 +231,52 @@ function editNote(studentId, currentNote) {
     document.getElementById('note-input-' + studentId).value = newNote;
     document.getElementById('note-form-' + studentId).submit();
 }
+
+// ---------- Rename modal ----------
+function openRenameModal(studentId, currentUsername, currentFirstName, currentLastName) {
+    document.getElementById('rename-form').action = '/portal/students/rename/' + studentId + '/';
+    document.getElementById('rename-first-name').value = currentFirstName;
+    document.getElementById('rename-last-name').value = currentLastName;
+    document.getElementById('rename-username').value = currentUsername;
+    document.getElementById('rename-modal-overlay').style.display = 'flex';
+}
+
+function closeRenameModal() {
+    document.getElementById('rename-modal-overlay').style.display = 'none';
+}
+
+document.getElementById('rename-modal-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'rename-modal-overlay') closeRenameModal();
+});
+
+// ---------- Secret debug toggle: press Shift+R twice within 3s ----------
+(function() {
+    let lastShiftR = 0;
+    const DOUBLE_PRESS_WINDOW = 3000;
+
+    function setDebugMode(on) {
+        document.body.classList.toggle('debug-mode', on);
+        localStorage.setItem('bd_debug_mode', on ? '1' : '0');
+    }
+
+    if (localStorage.getItem('bd_debug_mode') === '1') {
+        setDebugMode(true);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        const tag = document.activeElement.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+        if (e.shiftKey && e.key.toLowerCase() === 'r') {
+            const now = Date.now();
+            if (now - lastShiftR < DOUBLE_PRESS_WINDOW) {
+                setDebugMode(!document.body.classList.contains('debug-mode'));
+                lastShiftR = 0;
+            } else {
+                lastShiftR = now;
+            }
+        }
+    });
+})();
 </script>
 {% endblock %}

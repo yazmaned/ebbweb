@@ -141,5 +141,95 @@
         const number = document.getElementById('phone-number-visible').value.trim();
         document.getElementById('id_phone_number').value = selectedCode + ' ' + number;
     });
+
+    // ---------- Live username suggestion from first/last name ----------
+    const TR_USERNAME_MAP = {
+        'ğ': 'g', 'Ğ': 'g', 'ş': 's', 'Ş': 's', 'ı': 'i', 'İ': 'i',
+        'ç': 'c', 'Ç': 'c', 'ö': 'o', 'Ö': 'o', 'ü': 'u', 'Ü': 'u',
+    };
+
+    function slugifyUsername(text) {
+        let result = '';
+        for (const ch of text) {
+            result += TR_USERNAME_MAP[ch] !== undefined ? TR_USERNAME_MAP[ch] : ch;
+        }
+        return result
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, '');
+    }
+
+    const firstNameInput = document.getElementById('id_first_name');
+    const lastNameInput = document.getElementById('id_last_name');
+    const usernameInput = document.getElementById('id_username');
+
+    // ---------- Live username availability check (debounced) ----------
+    let usernameCheckTimer = null;
+    let usernameStatusEl = null;
+
+    function ensureUsernameStatusEl() {
+        if (usernameStatusEl) return usernameStatusEl;
+        usernameStatusEl = document.createElement('p');
+        usernameStatusEl.style.fontSize = '0.8rem';
+        usernameStatusEl.style.marginTop = '0.3rem';
+        usernameInput.insertAdjacentElement('afterend', usernameStatusEl);
+        return usernameStatusEl;
+    }
+
+    async function checkUsernameAvailability(username) {
+        const statusEl = ensureUsernameStatusEl();
+
+        if (!username) {
+            statusEl.textContent = '';
+            return;
+        }
+
+        statusEl.style.color = '#888';
+        statusEl.textContent = 'Kontrol ediliyor...';
+
+        try {
+            const response = await fetch(`/accounts/check-username/?username=${encodeURIComponent(username)}`);
+            const data = await response.json();
+
+            // Guard against a stale, slower response landing after a newer one
+            // (e.g. user kept typing past this request) — only trust the result
+            // if the input still matches what we asked about.
+            if (usernameInput.value.trim() !== username) return;
+
+            if (data.available) {
+                statusEl.style.color = '#16a085';
+                statusEl.textContent = '✓ Bu kullanıcı adı uygun';
+            } else {
+                statusEl.style.color = '#e74c3c';
+                statusEl.textContent = '✕ Bu kullanıcı adı zaten alınmış';
+            }
+        } catch (e) {
+            statusEl.textContent = '';
+        }
+    }
+
+    function scheduleUsernameCheck() {
+        clearTimeout(usernameCheckTimer);
+        const username = usernameInput.value.trim();
+        usernameCheckTimer = setTimeout(() => checkUsernameAvailability(username), 400);
+    }
+
+    if (firstNameInput && lastNameInput && usernameInput) {
+        let usernameManuallyEdited = false;
+
+        usernameInput.addEventListener('input', () => {
+            usernameManuallyEdited = true;
+            scheduleUsernameCheck();
+        });
+
+        function updateSuggestedUsername() {
+            if (usernameManuallyEdited) return;
+            const suggested = slugifyUsername(firstNameInput.value + lastNameInput.value);
+            usernameInput.value = suggested;
+            scheduleUsernameCheck();
+        }
+
+        firstNameInput.addEventListener('input', updateSuggestedUsername);
+        lastNameInput.addEventListener('input', updateSuggestedUsername);
+    }
 </script>
 {% endblock %}

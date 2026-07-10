@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class RegisterForm(UserCreationForm):
+    first_name = forms.CharField(label='Ad', max_length=150, required=True)
+    last_name = forms.CharField(label='Soyad', max_length=150, required=True)
     email = forms.EmailField(label='E-posta', required=True)
     phone_number = forms.CharField(
         label='Telefon Numarası',
@@ -15,7 +17,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -3,7 +3,7 @@
 {% block title %}Öğrenci Ekle{% endblock %}
 
 {% block content %}
-<div style="max-width:500px; margin:2rem auto; background:white; padding:2rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+<div style="max-width:500px; margin:2rem auto; background:white; padding:2rem; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
     <h2 style="margin-bottom:0.5rem;">Yeni Öğrenci Ekle</h2>
 
     {% if success %}
@@ -34,13 +34,33 @@ Başarılar dileriz! 📚</textarea>
 
     <form method="post">
         {% csrf_token %}
-        <label>Kullanıcı Adı</label>
+
+        <label>Ad</label>
+        <input type="text" name="first_name" autocomplete="off">
+
+        <label style="display:block; margin-top:0.8rem;">Soyad</label>
+        <input type="text" name="last_name" autocomplete="off">
+
+        <label style="display:block; margin-top:0.8rem;">Kullanıcı Adı</label>
         <input type="text" name="username" autocomplete="off" required>
 
         <label style="display:block; margin-top:0.8rem;">Kayıt Notu (opsiyonel, bu not öğrenci ana sayfasında görüneceğinden dikkatli olunuz.)</label>
         <input type="text" name="registration_note" autocomplete="off" placeholder="örn. Puan Arttıran Paket">
 
-        <button type="submit" class="btn" style="width:100%; margin-top:0.5rem;">Öğrenci Ekle</button>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:1rem;">
+            <input type="checkbox" name="grant_library_access" id="grant-library-access" checked style="width:auto; margin:0;">
+            <label for="grant-library-access" style="margin:0; text-transform:none; font-weight:500;">Kütüphaneye kayıt yapılsın mı?</label>
+        </div>
+
+        {% if active_course %}
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.6rem;">
+            <input type="checkbox" name="grant_active_course" id="grant-active-course" style="width:auto; margin:0;">
+            <label for="grant-active-course" style="margin:0; text-transform:none; font-weight:500;">Aktif kursa ({{ active_course.name }}) kayıt yapılsın mı?</label>
+        </div>
+        <p style="color:#aaa; font-size:0.75rem; margin-top:0.3rem;">Bu seçilirse kütüphane erişimi otomatik olarak verilir.</p>
+        {% endif %}
+
+        <button type="submit" class="btn" style="width:100%; margin-top:1rem;">Öğrenci Ekle</button>
     </form>
 
     <div style="margin-top:1.5rem; text-align:center;">

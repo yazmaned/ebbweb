@@ -31,15 +31,29 @@
         min-height: 0;
     }
 
+    /* --- Aqua/Tiger panel: solid gradient + bevel + gloss cap, no Big-Sur blur.
+         Rainbow border-image kept exactly as it was. --- */
     .kutuphane-frame {
         border: 1.5px solid transparent;
         border-radius: 0px;
         border-image: linear-gradient(90deg, #e63946, #f4a261, #2a9d8f, #264653, #e63946) 1;
         padding: 2rem 2rem 2.5rem;
-        background: rgba(206, 206, 206, 0.45);
-        backdrop-filter: saturate(150%) blur(28px);
-        -webkit-backdrop-filter: saturate(150%) blur(28px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        background: linear-gradient(180deg, #fbfbfc 0%, #dcdde0 100%);
+        box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 12px 28px rgba(0,0,0,0.14);
+        position: relative;
+        overflow: hidden;
+    }
+    .kutuphane-frame::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 30%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+        pointer-events: none;
+    }
+    .kutuphane-frame > * {
+        position: relative;
+        z-index: 1;
     }
     @media (max-width: 768px) {
         .kutuphane-frame {
@@ -89,11 +103,15 @@
         padding-bottom: 0;
     }
 
+    /* --- Segmented control: real Aqua "System Preferences" look — recessed
+         track with an inset shadow, glossy raised pill for the active option --- */
     .view-toggle {
         display: flex;
         align-items: stretch;
         height: var(--control-height);
-        background: #ececec;
+        background: linear-gradient(180deg, #d6d6da, #c6c6ca);
+        border: 1px solid rgba(0,0,0,0.18);
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
         border-radius: 999px;
         padding: 3px;
         gap: 2px;
@@ -110,7 +128,7 @@
         font-size: 0.82rem;
         font-weight: 500;
         text-decoration: none;
-        color: #8e8e93;
+        color: #666;
         transition: background 0.15s, color 0.15s, box-shadow 0.15s;
         white-space: nowrap;
     }
@@ -122,9 +140,9 @@
         flex-shrink: 0;
     }
     .view-toggle-option.active {
-        background: white;
+        background: linear-gradient(180deg, #ffffff, #e6e6ea);
         color: #2c3e50;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.3);
     }
     .view-toggle-option:not(.active):hover {
         color: #2c3e50;
@@ -141,8 +159,9 @@
     }
     .active-course-divider {
         height: 3px;
-        background: #ccc;
+        background: linear-gradient(180deg, #bbb, #ddd);
         border-radius: 999px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.15);
         margin: 1.3rem 0 1.6rem;
     }
 </style>
@@ -191,8 +210,9 @@
         <div style="margin-top:1rem;">
             {% for material in uncategorized %}
             <div class="lib-material-row" data-search-text="{{ material.title|lower }}"
-                style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px;"
-                onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+                style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px; cursor:pointer;"
+                onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'"
+                onclick="window.open('{% if material.material_type == 'pdf' %}/view/{{ material.pk }}/{% elif material.material_type == 'image' %}/image/{{ material.pk }}/{% else %}/video/{{ material.pk }}/{% endif %}', '_blank')">
                 <div style="display:flex; align-items:center; gap:0.6rem;">
                     {% if material.material_type == 'pdf' %}
                         <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
@@ -204,11 +224,11 @@
                     <span style="color:#2c3e50;">{{ material.title }}</span>
                 </div>
                 {% if material.material_type == 'pdf' %}
-                    <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
+                    <button onclick="event.stopPropagation(); window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
                 {% elif material.material_type == 'image' %}
-                    <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
+                    <button onclick="event.stopPropagation(); window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
                 {% else %}
-                    <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
+                    <button onclick="event.stopPropagation(); window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
                 {% endif %}
             </div>
             {% endfor %}

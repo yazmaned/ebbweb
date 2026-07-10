@@ -23,8 +23,9 @@
 
             {% for material in materials %}
             <div class="lib-material-row" data-search-text="{{ material.title|lower }}"
-                style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px; transition: background 0.15s;"
-                onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'">
+                style="display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0.8rem; border-radius:6px; transition: background 0.15s; cursor:pointer;"
+                onmouseover="this.style.background='#f8f8f8'" onmouseout="this.style.background='transparent'"
+                onclick="window.open('{% if material.material_type == 'pdf' %}/view/{{ material.pk }}/{% elif material.material_type == 'image' %}/image/{{ material.pk }}/{% else %}/video/{{ material.pk }}/{% endif %}', '_blank')">
                 <div style="display:flex; align-items:center; gap:0.6rem;">
                     {% if material.material_type == 'pdf' %}
                         <img src="{% static 'images/icons/pdf.png' %}" width="24" height="24">
@@ -37,11 +38,11 @@
                     <span style="color:#bbb; font-size:0.75rem;">{{ material.material_type|upper }}</span>
                 </div>
                 {% if material.material_type == 'pdf' %}
-                    <button onclick="window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
+                    <button onclick="event.stopPropagation(); window.open('/view/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Aç</button>
                 {% elif material.material_type == 'image' %}
-                    <button onclick="window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Görüntüle</button>
+                    <button onclick="event.stopPropagation(); window.open('/image/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">Görüntüle</button>
                 {% else %}
-                    <button onclick="window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
+                    <button onclick="event.stopPropagation(); window.open('/video/{{ material.pk }}/', '_blank')" class="btn" style="padding:0.3rem 0.8rem; font-size:0.85rem;">İzle</button>
                 {% endif %}
             </div>
             {% endfor %}
