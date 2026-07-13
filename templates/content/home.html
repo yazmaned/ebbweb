@@ -57,12 +57,12 @@
     }
 
     @media (max-width: 640px) {
-        .carousel-track { height: 130px; }
+        .carousel-track { height: 150px; overflow: hidden; }
         .carousel-slide { left: 36px; right: 36px; padding: 0.6rem; gap: 0.6rem; }
-        .carousel-slide img { width: 90px; height: 90px; }
-        .carousel-slide h4 { font-size: 0.72rem; white-space: normal; overflow: visible; text-overflow: clip; }
-        .carousel-slide p { -webkit-line-clamp: 2; font-size: 0.68rem; margin-bottom: 0.35rem; }
-        .carousel-slide .btn { font-size: 0.68rem; padding: 0.25rem 0.55rem; }
+        .carousel-slide img { width: 80px; height: 80px; }
+        .carousel-slide h4 { font-size: 0.7rem; white-space: normal; overflow: visible; text-overflow: clip; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; }
+        .carousel-slide p { -webkit-line-clamp: 1; font-size: 0.65rem; margin-bottom: 0.3rem; }
+        .carousel-slide .btn { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
         .carousel-nav-btn { width: 26px; height: 26px; font-size: 0.9rem; }
     }
 </style>
@@ -211,9 +211,8 @@
         padding-bottom: 0.4rem;
     }
 
-    /* --- Whitish card style, matching the student-list cards --- */
     .service-card {
-        background: rgba(239, 239, 239, 0.73);
+        background: white;
         border-radius: 12px;
         padding: 0.9rem 1rem;
         text-align: left;
