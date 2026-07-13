@@ -38,7 +38,6 @@
     }
     .student-card > div { position: relative; z-index: 1; }
 
-    /* --- Avatar: simplified, one soft gradient + gentle highlight, not overbuilt --- */
     .student-avatar {
         width: 40px;
         height: 40px;
@@ -54,7 +53,6 @@
         box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 2px 6px rgba(10,99,214,0.3);
     }
 
-    /* --- Just the name+username stack, nothing else wrapped --- */
     .student-name-stack {
         display: flex;
         flex-direction: column;
@@ -74,6 +72,27 @@
 
     .rename-btn { display: none; }
     body.debug-mode .rename-btn { display: inline-block; }
+
+    /* --- Group separator: labeled bar between "noted" and "un-noted" students --- */
+    .student-group-sep {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin: 1.6rem 0 1rem;
+    }
+    .student-group-sep-line {
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(142,68,173,0.35), rgba(142,68,173,0.05));
+    }
+    .student-group-sep span {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #8e44ad;
+        white-space: nowrap;
+    }
 
     #rename-modal-overlay {
         display: none;
@@ -122,74 +141,32 @@
     </div>
 </div>
 
-{% if students %}
-<div>
-    {% for student in students %}
-    <div class="student-card">
+{% if students_with_note or students_without_note %}
 
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.8rem;">
-            <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-                <div class="student-avatar">
-                    {% if student.first_name %}{{ student.first_name|first|upper }}{{ student.last_name|first|upper }}{% else %}{{ student.username|first|upper }}{% endif %}
-                </div>
-
-                <div>
-                    <div style="display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap;">
-                        <div class="student-name-stack">
-                            {% if student.first_name or student.last_name %}
-                                <span class="student-fullname">{{ student.first_name }} {{ student.last_name }}</span>
-                                <span class="student-username">@{{ student.username }}</span>
-                            {% else %}
-                                <span class="student-fullname">@{{ student.username }}</span>
-                            {% endif %}
-                        </div>
-
-                        {% if student.userprofile.registration_note %}
-                        <span class="student-badge" style="background:#8e44ad; font-style:italic;">
-                            {{ student.userprofile.registration_note }}
-                        </span>
-                        {% endif %}
-
-                        {% if student.userprofile.is_self_registered %}
-                        <span class="student-badge" style="background:#e67e22;">Self Registration</span>
-                        {% else %}
-                        <span class="student-badge" style="background:#2980b9;">Manual Library Registration</span>
-                        {% endif %}
-
-                        {% if student.userprofile.has_library_access %}
-                        <span class="student-badge" style="background:#16a085;">Kütüphane: Var</span>
-                        {% else %}
-                        <span class="student-badge" style="background:#999;">Kütüphane: Yok</span>
-                        {% endif %}
-                    </div>
-
-                    <div style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">
-                        Kayıt Tarihi: {{ student.date_joined|date:"d M Y" }}
-                        {% if student.userprofile.phone_number %} · {{ student.userprofile.phone_number }}{% endif %}
-                    </div>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:0.5rem; flex-shrink:0; flex-wrap:wrap;">
-                <button type="button" class="btn rename-btn" style="background:#f39c12; padding:0.3rem 0.7rem; font-size:0.75rem;"
-                    onclick="openRenameModal({{ student.pk }}, '{{ student.username|escapejs }}', '{{ student.first_name|escapejs }}', '{{ student.last_name|escapejs }}')">Yeniden Adlandır</button>
-                <button type="button" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem;"
-                    onclick="editNote({{ student.pk }}, '{{ student.userprofile.registration_note|escapejs }}')">Notu Düzenle</button>
-                <a href="/portal/students/toggle-access/{{ student.pk }}/" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem; display:inline-flex; align-items:center; justify-content:center; line-height:1;">
-                    {% if student.userprofile.has_library_access %}Erişimi Kaldır{% else %}Erişim Ver{% endif %}
-                </a>
-                <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c; padding:0.3rem 0.7rem; font-size:0.75rem;" onclick="return confirm('{{ student.first_name|default:student.username }} {{ student.last_name }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
-            </div>
-        </div>
-
-        <form method="post" id="note-form-{{ student.pk }}" action="/portal/students/edit-note/{{ student.pk }}/" style="display:none;">
-            {% csrf_token %}
-            <input type="hidden" name="note" id="note-input-{{ student.pk }}">
-        </form>
-
+    {% if students_with_note %}
+    <div>
+        {% for student in students_with_note %}
+            {% include 'portal/_student_card.html' with student=student %}
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+    {% endif %}
+
+    {% if students_with_note and students_without_note %}
+    <div class="student-group-sep">
+        <div class="student-group-sep-line"></div>
+        <span>Kayıt Notu Girilmemiş Öğrenciler</span>
+        <div class="student-group-sep-line"></div>
+    </div>
+    {% endif %}
+
+    {% if students_without_note %}
+    <div>
+        {% for student in students_without_note %}
+            {% include 'portal/_student_card.html' with student=student %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
 {% else %}
     <p style="color:#888;">Henüz öğrenci eklenmedi.</p>
 {% endif %}

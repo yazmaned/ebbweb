@@ -55,6 +55,16 @@
         backdrop-filter: saturate(130%) blur(14px);
         -webkit-backdrop-filter: saturate(130%) blur(14px);
     }
+
+    @media (max-width: 640px) {
+        .carousel-track { height: 130px; }
+        .carousel-slide { left: 36px; right: 36px; padding: 0.6rem; gap: 0.6rem; }
+        .carousel-slide img { width: 90px; height: 90px; }
+        .carousel-slide h4 { font-size: 0.72rem; white-space: normal; overflow: visible; text-overflow: clip; }
+        .carousel-slide p { -webkit-line-clamp: 2; font-size: 0.68rem; margin-bottom: 0.35rem; }
+        .carousel-slide .btn { font-size: 0.68rem; padding: 0.25rem 0.55rem; }
+        .carousel-nav-btn { width: 26px; height: 26px; font-size: 0.9rem; }
+    }
 </style>
 
 <div class="carousel-track" id="carousel-track">
@@ -119,8 +129,6 @@
         margin: 1rem 0;
     }
 
-    /* --- Journal cards: matching the 2010's Aqua/Tiger language everything
-         else uses now — solid panel + gloss cap + bevel edge, no Big-Sur blur --- */
     .journal-card {
         background: linear-gradient(180deg, #fbfbfc 0%, #e4e5e8 100%);
         border: 1px solid rgba(255,255,255,0.7);
@@ -203,19 +211,17 @@
         padding-bottom: 0.4rem;
     }
 
+    /* --- Whitish card style, matching the student-list cards --- */
     .service-card {
-        background: rgba(208, 208, 208, 0.5);
-        backdrop-filter: saturate(150%) blur(28px);
-        -webkit-backdrop-filter: saturate(150%) blur(28px);
-        border: 0.5px solid rgba(0,0,0,0.08);
-        border-radius: 10px;
+        background: rgba(239, 239, 239, 0.73);
+        border-radius: 12px;
         padding: 0.9rem 1rem;
         text-align: left;
         display: flex;
         align-items: center;
         gap: 0.8rem;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: transform 0.15s, box-shadow 0.15s;
         flex: 0 0 220px;
         min-width: 220px;
         position: relative;
@@ -225,14 +231,13 @@
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0;
-        height: 42%;
-        background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0));
+        height: 30%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
         pointer-events: none;
     }
     .service-card:hover {
-        background: rgba(220,222,225,0.7);
-        transform: scale(1.02);
-        box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+        transform: scale(1.008);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
 
     .service-icon-badge {
@@ -327,7 +332,8 @@
         pointer-events: none;
     }
     .action-btn img,
-    .action-btn span {
+    .action-btn span,
+    .action-btn svg {
         position: relative;
         z-index: 1;
     }
@@ -526,7 +532,7 @@
     </a>
 
     <a href="/portal/messages/" class="action-btn" style="background:#3d7fd6; box-shadow:0 6px 20px rgba(61,127,214,0.35);">
-        <img src="{% static 'images/icons/mailbox.svg' %}">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         <span>mesaj gönder</span>
     </a>
 

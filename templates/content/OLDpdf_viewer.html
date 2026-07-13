@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ material.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(ellipse at top, #2c1a3d 0%, #1a1023 55%, #0f0a15 100%);
+        }
+
+        /* --- Solid branded top bar, replacing site nav entirely on this page --- */
+        #reader-header {
+            height: 64px;
+            flex-shrink: 0;
+            background: linear-gradient(180deg, #671789, #4a1063);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 1.2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+            z-index: 10;
+        }
+        #close-btn {
+            background: rgba(255,255,255,0.12);
+            border: none;
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        #close-btn:hover { background: rgba(255,255,255,0.22); }
+        #close-btn img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
+
+        #reader-title {
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* --- Reading area: fills the rest of the screen, decorative
+             gradient behind the (now-transparent) PDF.js iframe --- */
+        #reader-body {
+            flex: 1;
+            min-height: 0;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(103,23,137,0.35), transparent 55%),
+                radial-gradient(ellipse at 75% 80%, rgba(41,128,185,0.25), transparent 55%),
+                #1a1023;
+        }
+        #pdfjs-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            #reader-header { height: 52px; padding: 0 0.8rem; }
+            #reader-title { font-size: 0.85rem; }
+            #close-btn { width: 32px; height: 32px; }
+            #close-btn img { width: 16px; height: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="reader-header">
+        <button id="close-btn"><img src="{% static 'images/icons/incorrect.svg' %}" alt="Kapat"></button>
+        <div id="reader-title">{{ material.title }}</div>
+    </div>
+
+    <div id="reader-body">
+        <iframe
+            id="pdfjs-frame"
+            src="{% static 'content/pdfjs/web/viewer.html' %}?file={% url 'serve_file' material.pk %}#zoom=page-fit&pagemode=none"
+            title="{{ material.title }}">
+        </iframe>
+    </div>
+
+    <script>
+        document.getElementById('close-btn').addEventListener('click', () => {
+            window.close();
+            setTimeout(() => {
+                window.location.href = '/dashboard/';
+            }, 300);
+        });
+    </script>
+</body>
+</html>

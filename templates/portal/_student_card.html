@@ -1,0 +1,63 @@
+<div class="student-card">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.8rem;">
+        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
+            <div class="student-avatar">
+                {% if student.first_name %}{{ student.first_name|first|upper }}{{ student.last_name|first|upper }}{% else %}{{ student.username|first|upper }}{% endif %}
+            </div>
+
+            <div>
+                <div style="display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap;">
+                    <div class="student-name-stack">
+                        {% if student.first_name or student.last_name %}
+                            <span class="student-fullname">{{ student.first_name }} {{ student.last_name }}</span>
+                            <span class="student-username">@{{ student.username }}</span>
+                        {% else %}
+                            <span class="student-fullname">@{{ student.username }}</span>
+                        {% endif %}
+                    </div>
+
+                    {% if student.userprofile.registration_note %}
+                    <span class="student-badge" style="background:#8e44ad; font-style:italic;">
+                        {{ student.userprofile.registration_note }}
+                    </span>
+                    {% endif %}
+
+                    {% if student.userprofile.is_self_registered %}
+                    <span class="student-badge" style="background:#e67e22;">Self Registration</span>
+                    {% else %}
+                    <span class="student-badge" style="background:#2980b9;">Manual Library Registration</span>
+                    {% endif %}
+
+                    {% if student.userprofile.has_library_access %}
+                    <span class="student-badge" style="background:#16a085;">Kütüphane: Var</span>
+                    {% else %}
+                    <span class="student-badge" style="background:#999;">Kütüphane: Yok</span>
+                    {% endif %}
+                </div>
+
+                <div style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">
+                    Kayıt Tarihi: {{ student.date_joined|date:"d M Y" }}
+                    {% if student.userprofile.phone_number %} · {{ student.userprofile.phone_number }}{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; flex-shrink:0; flex-wrap:wrap;">
+            <button type="button" class="btn rename-btn" style="background:#f39c12; padding:0.3rem 0.7rem; font-size:0.75rem;"
+                onclick="openRenameModal({{ student.pk }}, '{{ student.username|escapejs }}', '{{ student.first_name|escapejs }}', '{{ student.last_name|escapejs }}')">Yeniden Adlandır</button>
+            <button type="button" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem;"
+                onclick="editNote({{ student.pk }}, '{{ student.userprofile.registration_note|escapejs }}')">Notu Düzenle</button>
+            <a href="/portal/students/toggle-access/{{ student.pk }}/" class="btn" style="padding:0.3rem 0.7rem; font-size:0.75rem; display:inline-flex; align-items:center; justify-content:center; line-height:1;">
+                {% if student.userprofile.has_library_access %}Erişimi Kaldır{% else %}Erişim Ver{% endif %}
+            </a>
+            <a href="/portal/students/delete/{{ student.pk }}/" class="btn" style="background:#e74c3c; padding:0.3rem 0.7rem; font-size:0.75rem;" onclick="return confirm('{{ student.first_name|default:student.username }} {{ student.last_name }} silinsin mi? BU İŞLEM GERİ ALINAMAZ.')">Sil</a>
+        </div>
+    </div>
+
+    <form method="post" id="note-form-{{ student.pk }}" action="/portal/students/edit-note/{{ student.pk }}/" style="display:none;">
+        {% csrf_token %}
+        <input type="hidden" name="note" id="note-input-{{ student.pk }}">
+    </form>
+
+</div>

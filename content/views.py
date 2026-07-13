@@ -173,8 +173,7 @@ def view_pdf(request, pk):
     SessionLog.objects.filter(user=request.user, is_active=True).update(
         current_material=f'📄 {material.title}'
     )
-    is_large_pdf = material.file.size > 5 * 1024 * 1024
-    return render(request, 'content/pdf_viewer.html', {'material': material, 'is_large_pdf': is_large_pdf})
+    return render(request, 'content/pdf_viewer.html', {'material': material})
 
 @login_required
 def view_video(request, pk):

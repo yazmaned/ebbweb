@@ -282,7 +282,14 @@ def rename_student(request, pk):
 @user_passes_test(is_bilge)
 def student_list(request):
     students = User.objects.filter(is_staff=False).exclude(username__in=PRIVILEGED_USERNAMES).select_related('userprofile').order_by('-date_joined')
-    return render(request, 'portal/student_list.html', {'students': students})
+
+    students_with_note = [s for s in students if s.userprofile.registration_note]
+    students_without_note = [s for s in students if not s.userprofile.registration_note]
+
+    return render(request, 'portal/student_list.html', {
+        'students_with_note': students_with_note,
+        'students_without_note': students_without_note,
+    })
 
 @login_required
 @user_passes_test(is_bilge)
