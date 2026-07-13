@@ -258,6 +258,8 @@
             .container { padding: 0 1rem; margin: 1.5rem auto; max-width: 100%; }
             input { font-size: 1rem; padding: 0.7rem 1rem; }
             .btn { padding: 0.75rem 1.5rem; font-size: 1rem; }
+            nav a[href="/home/"] img { height: 62px; }
+            .nav-icons { gap: 0.5rem; }
         }
 
         @keyframes slideIn {
@@ -360,13 +362,13 @@
             <img src="{% static 'images/logo.svg' %}" height="80px" alt="Bilge Dil">
         </a>
 
-        <div style="display:flex; align-items:center; gap:1rem;">
+        <div style="display:flex; align-items:center; gap:1rem;" class="nav-icons">
             {% if user.is_authenticated %}
             <span class="welcome-text">Hoş Geldin, <strong>{{ user.username }}</strong></span>
 
             <div class="dropdown" id="mailbox-dropdown">
                 <a href="javascript:void(0)" id="mailbox-toggle" style="display:flex; align-items:center; position:relative;">
-                    <img src="{% static 'images/icons/mailbox.svg' %}" width="26" height="26">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                     <span id="mailbox-badge"></span>
                 </a>
                 <div class="dropdown-menu" id="mailbox-list" style="min-width:280px;">
