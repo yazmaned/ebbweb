@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import watermark
 
 urlpatterns = [
     path('add-student/', views.add_student, name='add_student'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('messages/', views.compose_message, name='compose_message'),
     path('messages/delete/<int:pk>/', views.delete_message, name='delete_message'),
     path('students/rename/<int:pk>/', views.rename_student, name='rename_student'),
+    path('filigran/', watermark.watermark_tool, name='watermark_tool'),
 ]

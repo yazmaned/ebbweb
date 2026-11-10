@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Filigran Ekle | BD{% endblock %}
+
+{% block content %}
+<style>
+    .wm-wrap { max-width: 640px; margin: 0 auto; }
+    .wm-head { margin-bottom: 1.25rem; }
+    .wm-head h1 { font-size: 1.5rem; font-weight: 800; color: var(--c-navy); letter-spacing: -0.01em; }
+    .wm-head p { color: var(--c-text-2); margin-top: 0.3rem; }
+    .wm-card {
+        background: var(--c-surface);
+        border: 1px solid var(--c-border);
+        box-shadow: var(--shadow);
+        padding: 1.5rem;
+    }
+    .wm-drop {
+        position: relative;
+        border: 2px dashed var(--c-border-strong);
+        background: #fafafb;
+        padding: 2rem 1rem;
+        text-align: center;
+        color: var(--c-text-2);
+        margin-bottom: 1rem;
+        transition: border-color 0.15s, background 0.15s;
+    }
+    .wm-drop.over { border-color: var(--c-purple-2); background: rgba(142,68,173,0.05); }
+    .wm-drop strong { color: var(--c-purple); }
+    .wm-drop input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        margin: 0;
+        height: 100%;
+    }
+    .wm-drop svg { width: 36px; height: 36px; stroke: var(--c-purple-2); margin-bottom: 0.5rem; }
+    .wm-files { list-style: none; margin: 0 0 1.25rem; max-height: 180px; overflow-y: auto; font-size: 0.88rem; }
+    .wm-files li { padding: 0.4rem 0; border-bottom: 1px solid var(--c-border); color: var(--c-text); }
+    .wm-files li:last-child { border-bottom: none; }
+    .wm-row { display: grid; grid-template-columns: 1fr 140px; gap: 1rem; }
+    .wm-errors {
+        background: #fdecea;
+        border-left: 4px solid #e74c3c;
+        color: #8a1f14;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+    .wm-submit { width: 100%; background: var(--c-purple) !important; padding: 0.8rem; font-size: 1rem; }
+    .wm-submit:disabled { opacity: 0.6; cursor: wait; }
+    @media (max-width: 640px) { .wm-row { grid-template-columns: 1fr; gap: 0; } }
+</style>
+
+<div class="wm-wrap">
+    <div class="wm-head">
+        <h1>Filigran Ekle</h1>
+        <p>PDF'leri seç, filigranlı kopyaları indir. Tek dosya PDF, birden fazlası ZIP olarak iner.</p>
+    </div>
+
+    <div class="wm-card">
+        {% if errors %}
+        <div class="wm-errors">
+            {% for e in errors %}<div>{{ e }}</div>{% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" id="wm-form">
+            {% csrf_token %}
+
+            <div class="wm-drop" id="wm-drop">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+                <div>PDF'leri buraya sürükle ya da <strong>tıklayıp seç</strong></div>
+                <input type="file" name="files" id="wm-input" accept=".pdf,application/pdf" multiple>
+            </div>
+            <ul class="wm-files" id="wm-files"></ul>
+
+            <div class="wm-row">
+                <div>
+                    <label for="wm-text">Filigran metni</label>
+                    <input type="text" name="text" id="wm-text" value="{{ text }}">
+                </div>
+                <div>
+                    <label for="wm-size">Yazı boyutu</label>
+                    <input type="number" name="font_size" id="wm-size" value="{{ font_size }}" min="10" max="300">
+                </div>
+            </div>
+
+            <button type="submit" class="btn wm-submit" id="wm-submit">Filigran Ekle ve İndir</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const drop = document.getElementById('wm-drop');
+        const input = document.getElementById('wm-input');
+        const list = document.getElementById('wm-files');
+        const form = document.getElementById('wm-form');
+        const submit = document.getElementById('wm-submit');
+
+        function renderList() {
+            list.innerHTML = '';
+            Array.from(input.files).forEach(f => {
+                const li = document.createElement('li');
+                li.textContent = f.name;
+                list.appendChild(li);
+            });
+        }
+
+        input.addEventListener('change', renderList);
+        ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, () => drop.classList.add('over')));
+        ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, () => drop.classList.remove('over')));
+
+        form.addEventListener('submit', (e) => {
+            if (!input.files.length) { e.preventDefault(); alert('En az bir PDF seçin.'); return; }
+            submit.disabled = true;
+            submit.textContent = 'İşleniyor…';
+            // İndirme sayfayı değiştirmez, butonu bir süre sonra geri aç
+            setTimeout(() => { submit.disabled = false; submit.textContent = 'Filigran Ekle ve İndir'; }, 4000);
+        });
+    })();
+</script>
+{% endblock %}
