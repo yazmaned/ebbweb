@@ -138,12 +138,13 @@
         color: #fff;
     }
     .hc-img {
-        width: 100%;
-        height: 100%;
-        min-height: 280px;
+        width: 280px;
+        height: 280px;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
         display: block;
         cursor: pointer;
+        align-self: center;
     }
     .hc-body {
         padding: 2rem 2.25rem 4rem;
@@ -475,7 +476,7 @@
     }
     @media (max-width: 640px) {
         .hc-slide { grid-template-columns: 1fr; min-height: 0; }
-        .hc-img { min-height: 0; height: auto; aspect-ratio: 16 / 10; }
+                .hc-img { width: 100%; height: auto; aspect-ratio: 1 / 1; }
         .hc-body { padding: 1.25rem 1.25rem 3.75rem; justify-content: flex-start; }
         .hc-body p { font-size: 0.92rem; -webkit-line-clamp: 2; margin-bottom: 1rem; }
         .hc-actions .btn { flex: 1 1 auto; text-align: center; }
