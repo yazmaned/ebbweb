@@ -1,0 +1,40 @@
+{% load static %}
+<aside class="bl-side">
+
+    {% if side_recent %}
+    <div class="bl-side-block">
+        <div class="bl-side-title">Son Yazılar</div>
+        {% for j in side_recent %}
+        <a href="/journal/{{ j.slug }}/" class="bl-side-item">
+            {% if j.image %}
+                <img src="{{ j.image.url }}" class="bl-side-thumb" alt="">
+            {% else %}
+                <div class="bl-ph"><img src="{% static 'images/icons/news.svg' %}" alt=""></div>
+            {% endif %}
+            <div>
+                <div class="bl-side-item-title">{{ j.title }}</div>
+                {% if j.show_timestamp %}<div class="bl-kicker">{{ j.created_at|date:"d M Y" }}</div>{% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if side_seo %}
+    <div class="bl-side-block">
+        <div class="bl-side-title">Diğer Konular</div>
+        <ul class="bl-side-links">
+            {% for j in side_seo %}
+            <li><a href="/journal/{{ j.slug }}/">{{ j.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="bl-side-cta">
+        <div class="bl-side-cta-title">Bilgehan Hoca'dan Seviye Belirleme Testi</div>
+        <p></p>
+        <a href="/deneme-sinavi/" class="btn">Teste Başla</a>
+    </div>
+
+</aside>

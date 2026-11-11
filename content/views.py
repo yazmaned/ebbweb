@@ -120,8 +120,12 @@ def delete_journal(request, pk):
 
 def view_journal(request, slug):
     journal = get_object_or_404(Journal, slug=slug)
-    return render(request, 'content/journal_detail.html', {'journal': journal})
-
+    others = Journal.objects.filter(is_active=True).exclude(pk=journal.pk)
+    return render(request, 'content/journal_detail.html', {
+        'journal': journal,
+        'recent_journals': others.filter(is_seo=False)[:6],
+        'seo_journals': others.filter(is_seo=True)[:8],
+    })
 @login_required
 def dashboard(request):
     profile = getattr(request.user, 'userprofile', None)

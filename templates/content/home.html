@@ -4,8 +4,20 @@
 {% block title %}Ana Sayfa | BD{% endblock %}
 
 {% block content %}
+{% include 'content/_journal_styles.html' %}
 
 <style>
+    /* ---------- Sayfa düzeni: sol içerik + sağ blog sidebar ---------- */
+    .home-layout { display: block; }
+    .home-layout.has-side {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 2.5rem;
+        align-items: start;
+    }
+    .home-aside { display: block; }
+    .home-journals-mobile { display: none; }
+
     /* ---------- Genel ---------- */
     .home-section { margin-bottom: 2rem; }
     .section-head {
@@ -41,8 +53,12 @@
         box-shadow: var(--shadow);
     }
 
-    /* ---------- Misafir karşılama ---------- */
+    /* ---------- Misafir karşılama (metin + fotoğraf) ---------- */
     .home-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 230px;
+        gap: 2rem;
+        align-items: center;
         padding: 2.25rem 2.25rem 2rem;
         margin-bottom: 1rem;
         position: relative;
@@ -56,6 +72,18 @@
         border-radius: 50%;
         background: radial-gradient(circle, rgba(142,68,173,0.10), rgba(142,68,173,0) 70%);
         pointer-events: none;
+    }
+    .home-hero-text { position: relative; z-index: 1; min-width: 0; }
+    .home-hero-photo {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: var(--radius);
+        display: block;
+        box-shadow: var(--shadow);
+        border-bottom: 4px solid var(--c-purple-2);
     }
     .home-hero-eyebrow {
         font-size: 0.78rem;
@@ -125,93 +153,156 @@
     .profile-meta .none { color: var(--c-muted); font-style: italic; }
     .profile-meta .no { color: var(--c-muted); font-weight: 600; }
 
-    /* ---------- Carousel ---------- */
-    .carousel-track {
+    /* ---------- Banner carousel ---------- */
+    .hc {
         position: relative;
-        height: 176px;
+        background: var(--c-navy);
+        box-shadow: var(--shadow);
+        overflow: hidden;
         margin-bottom: 1rem;
     }
-    .carousel-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 3;
-        background: var(--c-surface);
-        border: 1px solid var(--c-border);
-        box-shadow: var(--shadow-sm);
-        border-radius: 50%;
-        width: 34px;
-        height: 34px;
-        cursor: pointer;
-        font-size: 1.2rem;
-        color: var(--c-text-2);
+    .hc-viewport { overflow: hidden; touch-action: pan-y; }
+    .hc-track {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.15s;
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
     }
-    .carousel-nav-btn:hover { background: var(--c-bg); }
-    .carousel-nav-btn.prev { left: 0; }
-    .carousel-nav-btn.next { right: 0; }
-    .carousel-slide {
-        position: absolute;
-        top: 0; bottom: 0;
-        left: 46px;
-        right: 46px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s ease;
-        display: flex;
-        align-items: center;
-        gap: 1.1rem;
-        padding: 0.9rem;
+    .hc-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        min-height: 280px;
+        color: #fff;
     }
-    .carousel-slide.is-active { opacity: 1; pointer-events: auto; z-index: 2; }
-    .carousel-slide img {
-        width: 140px; height: 140px;
+    .hc-img {
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
         object-fit: cover;
-        border-radius: var(--radius);
-        flex-shrink: 0;
+        display: block;
+        cursor: pointer;
     }
-    .carousel-slide h4 {
-        font-size: 1rem;
+    .hc-body {
+        padding: 2rem 2.25rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+    }
+    .hc-kicker {
+        font-size: 0.72rem;
         font-weight: 700;
-        margin-bottom: 0.35rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        color: #d2b4e6;
+        margin-bottom: 0.6rem;
     }
-    .carousel-slide p {
-        color: var(--c-text-2);
-        font-size: 0.88rem;
-        line-height: 1.5;
-        margin: 0 0 0.7rem 0;
+    .hc-body h3 {
+        font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        color: #fff;
+        margin-bottom: 0.6rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .hc-body p {
+        color: #d8dde2;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.3rem;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    .carousel-slide .btn { font-size: 0.82rem; padding: 0.4rem 0.9rem; }
+    .hc-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .hc-actions .btn { background: var(--c-purple-2); }
+    .hc-actions .hc-btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.35);
+        box-shadow: none;
+    }
+    .hc-actions .hc-btn-ghost:hover { background: rgba(255,255,255,0.08); }
 
-    /* ---------- Hizmetler (tam genişlik, bitişik, düz köşe) ---------- */
-    .service-row {
+    .hc-controls {
+        position: absolute;
+        right: 1.25rem;
+        bottom: 1.1rem;
         display: flex;
-        width: 100%;
-        background: var(--c-surface);
+        align-items: center;
+        gap: 0.9rem;
+        z-index: 2;
+    }
+    .hc-dots { display: flex; gap: 6px; align-items: center; }
+    .hc-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        border: none;
+        background: rgba(255,255,255,0.35);
+        cursor: pointer;
+        padding: 0;
+        transition: width 0.25s, background 0.25s;
+    }
+    .hc-dot.active { width: 22px; background: #fff; }
+    .hc-count { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.7); min-width: 2.6rem; text-align: center; }
+    .hc-arrow {
+        width: 34px;
+        height: 34px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.3);
+        color: #fff;
+        font-size: 1.15rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s;
+    }
+    .hc-arrow:hover { background: rgba(255,255,255,0.1); }
+
+    .hc-progress {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 3px;
+        background: rgba(255,255,255,0.12);
+        z-index: 2;
+    }
+    .hc-progress-bar {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #e53947, #f4a261, #f59e0b, #2a9d8f, #2980b9, #8e44ad);
+    }
+    .hc-progress-bar.run { animation: hcProgress 6s linear forwards; }
+    .hc:hover .hc-progress-bar,
+    .hc.paused .hc-progress-bar { animation-play-state: paused; }
+    @keyframes hcProgress { from { width: 0; } to { width: 100%; } }
+
+    /* ---------- Hizmetler (2'li ızgara, bitişik, düz köşe) ---------- */
+    .service-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--c-border);
         border: 1px solid var(--c-border);
         box-shadow: var(--shadow);
     }
     .service-card {
-        flex: 1 1 0;
+        background: var(--c-surface);
         min-width: 0;
         padding: 1.2rem 1.1rem;
         display: flex;
         align-items: center;
         gap: 0.85rem;
-        border-right: 1px solid var(--c-border);
         transition: background 0.15s;
     }
-    .service-card:last-child { border-right: none; }
+    .service-card:last-child:nth-child(odd) { grid-column: span 2; }
     .service-card:hover { background: #fafafb; }
     .service-icon-badge {
         flex-shrink: 0;
@@ -225,10 +316,10 @@
     .service-card:hover .service-icon-badge { transform: translateY(-2px) scale(1.06); }
     .service-icon-badge img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
     .service-card-text { min-width: 0; }
-    .service-card h4 { font-size: 0.93rem; font-weight: 700; line-height: 1.3; }
+    .service-card h4 { font-size: 0.95rem; font-weight: 700; line-height: 1.3; }
     .service-card p {
         color: var(--c-text-2);
-        font-size: 0.83rem;
+        font-size: 0.85rem;
         line-height: 1.45;
         margin: 0.2rem 0 0;
         display: -webkit-box;
@@ -237,10 +328,10 @@
         overflow: hidden;
     }
 
-    /* ---------- Hızlı erişim kutuları (tam genişlik, bitişik, düz köşe) ---------- */
+    /* ---------- Hızlı erişim (2'li ızgara, bitişik, düz köşe) ---------- */
     .action-row {
-        display: flex;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 0;
         box-shadow: var(--shadow);
     }
@@ -248,9 +339,8 @@
         --tile: #2c3e50;
         background: var(--tile);
         color: #fff;
-        flex: 1 1 0;
         min-width: 0;
-        height: 140px;
+        height: 130px;
         padding: 0.75rem;
         display: flex;
         flex-direction: column;
@@ -263,6 +353,7 @@
         box-shadow: inset -1px 0 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(255,255,255,0.18);
         transition: filter 0.2s ease;
     }
+    .action-btn:last-child:nth-child(odd) { grid-column: span 2; }
     .action-btn::before {
         content: "";
         position: absolute;
@@ -279,7 +370,7 @@
     .action-btn img { width: 44px; height: 44px; filter: brightness(0) invert(1); }
     .action-btn svg { width: 44px; height: 44px; }
     .action-btn span {
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         font-weight: 600;
         text-align: center;
         line-height: 1.3;
@@ -287,7 +378,30 @@
     .action-btn:hover { filter: brightness(1.1); }
     .action-btn:hover img, .action-btn:hover svg { transform: translateY(-2px) scale(1.06); }
 
-    /* ---------- Blog ---------- */
+    /* ---------- Sidebar: Sil linki için satır sarmalayıcı ---------- */
+    .home-side-row { border-bottom: 1px solid var(--c-border); display: flex; flex-direction: column; }
+    .home-side-row:last-of-type { border-bottom: none; }
+    .home-side-row .bl-side-item { border-bottom: none; }
+    .home-side-del {
+        align-self: flex-end;
+        color: #e74c3c;
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-decoration: none;
+        margin: -0.5rem 0 0.5rem;
+    }
+    .home-side-all {
+        display: block;
+        text-align: right;
+        margin-top: 0.6rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--c-purple);
+        text-decoration: none;
+    }
+    .home-side-all:hover { text-decoration: underline; }
+
+    /* ---------- Blog (mobil, altta) ---------- */
     .journal-row {
         display: flex;
         gap: 1rem;
@@ -372,50 +486,53 @@
     }
     .bd-modal-close:hover { background: var(--c-bg); }
 
-    /* ---------- Orta ekran: hizmetler 2'li ızgara ---------- */
-    @media (max-width: 1024px) {
-        .service-row { display: grid; grid-template-columns: 1fr 1fr; }
-        .service-card { border-right: none; border-bottom: 1px solid var(--c-border); }
-        .service-card:nth-child(odd) { border-right: 1px solid var(--c-border); }
-        .service-card:last-child:nth-child(odd) { grid-column: span 2; border-right: none; }
-        .service-card:nth-last-child(-n+2):not(:nth-child(odd):nth-last-child(2)),
-        .service-card:last-child { border-bottom: none; }
+    /* ---------- Tablet/mobil: sidebar gizlenir, blog alta iner ---------- */
+    @media (max-width: 900px) {
+        .home-layout.has-side { display: block; }
+        .home-aside { display: none; }
+        .home-journals-mobile { display: block; }
     }
 
     /* ---------- Mobil ---------- */
     @media (max-width: 768px) {
-        .home-hero { padding: 1.5rem 1.25rem; }
+        .home-hero {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 1.5rem 1.25rem;
+        }
+        .home-hero-photo {
+            order: -1;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-position: center 20%;
+        }
         .home-hero-actions .btn { flex: 1 1 auto; text-align: center; }
 
         .service-row { grid-template-columns: 1fr; }
-        .service-card,
-        .service-card:nth-child(odd) { border-right: none; border-bottom: 1px solid var(--c-border); }
         .service-card:last-child:nth-child(odd) { grid-column: auto; }
-        .service-card:last-child { border-bottom: none; }
         .service-card { padding: 0.95rem 1rem; }
 
         .journal-row { margin: 0 -1rem; padding: 0.2rem 1rem 0.8rem; }
         .journal-card { flex-basis: 72%; }
 
-        .action-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
         .action-btn { height: 120px; }
-        .action-btn:last-child:nth-child(odd) { grid-column: span 2; }
         .action-btn img, .action-btn svg { width: 38px; height: 38px; }
         .action-btn span { font-size: 0.9rem; }
     }
     @media (max-width: 640px) {
-        .carousel-track { height: 150px; overflow: hidden; }
-        .carousel-slide { left: 38px; right: 38px; padding: 0.6rem; gap: 0.7rem; }
-        .carousel-slide img { width: 84px; height: 84px; }
-        .carousel-slide h4 { font-size: 0.85rem; white-space: normal; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; }
-        .carousel-slide p { -webkit-line-clamp: 1; font-size: 0.78rem; margin-bottom: 0.4rem; }
-        .carousel-slide .btn { font-size: 0.75rem; padding: 0.3rem 0.65rem; }
-        .carousel-nav-btn { width: 28px; height: 28px; font-size: 1rem; }
+        .hc-slide { grid-template-columns: 1fr; min-height: 0; }
+        .hc-img { min-height: 0; height: auto; aspect-ratio: 16 / 10; }
+        .hc-body { padding: 1.25rem 1.25rem 3.75rem; justify-content: flex-start; }
+        .hc-body p { font-size: 0.92rem; -webkit-line-clamp: 2; margin-bottom: 1rem; }
+        .hc-actions .btn { flex: 1 1 auto; text-align: center; }
+        .hc-controls { right: 1rem; left: 1rem; bottom: 0.9rem; justify-content: space-between; }
     }
 </style>
+
+<div class="home-layout{% if journals %} has-side{% endif %}">
+
+<!-- ================= SOL KOLON ================= -->
+<div class="home-main">
 
 <!-- KARŞILAMA / PROFİL -->
 {% if user.is_authenticated %}
@@ -436,34 +553,59 @@
 </div>
 {% else %}
 <div class="surface home-hero">
-    <div class="home-hero-eyebrow">Bilge Dil Sınavları Akademisi</div>
-    <h1>YDS, YÖKDİL, IELTS ve TOEFL sınavlarına online hazırlık</h1>
-    <p>20 yıllık tecrübeyle kütüphane, canlı ders ve bireysel koçluk.</p>
-    <div class="home-hero-actions">
-        <a href="/accounts/register/" class="btn" style="background:var(--c-purple);">Ücretsiz Kayıt Ol</a>
-        <a href="https://wa.me/905303138755" target="_blank" class="btn btn-ghost">WhatsApp ile Bilgi Al</a>
+    <div class="home-hero-text">
+        <div class="home-hero-eyebrow">Bilge Dil Sınavları Akademisi</div>
+        <h1>YDS, YÖKDİL, IELTS ve TOEFL sınavlarına online hazırlık</h1>
+        <p>20 yıllık tecrübeyle kütüphane, canlı ders ve bireysel koçluk.</p>
+        <div class="home-hero-actions">
+            <a href="/accounts/register/" class="btn" style="background:var(--c-purple);">Ücretsiz Kayıt Ol</a>
+            <a href="https://wa.me/905303138755" target="_blank" class="btn btn-ghost">WhatsApp ile Bilgi Al</a>
+        </div>
     </div>
+    <img src="{% static 'images/bilge.jpg' %}" class="home-hero-photo" alt="Bilgehan Hoca">
 </div>
 {% endif %}
 
-<!-- CAROUSEL -->
+<!-- CAROUSEL (banner) -->
 {% if carousel %}
-<div class="carousel-track" id="carousel-track">
-    <button class="carousel-nav-btn prev" onclick="carouselPrev()" aria-label="Önceki">‹</button>
-    <button class="carousel-nav-btn next" onclick="carouselNext()" aria-label="Sonraki">›</button>
-
-    {% for item in carousel %}
-    <div class="carousel-slide surface {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.counter0 }}">
-        <img src="{{ item.image.url }}" alt="">
-        <div style="flex:1; min-width:0;">
-            <h4>{{ item.title }}</h4>
-            {% if item.description %}
-            <p>{{ item.description }}</p>
-            {% endif %}
-            <button onclick="openModal('modal-{{ item.pk }}')" class="btn">İncele</button>
+<div class="hc" id="hc">
+    <div class="hc-viewport">
+        <div class="hc-track">
+            {% for item in carousel %}
+            <div class="hc-slide" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
+                <img src="{{ item.image.url }}" class="hc-img" alt="{{ item.title }}" onclick="openModal('modal-{{ item.pk }}')">
+                <div class="hc-body">
+                    <h3>{{ item.title }}</h3>
+                    {% if item.description %}
+                    <p>{{ item.description }}</p>
+                    {% endif %}
+                    <div class="hc-actions">
+                        <button type="button" class="btn" onclick="openModal('modal-{{ item.pk }}')">İncele</button>
+                        {% if item.link %}
+                        <a href="{{ item.link }}" target="_blank" class="btn hc-btn-ghost">Linke Git →</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
+
+    {% if carousel|length > 1 %}
+    <div class="hc-controls">
+        <div class="hc-dots">
+            {% for item in carousel %}
+            <button type="button" class="hc-dot{% if forloop.first %} active{% endif %}" aria-label="Slayt {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+        <div style="display:flex; align-items:center; gap:0.4rem;">
+            <button type="button" class="hc-arrow hc-prev" aria-label="Önceki">‹</button>
+            <span class="hc-count">1 / {{ carousel|length }}</span>
+            <button type="button" class="hc-arrow hc-next" aria-label="Sonraki">›</button>
+        </div>
+    </div>
+    <div class="hc-progress"><div class="hc-progress-bar"></div></div>
+    {% endif %}
 </div>
 
 {% for item in carousel %}
@@ -480,26 +622,85 @@
 {% endfor %}
 
 <script>
-    let carouselIdx = 0;
-    let carouselPaused = false;
-    const carouselSlides = document.querySelectorAll('.carousel-slide');
-    const carouselTotal = carouselSlides.length;
-
-    function carouselGo(n) {
-        carouselSlides[carouselIdx].classList.remove('is-active');
-        carouselIdx = (n + carouselTotal) % carouselTotal;
-        carouselSlides[carouselIdx].classList.add('is-active');
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+        const hc = document.getElementById('hc');
+        if (hc) hc.classList.add('paused');
     }
-    function carouselNext() { carouselGo(carouselIdx + 1); }
-    function carouselPrev() { carouselGo(carouselIdx - 1); }
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+        const hc = document.getElementById('hc');
+        if (hc) hc.classList.remove('paused');
+    }
 
-    const carouselTrack = document.getElementById('carousel-track');
-    carouselTrack.addEventListener('mouseenter', () => { carouselPaused = true; });
-    carouselTrack.addEventListener('mouseleave', () => { carouselPaused = false; });
-    setInterval(() => { if (!carouselPaused) carouselNext(); }, 5000);
+    (function () {
+        const root = document.getElementById('hc');
+        if (!root) return;
+        const viewport = root.querySelector('.hc-viewport');
+        const track = root.querySelector('.hc-track');
+        const slides = root.querySelectorAll('.hc-slide');
+        const dots = root.querySelectorAll('.hc-dot');
+        const counter = root.querySelector('.hc-count');
+        const bar = root.querySelector('.hc-progress-bar');
+        const total = slides.length;
+        let idx = 0;
 
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function restartProgress() {
+            if (!bar || total < 2) return;
+            bar.classList.remove('run');
+            void bar.offsetWidth;
+            bar.classList.add('run');
+        }
+
+        function go(n) {
+            idx = (n + total) % total;
+            track.style.transform = `translateX(-${idx * 100}%)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            slides.forEach((s, i) => s.setAttribute('aria-hidden', i === idx ? 'false' : 'true'));
+            if (counter) counter.textContent = `${idx + 1} / ${total}`;
+            restartProgress();
+        }
+
+        if (bar) bar.addEventListener('animationend', () => go(idx + 1));
+        const prev = root.querySelector('.hc-prev');
+        const next = root.querySelector('.hc-next');
+        if (prev) prev.addEventListener('click', () => go(idx - 1));
+        if (next) next.addEventListener('click', () => go(idx + 1));
+        dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+        // Mobil kaydırma
+        let startX = null, startY = 0, dx = 0, horizontal = null;
+        viewport.addEventListener('touchstart', e => {
+            if (total < 2) return;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            dx = 0;
+            horizontal = null;
+            root.classList.add('paused');
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', e => {
+            if (startX === null) return;
+            const mx = e.touches[0].clientX - startX;
+            const my = e.touches[0].clientY - startY;
+            if (horizontal === null) horizontal = Math.abs(mx) > Math.abs(my);
+            if (!horizontal) return;
+            dx = mx;
+            track.style.transition = 'none';
+            track.style.transform = `translateX(calc(-${idx * 100}% + ${dx}px))`;
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', () => {
+            if (startX === null) return;
+            track.style.transition = '';
+            root.classList.remove('paused');
+            if (horizontal && Math.abs(dx) > 50) go(idx + (dx < 0 ? 1 : -1));
+            else go(idx);
+            startX = null;
+        });
+
+        go(0);
+    })();
 </script>
 {% endif %}
 
@@ -677,7 +878,8 @@
             <img src="{% static 'images/icons/edit-pencil.svg' %}" alt="">
             <span>Blog Oluştur</span>
         </a>
-                <a href="/portal/filigran/" class="action-btn" style="--tile:#8e44ad;">
+
+        <a href="/portal/filigran/" class="action-btn" style="--tile:#8e44ad;">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5l7-7"/></svg>
             <span>PDF Filigran Aracı</span>
         </a>
@@ -686,38 +888,75 @@
 </div>
 {% endif %}
 
-<div class="rainbow-line"></div>
-
-<!-- JOURNALS -->
+<!-- JOURNALS (sadece 900px altında görünür) -->
 {% if journals %}
-<div class="home-section" style="margin-top:1.5rem;">
-    <div class="section-head">
-        <h2>Blog</h2>
-        <a href="/journal/">Tümünü gör →</a>
-    </div>
-    <div class="journal-row">
-        {% for journal in journals %}
-        <div class="surface journal-card" onclick="if(event.target.tagName !== 'A') window.location.href='/journal/{{ journal.slug }}/'">
-            {% if journal.image %}
-                <img src="{{ journal.image.url }}" alt="">
-            {% else %}
-                <div class="journal-color-bar"></div>
-            {% endif %}
-            <div class="journal-card-body">
-                {% if journal.show_timestamp %}
-                <div class="journal-card-date">{{ journal.created_at|date:"d M Y" }}</div>
-                {% endif %}
-                <h4 class="journal-card-title">{{ journal.title }}</h4>
-                <p class="journal-card-text">{{ journal.body|truncatechars:50 }}</p>
-                {% if user.username == 'bilge' %}
-                <a href="/journal/delete/{{ journal.pk }}/" class="journal-card-delete" onclick="event.stopPropagation(); return confirm('Silinsin mi?')">Sil</a>
-                {% endif %}
-            </div>
+<div class="home-journals-mobile">
+    <div class="rainbow-line"></div>
+    <div class="home-section" style="margin-top:1.5rem;">
+        <div class="section-head">
+            <h2>Blog</h2>
+            <a href="/journal/">Tümünü gör →</a>
         </div>
-        {% endfor %}
+        <div class="journal-row">
+            {% for journal in journals %}
+            <div class="surface journal-card" onclick="if(event.target.tagName !== 'A') window.location.href='/journal/{{ journal.slug }}/'">
+                {% if journal.image %}
+                    <img src="{{ journal.image.url }}" alt="">
+                {% else %}
+                    <div class="journal-color-bar"></div>
+                {% endif %}
+                <div class="journal-card-body">
+                    {% if journal.show_timestamp %}
+                    <div class="journal-card-date">{{ journal.created_at|date:"d M Y" }}</div>
+                    {% endif %}
+                    <h4 class="journal-card-title">{{ journal.title }}</h4>
+                    <p class="journal-card-text">{{ journal.body|truncatechars:50 }}</p>
+                    {% if user.username == 'bilge' %}
+                    <a href="/journal/delete/{{ journal.pk }}/" class="journal-card-delete" onclick="event.stopPropagation(); return confirm('Silinsin mi?')">Sil</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endif %}
+
+</div>
+<!-- ================= /SOL KOLON ================= -->
+
+<!-- ================= SAĞ KOLON: BLOG SIDEBAR ================= -->
+{% if journals %}
+<div class="home-aside">
+    <aside class="bl-side">
+        <div class="bl-side-block">
+            <div class="bl-side-title">Blog</div>
+            {% for j in journals|slice:":8" %}
+            <div class="home-side-row">
+                <a href="/journal/{{ j.slug }}/" class="bl-side-item">
+                    {% if j.image %}
+                        <img src="{{ j.image.url }}" class="bl-side-thumb" alt="">
+                    {% else %}
+                        <div class="bl-ph"><img src="{% static 'images/icons/news.svg' %}" alt=""></div>
+                    {% endif %}
+                    <div>
+                        <div class="bl-side-item-title">{{ j.title }}</div>
+                        {% if j.show_timestamp %}<div class="bl-kicker">{{ j.created_at|date:"d M Y" }}</div>{% endif %}
+                    </div>
+                </a>
+                {% if user.username == 'bilge' %}
+                <a href="/journal/delete/{{ j.pk }}/" class="home-side-del" onclick="return confirm('Silinsin mi?')">Sil</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <a href="/journal/" class="home-side-all">Tümünü gör →</a>
+        </div>
+    </aside>
+</div>
+{% endif %}
+
+</div>
+<!-- ================= /home-layout ================= -->
 
 <script>
     const pastels = ['#2D3C59', '#CD5656', '#5B7E3C', '#F59E0B', '#44444E'];
@@ -725,12 +964,17 @@
         bar.style.background = pastels[Math.floor(Math.random() * pastels.length)];
     });
 
-    // Modallar: arka plana tıklayınca veya Esc ile kapanır
+    // Modallar: arka plana tıklayınca veya Esc ile kapanır (carousel'i de devam ettirir)
+    function closeAllModals() {
+        document.querySelectorAll('.bd-modal').forEach(m => m.style.display = 'none');
+        const hc = document.getElementById('hc');
+        if (hc) hc.classList.remove('paused');
+    }
     document.querySelectorAll('.bd-modal').forEach(m => {
-        m.addEventListener('click', e => { if (e.target === m) m.style.display = 'none'; });
+        m.addEventListener('click', e => { if (e.target === m) closeAllModals(); });
     });
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') document.querySelectorAll('.bd-modal').forEach(m => m.style.display = 'none');
+        if (e.key === 'Escape') closeAllModals();
     });
 </script>
 

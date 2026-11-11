@@ -2,36 +2,36 @@
 
 {% block title %}{{ journal.title }} | BD{% endblock %}
 {% block meta_description %}{{ journal.title }} — {{ journal.body|truncatechars:150 }}{% endblock %}
+{% block og_title %}{{ journal.title }}{% endblock %}
+{% block og_description %}{{ journal.body|truncatechars:150 }}{% endblock %}
 
 {% block content %}
-<div style="max-width:680px; margin:0 auto;">
-    <a href="/journal" class="back-btn">←</a>
+{% include 'content/_journal_styles.html' %}
 
+<div class="bl-layout">
+    <article class="bl-article">
+        <div class="bl-crumb"><a href="/journal/">← Blog</a></div>
 
-    <div style="border-bottom:3px solid #2c3e50; margin:1rem 0 0.5rem 0; padding-bottom:0.5rem;">
-        {% if journal.show_timestamp %}
-    <p style="color:#aaa; font-size:0.75rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.5rem;">{{ journal.created_at|date:"l, d F Y" }}</p>
-    {% endif %}
-        <h1 style="font-size:2rem; color:#2c3e50; line-height:1.2; font-weight:800;">{{ journal.title }}</h1>
-    </div>
+        <header class="bl-article-head">
+            {% if journal.show_timestamp %}
+            <div class="bl-kicker">{{ journal.created_at|date:"l, d F Y" }}</div>
+            {% endif %}
+            <h1>{{ journal.title }}</h1>
+        </header>
 
-    <div style="border-bottom:1px solid #eee; margin-bottom:1.5rem;"></div>
+        {% if journal.image %}
+        <img src="{{ journal.image.url }}" class="bl-article-img" alt="">
+        {% endif %}
 
-    {% if journal.image %}
-    <figure style="margin:0 0 1.5rem 0;">
-        <img src="{{ journal.image.url }}" style="width:100%; border-radius:6px; max-height:380px; object-fit:cover;">
-    </figure>
-    {% endif %}
-
-    <div style="color:#333; font-size:0.95rem; line-height:1.9; text-align:justify;">
-        {{ journal.body|linebreaks }}
-    </div>
+        <div class="bl-body">
+            {{ journal.body|linebreaks }}
+        </div>
 
         {% if journal.show_timestamp %}
-        <div style="border-top:1px solid #eee; margin-top:2rem; padding-top:1rem;">
-        <span style="color:#aaa; font-size:0.8rem;">BD • {{ journal.created_at|date:"d M Y" }}</span>
-     </div>
-    {% endif %}
+        <div class="bl-article-foot">BD • {{ journal.created_at|date:"d M Y" }}</div>
+        {% endif %}
+    </article>
 
+    {% include 'content/_journal_sidebar.html' with side_recent=recent_journals side_seo=seo_journals %}
 </div>
 {% endblock %}
