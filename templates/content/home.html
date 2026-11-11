@@ -115,44 +115,6 @@
         box-shadow: var(--shadow-sm) !important;
     }
 
-    /* ---------- Profil kartı ---------- */
-    .profile-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.1rem 1.25rem;
-        margin-bottom: 1rem;
-        max-width: 520px;
-    }
-    .profile-avatar-badge {
-        flex-shrink: 0;
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: linear-gradient(160deg, #4fb2ff, #0a63d6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 8px rgba(10,99,214,0.3);
-    }
-    .profile-avatar-badge img { width: 24px; height: 24px; filter: brightness(0) invert(1); }
-    .profile-name { font-size: 1.05rem; font-weight: 700; color: var(--c-text); line-height: 1.3; }
-    .profile-note {
-        display: inline-block;
-        background: var(--c-purple-2);
-        color: #fff;
-        padding: 0.1rem 0.6rem;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.72rem;
-        margin-top: 0.3rem;
-    }
-    .profile-meta { margin-top: 0.4rem; font-size: 0.88rem; color: var(--c-text-2); line-height: 1.55; }
-    .profile-meta .ok { color: #16a085; font-weight: 700; }
-    .profile-meta .level { color: var(--c-purple-2); font-weight: 600; }
-    .profile-meta .none { color: var(--c-muted); font-style: italic; }
-    .profile-meta .no { color: var(--c-muted); font-weight: 600; }
-
     /* ---------- Banner carousel ---------- */
     .hc {
         position: relative;
@@ -189,14 +151,6 @@
         flex-direction: column;
         justify-content: center;
         min-width: 0;
-    }
-    .hc-kicker {
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 1.8px;
-        text-transform: uppercase;
-        color: #d2b4e6;
-        margin-bottom: 0.6rem;
     }
     .hc-body h3 {
         font-size: clamp(1.3rem, 2.4vw, 1.85rem);
@@ -534,24 +488,8 @@
 <!-- ================= SOL KOLON ================= -->
 <div class="home-main">
 
-<!-- KARŞILAMA / PROFİL -->
-{% if user.is_authenticated %}
-<div class="surface profile-card">
-    <div class="profile-avatar-badge">
-        <img src="{% static 'images/icons/user.svg' %}" alt="">
-    </div>
-    <div style="min-width:0;">
-        <div class="profile-name">{{ user.username }}</div>
-        {% if user_profile.registration_note %}
-        <div class="profile-note">{{ user_profile.registration_note }}</div>
-        {% endif %}
-        <div class="profile-meta">
-            Seviye B. Skoru: {% if user_profile.latest_trial_score %}<span class="ok">{{ user_profile.latest_trial_score|floatformat:0 }}/130</span>{% if user_profile.latest_trial_level %} <span class="level">({{ user_profile.latest_trial_level }})</span>{% endif %}{% else %}<span class="none">Henüz Çözmediniz</span>{% endif %}<br>
-            Kütüphane: {% if user_profile.has_library_access %}<span class="ok">Var</span>{% else %}<span class="no">Yok</span>{% endif %}
-        </div>
-    </div>
-</div>
-{% else %}
+<!-- KARŞILAMA (sadece misafir) -->
+{% if not user.is_authenticated %}
 <div class="surface home-hero">
     <div class="home-hero-text">
         <div class="home-hero-eyebrow">Bilge Dil Sınavları Akademisi</div>
@@ -704,7 +642,9 @@
 </script>
 {% endif %}
 
+{% if carousel or not user.is_authenticated %}
 <div class="rainbow-line"></div>
+{% endif %}
 
 <!-- HİZMETLER -->
 <div class="home-section" style="margin-top:1.5rem;">
@@ -814,6 +754,10 @@
     {% endif %}
         <img src="{% static 'images/icons/sinavi.svg' %}" alt="">
         <span>Seviye Belirleme Testi</span>
+    </a>
+        <a href="https://www.shopier.com/bilgehanhoca" target="_blank" rel="noopener" class="action-btn" style="--tile:#680254;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+        <span>MAĞAZA</span>
     </a>
 
     </div>
